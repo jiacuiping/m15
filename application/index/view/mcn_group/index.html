@@ -71,31 +71,39 @@
         <div class="layui-card">
           <div class="layui-card-header">红人分组列表</div>
           <div class="layui-card-body">
-
-            <!-- 分组循环-->
-            {volist name="macGroups" id="item"}
+            <!-- 搞笑类红人 -->
             <div class="fenzu-div1">
               <!-- 标题 -->
               <div class="fenzu-div1-top">
-                <h3>{$item.group_name}<span>{$item.kol_num}个红人</span></h3>
+                <h3>搞笑类红人<span>3个红人</span></h3>
                 <div class="right">
-                  <a href="javascript:void(0);" title="" style="color: #34b0fa" group-id="{$item.group_id}" class="updateGroup">修改分组名称</a>
-                  <a href="javascript:void(0);" title="" style="color: #f5655d; margin-left: 15px" group-id="{$item.group_id}">删除分组</a>
+                  <a href="#" title="" style="color: #34b0fa">修改分组名称</a>
+                  <a href="#" title="" style="color: #f5655d; margin-left: 15px">删除分组</a>
                 </div>
               </div>
               <!-- 列表 -->
               <ul class="clear">
-                <!-- 循环组内红人 -->
-                {volist name="$item.kols" id="kol"}
-                <li class="layui-col-md3" kol-id="{$kol.kol_id}">
+                <li class="layui-col-md3">
                   <div class="mcn-ul-li">
-                    <img src="{$kol.kol_avatar}" alt="" class="mcn-touxiang">
-                    <p class="yichu">{$kol.kol_nickname}</p>
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
+                    <p class="yichu">会说话的...</p>
                     <img src="__STATIC__/index/layuiadmin/imgs/1.png" alt="">
                   </div>
                 </li>
-                {/volist}
-
+                <li class="layui-col-md3">
+                  <div class="mcn-ul-li">
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
+                    <p class="yichu">会说话的...</p>
+                    <img src="__STATIC__/index/layuiadmin/imgs/1.png" alt="">
+                  </div>
+                </li>
+                <li class="layui-col-md3">
+                  <div class="mcn-ul-li">
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
+                    <p class="yichu">会说话的...</p>
+                    <img src="__STATIC__/index/layuiadmin/imgs/1.png" alt="">
+                  </div>
+                </li>
                 <!-- 列表最后一个 添加红人 点击时有弹框 -->
                 <a href="#" title="" class="dianji">
                   <li class="layui-col-md3">
@@ -106,8 +114,36 @@
                 </a>
               </ul>
             </div>
-            {/volist}
 
+            <!-- 宠物类红人 -->
+            <div class="fenzu-div1">
+              <!-- 标题 -->
+              <div class="fenzu-div1-top">
+                <h3>搞笑类红人<span>3个红人</span></h3>
+                <div class="right">
+                  <a href="#" title="" style="color: #34b0fa">修改分组名称</a>
+                  <a href="#" title="" style="color: #f5655d; margin-left: 15px">删除分组</a>
+                </div>
+              </div>
+              <!-- 列表 -->
+              <ul class="clear">
+                <li class="layui-col-md3">
+                  <div class="mcn-ul-li">
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
+                    <p class="yichu">会说话的...</p>
+                    <img src="__STATIC__/index/layuiadmin/imgs/1.png" alt="">
+                  </div>
+                </li>
+                <!-- 列表最后一个 添加红人 点击时有弹框 -->
+                <a href="#" title="" class="dianji">
+                  <li class="layui-col-md3">
+                    <div class="mcn-ul-li">
+                      <p style="text-align: center;display: block; max-width: 100%;color: #34b0fa">+添加红人</p>
+                    </div>
+                  </li>
+                </a>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -171,67 +207,37 @@
 <script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>  
 <script>
 
-  // 1.轮播
-  layui.use('carousel', function(){
-    var carousel = layui.carousel;
-    carousel.render({
-      elem: '#test1'
-      ,width: '100%' //设置容器宽度
-      ,arrow: 'always' //始终显示箭头
-      //,anim: 'updown' //切换动画方式
-    });
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
   });
+});
 
-  // 2.下拉选择
-  layui.use(['form', 'layedit', 'laydate'], function(){
-    var form = layui.form
-    ,layer = layui.layer
-    ,layedit = layui.layedit
-    ,laydate = layui.laydate;
+// 2.下拉选择
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+});
 
+// 添加分组
+$("#addGroup").click(function(){
+  layer.open({
+    type: 2
+    ,title:'添加分组'
+    ,content: "{:url('McnGroup/create')}"
+    ,shadeClose: true
+    ,area: ['70%', '60%']
+    ,maxmin: true
   });
-
-  // 添加分组
-  $("#addGroup").click(function(){
-    layer.open({
-      title:'添加分组'
-      ,content: "{:url('McnGroup/create')}"
-      ,shadeClose: true
-      ,area: ['70%', '60%']
-      ,maxmin: true
-    });
-  });
-
-  // 修改分组
-  $(".updateGroup").click(function(){
-    var group_id = $(this).attr('group-id');
-    var url = "{:url('McnGroup/update','',false)}/id/" + group_id;
-    layer.open({
-      title:'修改分组'
-      ,content: url
-      ,shadeClose: true
-      ,area: ['70%', '60%']
-      ,maxmin: true
-    });
-  });
-
-  // 删除分组
-  /*$(".delGroup").click(function(){
-    var url = "{:url('delete','',false)}/id/" + dataid;
-    layer.confirm('您确定要删除该分类吗？', function(index){
-      $.ajax({
-        url:url,
-        success:function(res){
-          layer.msg(res.msg);
-          if(res.code)
-            setTimeout(function(){window.location.reload()},2000);
-        },error:function(){
-          layer.msg('服务器错误，请稍后重试！');
-        }
-      })
-      layer.close(index);
-    });
-  });*/
+});
 
 
 

@@ -1,0 +1,100 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>添加分类</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+
+  <style>
+
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+    .create-button-box{
+      text-align: center;
+    }
+
+  </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+  <div class="layui-card">
+    <div class="layui-card-header">添加分组</div>
+    <div class="layui-card-body" style="padding: 15px;">
+      <form class="layui-form" action="" lay-filter="component-form-group" id="myform">
+
+        <input type="hidden" name="group_mcn" value="{$data.mcn_id}">
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">分组名称</label>
+          <div class="layui-input-block">
+            <input type="text" name="group_name"  autocomplete="off" placeholder="请输入分组名称" class="layui-input" value="{$data.group_name}">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">分组权重</label>
+          <div class="layui-input-block">
+            <input type="number" name="group_rank"  autocomplete="off" placeholder="请输入分组权重" class="layui-input" value="{$data.group_rank}">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">分组状态</label>
+          <div class="layui-input-block">
+            <input type="radio" name="group_status" value="1" title="可用" {if $data.group_status eq 1} checked="" {/if}>
+            <input type="radio" name="group_status" value="0" title="禁用" {if $data.group_status eq 1} checked="" {/if}>
+          </div>
+        </div>
+
+      </form>
+      <div class="layui-input-block create-button-box">
+        <button type="button" class="layui-btn" id="create">确认添加</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="__STATIC__/layui/layui.js"></script>
+<script>
+  layui.config({
+    base: '__STATIC__/admin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form', 'upload'], function(){
+    var $ = layui.$
+            ,layer = layui.layer
+            ,upload = layui.upload
+            ,form = layui.form;
+
+
+
+
+    // 添加分组
+    $("#create").click(function(){
+      $.ajax({
+        url:"{:url('create')}",
+        type:"POST",
+        data:$("#myform").serialize(),
+        success:function(res){
+          layer.msg(res.msg);
+          if(res.code)
+            setTimeout(function(){window.parent.location.reload()},2000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试');
+        }
+      })
+    });
+
+  });
+</script>
+</body>
+</html>

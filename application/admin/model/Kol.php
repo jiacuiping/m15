@@ -37,9 +37,9 @@ class Kol extends Model
     }
 
     //获取数据列表，不分页
-    public function GetDataList($where=array(), $order="kol_id desc")
+    public function GetDataList($where=array(), $order="kol_id desc", $field = "*")
     {
-        return $this->where($where)->order($order)->select();
+        return $this->field($field)->where($where)->order($order)->select();
     }
 
     /**

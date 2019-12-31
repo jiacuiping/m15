@@ -3,19 +3,27 @@ namespace app\index\controller;
 
 use app\index\controller\LoginBase;
 use app\api\controller\GetData;
-use app\admin\model\Kol;
+use app\admin\model\Kol as KolModel;
 use app\admin\model\McnKol;
 use app\admin\model\McnAgent;
 use app\api\controller\Interfaces;
+use app\admin\model\McnGroup as McnGroupModel;
+use think\Db;
+
 
 class Mcn extends LoginBase
 {
 	private $GetData;
     private $data;
+    private $mcnGroup;
+    private $kol;
 
 	public function __construct()
 	{
 		parent::__construct();
+        $this->mcnGroup = new McnGroupModel();
+        $this->kol = new KolModel();
+
 		$this->GetData = new GetData;
   //       $this->assign('specification',$this->GetData->GetSpecification('all'));
 		// $this->assign('sort',$this->GetData->GetVideoSort());
@@ -156,8 +164,58 @@ class Mcn extends LoginBase
     //分组管理
     public function Group()
     {
-        $this->assign('data',$this->data['data']);
-    	return view();
+        // mcn信息
+        $mcnInfo = $this->data['data'];
+
+        // 获取该mcn的分组信息
+        $groupWhere = ['group_mcn' => $mcnInfo['mcn_id'], 'group_status' => 1];
+        $macGroups =$this->mcnGroup->GetDataList($groupWhere);
+
+
+        // 查询该mcn的红人
+        $kols = $this->kol->GetDataList(['kol_mcn' => $mcnInfo['mcn_id']], '', 'kol_id, kol_nickname, kol_avatar');
+        $kols = array_column($kols, null, 'kol_id');
+
+        // 获取分组内的红人id
+        $sql = "select mk_group,GROUP_CONCAT(mk_kol) as kolids from m15_mcn_kol where m15_mcn_kol.mk_mcn = {$mcnInfo['mcn_id']} group by mk_group";
+        $groupKols = Db::query($sql);
+        $groupKols = array_column($groupKols, 'kolids', 'mk_group');
+
+
+        // 获取分组内的红人
+        $groupData = [];
+        foreach ($macGroups as $key => $value) {
+            $macGroups[$key]['kol_num'] = 0;
+            $macGroups[$key]['kols'] = [];
+
+            if(key_exists($value['group_id'], $groupKols)) {
+                $kolIds = explode(',', $groupKols[$value['group_id']]);
+                $macGroups[$key]['kol_num'] = count($kolIds);
+
+                $temp = [];
+                foreach ($kolIds as $kolId) {
+                    if(key_exists($kolId, $kols)) {
+                        array_push($temp, $kols[$kolId]);
+                    }
+                }
+                $macGroups[$key]['kols'] = $temp;
+
+            }
+        }
+
+        // 分组信息
+        $this->assign('macGroups',$macGroups);
+
+        // mcn个人信息
+        $this->assign('data',$mcnInfo);
+        return view();
+    }
+
+    public function create()
+    {
+        return request()->isPost() ? $this->mcnGroup->CreateData(input('post.')) : view('mcn_group/create', [
+            'data' => $this->data['data']
+        ]);
     }
 
 

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\group.html";i:1577764765;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\group.html";i:1577786422;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +53,6 @@
           </div>
         </div>
       </div>
-      </div>
       <!-- 分组管理 -->
       <div class="layui-col-md12">
         <div class="layui-card">
@@ -63,7 +62,7 @@
               <p style="color: #000;display: inline-block">提示：按分组查看数据青岛：“数据概览”中操作</p>
             </div>
             <div class="mcn-kol-red-right right">
-              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="color:#1ca3fc">+添加分组</button>
+              <button type="button" id="addGroup" class="layui-btn layui-btn-primary layui-btn-sm" style="color:#1ca3fc">+添加分组</button>
             </div>
           </div>
         </div>
@@ -73,69 +72,31 @@
         <div class="layui-card">
           <div class="layui-card-header">红人分组列表</div>
           <div class="layui-card-body">
-            <!-- 搞笑类红人 -->
-            <div class="fenzu-div1">
-              <!-- 标题 -->
-              <div class="fenzu-div1-top">
-                <h3>搞笑类红人<span>3个红人</span></h3>
-                <div class="right">
-                  <a href="#" title="" style="color: #34b0fa">修改分组名称</a>
-                  <a href="#" title="" style="color: #f5655d; margin-left: 15px">删除分组</a>
-                </div>
-              </div>
-              <!-- 列表 -->
-              <ul class="clear">
-                <li class="layui-col-md3">
-                  <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
-                    <img src="/static/index/layuiadmin/imgs/1.png" alt="">
-                  </div>
-                </li>
-                <li class="layui-col-md3">
-                  <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
-                    <img src="/static/index/layuiadmin/imgs/1.png" alt="">
-                  </div>
-                </li>
-                <li class="layui-col-md3">
-                  <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
-                    <img src="/static/index/layuiadmin/imgs/1.png" alt="">
-                  </div>
-                </li>
-                <!-- 列表最后一个 添加红人 点击时有弹框 -->
-                <a href="#" title="" class="dianji">
-                  <li class="layui-col-md3">
-                    <div class="mcn-ul-li">
-                      <p style="text-align: center;display: block; max-width: 100%;color: #34b0fa">+添加红人</p>
-                    </div>
-                  </li>
-                </a>
-              </ul>
-            </div>
 
-            <!-- 宠物类红人 -->
+            <!-- 分组循环-->
+            <?php if(is_array($macGroups) || $macGroups instanceof \think\Collection || $macGroups instanceof \think\Paginator): $i = 0; $__LIST__ = $macGroups;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
             <div class="fenzu-div1">
               <!-- 标题 -->
               <div class="fenzu-div1-top">
-                <h3>搞笑类红人<span>3个红人</span></h3>
+                <h3><?php echo $item['group_name']; ?><span><?php echo $item['kol_num']; ?>个红人</span></h3>
                 <div class="right">
-                  <a href="#" title="" style="color: #34b0fa">修改分组名称</a>
-                  <a href="#" title="" style="color: #f5655d; margin-left: 15px">删除分组</a>
+                  <a href="javascript:void(0);" title="" style="color: #34b0fa" group-id="<?php echo $item['group_id']; ?>" class="updateGroup">修改分组名称</a>
+                  <a href="javascript:void(0);" title="" style="color: #f5655d; margin-left: 15px" group-id="<?php echo $item['group_id']; ?>">删除分组</a>
                 </div>
               </div>
               <!-- 列表 -->
               <ul class="clear">
-                <li class="layui-col-md3">
+                <!-- 循环组内红人 -->
+                <?php if(is_array($item['kols']) || $item['kols'] instanceof \think\Collection || $item['kols'] instanceof \think\Paginator): $i = 0; $__LIST__ = $item['kols'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$kol): $mod = ($i % 2 );++$i;?>
+                <li class="layui-col-md3" kol-id="<?php echo $kol['kol_id']; ?>">
                   <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
+                    <img src="<?php echo $kol['kol_avatar']; ?>" alt="" class="mcn-touxiang">
+                    <p class="yichu"><?php echo $kol['kol_nickname']; ?></p>
                     <img src="/static/index/layuiadmin/imgs/1.png" alt="">
                   </div>
                 </li>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+
                 <!-- 列表最后一个 添加红人 点击时有弹框 -->
                 <a href="#" title="" class="dianji">
                   <li class="layui-col-md3">
@@ -146,6 +107,8 @@
                 </a>
               </ul>
             </div>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
+
           </div>
         </div>
       </div>
@@ -209,34 +172,70 @@
 <script src="/static/index/layuiadmin/style/js/jquery.min.js"></script>  
 <script>
 
-// 1.轮播 
-layui.use('carousel', function(){
-  var carousel = layui.carousel;
-  carousel.render({
-    elem: '#test1'
-    ,width: '100%' //设置容器宽度
-    ,arrow: 'always' //始终显示箭头
-    //,anim: 'updown' //切换动画方式
+  // 1.轮播
+  layui.use('carousel', function(){
+    var carousel = layui.carousel;
+    carousel.render({
+      elem: '#test1'
+      ,width: '100%' //设置容器宽度
+      ,arrow: 'always' //始终显示箭头
+      //,anim: 'updown' //切换动画方式
+    });
   });
-});
 
-// 2.下拉选择
-layui.use(['form', 'layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-  
-});
+  // 2.下拉选择
+  layui.use(['form', 'layedit', 'laydate'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate;
+
+  });
+
+  // 添加分组
+  $("#addGroup").click(function(){
+    layer.open({
+      title:'添加分组'
+      ,content: "<?php echo url('McnGroup/create'); ?>"
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
+  // 修改分组
+  $(".updateGroup").click(function(){
+    var group_id = $(this).attr('group-id');
+    var url = "<?php echo url('McnGroup/update','',false); ?>/id/" + group_id;
+    layer.open({
+      title:'修改分组'
+      ,content: url
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
+  // 删除分组
+  /*$(".delGroup").click(function(){
+    var url = "<?php echo url('delete','',false); ?>/id/" + dataid;
+    layer.confirm('您确定要删除该分类吗？', function(index){
+      $.ajax({
+        url:url,
+        success:function(res){
+          layer.msg(res.msg);
+          if(res.code)
+            setTimeout(function(){window.location.reload()},2000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试！');
+        }
+      })
+      layer.close(index);
+    });
+  });*/
 
 
-// 3.点击添加红人时 遮罩层
-  $(".dianji").click(function(){
-  $(".mask").show();
-});
-  $(".guan").click(function(){
-  $(".mask").hide();
-});
+
 </script>
 </body>
 </html>
