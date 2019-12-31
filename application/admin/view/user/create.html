@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>添加{$modeltext}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__CSS__/admin.css" media="all">
+
+  <style>
+    
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">添加{$modeltext}</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group" id="myform">
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+              <input type="text" name="user_name"  autocomplete="off" placeholder="请输入用户名称，可以用于用户名登录" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户头像</label>
+            <div class="layui-input-block">
+              <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>点击上传</button>
+              <input type="hidden" name="user_avatar" id="imginput">
+            </div>
+            <img src="" id="previewimage" style="display:none">
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-block">
+              <input type="text" name="user_mobile"  autocomplete="off" placeholder="请输入用户手机，可以用于手机号登录" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户性别</label>
+            <div class="layui-input-block">
+              <input type="radio" name="user_sex" value="1" title="男" checked="">
+              <input type="radio" name="user_sex" value="2" title="女">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">身份证号</label>
+            <div class="layui-input-block">
+              <input type="text" name="user_idcard"  autocomplete="off" placeholder="请输入身份证号" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">登陆密码</label>
+            <div class="layui-input-block">
+              <input type="password" name="login_password"  autocomplete="off" placeholder="请输入登陆密码" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">特权状态</label>
+            <div class="layui-input-block">
+              <select name="user_vlevel" lay-verify="required">
+                <option value="0">非会员</option>
+                {volist name="levels" id="level"}
+                  <option value="{$level.level_id}">{$level.level_name}</option>
+                {/volist}
+              </select>
+            </div>
+          </div>
+
+          <div class="layui-form-item" style="display: none;" id="vipinfo">
+            <label class="layui-form-label">特权时长</label>
+            <div class="layui-input-block">
+              <input type="number" name="vip_number"  autocomplete="off" placeholder="请输入用户特权时长" class="layui-input">
+              <input type="radio" name="vip_duration" value="天" title="天">
+              <input type="radio" name="vip_duration" value="月" title="月" checked="">
+              <input type="radio" name="vip_duration" value="年" title="年">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户状态</label>
+            <div class="layui-input-block">
+              <input type="radio" name="user_status" value="1" title="可用" checked="">
+              <input type="radio" name="user_status" value="0" title="禁用">
+            </div>
+          </div>
+
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <div class="layui-btn" lay-submit="" lay-filter="component-form-demo1">确认创建</div>
+                <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="__STATIC__/layui/layui.js"></script>  
+  <script>
+    layui.config({
+      base: '__STATIC__/admin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload'], function(){
+      var $ = layui.$
+      ,layer = layui.layer
+      ,upload = layui.upload
+      ,form = layui.form;
+
+      upload.render({
+        elem: '#test3'
+        ,url: "{:url('Upload/UploadImage')}"
+        ,accept: 'images' //普通文件
+        ,done: function(res){
+          layer.msg(res.msg);
+          if(res.code){
+            $("#previewimage").attr('src',res.path);
+            $("#imginput").val(res.path);
+            $("#previewimage").show();
+          }
+        }
+      });
+
+      form.on('select()', function(data){
+
+        data.value == 0 ? $("#vipinfo").hide() : $("#vipinfo").show();
+
+      });
+
+      /* 监听提交 */
+      form.on('submit(component-form-demo1)', function(data){
+        $.ajax({
+          url:"{:url('create')}",
+          type:"POST",
+          data:$("#myform").serialize(),
+          success:function(res){
+            layer.msg(res.msg);
+            if(res.code)
+              setTimeout(function(){window.parent.location.reload()},2000);
+          },error:function(){
+            layer.msg('服务器错误，请稍后重试');
+          }
+        })
+      });
+    });
+  </script>
+</body>
+</html>

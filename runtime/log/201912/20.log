@@ -1,0 +1,1328 @@
+---------------------------------------------------------------
+[ 2019-12-20T22:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.038628s] [吞吐率：25.89req/s] [内存消耗：2,445.47kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000254s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000826s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000255s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.064611s] [吞吐率：15.48req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001799s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000760s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000152s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1796,4 [ RunTime:0.000791s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000624s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721081049402E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005306s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720338596189E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005261s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719967651104E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005139s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719855428056E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005220s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:33:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.046337s] [吞吐率：21.58req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000251s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000718s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000161s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1800,4 [ RunTime:0.000762s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000542s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720627322263E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005346s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720722915525E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005268s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719943102096E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005186s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720503917911E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005258s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.047247s] [吞吐率：21.17req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000261s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000809s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000168s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1804,4 [ RunTime:0.000785s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000562s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720713032613E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005432s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721083428579E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005364s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720824120641E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005322s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719922043838E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005277s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:39:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.046966s] [吞吐率：21.29req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000355s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000702s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000168s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1808,4 [ RunTime:0.000814s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000543s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721192098843E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005418s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720996919885E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005319s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719872832403E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005296s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721004544668E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005682s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:40:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.022779s] [吞吐率：43.90req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000274s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000733s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000223s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:41:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingMusic
+[运行时间：0.024271s] [吞吐率：41.20req/s] [内存消耗：2,552.33kb] [文件加载：48]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingMusic',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingMusic' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingMusic[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000260s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_music` [ RunTime:0.000749s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_music` LIMIT 1 [ RunTime:0.000567s ]
+[ error ] [8]未定义变量: page[/www/wwwroot/newm15/application/api/controller/Automated.php:77]
+---------------------------------------------------------------
+[ 2019-12-20T22:42:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.050516s] [吞吐率：19.80req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000264s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000798s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000159s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1812,4 [ RunTime:0.000802s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000621s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721246129825E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005617s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721008740315E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005525s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720833982206E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005352s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719795664676E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005440s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:45:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.047835s] [吞吐率：20.91req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000278s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000720s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000158s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1816,4 [ RunTime:0.000865s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000575s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719766804844E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005772s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720966813213E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005536s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720739100758E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005554s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7718150792068E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005471s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:48:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.048305s] [吞吐率：20.70req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000304s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000740s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000290s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1820,4 [ RunTime:0.000774s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000553s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7717215733984E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005682s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721014390671E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005454s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723522102496E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005479s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723720293845E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005485s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:50:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.023364s] [吞吐率：42.80req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000541s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000874s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000513s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:51:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.048454s] [吞吐率：20.64req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000283s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000800s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000150s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1824,4 [ RunTime:0.000800s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000578s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721170492935E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005601s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723307334585E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005494s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7719972773944E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005406s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723664415439E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005492s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:54:02+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.046984s] [吞吐率：21.28req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000263s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000707s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000183s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1828,4 [ RunTime:0.000745s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000551s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.772351303181E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005608s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7722939102544E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005453s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723502977727E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005368s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721119603737E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005387s ]
+---------------------------------------------------------------
+[ 2019-12-20T22:57:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.047665s] [吞吐率：20.98req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000297s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000729s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000297s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1832,4 [ RunTime:0.000757s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000559s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720947604726E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005649s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721282954263E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005485s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.772090650386E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005493s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721066459221E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005452s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:00:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.036835s] [吞吐率：27.15req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000277s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001039s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000288s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:00:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.064564s] [吞吐率：15.49req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001288s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001797s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000750s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1836,4 [ RunTime:0.000820s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000547s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721215493706E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005647s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7720755941768E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005630s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723751050006E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005538s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721212234354E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005592s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:01:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingKol
+[运行时间：0.027378s] [吞吐率：36.53req/s] [内存消耗：2,493.11kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingKol',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingKol' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingKol[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000245s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000831s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_kol` LIMIT 1 [ RunTime:0.000177s ]
+[ sql ] [ SQL ] SELECT `kol_id`,`kol_uid` FROM `m15_kol` LIMIT 110,5 [ RunTime:0.000129s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:03:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.048786s] [吞吐率：20.50req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000267s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000739s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1840,4 [ RunTime:0.000761s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000566s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7724140950786E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.006002s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723406386765E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005707s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721857126714E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005698s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.772105674945E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005637s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:06:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.048120s] [吞吐率：20.78req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000274s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000787s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000261s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1844,4 [ RunTime:0.000762s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000567s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7724328883414E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005777s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7724090195177E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005617s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721019980043E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005591s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721137401135E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005620s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:09:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.048956s] [吞吐率：20.43req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000276s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000777s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000183s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1848,4 [ RunTime:0.000787s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000561s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723611994902E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005786s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723680399848E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.006123s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721734158781E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005820s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721290868075E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005830s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:10:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.024457s] [吞吐率：40.89req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000228s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000654s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000253s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:12:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.049238s] [吞吐率：20.31req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000252s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000788s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000155s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1852,4 [ RunTime:0.000796s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000604s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721831765939E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005873s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721826008752E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005725s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721825048048E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005746s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7723241530947E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005774s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:15:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.048736s] [吞吐率：20.52req/s] [内存消耗：2,545.87kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000278s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000754s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1856,4 [ RunTime:0.000787s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000554s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721298037819E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005849s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7721216124991E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005730s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7713531797927E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005729s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7709888791483E+18  AND `vt_batec` = '2019-12-20'  AND `vt_monitoring` = 0 LIMIT 1 [ RunTime:0.005779s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:18:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023691s] [吞吐率：42.21req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000281s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000819s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000182s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1860,4 [ RunTime:0.000743s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:20:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.024018s] [吞吐率：41.64req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000262s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000638s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000233s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:21:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/GetKolPublicInfo
+[运行时间：0.032595s] [吞吐率：30.68req/s] [内存消耗：2,353.66kb] [文件加载：41]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'GetKolPublicInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/GetKolPublicInfo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->GetKolPublicInfo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000271s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000847s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000425s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:21:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.037304s] [吞吐率：26.81req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000605s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000983s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1864,4 [ RunTime:0.001258s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:24:02+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023785s] [吞吐率：42.04req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000270s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000804s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000152s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1868,4 [ RunTime:0.000794s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:27:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023417s] [吞吐率：42.70req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000245s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000736s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000149s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1872,4 [ RunTime:0.000805s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.036369s] [吞吐率：27.50req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000252s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000936s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000179s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1876,4 [ RunTime:0.000916s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.045037s] [吞吐率：22.20req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000638s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000543s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000207s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:33:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.024702s] [吞吐率：40.48req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000273s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000721s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000184s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1880,4 [ RunTime:0.001219s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023305s] [吞吐率：42.91req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000261s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000762s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000156s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1884,4 [ RunTime:0.000815s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:39:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023290s] [吞吐率：42.94req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000255s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000781s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000158s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1888,4 [ RunTime:0.000806s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:40:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.023293s] [吞吐率：42.93req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000236s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000671s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000217s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:41:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingMusic
+[运行时间：0.023455s] [吞吐率：42.64req/s] [内存消耗：2,552.33kb] [文件加载：48]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingMusic',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingMusic' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingMusic[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000259s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_music` [ RunTime:0.000674s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_music` LIMIT 1 [ RunTime:0.000194s ]
+[ error ] [8]未定义变量: page[/www/wwwroot/newm15/application/api/controller/Automated.php:77]
+---------------------------------------------------------------
+[ 2019-12-20T23:42:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023594s] [吞吐率：42.38req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000247s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000742s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000151s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1892,4 [ RunTime:0.000798s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:45:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023288s] [吞吐率：42.94req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000250s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000713s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000149s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1896,4 [ RunTime:0.000878s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:48:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023204s] [吞吐率：43.10req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000250s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000720s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000259s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1900,4 [ RunTime:0.000776s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:50:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.022791s] [吞吐率：43.88req/s] [内存消耗：2,445.52kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000292s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000643s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000227s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:51:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023591s] [吞吐率：42.39req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000247s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000702s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000153s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1904,4 [ RunTime:0.000802s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:54:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023369s] [吞吐率：42.79req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000259s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000796s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000154s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1908,4 [ RunTime:0.000793s ]
+---------------------------------------------------------------
+[ 2019-12-20T23:57:02+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.023556s] [吞吐率：42.45req/s] [内存消耗：2,498.61kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000312s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000709s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1912,4 [ RunTime:0.000815s ]

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>编辑{$modeltext}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__CSS__/admin.css" media="all">
+
+  <style>
+    
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">编辑{$modeltext}</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group" id="myform">
+          <input type="hidden" name="user_id" value="{$data.user_id}">
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户名</label>
+            <div class="layui-input-block">
+              <input type="text" name="user_name"  autocomplete="off" placeholder="请输入用户名称，可以用于用户名登录" class="layui-input" value="{$data.user_name}">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户头像</label>
+            <div class="layui-input-block">
+              <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>点击上传</button>
+              <input type="hidden" name="user_avatar" id="imginput" value="{$data.user_avatar}">
+            </div>
+            <img src="{$data.user_avatar}" id="previewimage">
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">手机号</label>
+            <div class="layui-input-block">
+              <input type="text" name="user_mobile"  autocomplete="off" placeholder="请输入用户手机，可以用于手机号登录" class="layui-input" value="{$data.user_mobile}">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户性别</label>
+            <div class="layui-input-block">
+              <input type="radio" name="user_sex" value="1" title="男" {if $data.user_sex eq 1} checked="" {/if}>
+              <input type="radio" name="user_sex" value="2" title="女" {if $data.user_sex eq 2} checked="" {/if}>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">身份证号</label>
+            <div class="layui-input-block">
+              <input type="text" name="user_idcard"  autocomplete="off" placeholder="请输入身份证号" class="layui-input" value="{$data.user_idcard}">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">登陆密码</label>
+            <div class="layui-input-block">
+              <input type="password" name="login_password"  autocomplete="off" placeholder="请输入登陆密码，未空则不修改" class="layui-input">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">特权状态</label>
+            <div class="layui-input-block">
+              <select name="user_vlevel" lay-verify="required">
+                <option value="0" {if $data.user_vlevel eq 0} selected="" {/if}>非会员</option>
+                {volist name="levels" id="level"}
+                  <option value="{$level.level_id}" {if $data.user_vlevel eq $level.level_id} selected="" {/if}>{$level.level_name}</option>
+                {/volist}
+              </select>
+            </div>
+          </div>
+
+          <div class="layui-form-item" id="vipinfo" {if $data.expire eq 0} style="display: none;" {/if}>
+            <label class="layui-form-label">特权截止到</label>
+            <div class="layui-inline">
+              <input type="text" name="expire" class="layui-input" id="expire" {if $data.expire neq 0} value="{:date('Y-m-d H:i',$data.expire)}" {/if}>
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">用户状态</label>
+            <div class="layui-input-block">
+              <input type="radio" name="user_status" value="1" title="可用" {if $data.user_status eq 1} checked="" {/if}>
+              <input type="radio" name="user_status" value="0" title="禁用" {if $data.user_status eq 0} checked="" {/if}>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <div class="layui-btn" lay-submit="" lay-filter="component-form-demo1">保存修改</div>
+                <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="__STATIC__/layui/layui.js"></script>  
+  <script>
+    layui.config({
+      base: '__STATIC__/admin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload', 'laydate'], function(){
+      var $ = layui.$
+      ,layer = layui.layer
+      ,laydate = layui.laydate
+      ,upload = layui.upload
+      ,form = layui.form;
+
+      upload.render({
+        elem: '#test3'
+        ,url: "{:url('Upload/UploadImage')}"
+        ,accept: 'images' //普通文件
+        ,done: function(res){
+          layer.msg(res.msg);
+          if(res.code){
+            $("#previewimage").attr('src',res.path);
+            $("#imginput").val(res.path);
+            $("#previewimage").show();
+          }
+        }
+      });
+
+      laydate.render({
+        elem: '#expire'
+        ,format: 'yyyy-MM-dd HH:mm'
+        ,min: 0
+      });
+
+      form.on('select()', function(data){
+        data.value == 0 ? $("#vipinfo").hide() : $("#vipinfo").show();
+      });
+
+
+      /* 监听提交 */
+      form.on('submit(component-form-demo1)', function(data){
+        $.ajax({
+          url:"{:url('update')}",
+          type:"POST",
+          data:$("#myform").serialize(),
+          success:function(res){
+            layer.msg(res.msg);
+            if(res.code)
+              setTimeout(function(){window.parent.location.reload()},2000);
+          },error:function(){
+            layer.msg('服务器错误，请稍后重试');
+          }
+        })
+      });
+    });
+  </script>
+</body>
+</html>

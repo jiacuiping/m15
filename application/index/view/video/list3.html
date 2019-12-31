@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>评分</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left{display: block}
+.mtd-shipin-tab-left ul li{width: 30%;text-align: center}
+.mtd-shipin-tab-left ul li a{padding-bottom: 3px;}
+</style>
+<body onLoad="initPieChart();">
+  <!-- 点击shipin里的详情按钮跳到此页 -->
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 视频介绍 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body" style="height: 160px">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" class="mtd-shipin-list1-img">
+            <div class="mtd-shipin-list1">
+              <h4 class="yichu clear">神回路翻转再也不用抢车位了<span class="right mtd-shipin-td-btn"><img src="../../../layuiadmin/imgs/2.png" alt="" class="mtd-shipin-list1-img3"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></span></h4>
+              <h5>分类： <span>美食</span><span>美食</span><span>美食</span></h5>
+              <p>平台： <img src="../../../layuiadmin/imgs/1.png" alt="" class="mtd-shipin-list1-img2"><span>抖音</span></p>
+              <p class="yichu">简介： 用字温暖你 用心做媒体 新闻综合频道官方微信上线啦用字温暖你 用心做媒体 新闻综合频道官方微信上线啦</p>
+              <p>视频时长： 19秒<span style="margin-left: 20px;color: #000">发布时间： 2019-09-21</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 粉丝点赞评论分享 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body clear" style="height: 160px">
+            <!-- 左边图片 -->
+            <div class="mtd-list1-shenyang-left left">
+              <p>沈阳新闻 <img src="../../../layuiadmin/imgs/3.png" alt="" style="margin-left:10px"></p>
+              <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+              <div class="mtd-list1-shenyang-div">
+                <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+              </div>
+            </div>
+            <!-- 右边数据 -->
+            <div class="mtd-list1-shenyang-right left">
+              <div class="container" style="width: 100%">
+                <div class="chart">
+                  <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                  <div class="labeler">粉丝数</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                  <div class="labeler">平均点赞</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="92"><span>823</span></div>
+                  <div class="labeler">平均评论</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="84"><span>2113</span></div>
+                  <div class="labeler">平均分享</div>
+                </div>
+              </div>
+              <p>抖音号：57585455<span class="span-margin-l">性别：女</span><span class="span-margin-l">地区：沈阳</span></p>
+              <p>分类：知识资讯类</p>
+              <p><img src="../../../layuiadmin/imgs/a-2.png" alt=""> 沈阳新闻频道</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab导航条 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="list1.html" title="">视频详情</a></li>
+                <li><a href="list2.html" title="">商品分析</a></li>
+                <li><a href="list3.html" title="" class="checked-bottom">素材分析</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 总播放量 总下载数 总评论数 总转发数 总点赞数 -->
+    
+      <!-- 标题 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body layui-shenhuilu clear">
+            <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+            <div class="layui-shenhuilu-r left">
+              <h4>神回路翻转再也不用抢车位了<img src="../../../layuiadmin/imgs/caozuo3.png" alt=""></h4>
+              <p>- 1人使用 -<span class="span-margin-l">时长：3分27秒</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 两个图表 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">使用人数行业分布</div>
+          <div class="layui-card-body">
+            <div id="tubiao1" style="height: 500px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">每日新增人数趋势图</div>
+          <div class="layui-card-body">
+            <div id="tubiao2" style="height: 500px"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 好多视频缩图 -->
+      <div class="layui-col-md12">
+        <ul class="shipun-thumb-ul clear">
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          <a href="" title="">
+            <li><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><span><img src="../../../layuiadmin/imgs/xin-bai.png" alt="" class="bofang-xin"> 33.3w</span></li>
+          </a>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+  <script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+  <script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.使用人数行业分布 图表
+var myChart = echarts.init(document.getElementById("tubiao1")); 
+option = {
+    xAxis: {
+        type: 'category',
+        data: ['1', '3G', '3GS', '4', '4S', '4SG', '5']
+    },
+    color:['#3c88ba'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar'
+    }]
+};
+myChart.setOption(option); 
+
+// 3.每日新增人数趋势图 图表
+var myChart = echarts.init(document.getElementById("tubiao2")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    color:['#b3def1'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        areaStyle: {}
+    }]
+};
+myChart.setOption(option); 
+
+// 3.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+  </script>
+</body>
+</html>

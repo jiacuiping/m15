@@ -1,0 +1,66 @@
+---------------------------------------------------------------
+[ 2019-12-16T21:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.111148s] [吞吐率：9.00req/s] [内存消耗：2,442.39kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002754s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000826s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000266s ]
+---------------------------------------------------------------
+[ 2019-12-16T21:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetFansInfo
+[运行时间：0.099158s] [吞吐率：10.08req/s] [内存消耗：2,449.42kb] [文件加载：48]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetFansInfo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetFansInfo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000527s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.005716s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000188s ]

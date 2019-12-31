@@ -1,0 +1,1976 @@
+---------------------------------------------------------------
+[ 2019-12-12T23:03:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.147744s] [吞吐率：6.77req/s] [内存消耗：2,580.55kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000186s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000619s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000656s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.001181s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000542s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:03:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.156972s] [吞吐率：6.37req/s] [内存消耗：2,852.98kb] [文件加载：46]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000186s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001042s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000585s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001877s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000198s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001270s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000930s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:06:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.035713s] [吞吐率：28.00req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000289s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001685s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000930s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1383,3 [ RunTime:0.000864s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:06:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.057950s] [吞吐率：17.26req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000234s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000710s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000198s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000658s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000174s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000699s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000158s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:06:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.060598s] [吞吐率：16.50req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000159s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000736s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000729s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.001039s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000828s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000521s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:09:02+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.039795s] [吞吐率：25.13req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000248s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000874s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000200s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000807s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000198s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000918s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000393s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:09:02+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.058857s] [吞吐率：16.99req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002233s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001482s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000141s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1386,3 [ RunTime:0.001813s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:09:02+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.059870s] [吞吐率：16.70req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000202s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.005009s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000413s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000638s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000229s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.001223s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000341s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:12:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.041924s] [吞吐率：23.85req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000286s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000911s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000227s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000771s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000196s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000721s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000153s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:12:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.051430s] [吞吐率：19.44req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000187s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000629s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1389,3 [ RunTime:0.000618s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:12:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.064623s] [吞吐率：15.47req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000227s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000777s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001493s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000876s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000945s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.001083s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:15:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.041570s] [吞吐率：24.06req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001588s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001036s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000171s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1392,3 [ RunTime:0.000864s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:15:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.055915s] [吞吐率：17.88req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000221s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000693s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.001118s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000625s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000187s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000600s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000155s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:15:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.042691s] [吞吐率：23.42req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000185s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000617s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000182s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000437s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000529s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000426s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:18:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.038056s] [吞吐率：26.28req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000254s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001052s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000172s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1395,3 [ RunTime:0.000959s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:18:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.062002s] [吞吐率：16.13req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000233s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000681s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000690s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000177s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001401s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000396s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:18:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.055152s] [吞吐率：18.13req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000244s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000627s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000531s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000159s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000478s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000157s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:21:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.034628s] [吞吐率：28.88req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000241s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000781s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.001195s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1398,3 [ RunTime:0.001400s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:21:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.047460s] [吞吐率：21.07req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000334s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000667s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000187s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000653s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000179s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000695s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000148s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:21:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.067395s] [吞吐率：14.84req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000610s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.002931s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.001597s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001430s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000874s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001007s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000597s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:24:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.040855s] [吞吐率：24.48req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000619s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001232s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.001613s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000597s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000298s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001578s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.001090s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:24:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.055929s] [吞吐率：17.88req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000213s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000678s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000188s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000882s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000197s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.001079s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000153s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:24:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.054563s] [吞吐率：18.33req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000185s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001070s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000633s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1401,3 [ RunTime:0.000567s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:27:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.036713s] [吞吐率：27.24req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000273s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000794s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000416s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000678s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000186s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000763s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000505s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:27:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.056109s] [吞吐率：17.82req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000558s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000792s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1404,3 [ RunTime:0.001060s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:27:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.054436s] [吞吐率：18.37req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000195s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001098s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.001065s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000477s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000161s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000440s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000172s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.052903s] [吞吐率：18.90req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001252s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.004634s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000651s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000178s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000697s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000711s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.060054s] [吞吐率：16.65req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000186s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001690s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000130s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1407,3 [ RunTime:0.000825s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:30:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.058868s] [吞吐率：16.99req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001202s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000497s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000160s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000549s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000155s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000440s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000140s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:33:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.034043s] [吞吐率：29.37req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000230s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000743s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000620s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000190s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000785s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000380s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:33:02+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.060320s] [吞吐率：16.58req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000228s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.002073s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000188s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000656s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000546s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.001258s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:33:02+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.051048s] [吞吐率：19.59req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001319s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.003076s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.002358s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1410,3 [ RunTime:0.000860s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.033712s] [吞吐率：29.66req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000247s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000764s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000629s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000771s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000387s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.051688s] [吞吐率：19.35req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000184s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000773s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000148s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1413,3 [ RunTime:0.000836s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:36:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.056877s] [吞吐率：17.58req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002301s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001874s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000177s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000460s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000251s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.001824s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000338s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:39:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.036642s] [吞吐率：27.29req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000238s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000604s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000630s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000173s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000558s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000148s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:39:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.060085s] [吞吐率：16.64req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000171s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000721s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000144s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1416,3 [ RunTime:0.000797s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:39:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.058691s] [吞吐率：17.04req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000192s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000712s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000768s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000622s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.002788s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.001070s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:41:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingMusic
+[运行时间：0.024124s] [吞吐率：41.45req/s] [内存消耗：2,546.13kb] [文件加载：48]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingMusic',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingMusic' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingMusic[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000241s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_music` [ RunTime:0.000641s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_music` LIMIT 1 [ RunTime:0.000144s ]
+[ error ] [8]未定义变量: page[/www/wwwroot/newm15/application/api/controller/Automated.php:77]
+---------------------------------------------------------------
+[ 2019-12-12T23:42:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.045761s] [吞吐率：21.85req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000968s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000898s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.001005s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000643s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.001072s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000152s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:42:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.052349s] [吞吐率：19.10req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000190s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000522s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000729s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.001892s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001759s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.001091s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:42:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.059179s] [吞吐率：16.90req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000187s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000570s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000133s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1419,3 [ RunTime:0.000622s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:45:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.042256s] [吞吐率：23.67req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000230s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000889s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000232s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000774s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000177s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000676s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000155s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:45:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.056468s] [吞吐率：17.71req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000205s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000647s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000130s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1422,3 [ RunTime:0.000581s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:45:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.063320s] [吞吐率：15.79req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.004421s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000761s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000619s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000644s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.001062s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001806s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.001134s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:48:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.035991s] [吞吐率：27.78req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000253s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000874s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000795s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000198s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000914s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000389s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:48:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.058913s] [吞吐率：16.97req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000197s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000737s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000265s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1425,3 [ RunTime:0.001078s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:48:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.062701s] [吞吐率：15.95req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000198s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000645s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000164s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000695s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000158s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.003405s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000423s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:51:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.035844s] [吞吐率：27.90req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000235s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000995s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000159s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1428,3 [ RunTime:0.000943s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:51:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.056122s] [吞吐率：17.82req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000170s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000697s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000212s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000619s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000893s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000403s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:51:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.067010s] [吞吐率：14.92req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000193s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001805s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000279s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001320s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.003776s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.001599s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000864s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:54:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.041431s] [吞吐率：24.14req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.003020s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000721s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.002741s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000636s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.001060s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000725s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000349s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:54:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.046227s] [吞吐率：21.63req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000371s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001870s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000126s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1431,3 [ RunTime:0.000757s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:54:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.072501s] [吞吐率：13.79req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000469s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000844s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000561s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000688s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000165s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.000990s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000166s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:57:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/GetAllVideo
+[运行时间：0.051865s] [吞吐率：19.28req/s] [内存消耗：2,580.59kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'GetAllVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/GetAllVideo' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->GetAllVideo[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000221s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000599s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000242s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_allvideo` [ RunTime:0.006463s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_allvideo` WHERE  `status` = 0 LIMIT 1 [ RunTime:0.000146s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:57:01+08:00 ] 47.98.164.34 GET new.m15.ltd/api/Automated/ProcessingVideo
+[运行时间：0.044282s] [吞吐率：22.58req/s] [内存消耗：2,492.41kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'api',
+    1 => 'Automated',
+    2 => 'ProcessingVideo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/api/Automated/ProcessingVideo' => '',
+)
+[ info ] [ RUN ] app\api\controller\Automated->ProcessingVideo[ /www/wwwroot/newm15/application/api/controller/Automated.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000178s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000748s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LIMIT 1 [ RunTime:0.000285s ]
+[ sql ] [ SQL ] SELECT `video_id`,`video_reserved`,`create_time`,`video_number` FROM `m15_video` LIMIT 1434,3 [ RunTime:0.001239s ]
+---------------------------------------------------------------
+[ 2019-12-12T23:57:01+08:00 ] 47.98.164.34 GET new.m15.ltd/index/test/test
+[运行时间：0.059929s] [吞吐率：16.69req/s] [内存消耗：2,845.99kb] [文件加载：44]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'test',
+    2 => 'test',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept' => '*/*',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'curl/7.29.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/test/test' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Test->test[ /www/wwwroot/newm15/application/index/controller/Test.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000643s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.001307s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.001490s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.002985s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.001007s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001842s ]
+[ sql ] [ SQL ] SELECT `k`.*,`p`.`public_id` FROM `m15_kol` `k` LEFT JOIN `m15_publicopinion` `p` ON `k`.`kol_uid`=`p`.`public_key` [ RunTime:0.000999s ]

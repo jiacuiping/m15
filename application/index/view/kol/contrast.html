@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kol榜单</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block{margin-left: 0}
+.layui-input{padding: 0 30px 0 30px;}
+.layui-input-block{position: relative}
+.layui-input-block i{position: absolute; top: 11px; left: 10px}
+.layui-input-block input{border-radius: 10px}
+.layui-input-block span{position: absolute; top: 11px; right: 10px}
+select{width: 100%;margin-top: 5px;height: 30px}
+.layui-form-item{margin-bottom: 0;display: inline-block}
+.layui-form-label{text-align: left;padding:9px 0 }
+.sanbang-right-div input {width: 355px;}
+</style>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card layui-card-padding">
+          <div class="mtd-shipin-tab clear">  
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <a href="{:url('contrast')}" title=""><li {if $type eq 'search'} class="checked-bottom" {/if}>KOL搜索</li></a>
+                <a href="{:url('contrast',array('type'=>'contrast'))}" title=""><li {if $type eq 'contrast'} class="checked-bottom" {/if}>KOL对比</li></a>
+                <a href="{:url('contrast',array('type'=>'history'))}" title=""><li {if $type eq 'history'} class="checked-bottom" {/if}>对比历史</li></a>
+              </ul>
+            </div>
+            <div class="mtd-shipin-tab-right right">
+              <a href="#" style="color:#5597e5"><img src="__STATIC__/index/layuiadmin/imgs/wen.png" alt=""> 使用帮助</a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      {if $type eq 'search'}
+        <form id="contrastform" action="{:url('contrastresult')}" method="POST">
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-body">
+                <div class="kol-duibi-div">
+                  <img src="__STATIC__/index/layuiadmin/imgs/kol1.png" alt="">
+                  <h2>抖音号对比</h2>
+                  <p>支持多个抖音号同时进行对比，对比结果可通过对比历史进行查询。<span style="color: #4c90e1">查看示例</span></p>
+                </div>
+                <div class="douyinhao-search">
+                  <p>抖音号搜索</p>
+                  <div class="layui-input-inline sanbang-right-div">
+                    <input type="text" name="keyword" id="keyword" placeholder="请输入抖音号或者播主名称" autocomplete="off" class="layui-input">
+                    <button type="button" class="layui-btn layui-btn-sm" id="searchbut">查询</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      {elseif $type eq 'contrast'}
+        <!-- 左边列表 -->
+        <div class="layui-col-xs5 layui-col-sm3 layui-col-md2">
+          <div class="layui-card">
+            <div class="layui-card-header">选中的KOL（<span style="color: #1988fe">3</span>）</div>
+            <div class="layui-card-body" style="padding:0">
+              <div class="kol-duibi-ul">
+                <ul>
+                  <li class="checked kol-duibi-onclick">
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    <span>小名同学</span>
+                    <i class="right iconfont icon-laji"></i>
+                  </li>
+                  <li>
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    <span>小名同学</span>
+                    <i class="right iconfont icon-laji"></i>
+                  </li>
+                  <li>
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    <span>小名同学</span>
+                    <i class="right iconfont icon-laji"></i>
+                  </li>
+                  <li>
+                    <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    <span>小名同学</span>
+                    <i class="right iconfont icon-laji"></i>
+                  </li>
+
+                </ul>
+              </div>
+              <div class="start-duibi">
+                <p>本月使用次数：<span style="color: #1988fe">3</span> 剩余次数：<span>97</span></p>
+                <a href="duibi.html" title=""><button type="button" class="layui-btn layui-btn-normal">开始对比</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右边搜索结果 -->
+        <div class="layui-col-xs7 layui-col-sm9 layui-col-md10">
+          <div class="layui-card">
+            <!-- 搜索头部 -->
+            <div class="layui-card-header clear">
+              <h3 class="left" style="display: inline-block;color: #000; margin-right: 15px">搜索KOL</h3>
+              <div class="left sanbang-right">
+              <div class="layui-form-item">
+                <div class="layui-input-inline sanbang-right-div" style="margin-top: 2px;width: 300px;">
+                  <input type="text" name="keyword" placeholder="请输入抖音号或者播主名称" autocomplete="off" style="width: 230px" class="layui-input">
+                  <button type="button" class="layui-btn layui-btn-sm">搜索</button>
+                </div>
+              </div>
+            </div></div>
+            <!-- 搜索结果 -->
+            <div class="layui-card-body">
+              <div class="kol-duibi-dashed clear">
+                <h4>搜索结果（<span style="color: #1988fe">4</span>）</h4>
+                  <div class="layui-col-xs6 weimang">
+                    <div class="weimang-div">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <div class="weimang-div-right">
+                        <h3>小名</h3>
+                        <p>抖音号:548786</p>
+                        <p>简介：离别无可避，爱无有尽时。</p>
+                      </div>
+                      <button type="button" class="right layui-btn layui-btn-disabled">已选择</button>
+                    </div>
+                  </div>
+                  <div class="layui-col-xs6 weimang">
+                    <div class="weimang-div">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <div class="weimang-div-right">
+                        <h3>小名</h3>
+                        <p>抖音号:548786</p>
+                        <p>简介：离别无可避，爱无有尽时。</p>
+                      </div>
+                      <a href="list2.html" title=""><button type="button" class="right layui-btn layui-btn-normal">搜索</button></a>
+                    </div>
+                  </div>
+                  <div class="layui-col-xs6 weimang">
+                    <div class="weimang-div">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <div class="weimang-div-right">
+                        <h3>小名</h3>
+                        <p>抖音号:548786</p>
+                        <p>简介：离别无可避，爱无有尽时。</p>
+                      </div>
+                      <a href="list2.html" title=""><button type="button" class="right layui-btn layui-btn-normal">搜索</button></a>
+                    </div>
+                  </div>
+                  <div class="layui-col-xs6 weimang">
+                    <div class="weimang-div">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <div class="weimang-div-right">
+                        <h3>小名</h3>
+                        <p>抖音号:548786</p>
+                        <p>简介：离别无可避，爱无有尽时。</p>
+                      </div>
+                      <a href="list2.html" title=""><button type="button" class="right layui-btn layui-btn-normal">搜索</button></a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {elseif $type eq 'history'}
+        <div class="layui-col-md12">
+          <div class="layui-card">
+            <div class="layui-card-body clear">
+              <h3 style="color:#000">搜索结果（<span style="color: #1988fe">4</span>）</h3>
+                <!-- 一个搜索结果 -->
+                <div class="layui-col-xs4 weimang">
+                  <div class="weimang-div">
+                    <div class="kol-duibi-touxiang">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    </div>
+                    <p style="margin-top: 15px">对比时间：<span style="color: #000">2019/09/26 17:16</span></p>
+                  </div>
+                </div>
+                <div class="layui-col-xs4 weimang">
+                  <div class="weimang-div">
+                    <div class="kol-duibi-touxiang">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    </div>
+                    <p style="margin-top: 15px">对比时间：<span style="color: #000">2019/09/26 17:16</span></p>
+                  </div>
+                </div>
+                <div class="layui-col-xs4 weimang">
+                  <div class="weimang-div">
+                    <div class="kol-duibi-touxiang">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    </div>
+                    <p style="margin-top: 15px">对比时间：<span style="color: #000">2019/09/26 17:16</span></p>
+                  </div>
+                </div>
+                <div class="layui-col-xs4 weimang">
+                  <div class="weimang-div">
+                    <div class="kol-duibi-touxiang">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                      <img src="__STATIC__/index/layuiadmin/imgs/touxiang.jpg" alt="">
+                    </div>
+                    <p style="margin-top: 15px">对比时间：<span style="color: #000">2019/09/26 17:16</span></p>
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+      {/if}
+    </div>
+  </div>
+
+  <script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>  
+  <script>
+    // 1.轮播 
+    layui.use('carousel', function(){
+      var carousel = layui.carousel;
+      //建造实例
+      carousel.render({
+        elem: '#test1'
+        ,width: '100%' //设置容器宽度
+        ,arrow: 'always' //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+      });
+    });
+    // 2.下拉
+    layui.use(['form', 'layer'], function(){
+      var form = layui.form
+      ,layer = layui.layer
+      ,     $  = layui.$;
+
+      $("#searchbut").click(function(){
+        if($("#keyword").val() == '')
+          layer.msg('关键词不能为空');
+        else
+          $("#contrastform").submit();
+      })
+    });
+  </script>
+</body>
+</html>

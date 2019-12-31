@@ -1,0 +1,157 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:74:"/www/wwwroot/newm15/public/../application/index/view/collection/index.html";i:1573719604;}*/ ?>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>我收藏的素材</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="/static/index/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="/static/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="/static/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .easyPieChart{margin: 0 20px;}
+</style>
+<body onLoad="initPieChart();">
+<div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="/static/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="/static/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="/static/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="/static/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="/static/index/layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding:10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="index.html" title="" class="checked-bottom">KOL收藏</a></li>
+                <li><a href="list1.html" title="">视频收藏</a></li>
+                <li><a href="list2.html" title="">音乐收藏</a></li>
+                <li><a href="list3.html" title="">话题收藏</a></li>
+                <li><a href="list4.html" title="">商品收藏</a></li>
+                <li><a href="list4.html" title="">红人收藏</a></li>
+                <li><a href="list4.html" title="">任务收藏</a></li>
+                <li><a href="list4.html" title="">课程收藏</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 收藏的信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="mtd-shipin-index-div">
+              <!-- 左边头像和热度 -->
+                <div class="mtd-shipin-div-left">
+                  <img src="/static/index/layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+                  <div class="mtd-list1-shenyang-div">
+                    <img src="/static/index/layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                  </div>
+                </div>
+                <!-- 中间信息抖音号，分类和简介 -->
+                <div class="mtd-shipin-div-center">
+                  <h5>李佳琪Austin <img src="/static/index/layuiadmin/imgs/3.png" alt="" class="center-img"> <img src="/static/index/layuiadmin/imgs/a-2.png" alt="" class="span-margin-l"> 抖音人气好物推荐官</h5>
+                  <p>抖音号：166902759<span class="span-margin-l">性别：男</span><span class="span-margin-l">地区：上海</span><span class="span-margin-l">年龄：27</span></p>
+                  <p>分类：美妆<span class="span-margin-l kouhong">口红</span><span class="span-margin-l kouhong">彩妆</span></p>
+                  <p>简介：涂口红世界纪录保持者 战胜马云的口红一哥 关注vx:李佳琪</p>
+                  <p><span class="mz-span-img"><img src="/static/index/layuiadmin/imgs/huangguan.png" alt="">美妆排行榜周榜第一名</span><span class="span-margin-l mz-span-img" style="background-color:#ff8000"><img src="/static/index/layuiadmin/imgs/huangguan.png" alt="">今日电商大人销量榜第三名</span></p>
+                </div>
+                <!-- 右边四个仪表盘图表 -->
+                <div class="mtd-shipin-div-right">
+                  <div class="container" style="width: 100%">
+                    <div class="chart">
+                      <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                      <div class="labeler">粉丝数</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                      <div class="labeler">平均点赞</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="92"><span>823</span></div>
+                      <div class="labeler">平均评论</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="84"><span>2113</span></div>
+                      <div class="labeler">平均分享</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- 好多button -->
+            <div class="button5">
+              <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">查看详情</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入我的抖音号</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">相似号查询</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">视频监控</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入收藏</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+<script src="/static/index/layuiadmin/layui/layui.js"></script>  
+<script src="/static/index/layuiadmin/style/js/jquery.min.js"></script>  
+<script src="/static/index/layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="/static/index/layuiadmin/style/js/echarts.min.js"></script>  
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+</script>
+</body>
+</html>

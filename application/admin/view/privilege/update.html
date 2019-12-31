@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>编辑{$modeltext}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__CSS__/admin.css" media="all">
+
+  <style>
+    
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+    .layui-form-label {
+      width: 100px;
+    }
+
+    .layui-input-block {
+      margin-left: 130px !important;
+    }
+
+  </style>
+
+</head>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-card">
+      <div class="layui-card-header">编辑{$modeltext}</div>
+      <div class="layui-card-body" style="padding: 15px;">
+        <form class="layui-form" action="" lay-filter="component-form-group" id="myform">
+          <input type="hidden" name="level_id" value="{$data.level_id}">
+          <div class="layui-form-item">
+            <label class="layui-form-label">特权名称</label>
+            <div class="layui-input-block">
+              <input type="text" name="level_name" autocomplete="off" placeholder="请输入特权名称" class="layui-input" value="{$data.level_name}">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">特权图标</label>
+            <div class="layui-input-block">
+              <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>点击上传</button>
+              <input type="hidden" name="level_icon" id="imginput" value="{$data.level_icon}">
+            </div>
+            <img src="{$data.level_icon}" id="previewimage" {if $data.level_icon eq ''} style="display:none" {/if}>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">可查看评论数</label>
+            <div class="layui-input-block">
+              <input type="number" name="level_commCount"  autocomplete="off" placeholder="请输入可查看评论数" class="layui-input" value="{$data.level_commCount}">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">可绑定账号数</label>
+            <div class="layui-input-block">
+              <input type="number" name="level_accountNumber"  autocomplete="off" placeholder="请输入可绑定账号数" class="layui-input" value="{$data.level_accountNumber}">
+            </div>
+          </div>
+
+          <div class="layui-form-item">
+            <label class="layui-form-label">特权状态</label>
+            <div class="layui-input-block">
+              <input type="radio" name="level_status" value="1" title="可用" {if $data.level_status eq 1} checked="" {/if}>
+              <input type="radio" name="level_status" value="0" title="禁用" {if $data.level_status eq 0} checked="" {/if}>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">特权介绍</label>
+            <div class="layui-input-block">
+              <textarea name="level_desc" placeholder="请输入特权介绍" class="layui-textarea">{$data.level_desc}</textarea>
+            </div>
+          </div>
+
+          <div class="layui-form-item layui-layout-admin">
+            <div class="layui-input-block">
+              <div class="layui-footer" style="left: 0;">
+                <div class="layui-btn" lay-submit="" lay-filter="component-form-demo1">保存修改</div>
+                <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="__STATIC__/layui/layui.js"></script>  
+  <script>
+    layui.config({
+      base: '__STATIC__/admin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload'], function(){
+      var $ = layui.$
+      ,layer = layui.layer
+      ,upload = layui.upload
+      ,form = layui.form;
+
+      upload.render({
+        elem: '#test3'
+        ,url: "{:url('Upload/UploadImage')}"
+        ,accept: 'images' //普通文件
+        ,done: function(res){
+          layer.msg(res.msg);
+          if(res.code){
+            $("#previewimage").attr('src',res.path);
+            $("#imginput").val(res.path);
+            $("#previewimage").show();
+          }
+        }
+      });
+
+      /* 监听提交 */
+      form.on('submit(component-form-demo1)', function(data){
+        $.ajax({
+          url:"{:url('update')}",
+          type:"POST",
+          data:$("#myform").serialize(),
+          success:function(res){
+            layer.msg(res.msg);
+            if(res.code)
+              setTimeout(function(){window.parent.location.reload()},2000);
+          },error:function(){
+            layer.msg('服务器错误，请稍后重试');
+          }
+        })
+      });
+    });
+  </script>
+</body>
+</html>

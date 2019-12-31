@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>{$secondtext}列表</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+        <link rel="stylesheet" href="__CSS__/admin.css" media="all">
+        <style>
+            .imglist {
+                height: 38px;
+            }
+
+            .condition {
+                height: 40px;
+                margin-top: 10px;
+            }
+
+            .layui-input-block {
+                margin-left: 0px;
+            }
+
+        </style>
+    </head>
+<body>  
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">{$secondtext}列表</div>
+                    <div class="condition">
+                        <form class="layui-form" style="display: flex;float: left;width: 1000px;" id="myform">
+
+                            <div class="layui-form-item" style="margin-left: 15px;">
+                                <div class="layui-input-block">
+                                    <input type="text" name="name"  autocomplete="off" placeholder="分类名筛选" class="layui-input">
+                                </div>
+                            </div>
+
+                            <div class="layui-btn mgl-20" id="keyword" style="margin-left: 15px !important;">查询</div>
+                        </form>
+                    </div>
+
+                    <div class="layui-card-body">
+                        <table class="layui-hide" id="test-table-form" lay-filter="test-table-form"></table>
+
+                        <script type="text/html" id="test-table-toolbar-toolbarDemo">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" id="create">添加{$secondtext}</button>
+                            </div>
+                        </script>
+
+                        <script type="text/html" id="StatusTpl">
+                            <input type="checkbox" lay-skin="switch" lay-text="正常|禁用" lay-filter="changeStatus" data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" {{ d.sort_status == 1 ? 'checked' : '' }}>
+                        </script>
+
+ <!--                   禁用切换
+                        <script type="text/html" id="StatusTpl">
+                            <input type="checkbox" lay-skin="switch" lay-text="正常|禁用" lay-filter="changeStatus"
+                            value="{{ d.sort_id }}" disabled data-json="{{ encodeURIComponent(JSON.stringify(d)) }}" {{ d.sort_status == 1 ? 'checked' : '' }}>
+                        </script> -->
+
+                        <script type="text/html" id="operating">
+                            <a class="layui-btn layui-btn-xs" lay-event="update">编辑</a>
+                            <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+    <script src="__STATIC__/layui/layui.js"></script>  
+    <script>
+
+        var cols;
+
+        layui.config({
+            base: '__STATIC__/admin/' //静态资源所在路径
+        }).extend({
+            index: 'lib/index' //主入口模块
+        }).use(['index', 'table', 'form', 'layer'], function(){
+            var table = layui.table
+            ,admin = layui.admin
+            ,layer = layui.layer
+            ,form = layui.form
+            ,$ = layui.$;
+
+            cols = [[
+                {type: 'checkbox'}
+                ,{field:'sort_id', title:'ID', width:100, unresize: true, sort: true}
+                ,{field:'sort_platform', title:'所属平台'}
+                ,{field:'sort_name', title:'分类名称'}
+                // ,{field:'sort_parent', title:'上级分类'}
+                ,{field:'sort_rank', title:'分类权重', minWidth:80, sort: true}
+                ,{field:'sort_status', title:'分类状态', width:120, templet: '#StatusTpl', unresize: true}
+                ,{field:'sort_time', title:'创建时间', minWidth:80, sort: true}
+                ,{title:'操作', width:178, align:'center', fixed: 'right', toolbar: '#operating'}
+            ]];
+
+            table.render({
+                elem: '#test-table-form'
+                ,url:"{:url('sort')}"
+                ,toolbar: '#test-table-toolbar-toolbarDemo'
+                ,cellMinWidth: 80
+                ,cols: cols
+                ,page: true
+            });
+        
+            //修改数据状态
+            form.on('switch(changeStatus)', function(obj){
+
+                var json = JSON.parse(decodeURIComponent($(this).data('json')));
+
+                layer.confirm("确认修改{$secondtext}状态？", {
+                    btn: ['确定','取消']
+                }, function(){
+                    $.ajax({
+                        url:"{:url('changesort')}",
+                        type:"POST",
+                        data:{id:json.sort_id},
+                        success:function(res){
+                            layer.msg(res.msg);
+                            if(res.code)
+                                setTimeout(function(){window.location.reload()},2000);
+                        },error:function(){
+                            layer.msg('服务器错误，请稍后重试！');
+                        }
+                    })
+                }, function(){
+                    window.location.reload();
+                });
+            });
+
+            //添加操作
+            $("#create").click(function(){
+                layer.open({
+                    type: 2
+                    ,title:"添加{$secondtext}"
+                    ,content: "{:url('createsort')}"
+                    ,shadeClose: true
+                    ,area: ['70%', '60%']
+                    ,maxmin: true
+                });
+            });
+
+            $("#keyword").click(function(){
+                RenderingTable($("#myform").serializeArray());
+            });
+
+            //监听工具条
+            table.on('tool(test-table-form)', function(obj){
+                var dataid = obj.data.sort_id;
+                if(obj.event === 'update'){
+                    var url = "{:url('updatesort','',false)}/id/" + dataid;
+                    layer.open({
+                        type: 2
+                        ,title:"编辑{$secondtext}"
+                        ,content: url
+                        ,shadeClose: true
+                        ,area: ['70%', '60%']
+                        ,maxmin: true
+                    });
+                } else if(obj.event === 'del'){
+                    var url = "{:url('deletesort','',false)}/id/" + dataid;
+                    layer.confirm("您确定要删除该{$secondtext}吗？", function(index){
+                        $.ajax({
+                            url:url,
+                            success:function(res){
+                                layer.msg(res.msg);
+                                if(res.code)
+                                    setTimeout(function(){window.location.reload()},2000);
+                            },error:function(){
+                                layer.msg('服务器错误，请稍后重试！');
+                            }
+                        })
+                        layer.close(index);
+                    });
+                }
+            });
+
+            //筛选
+            function RenderingTable(where=array())
+            {
+                var condition = [];
+                $.each(where, function(i, field){
+                    condition[field.name] = field.value;
+                });
+
+                var tableIns = table.render({
+                    elem: '#test-table-form'
+                    ,url:"{:url('sort')}"
+                    ,toolbar: '#test-table-toolbar-toolbarDemo'
+                    , method: 'post'
+                    , where : condition
+                    ,cellMinWidth: 80
+                    ,cols: cols
+                    ,page: true
+                    , done: function (res, curr, count) {}
+                });
+            }
+        });
+    </script>
+</body>
+</html>

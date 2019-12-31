@@ -1,0 +1,1177 @@
+---------------------------------------------------------------
+[ 2019-11-11T16:07:11+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.036098s] [吞吐率：27.70req/s] [内存消耗：2,646.93kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000330s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000644s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000183s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000251s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:14:02+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.070534s] [吞吐率：14.18req/s] [内存消耗：2,646.91kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013964s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.008659s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.002282s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000186s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000149s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:14:42+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.029853s] [吞吐率：33.50req/s] [内存消耗：2,646.91kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000289s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000750s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000205s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000184s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000164s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:21:07+08:00 ] 47.100.127.188 GET new.m15.ltd/
+[运行时间：0.095325s] [吞吐率：10.49req/s] [内存消耗：2,522.70kb] [文件加载：47]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip',
+  'connection' => 'Keep-Alive',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:36.0) Gecko/20100101 Firefox/36.0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ /www/wwwroot/newm15/application/index/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/index/index.html [ array (
+  0 => 'indexmenu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013132s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_imenu` [ RunTime:0.002757s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_status` = 1  AND `imenu_parent` = 0 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000991s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 1  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000166s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 2  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000139s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 7  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000182s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 12  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000176s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 17  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000148s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:21:08+08:00 ] 47.100.127.188 GET new.m15.ltd/layuiadmin/imgs/logo.png
+[运行时间：0.023174s] [吞吐率：43.15req/s] [内存消耗：1,025.84kb] [文件加载：28]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'layuiadmin',
+    1 => 'imgs',
+    2 => 'logo.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip',
+  'connection' => 'Keep-Alive',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:36.0) Gecko/20100101 Firefox/36.0',
+)
+[ info ] [ PARAM ] array (
+  '/layuiadmin/imgs/logo_png' => '',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-11T16:21:08+08:00 ] 47.100.127.188 GET new.m15.ltd/index/workbench/console
+[运行时间：0.084921s] [吞吐率：11.78req/s] [内存消耗：1,363.59kb] [文件加载：37]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'workbench',
+    2 => 'console',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-encoding' => 'gzip',
+  'connection' => 'Keep-Alive',
+  'host' => 'new.m15.ltd',
+  'user-agent' => 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:36.0) Gecko/20100101 Firefox/36.0',
+)
+[ info ] [ PARAM ] array (
+  '/index/workbench/console' => '',
+)
+[ info ] [ RUN ] app\index\controller\Workbench->console[ /www/wwwroot/newm15/application/index/controller/Workbench.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/workbench/console.html [ array (
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-11T16:34:54+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.071069s] [吞吐率：14.07req/s] [内存消耗：2,646.91kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013320s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.008994s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.002350s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000165s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000164s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:35:30+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.025579s] [吞吐率：39.09req/s] [内存消耗：2,646.91kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000268s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000623s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000161s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000149s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:38:32+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search-jieguo.html
+[运行时间：0.027847s] [吞吐率：35.91req/s] [内存消耗：2,503.87kb] [文件加载：50]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search-jieguo',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.m15.ltd/index/kol/search.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search-jieguo_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000273s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000597s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000157s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000165s ]
+---------------------------------------------------------------
+[ 2019-11-11T16:38:34+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.023105s] [吞吐率：43.28req/s] [内存消耗：2,476.10kb] [文件加载：49]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000254s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000600s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000166s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000223s ]
+---------------------------------------------------------------
+[ 2019-11-11T17:04:20+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.077598s] [吞吐率：12.89req/s] [内存消耗：2,714.83kb] [文件加载：52]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+  1 => 'sort',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013285s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.009133s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.002295s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000172s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000157s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000459s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000182s ]
+---------------------------------------------------------------
+[ 2019-11-11T17:31:05+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.093782s] [吞吐率：10.66req/s] [内存消耗：2,802.77kb] [文件加载：56]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+  1 => 'sort',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.013016s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.008746s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.005243s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000280s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000215s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000208s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000503s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000194s ]
+[ error ] [8]未定义变量: lileitem[/www/wwwroot/newm15/runtime/temp/614425837a29133714d7abac8a72f3ac.php:121]
+---------------------------------------------------------------
+[ 2019-11-11T17:31:25+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.040656s] [吞吐率：24.60req/s] [内存消耗：2,802.80kb] [文件加载：56]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+  1 => 'sort',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000298s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000651s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000313s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000142s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000149s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000148s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000461s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000177s ]
+[ error ] [2]Illegal string offset 'like'[/www/wwwroot/newm15/runtime/temp/614425837a29133714d7abac8a72f3ac.php:131]
+---------------------------------------------------------------
+[ 2019-11-11T17:31:50+08:00 ] 39.82.170.131 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.027881s] [吞吐率：35.87req/s] [内存消耗：2,744.73kb] [文件加载：52]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/kol/search.html [ array (
+  0 => 'specification',
+  1 => 'sort',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000266s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000625s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000226s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000164s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000146s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000141s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000157s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000441s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000205s ]
+---------------------------------------------------------------
+[ 2019-11-11T21:47:59+08:00 ] 39.71.120.44 GET new.m15.ltd/
+[运行时间：0.068585s] [吞吐率：14.58req/s] [内存消耗：2,374.27kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ /www/wwwroot/newm15/application/index/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/index/index.html [ array (
+  0 => 'indexmenu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.012981s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_imenu` [ RunTime:0.012284s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_status` = 1  AND `imenu_parent` = 0 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.002204s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 1  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000187s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 2  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000151s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 7  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000180s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 12  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000156s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 17  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000148s ]
+---------------------------------------------------------------
+[ 2019-11-11T21:47:59+08:00 ] 39.71.120.44 GET new.m15.ltd/index/workbench/console
+[运行时间：0.023223s] [吞吐率：43.06req/s] [内存消耗：1,597.70kb] [文件加载：38]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'workbench',
+    2 => 'console',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.m15.ltd/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/workbench/console' => '',
+)
+[ info ] [ RUN ] app\index\controller\Workbench->console[ /www/wwwroot/newm15/application/index/controller/Workbench.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/workbench/console.html [ array (
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-11T21:48:00+08:00 ] 39.71.120.44 GET new.m15.ltd/layuiadmin/imgs/logo.png
+[运行时间：0.014127s] [吞吐率：70.79req/s] [内存消耗：1,026.98kb] [文件加载：28]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'layuiadmin',
+    1 => 'imgs',
+    2 => 'logo.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.m15.ltd/',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/layuiadmin/imgs/logo_png' => '',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-11T21:48:18+08:00 ] 39.71.120.44 GET new.m15.ltd/
+[运行时间：0.026933s] [吞吐率：37.13req/s] [内存消耗：2,374.27kb] [文件加载：45]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ /www/wwwroot/newm15/application/index/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/index/index.html [ array (
+  0 => 'indexmenu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000307s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_imenu` [ RunTime:0.000711s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_status` = 1  AND `imenu_parent` = 0 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000252s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 1  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000163s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 2  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000170s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 7  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000187s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 12  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000170s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 17  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000148s ]
+---------------------------------------------------------------
+[ 2019-11-11T21:48:18+08:00 ] 39.71.120.44 GET new.m15.ltd/layuiadmin/imgs/logo.png
+[运行时间：0.011563s] [吞吐率：86.48req/s] [内存消耗：1,026.98kb] [文件加载：28]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'layuiadmin',
+    1 => 'imgs',
+    2 => 'logo.png',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.m15.ltd/',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/layuiadmin/imgs/logo_png' => '',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-11T21:48:18+08:00 ] 39.71.120.44 GET new.m15.ltd/index/workbench/console
+[运行时间：0.015114s] [吞吐率：66.16req/s] [内存消耗：1,597.70kb] [文件加载：38]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'workbench',
+    2 => 'console',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.m15.ltd/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/workbench/console' => '',
+)
+[ info ] [ RUN ] app\index\controller\Workbench->console[ /www/wwwroot/newm15/application/index/controller/Workbench.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/workbench/console.html [ array (
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-11-11T21:48:21+08:00 ] 39.71.120.44 GET new.m15.ltd/index/video/index.html
+[运行时间：0.036644s] [吞吐率：27.29req/s] [内存消耗：3,215.33kb] [文件加载：55]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'video',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://new.m15.ltd/',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/video/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Video->index[ /www/wwwroot/newm15/application/index/controller/Video.php ]
+[ info ] [ VIEW ] /www/wwwroot/newm15/public/../application/index/view/video/index.html [ array (
+  0 => 'sort',
+  1 => 'specification',
+  2 => 'condition',
+  3 => 'videos',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000264s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000599s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000225s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000506s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000163s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000174s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000159s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000143s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000532s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` LEFT JOIN `m15_video_trend` ON `video_number`=`vt_video_number` LIMIT 1 [ RunTime:0.001186s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` LEFT JOIN `m15_video_trend` ON `video_number`=`vt_video_number` ORDER BY `vt_hot` DESC LIMIT 0,50 [ RunTime:0.000283s ]
+---------------------------------------------------------------
+[ 2019-11-11T21:51:51+08:00 ] 39.71.120.44 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.062841s] [吞吐率：15.91req/s] [内存消耗：2,599.62kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002588s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.001292s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000284s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000167s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000158s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000179s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000163s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000507s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000167s ]
+[ error ] [0]语法解析错误: syntax error, unexpected '=>' (T_DOUBLE_ARROW), expecting ',' or ')'[/www/wwwroot/newm15/application/api/controller/Automated.php:33]
+---------------------------------------------------------------
+[ 2019-11-11T21:52:07+08:00 ] 39.71.120.44 GET new.m15.ltd/index/kol/search.html
+[运行时间：0.034046s] [吞吐率：29.37req/s] [内存消耗：2,762.32kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000260s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000573s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000192s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000174s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000153s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000141s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000148s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000438s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000172s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000517s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_id` > 12 [ RunTime:0.006732s ]
+---------------------------------------------------------------
+[ 2019-11-11T21:53:27+08:00 ] 39.71.120.44 GET new.m15.ltd/index/kol/search.html
+[运行时间：66.471882s] [吞吐率：0.02req/s] [内存消耗：2,833.71kb] [文件加载：53]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000330s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000570s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000210s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000181s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000156s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000151s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000143s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000460s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000514s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_id` > 12 [ RunTime:0.000228s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7560434255623E+18 LIMIT 1 [ RunTime:0.000314s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_trend` [ RunTime:0.000974s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7560434255623E+18  AND `vt_batec` = '2019-11-52' LIMIT 1 [ RunTime:0.000884s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (13 , 6.7560434255623E+18 , '2019-11-52' , 1376836 , 89344 , 66628 , 105957 , 0 , 1573480341 , 2109.72) [ RunTime:0.013851s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7560514442872E+18 LIMIT 1 [ RunTime:0.000378s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7560514442872E+18  AND `vt_batec` = '2019-11-52' LIMIT 1 [ RunTime:0.000364s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (14 , 6.7560514442872E+18 , '2019-11-52' , 910473 , 21944 , 19942 , 0 , 0 , 1573480361 , 523.8) [ RunTime:0.021910s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7561142371159E+18 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7561142371159E+18  AND `vt_batec` = '2019-11-52' LIMIT 1 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (15 , 6.7561142371159E+18 , '2019-11-52' , 1034656 , 4198 , 19075 , 4721 , 0 , 1573480363 , 300.63) [ RunTime:0.007854s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7556837015033E+18 LIMIT 1 [ RunTime:0.000329s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7556837015033E+18  AND `vt_batec` = '2019-11-53' LIMIT 1 [ RunTime:0.000362s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (16 , 6.7556837015033E+18 , '2019-11-53' , 1046395 , 15662 , 22984 , 16820 , 0 , 1573480384 , 517.15) [ RunTime:0.006900s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7557869180484E+18 LIMIT 1 [ RunTime:0.000307s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7557869180484E+18  AND `vt_batec` = '2019-11-53' LIMIT 1 [ RunTime:0.000368s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (17 , 6.7557869180484E+18 , '2019-11-53' , 247193 , 517 , 1813 , 516 , 0 , 1573480384 , 40.95) [ RunTime:0.003771s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7553020633049E+18 LIMIT 1 [ RunTime:0.000313s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7553020633049E+18  AND `vt_batec` = '2019-11-53' LIMIT 1 [ RunTime:0.000367s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (18 , 6.7553020633049E+18 , '2019-11-53' , 143838 , 38878 , 2811 , 59933 , 0 , 1573480405 , 701.9) [ RunTime:0.004301s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7561742513902E+18 LIMIT 1 [ RunTime:0.000339s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7561742513902E+18  AND `vt_batec` = '2019-11-53' LIMIT 1 [ RunTime:0.000368s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (19 , 6.7561742513902E+18 , '2019-11-53' , 168787 , 504 , 6736 , 622 , 0 , 1573480406 , 76.47) [ RunTime:0.021455s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` WHERE  `video_number` = 6.7561161504484E+18 LIMIT 1 [ RunTime:0.000363s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_trend` WHERE  `vt_video_number` = 6.7561161504484E+18  AND `vt_batec` = '2019-11-53' LIMIT 1 [ RunTime:0.000357s ]
+[ sql ] [ SQL ] INSERT INTO `m15_video_trend` (`vt_video_id` , `vt_video_number` , `vt_batec` , `vt_like` , `vt_reposts` , `vt_comment` , `vt_download` , `vt_play` , `vt_time` , `vt_hot`) VALUES (20 , 6.7561161504484E+18 , '2019-11-53' , 1762300 , 23083 , 25322 , 36363 , 0 , 1573480407 , 735.58) [ RunTime:0.003968s ]
+---------------------------------------------------------------
+[ 2019-11-11T22:00:07+08:00 ] 39.71.120.44 GET new.m15.ltd/index/kol/search.html
+[运行时间：67.443561s] [吞吐率：0.01req/s] [内存消耗：2,874.19kb] [文件加载：53]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000371s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000569s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000243s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000168s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000150s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000155s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000156s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000484s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000173s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000555s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_id` > 14 [ RunTime:0.001454s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 69720094702 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.000557s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 69720094702  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000314s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000504s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '69720094702' [ RunTime:0.000608s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (69720094702 , '2019-11-11' , 0 , 71 , 13769 , 71 , 40 , 345 , 15 , 1205261 , 16975.507042254 , 41997 , 591.50704225352 , 21419 , 301.67605633803 , 26123 , 367.92957746479 , 0 , 0 , 0 , 887.44 , 1573480740) [ RunTime:0.004803s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 55892696918 LIMIT 1 [ RunTime:0.000316s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 55892696918  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000394s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '55892696918' [ RunTime:0.000599s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (55892696918 , '2019-11-11' , 0 , 209 , 2916824 , 208 , 281 , 0 , 16 , 591939 , 2845.8605769231 , 20262 , 97.413461538462 , 18520 , 89.038461538462 , 20300 , 97.596153846154 , 0 , 0 , 0 , 1227.11 , 1573480760) [ RunTime:0.040330s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 4.393270757829E+15 LIMIT 1 [ RunTime:0.000431s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 4.393270757829E+15  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000360s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '4393270757829019' [ RunTime:0.000578s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (4.393270757829E+15 , '2019-11-11' , 0 , 10 , 104300 , 2 , 15 , 88 , 17 , 1154290 , 577145 , 59471 , 29735.5 , 75897 , 37948.5 , 85671 , 42835.5 , 0 , 0 , 0 , 862.62 , 1573480781) [ RunTime:0.004888s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 100466457634 LIMIT 1 [ RunTime:0.000338s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 100466457634  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000397s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '100466457634' [ RunTime:0.000562s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (100466457634 , '2019-11-11' , 0 , 848 , 2988004 , 846 , 10 , 0 , 18 , 717030 , 847.55319148936 , 16839 , 19.904255319149 , 17909 , 21.169030732861 , 0 , 0 , 0 , 0 , 0 , 1556.86 , 1573480782) [ RunTime:0.003695s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 87797695344 LIMIT 1 [ RunTime:0.000329s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 87797695344  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000385s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '87797695344' [ RunTime:0.000578s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (87797695344 , '2019-11-11' , 0 , 754 , 4568602 , 747 , 5 , 378 , 19 , 659516 , 882.88621151272 , 13992 , 18.730923694779 , 2854 , 3.8206157965194 , 3226 , 4.3186077643909 , 0 , 0 , 0 , 1663.16 , 1573480783) [ RunTime:0.003322s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 60013827911 LIMIT 1 [ RunTime:0.000403s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 60013827911  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000446s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '60013827911' [ RunTime:0.000616s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (60013827911 , '2019-11-11' , 0 , 146 , 541386 , 145 , 27 , 542 , 20 , 841517 , 5803.5655172414 , 19087 , 131.63448275862 , 13419 , 92.544827586207 , 14267 , 98.393103448276 , 0 , 0 , 0 , 965.36 , 1573480804) [ RunTime:0.011041s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 7.4290836722052E+14 LIMIT 1 [ RunTime:0.000319s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 7.4290836722052E+14  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000441s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '742908367220520' [ RunTime:0.000595s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (7.4290836722052E+14 , '2019-11-11' , 0 , 94 , 95784 , 94 , 5 , 749 , 21 , 125711 , 1337.3510638298 , 2540 , 27.021276595745 , 34863 , 370.8829787234 , 53758 , 571.89361702128 , 0 , 0 , 0 , 873.98 , 1573480805) [ RunTime:0.004300s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 81939158402 LIMIT 1 [ RunTime:0.000391s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 81939158402  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000403s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '81939158402' [ RunTime:0.000580s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (81939158402 , '2019-11-11' , 0 , 272 , 34300385 , 270 , 5 , 163 , 22 , 74273 , 275.08518518519 , 4277 , 15.840740740741 , 216 , 0.8 , 265 , 0.98148148148148 , 0 , 0 , 0 , 4379.91 , 1573480807) [ RunTime:0.027490s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 81933945951 LIMIT 1 [ RunTime:0.000334s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 81933945951  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000360s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video` `v` INNER JOIN (select *,max(`vt_time`) news from m15_video_trend group by `vt_video_number`) vt ON `v`.`video_id`=`vt`.`vt_video_id` WHERE  `v`.`video_apiuid` = '81933945951' [ RunTime:0.000564s ]
+[ sql ] [ SQL ] INSERT INTO `m15_kol_trend` (`kt_kol_uid` , `kt_batec` , `kt_interact_value` , `kt_dynamic` , `kt_fans` , `kt_videocount` , `kt_focus` , `kt_likes` , `kt_kol_id` , `kt_like` , `kt_mean_like` , `kt_comments` , `kt_mean_comment` , `kt_share` , `kt_mean_share` , `kt_download` , `kt_mean_down` , `kt_bighot` , `kt_midhot` , `kt_smahot` , `kt_hot` , `kt_time`) VALUES (81933945951 , '2019-11-11' , 0 , 129 , 10789566 , 101 , 57 , 1824 , 23 , 1008766 , 9987.7821782178 , 13880 , 137.42574257426 , 9712 , 96.158415841584 , 14805 , 146.58415841584 , 0 , 0 , 0 , 1972.93 , 1573480807) [ RunTime:0.039622s ]
+---------------------------------------------------------------
+[ 2019-11-11T22:00:08+08:00 ] 39.71.120.44 GET new.m15.ltd/index/kol/search.html
+[运行时间：3.037464s] [吞吐率：0.33req/s] [内存消耗：2,709.27kb] [文件加载：51]
+[ info ] [ LANG ] /www/wwwroot/newm15/thinkphp/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=0itc9vnsgtmgcb3a35dnftimh5; Hm_lvt_d214947968792b839fd669a4decaaffc=1571300009; Hm_lpvt_d214947968792b839fd669a4decaaffc=1571300028',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.90 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'keep-alive',
+  'host' => 'new.m15.ltd',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ /www/wwwroot/newm15/application/index/controller/Kol.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000236s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.000607s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000173s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000152s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000144s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000168s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000145s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.000508s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000169s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.000751s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_id` > 19 [ RunTime:0.000424s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 60013827911 LIMIT 1 [ RunTime:0.000230s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.000509s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 60013827911  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000350s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 7.4290836722052E+14 LIMIT 1 [ RunTime:0.000952s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 7.4290836722052E+14  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000381s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 81939158402 LIMIT 1 [ RunTime:0.000333s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 81939158402  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000368s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` WHERE  `kol_uid` = 81933945951 LIMIT 1 [ RunTime:0.000340s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_uid` = 81933945951  AND `kt_batec` = '2019-11-11' LIMIT 1 [ RunTime:0.000384s ]

@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+<link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+<link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+<!-- 标题 -->
+<div class="layui-col-md12">
+  <div class="layui-card">
+    <div class="layui-card-body layui-shenhuilu clear">
+      <img src="{$user.user_avatar}" alt="" class="left">
+      <div class="layui-shenhuilu-r left">
+        <h4>{$user.user_name}<span class="mianfei-ban">{$user.user_vip.level_name}</span></h4>
+        <p>关联抖音号：{$dyaccess}</p>
+        <p>账号类型：{if $user.user_type eq 2} 讲师 {elseif $user.user_type eq 3} 广告商 {elseif $user.user_type eq 4} MCN {else/} 普通用户 {/if}</p>
+      </div>
+    </div>
+    <div class="layui-card-body">
+      {if $user.user_mobile eq ''}
+        <p>绑定手机使用账号登录<span class="mianfei-ban">推荐绑定</span>
+          <a href="#" style="color: #349adc;margin-left: 20px;">点击绑定</a>
+        </p>
+        <p>绑定手机号后可设定登录密码</p>
+      {/if}
+    </div>
+  </div>
+</div>  
+<!-- tab导航条 -->
+<div class="layui-col-md12">
+  <div class="layui-card">
+    <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+      <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
+        <ul class="clear">
+          <li><a href="{:url('index')}" {if $type eq 'log'} class="checked-bottom" {/if}>登录记录</a></li>
+          <li><a href="{:url('index',array('type'=>'invoice'))}" {if $type eq 'invoice'} class="checked-bottom" {/if}>发票信息</a></li>
+          <li><a href="{:url('index',array('type'=>'address'))}" {if $type eq 'address'} class="checked-bottom" {/if}>地址信息</a></li>
+          <li><a href="{:url('index',array('type'=>'auth'))}" {if $type eq 'auth'} class="checked-bottom" {/if}>认证信息</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>  
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>  
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="__STATIC__/index/layuiadmin/style/js/echarts.min.js"></script>

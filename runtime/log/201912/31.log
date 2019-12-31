@@ -1,0 +1,1017 @@
+---------------------------------------------------------------
+[ 2019-12-31T10:27:40+08:00 ] 127.0.0.1 GET m15.com/
+[运行时间：0.256099s] [吞吐率：3.90req/s] [内存消耗：2,267.26kb] [文件加载：44]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[HY000] [1045] Access denied for user 'M15'@'localhost' (using password: YES)[D:\phpstudy_pro\WWW\M15\thinkphp\library\think\db\Connection.php:295]
+---------------------------------------------------------------
+[ 2019-12-31T10:36:56+08:00 ] 127.0.0.1 GET m15.com/
+[运行时间：0.110889s] [吞吐率：9.02req/s] [内存消耗：2,388.78kb] [文件加载：46]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001677s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_config` [ RunTime:0.029982s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_config` WHERE  `config_id` = 1 LIMIT 1 [ RunTime:0.000776s ]
+---------------------------------------------------------------
+[ 2019-12-31T10:36:56+08:00 ] 127.0.0.1 GET m15.com/index/login/login.html
+[运行时间：0.084507s] [吞吐率：11.83req/s] [内存消耗：2,690.67kb] [文件加载：52]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/login/login_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Login->login[ D:\phpstudy_pro\WWW\M15\application\index\controller\Login.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\login\login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-31T10:36:59+08:00 ] 127.0.0.1 GET m15.com/index/login/getdyqrcode.html
+[运行时间：0.481957s] [吞吐率：2.07req/s] [内存消耗：2,420.50kb] [文件加载：49]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'getdyqrcode',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/login/login.html',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => '*/*',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/login/getdyqrcode_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Login->GetDyQrcode[ D:\phpstudy_pro\WWW\M15\application\index\controller\Login.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-31T10:37:19+08:00 ] 127.0.0.1 POST m15.com/index/login/login.html
+[运行时间：0.165472s] [吞吐率：6.04req/s] [内存消耗：2,810.24kb] [文件加载：55]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'login',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/login/login.html',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://m15.com',
+  'accept' => '*/*',
+  'content-length' => '34',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/login/login_html' => '',
+  'mobile' => '18365976266',
+  'password' => '123456',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Login->login[ D:\phpstudy_pro\WWW\M15\application\index\controller\Login.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001387s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user_login` [ RunTime:0.002251s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user_login` WHERE  `login_mobile` = '18365976266' LIMIT 1 [ RunTime:0.000509s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001723s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000604s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_login_log` [ RunTime:0.003219s ]
+[ sql ] [ SQL ] INSERT INTO `m15_login_log` (`log_user` , `log_type` , `log_code` , `log_ip` , `log_time`) VALUES (1 , 2 , 'PC-201912041550' , '127.0.0.1' , 1577759839) [ RunTime:0.030007s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user_vip` [ RunTime:0.002731s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user_vip` WHERE  `vip_user` = 1  AND `vip_start` < 1577759839  AND `vip_expire` > 1577759839 LIMIT 1 [ RunTime:0.000429s ]
+[ sql ] [ SQL ] UPDATE `m15_user`  SET `user_vlevel`=1  WHERE  `user_id` = 1 [ RunTime:0.052677s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_vip_level` [ RunTime:0.003641s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_vip_level` WHERE  `level_id` = 1 LIMIT 1 [ RunTime:0.000806s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.003961s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000857s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.004137s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000695s ]
+---------------------------------------------------------------
+[ 2019-12-31T10:37:21+08:00 ] 127.0.0.1 GET m15.com/index/index/index.html
+[运行时间：0.087786s] [吞吐率：11.39req/s] [内存消耗：2,765.50kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/login/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/index/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\M15\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\index\index.html [ array (
+  0 => 'indexmenu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001440s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_imenu` [ RunTime:0.002319s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_status` = 1  AND `imenu_parent` = 0 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.019933s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 2  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000813s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 7  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000577s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 12  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000430s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 22  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000413s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 27  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000389s ]
+---------------------------------------------------------------
+[ 2019-12-31T10:37:21+08:00 ] 127.0.0.1 GET m15.com/index/layuiadmin/imgs/logo.png
+[运行时间：0.021615s] [吞吐率：46.26req/s] [内存消耗：1,052.09kb] [文件加载：30]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'layuiadmin',
+    2 => 'imgs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/layuiadmin/imgs/logo_png' => '',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-31T10:37:22+08:00 ] 127.0.0.1 GET m15.com/index/workbench/console
+[运行时间：0.039613s] [吞吐率：25.24req/s] [内存消耗：1,883.73kb] [文件加载：43]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'workbench',
+    2 => 'console',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/workbench/console' => '',
+)
+[ info ] [ RUN ] app\index\controller\Workbench->console[ D:\phpstudy_pro\WWW\M15\application\index\controller\Workbench.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\workbench\console.html [ array (
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-31T10:37:25+08:00 ] 127.0.0.1 GET m15.com/index/kol/search.html
+[运行时间：0.097050s] [吞吐率：10.30req/s] [内存消耗：3,176.59kb] [文件加载：56]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'kol',
+    2 => 'search',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/kol/search_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Kol->search[ D:\phpstudy_pro\WWW\M15\application\index\controller\Kol.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\kol\search.html [ array (
+  0 => 'specification',
+  1 => 'citys',
+  2 => 'sort',
+  3 => 'condition',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001384s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_specification` [ RunTime:0.001809s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'like' ORDER BY `spec_id` [ RunTime:0.000499s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'fans' ORDER BY `spec_id` [ RunTime:0.000420s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'kolv' ORDER BY `spec_id` [ RunTime:0.000544s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'duration' ORDER BY `spec_id` [ RunTime:0.000442s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_specification` WHERE  `spec_type` = 'createtime' ORDER BY `spec_id` [ RunTime:0.000472s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_area` [ RunTime:0.003061s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_area` WHERE  `pid` = 0 [ RunTime:0.003741s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video_sort` [ RunTime:0.001917s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_video_sort` WHERE  `sort_status` = 1 ORDER BY `sort_rank` DESC [ RunTime:0.000609s ]
+---------------------------------------------------------------
+[ 2019-12-31T10:37:30+08:00 ] 127.0.0.1 GET m15.com/index/mcn/data.html
+[运行时间：0.168461s] [吞吐率：5.94req/s] [内存消耗：3,044.09kb] [文件加载：62]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'data',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/data_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->data[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001392s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001957s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000539s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.001812s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000424s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.002054s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000455s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_kol` [ RunTime:0.002788s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000400s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.002122s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` `k` INNER JOIN (select a.* from m15_kol_trend as a right join (select kt_kol_id, max(kt_time) as maxtime from m15_kol_trend where kt_kol_id is not null group by kt_kol_id) as b on a.kt_kol_id=b.kt_kol_id and a.kt_time=b.maxtime order by a.kt_kol_id asc) kt ON `k`.`kol_id`=`kt`.`kt_kol_id` WHERE  `kol_id` IN (1) ORDER BY `kt`.`kt_hot` DESC LIMIT 0,99999 [ RunTime:0.040246s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.001538s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002574s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.002413s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001617s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1577155050 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.003558s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002393s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001384s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1576550250 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002252s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_agent` [ RunTime:0.002593s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_agent` WHERE  `agent_mcn` = 1 LIMIT 1 [ RunTime:0.000488s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_group` [ RunTime:0.003006s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_group` WHERE  `group_mcn` = 1 LIMIT 1 [ RunTime:0.000444s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000407s ]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'm15.m15_kol_trend.kt_time' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[D:\phpstudy_pro\WWW\M15\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-12-31T11:07:52+08:00 ] 127.0.0.1 GET m15.com/index/index/index.html
+[运行时间：0.052810s] [吞吐率：18.94req/s] [内存消耗：2,614.46kb] [文件加载：51]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/login/login.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/index/index_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\index\controller\Index->index[ D:\phpstudy_pro\WWW\M15\application\index\controller\Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\index\index.html [ array (
+  0 => 'indexmenu',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001389s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_imenu` [ RunTime:0.002028s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_status` = 1  AND `imenu_parent` = 0 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000551s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 2  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000448s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 7  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000766s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 12  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000795s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 22  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000703s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_imenu` WHERE  `imenu_parent` = 27  AND `imenu_status` = 1 ORDER BY `imenu_rank` DESC LIMIT 0,100 [ RunTime:0.000586s ]
+---------------------------------------------------------------
+[ 2019-12-31T11:07:52+08:00 ] 127.0.0.1 GET m15.com/index/layuiadmin/imgs/logo.png
+[运行时间：0.023659s] [吞吐率：42.27req/s] [内存消耗：1,052.09kb] [文件加载：30]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'layuiadmin',
+    2 => 'imgs',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/layuiadmin/imgs/logo_png' => '',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-31T11:07:53+08:00 ] 127.0.0.1 GET m15.com/index/workbench/console
+[运行时间：0.036240s] [吞吐率：27.59req/s] [内存消耗：1,751.35kb] [文件加载：41]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'workbench',
+    2 => 'console',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/workbench/console' => '',
+)
+[ info ] [ RUN ] app\index\controller\Workbench->console[ D:\phpstudy_pro\WWW\M15\application\index\controller\Workbench.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\workbench\console.html [ array (
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2019-12-31T11:07:54+08:00 ] 127.0.0.1 GET m15.com/index/mcn/data.html
+[运行时间：0.085621s] [吞吐率：11.68req/s] [内存消耗：3,044.09kb] [文件加载：62]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'data',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/data_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->data[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001388s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.002751s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000761s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.002427s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000400s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.001748s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000385s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_kol` [ RunTime:0.001802s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000352s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.002130s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` `k` INNER JOIN (select a.* from m15_kol_trend as a right join (select kt_kol_id, max(kt_time) as maxtime from m15_kol_trend where kt_kol_id is not null group by kt_kol_id) as b on a.kt_kol_id=b.kt_kol_id and a.kt_time=b.maxtime order by a.kt_kol_id asc) kt ON `k`.`kol_id`=`kt`.`kt_kol_id` WHERE  `kol_id` IN (1) ORDER BY `kt`.`kt_hot` DESC LIMIT 0,99999 [ RunTime:0.007126s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.000985s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002234s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.001968s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001587s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1577156874 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002878s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.003342s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001378s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1576552074 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002272s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_agent` [ RunTime:0.001831s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_agent` WHERE  `agent_mcn` = 1 LIMIT 1 [ RunTime:0.000398s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_group` [ RunTime:0.001927s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_group` WHERE  `group_mcn` = 1 LIMIT 1 [ RunTime:0.000385s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000297s ]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'm15.m15_kol_trend.kt_time' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[D:\phpstudy_pro\WWW\M15\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-12-31T11:07:57+08:00 ] 127.0.0.1 GET m15.com/index/mcn/kol.html
+[运行时间：0.114871s] [吞吐率：8.71req/s] [内存消耗：3,236.02kb] [文件加载：61]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'kol',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/kol_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->Kol[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\kol.html [ array (
+  0 => 'kol',
+  1 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001406s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001944s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000523s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.002233s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000475s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.003286s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000452s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_kol` [ RunTime:0.001837s ]
+[ sql ] [ SQL ] SELECT `mk_kol`,`mk_agent`,`mk_group`,`mk_isshow` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000452s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.002292s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` `k` INNER JOIN (select a.* from m15_kol_trend as a right join (select kt_kol_id, max(kt_time) as maxtime from m15_kol_trend where kt_kol_id is not null group by kt_kol_id) as b on a.kt_kol_id=b.kt_kol_id and a.kt_time=b.maxtime order by a.kt_kol_id asc) kt ON `k`.`kol_id`=`kt`.`kt_kol_id` WHERE  `kol_id` IN (1) ORDER BY `kt`.`kt_hot` DESC LIMIT 0,100 [ RunTime:0.007828s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.001031s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002312s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.002241s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.002040s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1577156877 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002901s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002393s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001403s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1576552077 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002254s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002187s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.002306s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1575169677 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.003010s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002257s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001274s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1572577677 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002202s ]
+---------------------------------------------------------------
+[ 2019-12-31T11:09:07+08:00 ] 127.0.0.1 GET m15.com/index/mcn/data.html
+[运行时间：0.098201s] [吞吐率：10.18req/s] [内存消耗：3,264.76kb] [文件加载：62]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'data',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/data_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->data[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\data.html [ array (
+  0 => 'code',
+  1 => 'statistical',
+  2 => 'data',
+  3 => 'trend',
+  4 => 'condition',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001490s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.001336s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000536s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.001805s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000358s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.001702s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000411s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_kol` [ RunTime:0.001989s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000376s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.001902s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` `k` INNER JOIN (select a.* from m15_kol_trend as a right join (select kt_kol_id, max(kt_time) as maxtime from m15_kol_trend where kt_kol_id is not null group by kt_kol_id) as b on a.kt_kol_id=b.kt_kol_id and a.kt_time=b.maxtime order by a.kt_kol_id asc) kt ON `k`.`kol_id`=`kt`.`kt_kol_id` WHERE  `kol_id` IN (1) ORDER BY `kt`.`kt_hot` DESC LIMIT 0,99999 [ RunTime:0.006906s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.000974s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002207s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.000766s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001362s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1577156947 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002242s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.002378s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001314s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1576552147 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002220s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_agent` [ RunTime:0.001738s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_agent` WHERE  `agent_mcn` = 1 LIMIT 1 [ RunTime:0.000319s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_group` [ RunTime:0.001631s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_group` WHERE  `group_mcn` = 1 LIMIT 1 [ RunTime:0.000325s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000250s ]
+[ sql ] [ SQL ] SELECT kt_batec,sum(kt_inc_fans) as fans,sum(kt_inc_like) as likes,sum(kt_inc_comment) as comment,sum(kt_inc_share) as share FROM `m15_kol_trend` WHERE  `kt_kol_id` IN (1) GROUP BY `kt_batec` ORDER BY `kt_time` DESC LIMIT 7 [ RunTime:0.001400s ]
+---------------------------------------------------------------
+[ 2019-12-31T11:14:53+08:00 ] 127.0.0.1 GET m15.com/index/mcn/group.html
+[运行时间：0.060062s] [吞吐率：16.65req/s] [内存消耗：2,871.38kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'group',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/group_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->Group[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\group.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001866s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.003257s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000612s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.001935s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000410s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.001790s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000414s ]
+---------------------------------------------------------------
+[ 2019-12-31T11:14:55+08:00 ] 127.0.0.1 GET m15.com/index/mcn/agent.html
+[运行时间：0.041501s] [吞吐率：24.10req/s] [内存消耗：2,871.38kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'agent',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/agent_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->Agent[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\agent.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001414s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.000998s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000716s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.001183s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000470s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.000876s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000539s ]
+---------------------------------------------------------------
+[ 2019-12-31T11:47:27+08:00 ] 127.0.0.1 GET m15.com/index/mcn/data.html
+[运行时间：0.194690s] [吞吐率：5.14req/s] [内存消耗：3,044.09kb] [文件加载：62]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'data',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'referer' => 'http://m15.com/index/index/index.html',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/data_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->data[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001939s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.014248s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000416s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.007022s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000286s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.001537s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000260s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_kol` [ RunTime:0.012595s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000291s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.007393s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` `k` INNER JOIN (select a.* from m15_kol_trend as a right join (select kt_kol_id, max(kt_time) as maxtime from m15_kol_trend where kt_kol_id is not null group by kt_kol_id) as b on a.kt_kol_id=b.kt_kol_id and a.kt_time=b.maxtime order by a.kt_kol_id asc) kt ON `k`.`kol_id`=`kt`.`kt_kol_id` WHERE  `kol_id` IN (1) ORDER BY `kt`.`kt_hot` DESC LIMIT 0,99999 [ RunTime:0.014940s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.001287s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.003405s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.032746s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.025712s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1577159247 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002383s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.003222s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.001489s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1576554447 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.002373s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_agent` [ RunTime:0.003245s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_agent` WHERE  `agent_mcn` = 1 LIMIT 1 [ RunTime:0.000485s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_group` [ RunTime:0.002955s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_group` WHERE  `group_mcn` = 1 LIMIT 1 [ RunTime:0.000423s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000358s ]
+[ error ] [10501]SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #1 of ORDER BY clause is not in GROUP BY clause and contains nonaggregated column 'm15.m15_kol_trend.kt_time' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by[D:\phpstudy_pro\WWW\M15\thinkphp\library\think\db\Connection.php:385]
+---------------------------------------------------------------
+[ 2019-12-31T11:48:25+08:00 ] 127.0.0.1 GET m15.com/index/mcn/data.html
+[运行时间：0.251598s] [吞吐率：3.97req/s] [内存消耗：3,022.48kb] [文件加载：60]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'data',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/data_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->data[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\data.html [ array (
+  0 => 'code',
+  1 => 'statistical',
+  2 => 'data',
+  3 => 'trend',
+  4 => 'condition',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002656s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.033441s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000681s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.012811s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000484s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.009121s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000474s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_kol` [ RunTime:0.005060s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000686s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol` [ RunTime:0.014239s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol` `k` INNER JOIN (select a.* from m15_kol_trend as a right join (select kt_kol_id, max(kt_time) as maxtime from m15_kol_trend where kt_kol_id is not null group by kt_kol_id) as b on a.kt_kol_id=b.kt_kol_id and a.kt_time=b.maxtime order by a.kt_kol_id asc) kt ON `k`.`kol_id`=`kt`.`kt_kol_id` WHERE  `kol_id` IN (1) ORDER BY `kt`.`kt_hot` DESC LIMIT 0,99999 [ RunTime:0.019819s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_kol_trend` [ RunTime:0.001657s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.004566s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_video` [ RunTime:0.033484s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.033600s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1577159305 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.004515s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1 ORDER BY `kt_time` DESC LIMIT 1 [ RunTime:0.004614s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_video` WHERE  `video_apiuid` = 97114876707  AND `create_time` > 1575129600 LIMIT 1 [ RunTime:0.002780s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_kol_trend` WHERE  `kt_kol_id` = 1  AND `kt_time` > 1576554505 ORDER BY `kt_time` LIMIT 1 [ RunTime:0.004765s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_agent` [ RunTime:0.005604s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_agent` WHERE  `agent_mcn` = 1 LIMIT 1 [ RunTime:0.000799s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn_group` [ RunTime:0.005210s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `m15_mcn_group` WHERE  `group_mcn` = 1 LIMIT 1 [ RunTime:0.000485s ]
+[ sql ] [ SQL ] SELECT `mk_kol` FROM `m15_mcn_kol` WHERE  `mk_mcn` = 1 [ RunTime:0.000351s ]
+[ sql ] [ SQL ] SELECT kt_batec,sum(kt_inc_fans) as fans,sum(kt_inc_like) as likes,sum(kt_inc_comment) as comment,sum(kt_inc_share) as share FROM `m15_kol_trend` WHERE  `kt_kol_id` IN (1) GROUP BY `kt_batec` ORDER BY `kt_time` DESC LIMIT 7 [ RunTime:0.001432s ]
+---------------------------------------------------------------
+[ 2019-12-31T11:59:42+08:00 ] 127.0.0.1 GET m15.com/index/mcn/group.html
+[运行时间：0.053940s] [吞吐率：18.54req/s] [内存消耗：2,874.26kb] [文件加载：53]
+[ info ] [ LANG ] D:\phpstudy_pro\WWW\M15\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'index',
+    1 => 'mcn',
+    2 => 'group',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'PHPSESSID=31s97c8d50a23j4job9hfn8ru4',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'max-age=0',
+  'connection' => 'close',
+  'host' => 'm15.com',
+)
+[ info ] [ PARAM ] array (
+  '/index/mcn/group_html' => '',
+)
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\index\controller\Mcn->Group[ D:\phpstudy_pro\WWW\M15\application\index\controller\Mcn.php ]
+[ info ] [ VIEW ] D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\group.html [ array (
+  0 => 'data',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001805s ] mysql:host=localhost;dbname=M15;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_user` [ RunTime:0.002358s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_user` WHERE  `user_id` = 1 LIMIT 1 [ RunTime:0.000484s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_certification` [ RunTime:0.001699s ]
+[ sql ] [ SQL ] SELECT `certification_status` FROM `m15_certification` WHERE  `certification_id` = 1 LIMIT 1 [ RunTime:0.000359s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `m15_mcn` [ RunTime:0.001932s ]
+[ sql ] [ SQL ] SELECT * FROM `m15_mcn` WHERE  `mcn_id` = 1 LIMIT 1 [ RunTime:0.000422s ]

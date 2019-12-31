@@ -1,0 +1,126 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>注册 - {$Think.session.config.website_name}</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__CSS__/admin.css" media="all">
+  <link rel="stylesheet" href="__CSS__/login.css" media="all">
+</head>
+<body>
+  <div class="layadmin-user-login layadmin-user-display-show" id="LAY-user-login" style="display: none;">
+    <div class="layadmin-user-login-main">
+      <div class="layadmin-user-login-box layadmin-user-login-header">
+        <h2>{$Think.session.config.website_name}</h2>
+        <p>{$Think.session.config.website_slogan}</p>
+      </div>
+      <div class="layadmin-user-login-box layadmin-user-login-body layui-form">
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-cellphone" for="LAY-user-login-cellphone"></label>
+          <input type="text" name="member_mobile" id="LAY-user-login-cellphone" lay-verify="phone" placeholder="手机" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-row">
+            <div class="layui-col-xs7">
+              <label class="layadmin-user-login-icon layui-icon layui-icon-vercode" for="LAY-user-login-vercode"></label>
+              <input type="text" name="vercode" id="LAY-user-login-vercode" lay-verify="required" placeholder="验证码" class="layui-input">
+            </div>
+            <div class="layui-col-xs5">
+              <div style="margin-left: 10px;">
+                <button type="button" class="layui-btn layui-btn-primary layui-btn-fluid" id="LAY-user-getsmscode">获取验证码</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+          <input type="password" name="member_password" id="LAY-user-login-password" lay-verify="pass" placeholder="密码" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-repass"></label>
+          <input type="password" name="remember_password" id="LAY-user-login-repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+          <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-nickname"></label>
+          <input type="text" name="member_name" id="LAY-user-login-nickname" lay-verify="nickname" placeholder="昵称" class="layui-input">
+        </div>
+        <div class="layui-form-item">
+          <input type="checkbox" name="agreement" lay-skin="primary" title="同意用户协议" checked>
+        </div>
+        <div class="layui-form-item">
+          <button class="layui-btn layui-btn-fluid" lay-submit lay-filter="LAY-user-reg-submit">注 册</button>
+        </div>
+        <div class="layui-trans layui-form-item layadmin-user-login-other">
+          <label>社交账号注册</label>
+          <a href="javascript:;"><i class="layui-icon layui-icon-login-qq"></i></a>
+          <a href="javascript:;"><i class="layui-icon layui-icon-login-wechat"></i></a>
+          <a href="javascript:;"><i class="layui-icon layui-icon-login-weibo"></i></a>
+          
+          <a href="{:url('login/login')}" class="layadmin-user-jump-change layadmin-link layui-hide-xs">用已有帐号登入</a>
+          <a href="{:url('login/login')}" class="layadmin-user-jump-change layadmin-link layui-hide-sm layui-show-xs-inline-block">登入</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-trans layadmin-user-login-footer">
+        <p>© 2018 <a href="#" target="_blank">{$Think.session.config.website_indexurl}</a></p>
+        <p>
+            <span><a href="#">关于我们</a></span>
+            <span><a href="http://wpa.qq.com/msgrd?v=3&uin=153522261&site=qq&menu=yes" target="_blank">联系站长</a></span>
+            <span><a href="{$Think.session.config.website_indexurl}">前往首页</a></span>
+        </p>
+    </div>
+
+  </div>
+
+  <script src="__STATIC__/layui/layui.js"></script>  
+  <script>
+  layui.config({
+    base: '__STATIC__/admin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'user'], function(){
+    var $ = layui.$
+    ,setter = layui.setter
+    ,admin = layui.admin
+    ,form = layui.form
+    ,router = layui.router();
+
+    form.render();
+
+    //提交
+    form.on('submit(LAY-user-reg-submit)', function(obj){
+      var field = obj.field;
+      
+      //确认密码
+      if(field.member_password !== field.remember_password){
+        return layer.msg('两次密码输入不一致');
+      }
+      
+      //是否同意用户协议
+      if(!field.agreement){
+        return layer.msg('你必须同意用户协议才能注册');
+      }
+      
+      $.ajax({
+        url: "{:url('login/register')}",
+        type:"POST",
+        data:field,
+        success:function(res){
+          layer.msg(res.msg);
+            if(res.code)
+              setTimeout(function(){window.location.href="{:url('login/login')}"},2000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试！');
+        }
+      })
+    });
+  });
+  </script>
+</body>
+</html>

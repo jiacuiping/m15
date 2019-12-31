@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>查看{$modeltext}</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+        <link rel="stylesheet" href="__CSS__/admin.css" media="all">
+        <style>
+          
+            .orderinfo {
+                width: 100%;
+                height: 300px;
+                border-collapse:collapse;
+            }
+
+            .rowbox {
+                width: 100%;
+                height: 30px;
+                line-height: 30px;
+            }
+
+            .rowtitle {
+                background-color: #444;
+            }
+
+            .piece {
+                float: left;
+                text-align: center;
+            }
+
+            .emptyclass {
+                padding: 150px 0px;
+                width: 100%;
+                text-align: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="layui-fluid">
+            <div class="layui-card">
+                <div class="layui-card-body" style="padding: 15px;">
+
+                    <table class="layui-table" lay-size="sm">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th rowspan="3">用户信息</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>用户名</td>
+                                <td>手机号</td>
+                                <td>特权等级</td>
+                                <td>用户头像</td>
+                                <td>用户性别</td>
+                                <td>身份证号</td>
+                                <td>用户状态</td>
+                            </tr>
+                            <tr>
+                                <td>{$userdata.user_name}</td>
+                                <td>{$userdata.user_mobile}</td>
+                                <td>{$userdata.user_vlevel}</td>
+                                <td><a href="{$userdata.user_avatar}" target="_blank">点击查看</a></td>
+                                <td>{if $userdata.user_sex eq 1} 男 {else} 女 {/if}</td>
+                                <td>{$userdata.user_idcard}</td>
+                                <td>{if $userdata.user_status eq 1} 正常 {else} 禁用 {/if}</td>
+                            </tr>
+                        </tbody>
+                    </table> 
+
+                    <table class="layui-table" lay-size="sm" style="margin-top: 20px;">
+                        <colgroup>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                            <col>
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th rowspan="3">登陆信息</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr> 
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td>登陆账号</td>
+                                <td>登陆手机</td>
+                                <td>微信ID</td>
+                                <td>微信唯一标识</td>
+                                <td>最后登录时间</td>
+                                <td>最后登录IP</td>
+
+                            </tr>
+                            <tr>
+                                <td>{$logindata.login_name}</td>
+                                <td>{$logindata.login_mobile}</td>
+                                <td>{$logindata.login_openid}</td>
+                                <td>{$logindata.login_unid}</td>
+                                <td>{if $logindata.login_lasttime eq 0} 未登录 {else} {:date('Y-m-d H:i',$logindata.login_lasttime)} {/if}</td>
+                                <td>{if $logindata.login_lastip eq ''} 未登录 {else} {$logindata.login_lastip} {/if}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 10px;">
+                    <legend>特权购买及续费记录</legend>
+                </fieldset> 
+                {if empty($vipdatas)}
+                    <div class="emptyclass">暂无记录</div>
+                {else/}
+                    <ul class="layui-timeline" style="margin-left:30px;">
+                        {volist name="vipdatas" id="vips"}
+                            <li class="layui-timeline-item">
+                                {if $i eq 1}
+                                    <i class="layui-icon layui-timeline-axis"></i>
+                                {elseif $i eq count($vipdatas)}
+                                    <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis"></i>
+                                {else/}
+                                    <i class="layui-icon layui-timeline-axis"></i>
+                                {/if}
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">{:date('Y-m-d',$vips.time)}</h3>
+                                    <p>
+                                        特权类型：{$vips.vip_level}
+                                        <br>开始时间：{:date('Y-m-d H:i',$vips.vip_start)}
+                                        <br>结束时间：{:date('Y-m-d H:i',$vips.vip_expire)}
+                                    </p>
+                                </div>
+                            </li>
+                        {/volist}
+                    </ul>
+                {/if}
+            </div>
+        </div>
+
+        <script src="__STATIC__/layui/layui.js"></script>  
+        <script>
+            layui.config({
+                base: '__STATIC__/admin/'
+            }).extend({
+                index: 'lib/index'
+            }).use(['index', 'form', 'upload'], function(){
+                var $ = layui.$
+                ,layer = layui.layer
+                ,upload = layui.upload
+                ,form = layui.form;
+            });
+        </script>
+    </body>
+</html>
