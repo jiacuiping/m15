@@ -42,6 +42,16 @@ class Kol extends Model
         return $this->field($field)->where($where)->order($order)->select();
     }
 
+    // 获取可添加分组的红人列表
+    /*public function GetKolList($where=array(), $order="kol_id desc")
+    {
+        return $this->field("")
+            ->
+            ->where($where)
+            ->order($order)
+            ->select();
+    }*/
+
     /**
      * 根据条件获取一条数据
      * @param array $param 主键
@@ -152,5 +162,10 @@ class Kol extends Model
     public function DeleteData($id)
     {
         return $this->where($this->pk,$id)->delete() ? array('code'=>1,'msg'=>'删除成功') : array('code'=>0,'msg'=>'删除失败');
+    }
+
+    public function KolTrend()
+    {
+        return $this->hasOne('KolTrend', 'kt_id')->field('kt_id,kt_fans,kt_videocount');
     }
 }

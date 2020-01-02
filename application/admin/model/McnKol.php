@@ -118,6 +118,27 @@ class McnKol extends Model
     }
 
     /**
+     * 保存数据
+     * 没有则添加，已有则修改
+     * @param $param
+     */
+    public function saveData($param)
+    {
+        $mcnKol = $this->GetField(['mk_kol' => $param['mk_kol']], 'mk_id');
+
+        // 已经存在
+        if($mcnKol) {
+            $param['mk_id'] = $mcnKol;
+            $result = $this->UpdateData($param);
+
+        } else { // 不存在
+            $result = $this->CreateData($param);
+        }
+
+        return $result;
+    }
+
+    /**
      * 字段自增
      * @param array  $param   更新条件
      * @param string $field   自增字段
@@ -150,5 +171,23 @@ class McnKol extends Model
     public function DeleteData($id)
     {
         return $this->where($this->pk,$id)->delete() ? array('code'=>1,'msg'=>'删除成功') : array('code'=>0,'msg'=>'删除失败');
+    }
+
+    /**
+     * 删除经纪人和红人的联系
+     * @param int $agentId 删除经纪人的id
+     */
+    public function DeleteAgentKolRel($agentId)
+    {
+        return $this->where('mk_agent', $agentId)->update(['mk_agent' => 0]);
+    }
+
+    /**
+     * 删除分组和红人的联系
+     * @param int $groupId 删除分组的id
+     */
+    public function DeleteGroupKolRel($groupId)
+    {
+        return $this->where('mk_group', $groupId)->update(['mk_group' => 0]);
     }
 }

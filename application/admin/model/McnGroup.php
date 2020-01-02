@@ -149,6 +149,18 @@ class McnGroup extends Model
      **/
     public function DeleteData($id)
     {
-        return $this->where($this->pk,$id)->delete() ? array('code'=>1,'msg'=>'删除成功') : array('code'=>0,'msg'=>'删除失败');
+        $result = $this->where($this->pk,$id)->delete();
+        if($result) {
+            // 删除分组和红人的联系
+            $McnKolModel = new McnKol();
+            $res = $McnKolModel->DeleteGroupKolRel($id);
+            if($res) {
+                return ['code'=>1,'msg'=>'删除成功'];
+            } else {
+                return ['code'=>0,'msg'=>'删除分组和红人的联系失败'];
+            }
+        } else {
+            return ['code'=>0,'msg'=>'删除失败'];
+        }
     }
 }

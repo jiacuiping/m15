@@ -1,0 +1,106 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>添加红人</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+
+  <style>
+
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+    .create-button-box{
+      text-align: center;
+    }
+    .guan{padding: 0 10px 10px 10px; text-align: right }
+    .mask{width: 100%;height: 100vh; background: rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
+    .content{width: 450px;max-height: 450px;overflow: auto;background: #fff;margin: 10% auto;padding: 10px}
+    .sanbang-right-div,.sanbang-right{width: 100%!important}
+
+  </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+  <div class="layui-card">
+    <div class="layui-card-header">添加红人</div>
+    <div class="layui-card-body" style="padding: 15px;">
+      <div class="wrapper">
+        <!-- 搜索 -->
+        <input type="hidden" name="groupId" id="groupId" value="{$groupId}">
+        <div class="sanbang-right">
+          <div class="layui-form-item">
+            <form action="{:url('viewKol')}" type="post">
+              <div class="layui-input-inline sanbang-right-div">
+                <input type="input" name="searchText" lay-verify="pass" placeholder="请输入抖音号或红人名称" autocomplete="off" class="layui-input" value="{$searchText}">
+                <button type="submit" class="layui-btn layui-btn-sm" style="background-color: #1988fe;">搜索</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- 一个搜索结果 -->
+        {volist name="kol" id="item"}
+        <div class="wrapper-div clear">
+          <img src="{$item.kol_avatar}" alt="" class="left">
+          <div class="wrapper-div-content left">
+            <h3>{$item.kol_nickname}</h3>
+            <p>抖音号：{$item.kol_number}</p>
+            <p>粉丝数：{$item.kt_fans}人</p>
+            <p>作品数：{$item.kt_videocount}个</p>
+            <p>简介：{$item.kol_desc}</p>
+          </div>
+<!--          <button type="button" class="layui-btn right layui-btn-disabled">已添加</button>-->
+          <button type="button" class="layui-btn right layui-btn-normal addKol" kol-id="{$item.kol_id}">添加</button>
+        </div>
+        {/volist}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="__STATIC__/layui/layui.js"></script>
+<script>
+  layui.config({
+    base: '__STATIC__/admin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form', 'upload'], function(){
+    var $ = layui.$
+            ,layer = layui.layer
+            ,upload = layui.upload
+            ,form = layui.form;
+
+    // 点击添加按钮把红人添加到分组
+    $('.addKol').click(function () {
+      var groupId = $('#groupId').val();
+      var kolId = $(this).attr('kol-id');
+
+      $.ajax({
+        url:"{:url('McnGroup/addKol')}",
+        type:"POST",
+        data:{groupId:groupId, kolId:kolId},
+        success:function(res){
+          layer.msg(res.msg);
+          if(res.code)
+            setTimeout(function(){window.parent.location.reload()},2000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试');
+        }
+      })
+    });
+
+  });
+</script>
+</body>
+</html>

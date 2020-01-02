@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\group.html";i:1577786422;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\group.html";i:1577951936;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,27 +81,29 @@
                 <h3><?php echo $item['group_name']; ?><span><?php echo $item['kol_num']; ?>个红人</span></h3>
                 <div class="right">
                   <a href="javascript:void(0);" title="" style="color: #34b0fa" group-id="<?php echo $item['group_id']; ?>" class="updateGroup">修改分组名称</a>
-                  <a href="javascript:void(0);" title="" style="color: #f5655d; margin-left: 15px" group-id="<?php echo $item['group_id']; ?>">删除分组</a>
+                  <a href="javascript:void(0);" title="" style="color: #f5655d; margin-left: 15px" group-id="<?php echo $item['group_id']; ?>" class="delGroup">删除分组</a>
                 </div>
               </div>
               <!-- 列表 -->
               <ul class="clear">
                 <!-- 循环组内红人 -->
                 <?php if(is_array($item['kols']) || $item['kols'] instanceof \think\Collection || $item['kols'] instanceof \think\Paginator): $i = 0; $__LIST__ = $item['kols'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$kol): $mod = ($i % 2 );++$i;?>
-                <li class="layui-col-md3" kol-id="<?php echo $kol['kol_id']; ?>">
-                  <div class="mcn-ul-li">
-                    <img src="<?php echo $kol['kol_avatar']; ?>" alt="" class="mcn-touxiang">
-                    <p class="yichu"><?php echo $kol['kol_nickname']; ?></p>
-                    <img src="/static/index/layuiadmin/imgs/1.png" alt="">
-                  </div>
-                </li>
+                <a href="<?php echo url('kol/info',array('kid'=>$kol['kol_id'])); ?>">
+                  <li class="layui-col-md3" kol-id="<?php echo $kol['kol_id']; ?>">
+                    <div class="mcn-ul-li">
+                      <img src="<?php echo $kol['kol_avatar']; ?>" alt="" class="mcn-touxiang">
+                      <p class="yichu"><?php echo $kol['kol_nickname']; ?></p>
+                      <img src="/static/index/layuiadmin/imgs/1.png" alt="">
+                    </div>
+                  </li>
+                </a>
                 <?php endforeach; endif; else: echo "" ;endif; ?>
 
                 <!-- 列表最后一个 添加红人 点击时有弹框 -->
-                <a href="#" title="" class="dianji">
+                <a href="#" title="" class="dianji" group-id="<?php echo $item['group_id']; ?>">
                   <li class="layui-col-md3">
                     <div class="mcn-ul-li">
-                      <p style="text-align: center;display: block; max-width: 100%;color: #34b0fa">+添加红人</p>
+                      <p style="text-align: center;display: block; max-width: 100%;color: #34b0fa" >+添加红人</p>
                     </div>
                   </li>
                 </a>
@@ -114,11 +116,11 @@
       </div>
 
       <!-- 点击红人时出现遮罩层 -->
-      <div class="mask">
+      <!--<div class="mask">
         <div class="content">
           <p class="guan">X</p>
           <div class="wrapper">
-              <!-- 搜索 -->
+              &lt;!&ndash; 搜索 &ndash;&gt;
               <div class="sanbang-right">
                 <div class="layui-form-item">
                   <div class="layui-input-inline sanbang-right-div">
@@ -127,7 +129,7 @@
                   </div>
                 </div>
               </div>
-              <!-- 一个搜索结果 -->
+              &lt;!&ndash; 一个搜索结果 &ndash;&gt;
               <div class="wrapper-div clear">
                 <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="left">
                 <div class="wrapper-div-content left">
@@ -163,7 +165,7 @@
               </div>
            </div>
         </div>
-      </div>
+      </div>-->
 
     </div>
   </div>
@@ -192,10 +194,31 @@
 
   });
 
+  // 3.点击添加红人时 遮罩层
+  /*$(".dianji").click(function(){
+    $(".mask").show();
+  });
+  $(".guan").click(function(){
+    $(".mask").hide();
+  });*/
+  $(".dianji").click(function(){
+    var group_id = $(this).attr('group-id');
+    var url = "<?php echo url('McnGroup/viewKol','',false); ?>/groupId/" + group_id;
+    layer.open({
+      type: 2
+      ,title:'添加红人'
+      ,content: url
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
   // 添加分组
   $("#addGroup").click(function(){
     layer.open({
-      title:'添加分组'
+      type: 2
+      ,title:'添加分组'
       ,content: "<?php echo url('McnGroup/create'); ?>"
       ,shadeClose: true
       ,area: ['70%', '60%']
@@ -208,7 +231,8 @@
     var group_id = $(this).attr('group-id');
     var url = "<?php echo url('McnGroup/update','',false); ?>/id/" + group_id;
     layer.open({
-      title:'修改分组'
+      type: 2
+      ,title:'修改分组'
       ,content: url
       ,shadeClose: true
       ,area: ['70%', '60%']
@@ -217,9 +241,10 @@
   });
 
   // 删除分组
-  /*$(".delGroup").click(function(){
-    var url = "<?php echo url('delete','',false); ?>/id/" + dataid;
-    layer.confirm('您确定要删除该分类吗？', function(index){
+  $(".delGroup").click(function(){
+    var group_id = $(this).attr('group-id');
+    var url = "<?php echo url('McnGroup/delete','',false); ?>/id/" + group_id;
+    layer.confirm('您确定要删除该分组吗？', function(index){
       $.ajax({
         url:url,
         success:function(res){
@@ -232,7 +257,7 @@
       })
       layer.close(index);
     });
-  });*/
+  });
 
 
 

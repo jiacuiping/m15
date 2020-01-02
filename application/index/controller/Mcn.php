@@ -5,7 +5,7 @@ use app\index\controller\LoginBase;
 use app\api\controller\GetData;
 use app\admin\model\Kol as KolModel;
 use app\admin\model\McnKol;
-use app\admin\model\McnAgent;
+use app\admin\model\McnAgent as McnAgentModel;
 use app\api\controller\Interfaces;
 use app\admin\model\McnGroup as McnGroupModel;
 use think\Db;
@@ -16,12 +16,14 @@ class Mcn extends LoginBase
 	private $GetData;
     private $data;
     private $mcnGroup;
+    private $mcnAgent;
     private $kol;
 
 	public function __construct()
 	{
 		parent::__construct();
         $this->mcnGroup = new McnGroupModel();
+        $this->mcnAgent = new McnAgentModel();
         $this->kol = new KolModel();
 
 		$this->GetData = new GetData;
@@ -173,7 +175,8 @@ class Mcn extends LoginBase
 
 
         // 查询该mcn的红人
-        $kols = $this->kol->GetDataList(['kol_mcn' => $mcnInfo['mcn_id']], '', 'kol_id, kol_nickname, kol_avatar');
+        $field = "kol_id, kol_nickname, kol_avatar";
+        $kols = $this->kol->GetDataList(['kol_mcn' => $mcnInfo['mcn_id']], '', $field);
         $kols = array_column($kols, null, 'kol_id');
 
         // 获取分组内的红人id
@@ -203,6 +206,9 @@ class Mcn extends LoginBase
             }
         }
 
+        // 红人信息
+        $this->assign('kols',$kols);
+
         // 分组信息
         $this->assign('macGroups',$macGroups);
 
@@ -211,18 +217,59 @@ class Mcn extends LoginBase
         return view();
     }
 
-    public function create()
-    {
-        return request()->isPost() ? $this->mcnGroup->CreateData(input('post.')) : view('mcn_group/create', [
-            'data' => $this->data['data']
-        ]);
-    }
-
 
     //经纪人管理
     public function Agent()
     {
-    	return view();
+        // mcn信息
+        $mcnInfo = $this->data['data'];
+
+        // 获取该mcn的经纪人信息
+        $agentWhere = ['agent_mcn' => $mcnInfo['mcn_id'], 'agent_status' => 1];
+        $macAgents =$this->mcnAgent->GetDataList($agentWhere);
+
+
+        // 查询该mcn的红人
+        $field = "kol_id, kol_nickname, kol_avatar";
+        $kols = $this->kol->GetDataList(['kol_mcn' => $mcnInfo['mcn_id']], '', $field);
+        $kols = array_column($kols, null, 'kol_id');
+
+        // 获取经纪人的红人id
+        $sql = "select mk_agent,GROUP_CONCAT(mk_kol) as kolids from m15_mcn_kol where m15_mcn_kol.mk_mcn = {$mcnInfo['mcn_id']} group by mk_agent";
+        $agentKols = Db::query($sql);
+        $agentKols = array_column($agentKols, 'kolids', 'mk_agent');
+
+
+        // 获取分组内的红人
+        $groupData = [];
+        foreach ($macAgents as $key => $value) {
+            $macAgents[$key]['kol_num'] = 0;
+            $macAgents[$key]['kols'] = [];
+
+            if(key_exists($value['agent_id'], $agentKols)) {
+                $kolIds = explode(',', $agentKols[$value['agent_id']]);
+                $macAgents[$key]['kol_num'] = count($kolIds);
+
+                $temp = [];
+                foreach ($kolIds as $kolId) {
+                    if(key_exists($kolId, $kols)) {
+                        array_push($temp, $kols[$kolId]);
+                    }
+                }
+                $macAgents[$key]['kols'] = $temp;
+
+            }
+        }
+
+        // 红人信息
+        $this->assign('kols',$kols);
+
+        // 分组信息
+        $this->assign('macAgents',$macAgents);
+
+        // mcn个人信息
+        $this->assign('data',$mcnInfo);
+        return view();
     }
 
     //更改展示状态

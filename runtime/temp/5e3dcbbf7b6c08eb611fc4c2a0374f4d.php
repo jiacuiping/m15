@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\agent.html";i:1577706968;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:71:"D:\phpstudy_pro\WWW\M15\public/../application/index\view\mcn\agent.html";i:1577952567;}*/ ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,13 +42,13 @@
       <div class="layui-col-md12">
         <div class="layui-card">
           <div class="layui-card-body mcn-kol-top clear">
-            <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+            <img src="<?php echo $data['mcn_logo']; ?>" alt="" class="left">
             <div class="left">
-              <h3>美ONE</h3>
-              <P>美腕（上海）网络科技有限公司</P>
-              <p>美ONE成立于2014年，是通过挖掘及培养专业达人，饼打造专业内容、。。。。</p>
-              <p>官网：http////////</p>
-              <p>同MCN抖音号：</p>
+              <h3><?php echo $data['mcn_name']; ?></h3>
+              <P><?php echo $data['mcn_authname']; ?></P>
+              <p><?php echo $data['mcn_desc']; ?></p>
+              <p>官网：<?php echo $data['mcn_website']; ?></p>
+              <p>官方抖音号：<?php echo $data['mcn_officialaccount']; ?></p>
             </div>
           </div>
         </div>
@@ -62,7 +62,7 @@
               <p style="color: #000;display: inline-block">提示：按经纪人查看红人数据请到“kol管理”中操作</p>
             </div>
             <div class="mcn-kol-red-right right">
-              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="color:#1ca3fc">+添加经纪人</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="color:#1ca3fc" id="addAgent">+添加经纪人</button>
             </div>
           </div>
         </div>
@@ -72,101 +72,46 @@
         <div class="layui-card">
           <div class="layui-card-header">经纪人列表</div>
           <div class="layui-card-body">
-            <!--  -->
+
+            <!-- 分组循环-->
+            <?php if(is_array($macAgents) || $macAgents instanceof \think\Collection || $macAgents instanceof \think\Paginator): $i = 0; $__LIST__ = $macAgents;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?>
             <div class="fenzu-div1">
               <!-- 标题 -->
               <div class="fenzu-div1-top">
-                <h3>用户_3946<span>6个红人</span></h3>
+                <h3><?php echo $item['agent_name']; ?><span><?php echo $item['kol_num']; ?>个红人</span></h3>
                 <div class="right">
-                  <a href="#" title="" style="color: #f5655d; margin-left: 15px">删除经纪人</a>
+                  <a href="javascript:void(0);" title="" style="color: #34b0fa" agent-id="<?php echo $item['agent_id']; ?>" class="updateAgent">修改经纪人名称</a>
+                  <a href="javascript:void(0);" title="" style="color: #f5655d; margin-left: 15px" agent-id="<?php echo $item['agent_id']; ?>" class="delAgent">删除经纪人</a>
                 </div>
               </div>
               <!-- 列表 -->
               <ul class="clear">
-                <li class="layui-col-md3">
-                  <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
-                    <img src="/static/index/layuiadmin/imgs/1-1.png" alt="">
-                  </div>
-                </li>
-                <li class="layui-col-md3">
-                  <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
-                    <img src="/static/index/layuiadmin/imgs/1-1.png" alt="">
-                  </div>
-                </li>
-                <li class="layui-col-md3">
-                  <div class="mcn-ul-li">
-                    <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="mcn-touxiang">
-                    <p class="yichu">会说话的...</p>
-                    <img src="/static/index/layuiadmin/imgs/1-1.png" alt="">
-                  </div>
-                </li>
+                <!-- 循环组内红人 -->
+                <?php if(is_array($item['kols']) || $item['kols'] instanceof \think\Collection || $item['kols'] instanceof \think\Paginator): $i = 0; $__LIST__ = $item['kols'];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$kol): $mod = ($i % 2 );++$i;?>
+                <a href="<?php echo url('kol/info',array('kid'=>$kol['kol_id'])); ?>">
+                  <li class="layui-col-md3" kol-id="<?php echo $kol['kol_id']; ?>">
+                    <div class="mcn-ul-li">
+                      <img src="<?php echo $kol['kol_avatar']; ?>" alt="" class="mcn-touxiang">
+                      <p class="yichu"><?php echo $kol['kol_nickname']; ?></p>
+                      <img src="/static/index/layuiadmin/imgs/1.png" alt="">
+                    </div>
+                  </li>
+                </a>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+
                 <!-- 列表最后一个 添加红人 点击时有弹框 -->
-                <a href="#" title="" class="dianji">
+                <a href="#" title="" class="dianji" agent-id="<?php echo $item['agent_id']; ?>">
                   <li class="layui-col-md3">
                     <div class="mcn-ul-li">
-                      <p style="text-align: center;display: block; max-width: 100%;color: #34b0fa">+添加经纪人</p>
+                      <p style="text-align: center;display: block; max-width: 100%;color: #34b0fa" >+添加红人</p>
                     </div>
                   </li>
                 </a>
               </ul>
             </div>
-          </div>
-        </div>
-      </div>
+            <?php endforeach; endif; else: echo "" ;endif; ?>
 
-      <!-- 点击添加时出现遮罩层 -->
-      <div class="mask">
-        <div class="content">
-          <p class="guan">X</p>
-          <div class="wrapper">
-              <!-- 搜索 -->
-              <div class="sanbang-right">
-                <div class="layui-form-item">
-                  <div class="layui-input-inline sanbang-right-div">
-                    <input type="" name="" lay-verify="pass" placeholder="请输入抖音号或红人名称" autocomplete="off" class="layui-input">
-                    <button type="button" class="layui-btn layui-btn-sm" style="background-color: #1988fe;">搜索</button>
-                  </div>
-                </div>
-              </div>
-              <!-- 一个搜索结果 -->
-              <div class="wrapper-div clear">
-                <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="left">
-                <div class="wrapper-div-content left">
-                  <h3>小茗同学</h3>
-                  <p>抖音号：330757574</p>
-                  <p>粉丝数：112人</p>
-                  <p>作品数：52个</p>
-                  <p>简介：十年吉萨复活甲撒护理费</p>
-                </div>
-                <button type="button" class="layui-btn right layui-btn-disabled">已添加</button>
-              </div>
-              <div class="wrapper-div clear">
-                <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="left">
-                <div class="wrapper-div-content left">
-                  <h3>小茗同学</h3>
-                  <p>抖音号：330757574</p>
-                  <p>粉丝数：112人</p>
-                  <p>作品数：52个</p>
-                  <p>简介：十年吉萨复活甲撒护理费</p>
-                </div>
-                <button type="button" class="layui-btn right layui-btn-normal">添加</button>
-              </div>
-              <div class="wrapper-div clear">
-                <img src="/static/index/layuiadmin/imgs/touxiang.jpg" alt="" class="left">
-                <div class="wrapper-div-content left">
-                  <h3>小茗同学</h3>
-                  <p>抖音号：330757574</p>
-                  <p>粉丝数：112人</p>
-                  <p>作品数：52个</p>
-                  <p>简介：十年吉萨复活甲撒护理费</p>
-                </div>
-                <button type="button" class="layui-btn right layui-btn-normal">添加</button>
-              </div>
-           </div>
+          </div>
         </div>
       </div>
 
@@ -199,12 +144,70 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
 
 // 3.点击添加经纪人时 遮罩层
-  $(".dianji").click(function(){
+/*  $(".dianji").click(function(){
   $(".mask").show();
 });
   $(".guan").click(function(){
   $(".mask").hide();
+});*/
+$(".dianji").click(function(){
+  var agent_id = $(this).attr('agent-id');
+  var url = "<?php echo url('McnAgent/viewKol','',false); ?>/agentId/" + agent_id;
+  layer.open({
+    type: 2
+    ,title:'添加红人'
+    ,content: url
+    ,shadeClose: true
+    ,area: ['70%', '60%']
+    ,maxmin: true
+  });
 });
+
+// 添加经纪人
+$("#addAgent").click(function(){
+  layer.open({
+    type: 2
+    ,title:'添加分组'
+    ,content: "<?php echo url('McnAgent/create'); ?>"
+    ,shadeClose: true
+    ,area: ['70%', '60%']
+    ,maxmin: true
+  });
+});
+
+// 修改经纪人
+$(".updateAgent").click(function(){
+  var agent_id = $(this).attr('agent-id');
+  var url = "<?php echo url('McnAgent/update','',false); ?>/id/" + agent_id;
+  layer.open({
+    type: 2
+    ,title:'修改经纪人'
+    ,content: url
+    ,shadeClose: true
+    ,area: ['70%', '60%']
+    ,maxmin: true
+  });
+});
+
+// 删除经纪人
+$(".delAgent").click(function(){
+  var agent_id = $(this).attr('agent-id');
+  var url = "<?php echo url('McnAgent/delete','',false); ?>/id/" + agent_id;
+  layer.confirm('您确定要删除该经纪人吗？', function(index){
+    $.ajax({
+      url:url,
+      success:function(res){
+        layer.msg(res.msg);
+        if(res.code)
+          setTimeout(function(){window.location.reload()},2000);
+      },error:function(){
+        layer.msg('服务器错误，请稍后重试！');
+      }
+    });
+    layer.close(index);
+  });
+});
+
 </script>
 </body>
 </html>

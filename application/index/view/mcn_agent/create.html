@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>添加分组</title>
+  <title>添加经纪人</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -27,37 +27,37 @@
 <body>
 <div class="layui-fluid">
   <div class="layui-card">
-    <div class="layui-card-header">修改分组</div>
+    <div class="layui-card-header">添加经纪人</div>
     <div class="layui-card-body" style="padding: 15px;">
       <form class="layui-form" action="" lay-filter="component-form-group" id="myform">
 
-        <input type="hidden" name="group_id" value="{$data.group_id}">
+        <input type="hidden" name="agent_mcn" value="{$data.mcn_id}">
 
         <div class="layui-form-item">
-          <label class="layui-form-label">分组名称</label>
+          <label class="layui-form-label">经纪人名称</label>
           <div class="layui-input-block">
-            <input type="text" name="group_name"  autocomplete="off" placeholder="请输入分组名称" class="layui-input" value="{$data.group_name}">
+            <input type="text" name="agent_name"  autocomplete="off" placeholder="请输入经纪人名称" class="layui-input">
           </div>
         </div>
 
         <div class="layui-form-item">
-          <label class="layui-form-label">分组权重</label>
+          <label class="layui-form-label">经纪人权重</label>
           <div class="layui-input-block">
-            <input type="number" name="group_rank"  autocomplete="off" placeholder="请输入分组权重" class="layui-input" value="{$data.group_rank}">
+            <input type="number" name="agent_rank"  autocomplete="off" placeholder="请输入经纪人权重" class="layui-input">
           </div>
         </div>
 
         <div class="layui-form-item">
-          <label class="layui-form-label">分组状态</label>
+          <label class="layui-form-label">经纪人状态</label>
           <div class="layui-input-block">
-            <input type="radio" name="group_status" value="1" title="可用" {if $data.group_status eq 1} checked="" {/if}>
-            <input type="radio" name="group_status" value="0" title="禁用" {if $data.group_status eq 0} checked="" {/if}>
+            <input type="radio" name="agent_status" value="1" title="可用" checked="">
+            <input type="radio" name="agent_status" value="0" title="禁用">
           </div>
         </div>
 
       </form>
       <div class="layui-input-block create-button-box">
-        <button type="button" class="layui-btn" id="update">确认修改</button>
+        <button type="button" class="layui-btn" id="create">确认添加</button>
       </div>
     </div>
   </div>
@@ -78,10 +78,10 @@
 
 
 
-    // 修改分组
-    $("#update").click(function(){
+    // 添加经纪人
+    $("#create").click(function(){
       $.ajax({
-        url:"{:url('update')}",
+        url:"{:url('create')}",
         type:"POST",
         data:$("#myform").serialize(),
         success:function(res){
