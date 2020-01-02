@@ -96,13 +96,17 @@ class McnGroup extends LoginBase
 
         // 查询 属于该mcn 的红人
         $kols = $this->kol
-            ->hasWhere('KolTrend',['kol.kol_mcn' => $mcnInfo['mcn_id']]);
+            ->alias("a")
+            ->join('kol_trend', 'a.kol_id = kol_trend.kt_kol_id')
+            ->field("a.kol_id, a.kol_number, a.kol_nickname, a.kol_avatar, a.kol_desc, kol_trend.kt_fans, kol_trend.kt_videocount")
+            ->where(['a.kol_mcn' => $mcnInfo['mcn_id']]);
 
         // 判断是否筛选
         if($searchText) {
-            $kols = $kols->where('kol.kol_nickname|kol.kol_number', 'like','%' . $searchText . '%');
+            $kols = $kols->where('a.kol_nickname|a.kol_number', 'like','%' . $searchText . '%');
         }
-        $kols = $kols->field("kol.kol_id, kol.kol_number, kol.kol_nickname, kol.kol_avatar, kol.kol_desc, KolTrend.kt_fans, KolTrend.kt_videocount")->select();
+
+        $kols = $kols->select();
         $kols = array_column($kols, null, 'kol_id');
 
         // 未分组的红人

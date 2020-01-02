@@ -163,9 +163,4 @@ class Kol extends Model
     {
         return $this->where($this->pk,$id)->delete() ? array('code'=>1,'msg'=>'删除成功') : array('code'=>0,'msg'=>'删除失败');
     }
-
-    public function KolTrend()
-    {
-        return $this->hasOne('KolTrend', 'kt_id')->field('kt_id,kt_fans,kt_videocount');
-    }
 }
