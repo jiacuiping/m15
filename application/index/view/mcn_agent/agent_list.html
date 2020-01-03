@@ -1,0 +1,97 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>分配经纪人</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+
+  <style>
+
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+    .create-button-box{
+      text-align: center;
+    }
+    .sanbang-right-div,.sanbang-right{width: 100%!important}
+
+  </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+  <div class="layui-card">
+    <div class="layui-card-header">分配经纪人</div>
+    <div class="layui-card-body" style="padding: 15px;">
+      <div class="wrapper">
+        <input type="hidden" id="kol_id" value="{$kol_id}">
+        <!-- 搜索 -->
+        <div class="sanbang-right">
+          <div class="layui-form-item">
+            <form action="{:url('agentList')}" type="post">
+              <div class="layui-input-inline sanbang-right-div">
+                <input type="input" name="searchText" lay-verify="pass" placeholder="请输入经济人名称" autocomplete="off" class="layui-input" value="{$searchText}">
+                <button type="submit" class="layui-btn layui-btn-sm" style="background-color: #1988fe;">搜索</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- 一个搜索结果 -->
+        {volist name="agent" id="item"}
+        <div class="wrapper-div clear">
+          <div class="wrapper-div-content left" style="width: 100%">
+            <h3 style="float: left">{$item.agent_name}</h3>
+            <button type="button" class="layui-btn right layui-btn-normal addAgent" agent-id="{$item.agent_id}" style="float: right;margin-top:0;">分配</button>
+          </div>
+        </div>
+        {/volist}
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="__STATIC__/layui/layui.js"></script>
+<script>
+  layui.config({
+    base: '__STATIC__/admin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form', 'upload'], function(){
+    var $ = layui.$
+            ,layer = layui.layer
+            ,upload = layui.upload
+            ,form = layui.form;
+
+    // 点击分配按钮把红人分配到经济人
+    $('.addAgent').click(function () {
+      var agentId = $(this).attr('agent-id');
+      var kolId = $('#kol_id').val();
+
+      $.ajax({
+        url:"{:url('McnAgent/addKol')}",
+        type:"POST",
+        data:{agentId:agentId, kolId:kolId},
+        success:function(res){
+          if(res.code)
+            layer.msg("分配成功");
+            setTimeout(function(){window.parent.location.reload()},2000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试');
+        }
+      })
+    });
+
+  });
+</script>
+</body>
+</html>

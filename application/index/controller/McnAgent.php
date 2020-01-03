@@ -76,7 +76,7 @@ class McnAgent extends LoginBase
         $kols = array_column($kols, null, 'kol_id');
 
         // 未分组的红人
-        $kolIds = $this->McnKol->GetDataList(['mk_mcn' => $mcnInfo['mcn_id'], 'mk_agent' => 0]);
+        $kolIds = $this->McnKol->GetDataList(['mk_mcn' => $mcnInfo['mcn_id'], 'mk_agent' => 0, 'mk_isagree' => 1]);
         $kolIds = array_column($kolIds, null,'mk_kol');
 
         $result = array_intersect_key($kols, $kolIds);
@@ -124,6 +124,22 @@ class McnAgent extends LoginBase
         } else {
             return ['code'=>0,'msg'=>'添加红人失败'];
         }
+    }
+
+    // 获取经济人列表
+    public function agentList($kol_id, $searchText = '')
+    {
+        $where = [];
+        $where['agent_mcn'] = $this->data['data']['mcn_id'];
+        if($searchText) {
+            $where['agent_name'] = ['like', '%' . $searchText . '%'];
+        }
+        $list = $this->McnAgent->GetDataList($where);
+
+        $this->assign('agent',$list);
+        $this->assign('kol_id',$kol_id);
+        $this->assign('searchText',$searchText);
+        return view();
     }
 
 

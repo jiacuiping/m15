@@ -4,7 +4,7 @@ namespace app\index\controller;
 use app\index\controller\LoginBase;
 use app\api\controller\GetData;
 use app\admin\model\Kol as KolModel;
-use app\admin\model\McnKol;
+use app\admin\model\McnKol as McnKolModel;
 use app\admin\model\McnAgent as McnAgentModel;
 use app\api\controller\Interfaces;
 use app\admin\model\McnGroup as McnGroupModel;
@@ -17,6 +17,7 @@ class Mcn extends LoginBase
     private $data;
     private $mcnGroup;
     private $mcnAgent;
+    private $mcnKol;
     private $kol;
 
 	public function __construct()
@@ -24,6 +25,7 @@ class Mcn extends LoginBase
 		parent::__construct();
         $this->mcnGroup = new McnGroupModel();
         $this->mcnAgent = new McnAgentModel();
+        $this->mcnKol = new McnKolModel();
         $this->kol = new KolModel();
 
 		$this->GetData = new GetData;
@@ -72,7 +74,7 @@ class Mcn extends LoginBase
 				$basisOf == 'group' ? $where['mk_group'] = $key : $where['mk_agent'] = $key;
 			}
 
-			$McnKol = new McnKol;
+			$McnKol = new McnKolModel();
 
 			$kols = $McnKol->GetColumn($where,'mk_kol');
 
@@ -124,15 +126,17 @@ class Mcn extends LoginBase
             //   $basisOf == 'group' ? $where['mk_group'] = $key : $where['mk_agent'] = $key;
             //}
 
-            $McnKol = new McnKol;
-            $McnAgent = new McnAgent;
+            $McnKol = new McnKolModel();
+            $McnAgent = new McnAgentModel;
 
             $kols = $McnKol->field('mk_kol,mk_agent,mk_group,mk_isshow')->where($where)->select();
+            $kols = array_column($kols, null, 'mk_kol');
             //GetColumn($where,'mk_kol');
 
             //$orderBy = $order == 'default' ? 'kt.kt_fans desc' : $order;
 
             $kol = $this->GetData->GetKolList(array('kol_id'=>array('in',array_column($kols,'mk_kol'))),1,100);
+            $kol = array_column($kol, null, 'kol_id');
 
             foreach ($kol as $key => $value) {
                 $info = $kols[$key];
@@ -272,18 +276,107 @@ class Mcn extends LoginBase
         return view();
     }
 
+
     //更改展示状态
     public function KolShow($id,$type)
     {
-        $McnKol = new McnKol;
+        $McnKol = new McnKolModel();
 
         return $McnKol->where('mk_kol',$id)->update(['mk_isshow'=>$type]) ? array('code'=>1,'msg'=>'修改成功') : array('code'=>0,'msg'=>'修改失败');
+    }
+
+    // 可认领红人列表
+    public function KolList($keyword = '')
+    {
+        $where = [];
+        $where['kol_mcn'] = 0;
+        if($keyword) {
+            $where['kol_nickname|kol_number'] = ['like', '%' . $keyword . '%'];
+        }
+
+        // 根据关键词搜索未被认领的红人
+        $list = $this->kol->GetDataList($where);
+
+        // 查询出该mcn发送过的认领记录
+        $rel = $this->mcnKol->GetDataList(['mk_mcn' => $this->data['data']['mcn_id'], 'mk_isagree' => 0]);
+        $rel = array_column($rel, null, 'mk_kol');
+
+        // 是否已发送过认领
+        foreach ($list as $key => $value) {
+            $list[$key]['isClaim'] = array_key_exists($value['kol_id'], $rel) ? 1 : 0;
+        }
+
+        if($list) {
+            return ['code'=>1,'msg'=>'获取成功','data'=>$list];
+        } else {
+            return ['code'=>0,'msg'=>'获取失败'];
+        }
+    }
+
+    // 确认认领
+    public function confirmClaim($kolId, $isall = 0)
+    {
+        // mcn信息
+        $mcnInfo = $this->data['data'];
+
+        // 判断是单个认领还是批量认领
+        if($isall == 0) { // 单个
+            // m15_mcn_kol表插入数据
+            $data = [
+                'mk_mcn' => $mcnInfo['mcn_id'],
+                'mk_kol' => $kolId,
+                'mk_agent' => 0,
+                'mk_group' => 0,
+                'mk_isagree' => 0,
+                'mk_time' => time(),
+            ];
+            $relRes = $this->mcnKol->saveData($data);
+
+            // 红人同意认领后m15_kol表修改kol_mcn字段
+//            $kolRes = $this->kol->UpdateData(['kol_id' => $kolId, 'kol_mcn' => $mcnInfo['mcn_id']]);
+
+            if($relRes['code']) {
+                return ['code'=>1,'msg'=>'发送认领成功'];
+            } else {
+                return ['code'=>0,'msg'=>'发送认领失败'];
+            }
+
+        } else { // 批量
+            // m15_mcn_kol表插入数据
+            $kolIds = $kolId;
+            $data = [];
+            foreach ($kolIds as $key => $value) {
+                $data[$key] = [
+                    'mk_mcn' => $mcnInfo['mcn_id'],
+                    'mk_kol' => $value,
+                    'mk_agent' => 0,
+                    'mk_group' => 0,
+                    'mk_isagree' => 0,
+                    'mk_time' => time(),
+                ];
+            }
+
+            // 红人同意认领后m15_kol表修改kol_mcn字段
+//            $kolRes = $this->kol->UpdateData(['kol_id' => $kolIds, 'kol_mcn' => $mcnInfo['mcn_id']]);
+
+            $result = $this->mcnKol->insertAll($data);
+            if($result) {
+                return ['code'=>1,'msg'=>'发送认领成功'];
+            } else {
+                return ['code'=>0,'msg'=>'发送认领失败'];
+            }
+        }
+
     }
 
     //解除认领
     public function Kolremove($id)
     {
-        $McnKol = new McnKol;
+        $McnKol = new McnKolModel();
+
+        // m15_kol表修改kol_mcn字段
+
+        // 删除m15_mcn_kol表数据
 
         return $McnKol->where('mk_kol',$id)->delete() ? array('code'=>1,'msg'=>'解除认领成功') : array('code'=>0,'msg'=>'解除认领失败');
     }

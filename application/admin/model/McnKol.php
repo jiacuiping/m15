@@ -124,7 +124,7 @@ class McnKol extends Model
      */
     public function saveData($param)
     {
-        $mcnKol = $this->GetField(['mk_kol' => $param['mk_kol']], 'mk_id');
+        $mcnKol = $this->GetField(['mk_kol' => $param['mk_kol'], 'mk_mcn' => $param['mk_mcn']], 'mk_id');
 
         // 已经存在
         if($mcnKol) {

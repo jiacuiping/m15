@@ -14,6 +14,17 @@
 .layui-form-item{margin-bottom: 0}
 .layui-input-block{margin-left: 0}
 .mtd-shipin-td-btn a,.mtd-shipin-td-btn button{display: block !important;float: left !important;width: 73px !important;}
+.layui-input-block {margin-left: 70px}
+.shouluren-xinxi{margin-top: 10px;}
+.shouluren-xinxi-left {width: 350px;}
+.shouluren-xinxi .left {float: left;}
+.shouluren-xinxi-left p{
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.claimKol {display: block;float: right;margin-top: 20px;}
+.claimAll {margin-top: 5px;}
 </style>
 <body>
   <div class="layui-fluid">
@@ -96,7 +107,7 @@
                 </div>
               </form>
               <!-- +认领红人 -->
-              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm insert" style="color:#1ca3fc">+认领红人</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm insert" id="claim" style="color:#1ca3fc">+认领红人</button>
             </div>
           </div>
         </div>
@@ -160,6 +171,23 @@
     </div>
   </div>
 
+  <div class="layui-col-md12" id="included" style="display:none">
+    <div class="shoulu-one" style="border:0px;">
+      <!-- <h3>添加收录弹框</h3> -->
+      <p style="color: #000">认领红人</p>
+      <!-- 搜索 -->
+      <div class="right sanbang-right" style="width: 100%">
+        <div class="layui-form-item" style="width: 100%">
+          <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+            <input type="text" placeholder="请输入抖音号或红人名称" autocomplete="off" class="layui-input" id="includedinp" style="width: 100%">
+            <button type="button" class="layui-btn layui-btn-sm includedbat" style="background-color:#5597e5">搜索</button>
+          </div>
+        </div>
+      </div>
+      <div id="searchcentent"></div>
+    </div>
+  </div>
+
 <script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>
 <script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>
 <script>
@@ -197,6 +225,22 @@ layui.use(['form', 'layedit', 'laydate'], function(){
     })
   });
 
+  // 分配经纪人
+  $(".agent").click(function () {
+    var kolId = $(this).attr('data-value');
+    var url = "{:url('McnAgent/agentList','',false)}/kol_id/" + kolId;
+    layer.open({
+      type: 2
+      ,title:'分配经纪人'
+      ,content: url
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
+
+  // 解除认领
   $(".remove").click(function(){
 
     var id = $(this).attr('data-value');
@@ -217,6 +261,129 @@ layui.use(['form', 'layedit', 'laydate'], function(){
       });
     });
   });
+
+  // 点击认领红人
+  $("#claim").click(function () {
+    layer.open({
+      type: 1,
+      area:['590px','300px'],
+      shade: false,
+      title: false, //不显示标题
+      content: $('#included'),
+    });
+  });
+
+  // 搜索红人
+  $(".includedbat").click(function(){
+
+    var keyword = $("#includedinp").val();
+
+    if(keyword == '')
+      layer.msg('请输入抖音号或者UID');
+    else{
+      $.ajax({
+        url:"{:url('KolList')}",
+        type:"GET",
+        data:{keyword:keyword},
+        success:function(res){
+          if(res.code == 1){
+            var html = '';
+            html += "<button type='button' class='layui-btn layui-btn-normal claimAll'>认领全部</button>";
+            $.each(res.data,function(key,value){
+
+              html +=  "<div class='shouluren-xinxi clear'>"+
+                      "<img src='"+value.kol_avatar+"' class='left'>"+
+                      "<div class='left shouluren-xinxi-left'>"+
+                      "<p style='color: #000'>"+value.kol_nickname+"</p>"+
+                      "<p>抖音号："+value.kol_number+"</p>"+
+                      "<p>简介："+value.kol_signature+"</p>"+
+                      "</div>";
+              if(value.isClaim) {
+                html += "<button type='button' disabled='true' class='layui-btn layui-btn-disabled' data-value='"+value.kol_id+"'>已发送认领</button>";
+              } else {
+                html += "<button type='button' class='layui-btn layui-btn-normal claimKol' data-value='"+value.kol_id+"'>确认认领</button>";
+              }
+              html += "</div>";
+            });
+
+          }else
+            var html = "<p class='clear' style='text-align:center;margin-top80px'>"+ res.msg +"</p>";
+
+          $("#searchcentent").empty();
+          $("#searchcentent").append(html);
+
+        },error:function(){
+
+        }
+      });
+    }
+  });
+
+  // 确认认领
+  $("body").on('click','.claimKol',function(){
+    var obj = $(this);
+    var kolId = obj.attr('data-value');
+    $.ajax({
+      url:"{:url('confirmClaim')}",
+      data:{kolId:kolId,isall:0},
+      type:"GET",
+      beforeSend:function(XMLHttpRequest){
+        obj.text('认领中...');
+      },success:function(res){
+        if(res.code == 1){
+          obj.text(res.msg);
+          layer.msg(res.msg);
+        }else
+          obj.text('认领失败');
+      },complete:function(XMLHttpRequest,textStatus){
+        obj.removeClass('layui-btn-normal');
+        obj.addClass('layui-btn-disabled');
+        obj.text('已发送认领');
+      },error:function(){
+        layer.msg('网络错误，请稍后重试');
+      }
+    });
+  });
+
+  // 全部认领
+  $("body").on('click','.claimAll',function(){
+    var obj = $(this);
+    var kolId = [];
+
+    $(".claimKol").each(function() {
+      if($(this).hasClass('layui-btn-normal')) {
+        kolId.push($(this).attr("data-value"));
+      }
+    });
+
+    $.ajax({
+      url:"{:url('confirmClaim')}",
+      data:{kolId:kolId,isall:1},
+      type:"GET",
+      beforeSend:function(XMLHttpRequest){
+        obj.text('认领中...');
+      },success:function(res){
+        if(res.code == 1){
+          obj.text(res.msg);
+          layer.msg(res.msg);
+        }else
+          obj.text('认领失败');
+      },complete:function(XMLHttpRequest,textStatus){
+        obj.removeClass('layui-btn-normal claimKol');
+        obj.addClass('layui-btn-disabled');
+        obj.text('已发送认领');
+
+        $('.claimKol').removeClass('layui-btn-normal');
+        $('.claimKol').addClass('layui-btn-disabled');
+        $('.claimKol').text('已发送认领');
+      },error:function(){
+        layer.msg('网络错误，请稍后重试');
+      }
+    });
+  });
+
+
+
 });
 </script>
 </body>

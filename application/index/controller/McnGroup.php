@@ -110,7 +110,7 @@ class McnGroup extends LoginBase
         $kols = array_column($kols, null, 'kol_id');
 
         // 未分组的红人
-        $kolIds = $this->McnKol->GetDataList(['mk_mcn' => $mcnInfo['mcn_id'], 'mk_group' => 0]);
+        $kolIds = $this->McnKol->GetDataList(['mk_mcn' => $mcnInfo['mcn_id'], 'mk_group' => 0, 'mk_isagree' => 1]);
         $kolIds = array_column($kolIds, null,'mk_kol');
 
         $result = array_intersect_key($kols, $kolIds);
