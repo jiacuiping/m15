@@ -14,7 +14,7 @@
 .layui-form-item{margin-bottom: 0}
 .layui-input-block{margin-left: 0}
 .mtd-shipin-td-btn a,.mtd-shipin-td-btn button{display: block !important;float: left !important;width: 73px !important;}
-.layui-input-block {margin-left: 70px}
+.layui-input-block {margin-left: -1px}
 .shouluren-xinxi{margin-top: 10px;}
 .shouluren-xinxi-left {width: 350px;}
 .shouluren-xinxi .left {float: left;}
@@ -25,6 +25,7 @@
 }
 .claimKol {display: block;float: right;margin-top: 20px;}
 .claimAll {margin-top: 5px;}
+.mtd-shipin-td-btn>.layui-btn-sm{height: 38px;}
 </style>
 <body>
   <div class="layui-fluid">
@@ -63,53 +64,88 @@
       <!-- 红人管理 -->
       <div class="layui-col-md12">
         <div class="layui-card">
+          <!-- 数量 -->
+          <div class="layui-card-body">
+            <p style="color: #000;display: inline-block">共{:count($kol)}个红人</p>
+          </div>
+          <!-- 筛选 -->
           <div class="layui-card-body clear">
-            <div class="mcn-kol-red-left left">
-              <h3>红人搜索</h3>
-              <!-- 搜索 -->
-              <div class="layui-form-item">
-                <div class="layui-input-inline sanbang-right-div" style="width: 210px">
-                  <input type="" name="" lay-verify="pass" placeholder="请输入Kol关键字" autocomplete="off" class="layui-input">
-                  <button type="button" class="layui-btn layui-btn-sm" style="background-color: #1ca3fc;"><i class="layui-icon layui-icon-search"></i></button>
+            <div class="mcn-kol-red-left left" style="width: 90%;">
+              <input type="hidden" class="filter-value" id="platform" {if isset($filter.platform)} value="{$filter.platform}" {/if}>
+              <input type="hidden" class="filter-value" id="group" {if isset($filter.group)} value="{$filter.group}" {/if}>
+              <input type="hidden" class="filter-value" id="agent" {if isset($filter.agent)} value="{$filter.agent}" {/if}>
+
+              <form class="layui-form left" action="{:url('kol')}">
+                <h3 class="left" style="line-height: 35px;">红人筛选：</h3>
+                <!-- 筛选方式 -->
+                <div class="mtd-shipin-tab-right mtd-shipin-td-btn left">
+                  <button type="button" class="filter layui-btn layui-btn-sm btn-platform mtd-shipin-btn-checked" filter-type="platform">按平台</button>
+                  <button type="button" class="filter layui-btn layui-btn-sm btn-group" filter-type="group">按分组</button>
+                  <button type="button" class="filter layui-btn layui-btn-sm btn-agent" filter-type="agent">按经纪人</button>
                 </div>
-              </div>
-              <p style="color: #000;display: inline-block">共{:count($kol)}个红人</p>
+
+                <!-- 选择框 -->
+                <div class="left filter-select filter-platform">
+                  <div class="layui-input-block">
+                    <select name="platform" class="">
+                      <option value="">请选择平台</option>
+                      {volist name="platformList" id="platform"}
+                      <option value="{$platform.platform_id}" {if isset($filter.platform) && $filter.platform == $platform.platform_id} selected="" {/if}>{$platform.platform_name}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                </div>
+                <div class="left filter-select filter-group" style="display: none;">
+                  <div class="layui-input-block">
+                    <select name="group">
+                      <option value="">请选择分组</option>
+                      {volist name="groupList" id="group"}
+                      <option value="{$group.group_id}" {if isset($filter.group) && $filter.group == $group.group_id} selected="" {/if}>{$group.group_name}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                </div>
+                <div class="left filter-select filter-agent"  style="display: none;">
+                  <div class="layui-input-block">
+                    <select name="agent">
+                      <option value="">请选择经纪人</option>
+                      {volist name="agentList" id="agent"}
+                      <option value="{$agent.agent_id}" {if isset($filter.agent) && $filter.agent == $agent.agent_id} selected="" {/if}>{$agent.agent_name}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                </div>
+
+                <!-- 关键词 -->
+                <div class="left" style="margin-left: 5px;">
+                  <input type="input" name="keyWord" lay-verify="pass" placeholder="请输入Kol关键字" autocomplete="off" class="layui-input" {if isset($filter.keyWord)} value="{$filter.keyWord}" {/if}>
+                </div>
+
+                <!-- 排序方式 -->
+                <div class="left" style="margin-left: 5px;">
+                  <div class="layui-input-block">
+                    <select name="orderBy" class="">
+                      <option value="">请选择排序方式</option>
+                      <option value="hot" {if isset($filter.orderBy) && $filter.orderBy == 'hot'} selected="" {/if}>指数</option>
+                      <option value="fans" {if isset($filter.orderBy) && $filter.orderBy == 'fans'} selected="" {/if}>粉丝</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="layui-input-inline sanbang-right-div" style="width: 70px;height: 38px;margin-left: 10px">
+                  <button type="submit" class="layui-btn layui-btn-sm" style="background-color: #1ca3fc;"><i class="layui-icon layui-icon-search"></i></button>
+                </div>
+
+              </form>
             </div>
-            <div class="mcn-kol-red-right right clear">
-              <!-- 默认排序 -->
-              <form class="layui-form left" action="">
-                <div class="layui-form-item">
-                  <div class="layui-input-block">
-                    <select name="interest" lay-filter="aihao">
-                      <option value="0" selected="">默认排序</option>
-                      <option value="1">写作</option>
-                      <option value="2">阅读</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
-              <!-- 时间选项 -->
-              <div class="mtd-shipin-tab-right mtd-shipin-td-btn left" style="margin: 0 10px">
-                <button type="button" class="layui-btn layui-btn-sm mtd-shipin-btn-checked">按平台</button>
-                <button type="button" class="layui-btn layui-btn-sm">按分组</button>
-                <button type="button" class="layui-btn layui-btn-sm">按经纪人</button>
-              </div>
-              <!-- 全部平台 -->
-              <form class="layui-form" action="">
-                <div class="layui-form-item">
-                  <div class="layui-input-block">
-                    <select name="interest" lay-filter="aihao">
-                      <option value="0" selected="">全部平台</option>
-                      <option value="1">写作</option>
-                      <option value="2">阅读</option>
-                    </select>
-                  </div>
-                </div>
-              </form>
+
+
+            <div class="mcn-kol-red-right right" style="width: 5%;">
               <!-- +认领红人 -->
               <button type="button" class="layui-btn layui-btn-primary layui-btn-sm insert" id="claim" style="color:#1ca3fc">+认领红人</button>
             </div>
           </div>
+
         </div>
       </div>
       <!-- 收藏的信息 -->
@@ -192,65 +228,41 @@
 <script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>
 <script>
 
-// 1.轮播 
-layui.use('carousel', function(){
-  var carousel = layui.carousel;
-  carousel.render({
-    elem: '#test1'
-    ,width: '100%' //设置容器宽度
-    ,arrow: 'always' //始终显示箭头
-    //,anim: 'updown' //切换动画方式
-  });
-});
+  $(function () {
+    $.each($('.filter-value'), function () {
+      if($(this).val()) {
+        $(".filter").removeClass('mtd-shipin-btn-checked');
+        $(".btn-" + $(this).attr('id')).addClass('mtd-shipin-btn-checked');
 
-// 2.下拉选择
-layui.use(['form', 'layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-
-  //展示或隐藏
-  $(".isshow").click(function(){
-    $.ajax({
-      url:"{:url('KolShow')}",
-      data:{id:$(this).attr('data-value'),type:$(this).attr('data-type')},
-      success:function(res){
-        layer.msg(res.msg);
-        if(res.code == 1)
-          setTimeout(function(){window.location.reload()},2000);
-      },error:function(){
-        layer.msg('服务器错误，清稍后重试！');
+        $(".filter-select").css('display', 'none');
+        $(".filter-" + $(this).attr('id')).css('display', 'block');
       }
     })
   });
 
-  // 分配经纪人
-  $(".agent").click(function () {
-    var kolId = $(this).attr('data-value');
-    var url = "{:url('McnAgent/agentList','',false)}/kol_id/" + kolId;
-    layer.open({
-      type: 2
-      ,title:'分配经纪人'
-      ,content: url
-      ,shadeClose: true
-      ,area: ['70%', '60%']
-      ,maxmin: true
+  // 1.轮播
+  layui.use('carousel', function(){
+    var carousel = layui.carousel;
+    carousel.render({
+      elem: '#test1'
+      ,width: '100%' //设置容器宽度
+      ,arrow: 'always' //始终显示箭头
+      //,anim: 'updown' //切换动画方式
     });
   });
 
+  // 2.下拉选择
+  layui.use(['form', 'layedit', 'laydate'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate;
 
-  // 解除认领
-  $(".remove").click(function(){
-
-    var id = $(this).attr('data-value');
-
-    layer.confirm('您确定要解除该红人与您的关系吗？', {
-      btn: ['确定','取消'] //按钮
-    }, function(){
+    //展示或隐藏
+    $(".isshow").click(function(){
       $.ajax({
-        url:"{:url('Kolremove')}",
-        data:{id:id},
+        url:"{:url('KolShow')}",
+        data:{id:$(this).attr('data-value'),type:$(this).attr('data-type')},
         success:function(res){
           layer.msg(res.msg);
           if(res.code == 1)
@@ -258,133 +270,185 @@ layui.use(['form', 'layedit', 'laydate'], function(){
         },error:function(){
           layer.msg('服务器错误，清稍后重试！');
         }
+      })
+    });
+
+    // 筛选方式
+    $(".filter").click(function () {
+      // 清空选择
+      $(".filter-select select").val('');
+
+
+      $('.filter').removeClass('mtd-shipin-btn-checked');
+      $(this).addClass('mtd-shipin-btn-checked');
+      $(".filter-select").css('display', 'none');
+      var filterType = $(this).attr('filter-type');
+      var className = "filter-" + filterType;
+      $(".filter-" + filterType).css('display', 'block');
+
+    });
+
+
+    // 分配经纪人
+    $(".agent").click(function () {
+      var kolId = $(this).attr('data-value');
+      var url = "{:url('McnAgent/agentList','',false)}/kol_id/" + kolId;
+      layer.open({
+        type: 2
+        ,title:'分配经纪人'
+        ,content: url
+        ,shadeClose: true
+        ,area: ['70%', '60%']
+        ,maxmin: true
       });
     });
-  });
 
-  // 点击认领红人
-  $("#claim").click(function () {
-    layer.open({
-      type: 1,
-      area:['590px','300px'],
-      shade: false,
-      title: false, //不显示标题
-      content: $('#included'),
+
+    // 解除认领
+    $(".remove").click(function(){
+
+      var id = $(this).attr('data-value');
+
+      layer.confirm('您确定要解除该红人与您的关系吗？', {
+        btn: ['确定','取消'] //按钮
+      }, function(){
+        $.ajax({
+          url:"{:url('Kolremove')}",
+          data:{id:id},
+          success:function(res){
+            layer.msg(res.msg);
+            if(res.code == 1)
+              setTimeout(function(){window.location.reload()},2000);
+          },error:function(){
+            layer.msg('服务器错误，清稍后重试！');
+          }
+        });
+      });
     });
-  });
 
-  // 搜索红人
-  $(".includedbat").click(function(){
+    // 点击认领红人
+    $("#claim").click(function () {
+      layer.open({
+        type: 1,
+        area:['590px','300px'],
+        shade: false,
+        title: false, //不显示标题
+        content: $('#included'),
+      });
+    });
 
-    var keyword = $("#includedinp").val();
+    // 搜索红人
+    $(".includedbat").click(function(){
 
-    if(keyword == '')
-      layer.msg('请输入抖音号或者UID');
-    else{
+      var keyword = $("#includedinp").val();
+
+      if(keyword == '')
+        layer.msg('请输入抖音号或者UID');
+      else{
+        $.ajax({
+          url:"{:url('KolList')}",
+          type:"GET",
+          data:{keyword:keyword},
+          success:function(res){
+            if(res.code == 1){
+              var html = '';
+              html += "<button type='button' class='layui-btn layui-btn-normal claimAll'>认领全部</button>";
+              $.each(res.data,function(key,value){
+
+                html +=  "<div class='shouluren-xinxi clear'>"+
+                        "<img src='"+value.kol_avatar+"' class='left'>"+
+                        "<div class='left shouluren-xinxi-left'>"+
+                        "<p style='color: #000'>"+value.kol_nickname+"</p>"+
+                        "<p>抖音号："+value.kol_number+"</p>"+
+                        "<p>简介："+value.kol_signature+"</p>"+
+                        "</div>";
+                if(value.isClaim) {
+                  html += "<button type='button' disabled='true' class='layui-btn layui-btn-disabled' data-value='"+value.kol_id+"'>已发送认领</button>";
+                } else {
+                  html += "<button type='button' class='layui-btn layui-btn-normal claimKol' data-value='"+value.kol_id+"'>确认认领</button>";
+                }
+                html += "</div>";
+              });
+
+            }else
+              var html = "<p class='clear' style='text-align:center;margin-top80px'>"+ res.msg +"</p>";
+
+            $("#searchcentent").empty();
+            $("#searchcentent").append(html);
+
+          },error:function(){
+
+          }
+        });
+      }
+    });
+
+    // 确认认领
+    $("body").on('click','.claimKol',function(){
+      var obj = $(this);
+      var kolId = obj.attr('data-value');
       $.ajax({
-        url:"{:url('KolList')}",
+        url:"{:url('confirmClaim')}",
+        data:{kolId:kolId,isall:0},
         type:"GET",
-        data:{keyword:keyword},
-        success:function(res){
+        beforeSend:function(XMLHttpRequest){
+          obj.text('认领中...');
+        },success:function(res){
           if(res.code == 1){
-            var html = '';
-            html += "<button type='button' class='layui-btn layui-btn-normal claimAll'>认领全部</button>";
-            $.each(res.data,function(key,value){
-
-              html +=  "<div class='shouluren-xinxi clear'>"+
-                      "<img src='"+value.kol_avatar+"' class='left'>"+
-                      "<div class='left shouluren-xinxi-left'>"+
-                      "<p style='color: #000'>"+value.kol_nickname+"</p>"+
-                      "<p>抖音号："+value.kol_number+"</p>"+
-                      "<p>简介："+value.kol_signature+"</p>"+
-                      "</div>";
-              if(value.isClaim) {
-                html += "<button type='button' disabled='true' class='layui-btn layui-btn-disabled' data-value='"+value.kol_id+"'>已发送认领</button>";
-              } else {
-                html += "<button type='button' class='layui-btn layui-btn-normal claimKol' data-value='"+value.kol_id+"'>确认认领</button>";
-              }
-              html += "</div>";
-            });
-
+            obj.text(res.msg);
+            layer.msg(res.msg);
           }else
-            var html = "<p class='clear' style='text-align:center;margin-top80px'>"+ res.msg +"</p>";
-
-          $("#searchcentent").empty();
-          $("#searchcentent").append(html);
-
+            obj.text('认领失败');
+        },complete:function(XMLHttpRequest,textStatus){
+          obj.removeClass('layui-btn-normal');
+          obj.addClass('layui-btn-disabled');
+          obj.text('已发送认领');
         },error:function(){
-
+          layer.msg('网络错误，请稍后重试');
         }
       });
-    }
-  });
-
-  // 确认认领
-  $("body").on('click','.claimKol',function(){
-    var obj = $(this);
-    var kolId = obj.attr('data-value');
-    $.ajax({
-      url:"{:url('confirmClaim')}",
-      data:{kolId:kolId,isall:0},
-      type:"GET",
-      beforeSend:function(XMLHttpRequest){
-        obj.text('认领中...');
-      },success:function(res){
-        if(res.code == 1){
-          obj.text(res.msg);
-          layer.msg(res.msg);
-        }else
-          obj.text('认领失败');
-      },complete:function(XMLHttpRequest,textStatus){
-        obj.removeClass('layui-btn-normal');
-        obj.addClass('layui-btn-disabled');
-        obj.text('已发送认领');
-      },error:function(){
-        layer.msg('网络错误，请稍后重试');
-      }
-    });
-  });
-
-  // 全部认领
-  $("body").on('click','.claimAll',function(){
-    var obj = $(this);
-    var kolId = [];
-
-    $(".claimKol").each(function() {
-      if($(this).hasClass('layui-btn-normal')) {
-        kolId.push($(this).attr("data-value"));
-      }
     });
 
-    $.ajax({
-      url:"{:url('confirmClaim')}",
-      data:{kolId:kolId,isall:1},
-      type:"GET",
-      beforeSend:function(XMLHttpRequest){
-        obj.text('认领中...');
-      },success:function(res){
-        if(res.code == 1){
-          obj.text(res.msg);
-          layer.msg(res.msg);
-        }else
-          obj.text('认领失败');
-      },complete:function(XMLHttpRequest,textStatus){
-        obj.removeClass('layui-btn-normal claimKol');
-        obj.addClass('layui-btn-disabled');
-        obj.text('已发送认领');
+    // 全部认领
+    $("body").on('click','.claimAll',function(){
+      var obj = $(this);
+      var kolId = [];
 
-        $('.claimKol').removeClass('layui-btn-normal');
-        $('.claimKol').addClass('layui-btn-disabled');
-        $('.claimKol').text('已发送认领');
-      },error:function(){
-        layer.msg('网络错误，请稍后重试');
-      }
+      $(".claimKol").each(function() {
+        if($(this).hasClass('layui-btn-normal')) {
+          kolId.push($(this).attr("data-value"));
+        }
+      });
+
+      $.ajax({
+        url:"{:url('confirmClaim')}",
+        data:{kolId:kolId,isall:1},
+        type:"GET",
+        beforeSend:function(XMLHttpRequest){
+          obj.text('认领中...');
+        },success:function(res){
+          if(res.code == 1){
+            obj.text(res.msg);
+            layer.msg(res.msg);
+          }else
+            obj.text('认领失败');
+        },complete:function(XMLHttpRequest,textStatus){
+          obj.removeClass('layui-btn-normal claimKol');
+          obj.addClass('layui-btn-disabled');
+          obj.text('已发送认领');
+
+          $('.claimKol').removeClass('layui-btn-normal');
+          $('.claimKol').addClass('layui-btn-disabled');
+          $('.claimKol').text('已发送认领');
+        },error:function(){
+          layer.msg('网络错误，请稍后重试');
+        }
+      });
     });
+
+
+
   });
-
-
-
-});
 </script>
 </body>
 </html>

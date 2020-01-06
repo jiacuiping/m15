@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+use app\admin\model\Platform;
 use app\index\controller\LoginBase;
 use app\api\controller\GetData;
 use app\admin\model\Kol as KolModel;
@@ -119,8 +120,36 @@ class Mcn extends LoginBase
     public function Kol($mcn=0)
     {
         if($this->data['code'] == 1){
+            // mcn_kol表筛选条件  该mcn已认领
+            $mcnKolWhere = [];
+            $mcnKolWhere['mk_mcn'] = $this->data['data']['mcn_id'];
+            $mcnKolWhere['mk_isagree'] = 1;
 
-            $where['mk_mcn'] = $this->data['data']['mcn_id'];
+            $kolWhere = [];
+            $filter = input('param.'); // platform  group agent  keyWord
+            if(isset($filter['platform']) && $filter['platform']) {
+                $kolWhere['kol_platform'] = $filter['platform'];
+            }
+
+            if(isset($filter['group']) && $filter['group']) {
+                $mcnKolWhere['mk_group'] = $filter['group'];
+            }
+
+            if(isset($filter['agent']) && $filter['agent']) {
+                $mcnKolWhere['mk_agent'] = $filter['agent'];
+            }
+
+            if(isset($filter['keyWord']) && $filter['keyWord']) {
+                $kolWhere['kol_nickname'] = ['like', '%' . $filter['keyWord'] . '%'];
+            }
+
+            $orderBy = "kt.kt_hot desc";
+            if(isset($filter['orderBy']) && $filter['orderBy']) {
+
+                $orderBy = "kt.kt_" . $filter['orderBy'] . " desc";
+            }
+
+
 
             //if($basisOf != 'app' && $key != 0){
             //   $basisOf == 'group' ? $where['mk_group'] = $key : $where['mk_agent'] = $key;
@@ -129,13 +158,14 @@ class Mcn extends LoginBase
             $McnKol = new McnKolModel();
             $McnAgent = new McnAgentModel;
 
-            $kols = $McnKol->field('mk_kol,mk_agent,mk_group,mk_isshow')->where($where)->select();
+            $kols = $McnKol->field('mk_kol,mk_agent,mk_group,mk_isshow')->where($mcnKolWhere)->select();
             $kols = array_column($kols, null, 'mk_kol');
             //GetColumn($where,'mk_kol');
 
             //$orderBy = $order == 'default' ? 'kt.kt_fans desc' : $order;
 
-            $kol = $this->GetData->GetKolList(array('kol_id'=>array('in',array_column($kols,'mk_kol'))),1,100);
+            $kolWhere['kol_id'] = ['in',array_column($kols,'mk_kol')];
+            $kol = $this->GetData->GetKolList($kolWhere,1,100, $orderBy);
             $kol = array_column($kol, null, 'kol_id');
 
             foreach ($kol as $key => $value) {
@@ -158,7 +188,20 @@ class Mcn extends LoginBase
                 );
             }
 
+            // 平台列表
+            $platformModel = new Platform();
+            $platformList = $platformModel->GetDataList(['platform_status' => 1]);
+            // 分组列表
+            $groupList = $this->mcnGroup->GetDataList(['group_status' => 1]);
+            // 经济人列表
+            $agentList = $this->mcnAgent->GetDataList(['agent_status' => 1]);
+
             $this->assign('kol',$kol);
+            $this->assign('platformList',$platformList);
+            $this->assign('groupList',$groupList);
+            $this->assign('agentList',$agentList);
+
+            $this->assign('filter',$filter);
 
             $this->assign('data',$this->data['data']);
         }
@@ -375,10 +418,16 @@ class Mcn extends LoginBase
         $McnKol = new McnKolModel();
 
         // m15_kol表修改kol_mcn字段
+        $res1 = $this->kol->UpdateData(['kol_id' => $id, 'kol_mcn' => 0]);
 
         // 删除m15_mcn_kol表数据
+        $res2 = $McnKol->where('mk_kol',$id)->delete();
 
-        return $McnKol->where('mk_kol',$id)->delete() ? array('code'=>1,'msg'=>'解除认领成功') : array('code'=>0,'msg'=>'解除认领失败');
+        if($res1['code'] && $res2) {
+            return ['code'=>1,'msg'=>'解除认领成功'];
+        } else {
+            return ['code'=>0,'msg'=>'解除认领失败'];
+        }
     }
 
     //提示页
@@ -387,4 +436,25 @@ class Mcn extends LoginBase
         $this->assign('msg',$msg);
         return view();
     }
+
+    // 获取筛选数据
+    public function getFilterList($type)
+    {
+        $filterList = [];
+        if($type == 1) {
+            $platformModel = new Platform();
+            $filterList = $platformModel->GetDataList(['platform_status' => 1]);
+        } else if ($type == 2) {
+            $filterList = $this->mcnGroup->GetDataList(['group_status' => 1]);
+        } else {
+            $filterList = $this->mcnAgent->GetDataList(['agent_status' => 1]);
+        }
+
+        if($filterList) {
+            return ['code' => 1, 'msg' => '获取成功', 'data' => $filterList];
+        } else {
+            return ['code' => 0, 'msg' => '获取失败'];
+        }
+    }
+
 }
