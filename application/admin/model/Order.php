@@ -3,24 +3,19 @@ namespace app\admin\model;
 use think\Model;
 use think\Validate;
 /*
- * 认证信息 表数据模型
+ * 红人表数据模型
  **/
-class Certification extends Model
+class Order extends Model
 {
     //声明主键
-    protected $pk = 'certification_id';
+    protected $pk = 'order_id';
     //自动写入时间戳
     protected $autoWriteTimestamp = true;
     //声明添加时间字段
-    protected $createTime = 'certification_time';
-    //声明修改时间字段
-    //protected $updateTime = 'frame_time';
-    //关闭自动写入
-    protected $updateTime = false;
-    //声明表名
-    //protected $table = 'm15_video';
+    protected $createTime = 'order_time';
+
     protected $rule = [
-        'certification_IdCard|身份证号' => 'require',
+        'order_id'       => 'require',
     ];
 
     /**
@@ -29,16 +24,17 @@ class Certification extends Model
      * @param int   $page    第几页
      * @param int   $limit   每页的条数
      **/
-    public function GetListByPage($where=array(), $page=1, $limit=10, $order="certification_id desc")
+    public function GetListByPage($where=array(), $page=1, $limit=10, $order="order_id desc")
     {   
         return $this->where($where)->page($page,$limit)->order($order)->select();
     }
 
     //获取数据列表，不分页
-    public function GetDataList($where=array(), $order="certification_id desc")
+    public function GetDataList($where=array(), $order="order_id desc", $field = "*")
     {
-        return $this->where($where)->order($order)->select();
+        return $this->field($field)->where($where)->order($order)->select();
     }
+
 
     /**
      * 根据条件获取一条数据
@@ -118,32 +114,6 @@ class Certification extends Model
     }
 
     /**
-     * 字段自增
-     * @param array  $param   更新条件
-     * @param string $field   自增字段
-     * @param int    $number  更新数量
-     **/
-    public function DataSetInc($param,$field,$number=1)
-    {
-        $res = $this->where($param)->setInc($field,$number);
-
-        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'修改成功');
-    }
-
-    /**
-     * 字段自减
-     * @param array  $param   更新条件
-     * @param string $field   自减字段
-     * @param int    $number  自减数量
-     **/
-    public function DataSetDec($param,$field,$number=1)
-    {
-        $res = $this->where($param)->setDec($field,$number);
-
-        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'修改成功');
-    }
-
-    /**
      * 删除数据
      * @param int $id 删除数据的id
      **/
@@ -152,25 +122,34 @@ class Certification extends Model
         return $this->where($this->pk,$id)->delete() ? array('code'=>1,'msg'=>'删除成功') : array('code'=>0,'msg'=>'删除失败');
     }
 
-    /**
-     * 获取状态
-     * @param $status
-     * @return string
-     */
-    public function getStatusText($status)
+    public function getOrderTypeText($orderType)
     {
-        $statusText = "未审核";
-        switch ($status) {
+        $orderTypeText = "开通特权";
+        switch ($orderType) {
             case 1:
-                $statusText = '审核通过';
+                $orderTypeText = '购买积分';
                 break;
-            case -1:
-                $statusText = '审核驳回';
+            case 2:
+                $orderTypeText = '购买课程';
                 break;
             default:
-                $statusText = '未审核';
+                $orderTypeText = '开通特权';
                 break;
         }
-        return $statusText;
+        return $orderTypeText;
+    }
+
+    public function getOrderInvoiceText($orderInvoice)
+    {
+        $orderInvoiceText = "未索取";
+        switch ($orderInvoice) {
+            case 1:
+                $orderInvoiceText = '已索取';
+                break;
+            default:
+                $orderInvoiceText = '未索取';
+                break;
+        }
+        return $orderInvoiceText;
     }
 }

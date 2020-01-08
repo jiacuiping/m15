@@ -12,9 +12,19 @@
 </head>
 <style>
 .mtd-shipin-tab-left2{width: 100%}
-.mtd-shipin-tab-left2 ul li{width: 30%; text-align: center}
+.mtd-shipin-tab-left2 ul li{width: 23%; text-align: center}
 .layui-btn-disabled{background-color: #afbcc5;color: #fff;border: 0;}
-tbody tr td:nth-child(2),thead tr th:nth-child(2){background-color: #fff3dd!important}
+/*tbody tr td:nth-child(2),thead tr th:nth-child(2){background-color: #fff3dd!important}*/
+  .order-list{padding-bottom: 10px;}
+  .price-box {text-align: left;}
+  .select-price{color: red;}
+  .layui-form{padding: 10px;}
+.layui-form-label{width: 112px !important;color: #0C0C0C;}
+.layui-input-block{margin-left: 145px;}
+.layui-upload-list img {width: 150px;height: 100px;border: none;}
+.layui-upload-list{width: 150px;height: 100px;border: 1px solid #ccc;}
+  .invoice_type2{
+    display: none;}
 </style>
 <body>
   <div class="layui-fluid">
@@ -47,6 +57,7 @@ tbody tr td:nth-child(2),thead tr th:nth-child(2){background-color: #fff3dd!impo
             <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
               <ul class="clear">
                 <li><a href="{:url('privilege')}" {if $type eq 'info'} class="checked-bottom" {/if}>会员信息</a></li>
+                <li><a href="{:url('privilege',array('type'=>'invoice'))}" {if $type eq 'invoice'} class="checked-bottom" {/if}>索取发票</a></li>
                 <li><a href="{:url('privilege',array('type'=>'members'))}" {if $type eq 'members'} class="checked-bottom" {/if}>会员开通记录</a></li>
                 <li><a href="{:url('privilege',array('type'=>'integral'))}" {if $type eq 'integral'} class="checked-bottom" {/if}>积分充值记录</a></li>
               </ul>
@@ -54,7 +65,8 @@ tbody tr td:nth-child(2),thead tr th:nth-child(2){background-color: #fff3dd!impo
           </div>
         </div>
       </div>
-      <!-- 账号版本 -->
+      {if $type eq 'info'}
+      <!-- 会员信息 -->
       <div class="layui-col-md12">
         <div class="layui-card">
           <div class="layui-card-body">
@@ -125,13 +137,467 @@ tbody tr td:nth-child(2),thead tr th:nth-child(2){background-color: #fff3dd!impo
           </div>
         </div>
       </div>
+
+      {elseif $type eq 'invoice'}
+      <!-- 索取发票 -->
+      <div class="layui-col-md12">
+
+        <!-- 订单列表 -->
+        <div class="layui-card order-list">
+          <div class="layui-card-body" style="padding: 10px 15px;">
+            <div class="layui-form layui-border-box layui-table-view">
+              <div class="layui-table-box">
+                <table class="layui-table">
+                  <thead>
+                  <tr>
+                    <th data-field="0" style="width: 10%;">
+                      <div class="layui-table-cell laytable-cell-checkbox all_invoice">
+                        <input type="checkbox" name="all_invoice" lay-skin="primary">
+                      </div>
+                    </th>
+                    <th data-field="order_id" class="" style="width: 25%;">
+                      <div class="layui-table-cell"><span>订单号</span></div>
+                    </th>
+                    <th data-field="order_type" class="" style="width: 25%;">
+                      <div class="layui-table-cell"><span>产品名称</span></div>
+                    </th>
+                    <th data-field="order_payprice" class="" style="width: 15%;">
+                      <div class="layui-table-cell"><span>支付金额</span></div>
+                    </th>
+                    <th data-field="order_paytime" class="" style="width: 20%;">
+                      <div class="layui-table-cell"><span>支付时间</span></div>
+                    </th>
+                    <th data-field="order_invoice" class="" style="width: 20%;">
+                      <div class="layui-table-cell"><span>发票状态</span></div>
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {volist name="orderList" id="order"}
+                  <tr data-index="0" class="">
+                    <td data-field="0" data-key="1-0-0" class="layui-table-col-special">
+                      <div class="layui-table-cell laytable-cell-1-0-0 laytable-cell-checkbox invoice_check">
+                        <input type="checkbox" name="invoice" lay-skin="primary" value="{$order.order_id}" order-price="{$order.order_payprice}">
+                      </div>
+                    </td>
+                    <td data-field="order_id" data-key="1-0-1" class="order_sn">
+                      <div class="layui-table-cell laytable-cell-1-0-1">{$order.order_sn}</div>
+                    </td>
+                    <td data-field="order_type" data-key="1-0-2" class="order_type">
+                      <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_type_text}</div>
+                    </td>
+                    <td data-field="order_payprice" data-key="1-0-2" class="order_payprice">
+                      <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_payprice}</div>
+                    </td>
+                    <td data-field="order_paytime" data-key="1-0-2" class="order_paytime">
+                      <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_paytime|date="Y-m-d H:i:s",###}</div>
+                    </td>
+                    <td data-field="order_invoice" data-key="1-0-2" class="order_invoice">
+                      <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_invoice_text}</div>
+                    </td>
+                  </tr>
+                  {/volist}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="clear" style="text-align: center;margin-top: 20px;">
+              <div class="price-box left">
+                <p>已选总金额：¥ <span class="select-price">0</span></p>
+                <p>可开票总金额：¥ {$sumPrice}</p>
+              </div>
+              <div class="right">
+                <button class="layui-btn layui-btn-normal next">下一步</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 发票表单 -->
+        <div class="layui-card invoice-form" style="display: none;">
+          <div class="layui-card-body" style="padding: 10px 15px;">
+            <!-- 介绍 -->
+            <div style="margin:0 20px;color: #000">
+              <p>已选金额：<span class="invoice-price" style="color:red">￥0</span></p>
+              <p>(已开票总金额：￥0.00)</p>
+              <p>1：开票金额不得低于99元。</p>
+              <p>2：发票基于订单开具，金额为实际支付金额。（多个订单可合并开票，单个订单不可拆分开票）。</p>
+              <p>3：提交开票申请后，将在7个工作日内为您寄出，默认顺丰快递，邮费到付（开票金额满500元免邮费）。</p>
+              <p>4：可选开具电子普通发票，电子发票与纸质发票具备同等法律效力，可报销入账。</p>
+            </div>
+
+            <!-- 基础信息 -->
+            <div class="form-box jichu-xinxi">
+              <div class="layui-card-header"><h3>基础信息</h3></div>
+              <form class="layui-form invoice_type_1" action="">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">发票类型</label>
+                  <div class="layui-input-block">
+                    <input type="radio" name="invoice_type" lay-filter="invoice_type" value="1" title="电子普通发票" checked="">
+                    <input type="radio" name="invoice_type" lay-filter="invoice_type" value="2" title="增值税专用发票">
+                  </div>
+                </div>
+
+                <!-- 电子普通发票 -->
+                <div class="invoice_type1">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">开票金额</label>
+                    <div class="layui-input-block">
+                      <p class="invoice-price">￥0</p>
+                      <input type="hidden" name="invoice_price" value="">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">开票抬头</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_look_up" lay-verify="required" autocomplete="off" placeholder="请输入开票抬头" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">企业纳税识别号</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_tax_number" lay-verify="required" autocomplete="off" placeholder="请输入企业纳税识别号" class="layui-input">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 增值税专用发票 -->
+                <div class="invoice_type2">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">开票金额</label>
+                    <div class="layui-input-block">
+                      <p class="invoice-price">￥0</p>
+                      <input type="hidden" name="invoice_price">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">开票抬头</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_look_up" lay-verify="required" autocomplete="off" placeholder="请输入开票抬头" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">企业纳税识别号</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_tax_number" lay-verify="required" autocomplete="off" placeholder="请输入企业纳税识别号" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">开户银行</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_bank_name" lay-verify="title" autocomplete="off" placeholder="请输入开户银行" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">开户账号</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_bank_code" lay-verify="required" autocomplete="off" placeholder="请输入开户账号" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">注册地址</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_address" lay-verify="required" autocomplete="off" placeholder="请输入注册地址" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">公司注册电话</label>
+                    <div class="layui-input-block">
+                      <input type="text" name="invoice_mobile" lay-verify="required" autocomplete="off" placeholder="请输入公司注册电话" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">一般纳税人证明</label>
+                    <div class="layui-upload left">
+                      <div class="layui-upload-list">
+                        <input type="hidden" name="invoice_taxpayer_certificate" lay-verify="required" class="certification_buimg" placeholder="请上传营业执照"  value="">
+                      </div>
+                      <button type="button" class="layui-btn" id="type1">上传图片</button>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">营业执照</label>
+                    <div class="layui-upload left">
+                      <div class="layui-upload-list">
+                        <input type="hidden" name="invoice_buimg" lay-verify="required" class="certification_buimg" placeholder="请上传营业执照"  value="">
+                      </div>
+                      <button type="button" class="layui-btn" id="type2">上传图片</button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+
+            <!-- 收票人信息 -->
+            <div class="invoice_type1 form-box dianzi">
+              <div class="layui-card-header"><h3>收票人信息</h3></div>
+              <form class="layui-form" action="">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">电子邮箱</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_receive_email" lay-verify="title" autocomplete="off" placeholder="请输入发票抬头" class="layui-input">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">手机号</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_receive_mobile" lay-verify="title" autocomplete="off" placeholder="请输入发票抬头" class="layui-input">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- 邮寄信息 -->
+            <div class="invoice_type2 form-box zengzhishui">
+              <div class="layui-card-header"><h3>邮寄信息</h3></div>
+              <form class="layui-form" action="">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">收件地址</label>
+                  <div class="layui-input-inline">
+                    <select name="address_province" class="provinceselect">
+                      <option value="0">请选择省</option>
+                      {volist name="cityinfos.province" id="prov"}
+                      <option value="{$prov.id}">{$prov.name}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                  <div class="layui-input-inline">
+                    <select name="address_city" class="cityselect">
+                      <option value="0">选择市</option>
+                      {volist name="cityinfos.citys" id="city"}
+                      <option value="{$city.id}">{$city.name}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                  <div class="layui-input-inline" style="margin-right:0px;">
+                    <select name="address_area" class="areaselect">
+                      <option value="0">选择区</option>
+                      {volist name="cityinfos.areas" id="area"}
+                      <option value="{$area.id}">{$area.name}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">详细地址</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="address_info" autocomplete="off" placeholder="请输入详细地址" class="layui-input" value="">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">收件人姓名</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="invoice_receive_name" autocomplete="off" placeholder="请输入收件人姓名" class="layui-input" value="">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">联系电话</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="invoice_receive_mobile" autocomplete="off" placeholder="请输入联系电话" class="layui-input" value="">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">联系QQ</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="invoice_receive_qq" autocomplete="off" placeholder="请输入联系QQ" class="layui-input" value="">
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- button -->
+            <div style="text-align: center;margin-top: 20px">
+              <button class="layui-btn layui-btn-normal">确定</button>
+              <button class="layui-btn layui-btn-normal prev">上一步</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/if}
+
     </div>
   </div>
-
 
 <script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>  
 <script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>  
 <script src="__STATIC__/index/layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
 <script src="__STATIC__/index/layuiadmin/style/js/echarts.min.js"></script>
+  <script>
+
+    layui.config({
+      base: '__STATIC__/index/layuiadmin/' //静态资源所在路径
+    }).extend({
+      index: '/lib/index' //主入口模块
+    }).use(['index', 'form', 'layer', 'upload', 'table'], function(){
+      var layer = layui.layer
+              ,form = layui.form
+              ,$ = layui.$
+              ,upload = layui.upload;
+
+      // 上传图片
+      upload.render({
+        elem: '#test1'
+        ,url: "{:url('UploadImage')}"
+        ,accept: 'images' //普通文件
+        ,done: function(res){
+          layer.msg(res.msg);
+          if(res.code){
+            $("#certification_buimg img").remove();
+            var html = "";
+            html += '<img class="layui-upload-img" src="' + res.path + '">';
+            $("#certification_buimg").prepend(html);
+            $(".certification_buimg").val(res.path);
+          }
+        }
+      });
+      upload.render({
+        elem: '#test2'
+        ,url: "{:url('UploadImage')}"
+        ,accept: 'images' //普通文件
+        ,done: function(res){
+          layer.msg(res.msg);
+          if(res.code){
+            $("#certification_OpeningPermit img").remove();
+            var html = "";
+            html += '<img class="layui-upload-img" src="' + res.path + '">';
+            $("#certification_OpeningPermit").prepend(html);
+            $(".certification_OpeningPermit").val(res.path);
+          }
+        }
+      });
+      
+      form.on('select', function(data){
+        $.ajax({
+          url:"{:url('selectCity')}",
+          type:"GET",
+          data:{adcode:data.value},
+          success:function(res){
+            if(res.code == 1){
+              if(res.level != 3)
+                appendHtml(res.level,res.citys);
+            }else
+              layer.msg(res.msg);
+          },error:function(){
+            layer.msg('服务器错误，请稍后重试');
+          }
+        })
+      });
+
+      function appendHtml(level,citys)
+      {
+        var object = level == 1 ? $(".cityselect") : $(".areaselect");
+        var html = level == 1 ? "<option value='0'>选择市</option>" : "<option value='0'>选择区</option>";
+
+        $(citys).each(function(index,item){
+          html += "<option value="+item.id+">"+item.name+"</option>";
+        });
+
+        object.empty();
+        object.append(html);
+
+        form.render('select');
+      }
+      
+      // 全选
+      $(document).on('click', '.all_invoice', function () {
+        if($('input[name="all_invoice"]').next().hasClass('all-checked')) {
+          $('.layui-form-checkbox').removeClass('layui-form-checked all-checked');
+          $('input[name="invoice"]').prop('checked','');
+        } else {
+
+          $('.layui-form-checkbox').addClass('layui-form-checked all-checked');
+          $('input[name="invoice"]').prop('checked','true');
+        }
+        getSumPrice();
+      });
+
+      // 单个点击
+      $(".invoice_check").click(function () {
+
+        if($('input[name="invoice"]:checked').length == $('input[name="invoice"]').length){
+          $('input[name="all_invoice"]').next().addClass('layui-form-checked all-checked');
+        } else {
+          $('input[name="all_invoice"]').next().removeClass('layui-form-checked all-checked');
+        }
+
+        getSumPrice();
+      });
+
+      // 下一步
+      $(".next").click(function () {
+
+        // 选中的订单id
+        var orderIdArr = [];
+        $('input[name="invoice"]:checked').each(function() {
+          orderIdArr.push($(this).val());
+        });
+
+        // 获取金额
+        var sumPrice = $(".select-price").html();
+
+        // 如果没有选择
+        if(orderIdArr.length == 0 || sumPrice == 0) {
+          layer.msg('至少选择一个订单');
+          return false;
+        }
+
+        // 展示金额
+        $(".invoice-price").html("￥" + sumPrice);
+
+        // 隐藏订单列表，展示发票表单
+        $(".order-list").hide();
+        $(".invoice-form").show();
+      });
+
+      // 获取选中订单总价格
+      function getSumPrice() {
+        var sumPrice = 0;
+        $('input[name="invoice"]:checked').each(function() {
+          sumPrice = numAdd(sumPrice, $(this).attr('order-price'));
+        });
+        $('.select-price').html(sumPrice);
+      }
+
+      // 两数相加
+      function numAdd(num1, num2) {
+        var baseNum, baseNum1, baseNum2;
+        try {
+          baseNum1 = num1.toString().split(".")[1].length;
+        } catch (e) {
+          baseNum1 = 0;
+        }
+        try {
+          baseNum2 = num2.toString().split(".")[1].length;
+        } catch (e) {
+          baseNum2 = 0;
+        }
+        baseNum = Math.pow(10, Math.max(baseNum1, baseNum2));
+        return (num1 * baseNum + num2 * baseNum) / baseNum;
+      }
+
+      // 选择发票类型
+      form.on('radio(invoice_type)', function (data) {
+        var type = data.value;
+        if(type == 1){
+          $('.invoice_type1').show();
+          $('.invoice_type2').hide();
+        } else {
+          $('.invoice_type2').show();
+          $('.invoice_type1').hide();
+        }
+      });
+
+      // 上一步
+      $(".prev").click(function () {
+        // 隐藏发票表单，展示订单列表
+        $(".order-list").show();
+        $(".invoice-form").hide();
+      });
+
+    });
+  </script>
 </body>
 </html>

@@ -12,18 +12,20 @@
 </head>
 <style>
   .mtd-shipin-tab-left2{width: 100%}
-  .mtd-shipin-tab-left2 ul li{width: 23%;text-align: center}
-  .layui-form-label{width: 80px !important;}
+  .mtd-shipin-tab-left2 ul li{width: 45%;text-align: center}
+  .layui-form-label{width: 112px !important;}
+  .layui-input-block{margin-left: 145px;}
   .layui-input-inline{width: 30.2% !important;}
   .changebat {width: 20%;height: 40px;background-color: #1e9fff;text-align: center;line-height: 40px;color: #fff;border-radius: 5px;margin: 25px auto;cursor: pointer;}
+  .layui-upload-list img {width: 150px;height: 100px;border: none;}
+  .layui-upload-list{width: 150px;height: 100px;border: 1px solid #ccc;}
+  h3 {color: #0C0C0C}
 </style>
 <body>
   <!-- 点击shipin里的详情按钮跳到此页 -->
   <div class="layui-fluid">
     <div class="layui-row layui-col-space15">
       <!-- 标题 -->
-
-
 
       <div class="layui-col-md12">
         <div class="layui-card">
@@ -52,18 +54,12 @@
             <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
               <ul class="clear">
                 <li><a href="{:url('index')}" {if $type eq 'log'} class="checked-bottom" {/if}>登录记录</a></li>
-                <li><a href="{:url('index',array('type'=>'invoice'))}" {if $type eq 'invoice'} class="checked-bottom" {/if}>发票信息</a></li>
-                <li><a href="{:url('index',array('type'=>'address'))}" {if $type eq 'address'} class="checked-bottom" {/if}>地址信息</a></li>
                 <li><a href="{:url('index',array('type'=>'auth'))}" {if $type eq 'auth'} class="checked-bottom" {/if}>认证信息</a></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
-
-
-
-
 
       <!-- table -->
       {if $type eq 'log'}
@@ -96,75 +92,100 @@
             </div>
           </div>
         </div>
-      {elseif $type eq 'invoice'}
-
-        <div>111</div>
-
-      {elseif $type eq 'address'}
-        <div class="layui-col-md12">
-          <form class="layui-form" id="addressform">
-            <div class="layui-card">
-              <div class="layui-card-body">
-                <!-- 地址信息 -->
-                <div class="jichu-xinxi">
-                  <!-- <h3>地址信息</h3> -->
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">省、市、区</label>
-                    <div class="layui-input-inline">
-                      <select name="address_province" class="provinceselect">
-                        <option value="0" {if $address.address_province eq 0} selected="" {/if}>请选择省</option>
-                        {volist name="cityinfos.province" id="prov"}
-                          <option value="{$prov.id}" {if $address.address_province eq $prov.id} selected="" {/if}>{$prov.name}</option>
-                        {/volist}
-                      </select>
-                    </div>
-                    <div class="layui-input-inline">
-                      <select name="address_city" class="cityselect">
-                        <option value="0">选择市</option>
-                        {volist name="cityinfos.citys" id="city"}
-                          <option value="{$city.id}" {if $address.address_city eq $city.id} selected="" {/if}>{$city.name}</option>
-                        {/volist}
-                      </select>
-                    </div>
-                    <div class="layui-input-inline" style="margin-right:0px;">
-                      <select name="address_area" class="areaselect">
-                        <option value="0">选择区</option>
-                        {volist name="cityinfos.areas" id="area"}
-                          <option value="{$area.id}" {if $address.address_area eq $area.id} selected="" {/if}>{$area.name}</option>
-                        {/volist}
-                      </select>
-                    </div>
-                  </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">详细地址</label>
-                    <div class="layui-input-block fp-shangchaun">
-                      <input type="text" name="address_info" autocomplete="off" placeholder="请输入详细地址" class="layui-input" value="{$address.address_info}">
-                    </div>
-                  </div>
-                </div>
-                <!-- 用户信息 -->
-                <div class="jichu-xinxi">
-                  <!-- <h3>用户信息</h3> -->
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">联系人姓名</label>
-                    <div class="layui-input-block fp-shangchaun">
-                      <input type="text" name="address_contact" autocomplete="off" placeholder="请输入联系人姓名" class="layui-input" value="{$address.address_contact}">
-                    </div>
-                  </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">联系电话</label>
-                    <div class="layui-input-block fp-shangchaun">
-                      <input type="number" name="address_mobile" autocomplete="off" placeholder="请输入联系手机号码" class="layui-input" value="{$address.address_mobile}">
-                    </div>
-                  </div>
-                </div>
-                <div class="changebat">提交修改</div>
-              </div>
-            </div>
-          </form>
-        </div>
       {elseif $type eq 'auth'}
-        <div>222</div>
+      <!-- 用户认证 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 用户认证 -->
+            <h3>用户认证<span style="color: #ccc">(可对用户进行身份认证)</span></h3>
+            <div class="jichu-xinxi">
+              {if $certInfo.certification_status neq -1}
+              <div class="layui-form-item">
+                <p>审核状态： <span class="status" status-value="{$certInfo.certification_status}">{$certInfo.certification_status_text}</span></p>
+              </div>
+              {/if}
+
+              <form class="layui-form" action="" id="certification-form">
+                <input type="hidden" name="certification_id" value="{$certInfo.certification_id}">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">认证类型</label>
+                  <div class="layui-input-block">
+                    {volist name="userTypeList" id="userType"}
+                    <input type="radio" name="certification_apply_type" value="{$userType.type_id}" title="{$userType.type_name}" type-desc="{$userType.type_desc}"  {if $user.user_type eq $userType.type_id} checked="" {/if}>
+                    {/volist}
+                  </div>
+                  <p class="type_desc"></p>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">机构名称</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="certification_organization_name" lay-verify="required" placeholder="请输入机构名称" autocomplete="off" class="layui-input" value="{$certInfo.certification_organization_name}">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">统一社会信用代码</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="certification_CreditCode" lay-verify="required" placeholder="请输入统一社会信用代码" autocomplete="off" class="layui-input" value="{$certInfo.certification_CreditCode}">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">法人姓名</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="certification_LegalPerson" lay-verify="required" placeholder="请输入法人姓名" autocomplete="off" class="layui-input" value="{$certInfo.certification_LegalPerson}">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">身份证号</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="certification_IdCard" lay-verify="required" placeholder="请输入身份证号" autocomplete="off" class="layui-input" value="{$certInfo.certification_IdCard}">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">对公账户</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="certification_bank_account" lay-verify="required" placeholder="请输入对公账户" autocomplete="off" class="layui-input" value="{$certInfo.certification_bank_account}">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">法人银行卡</label>
+                  <div class="layui-input-block fp-shangchaun">
+                    <input type="text" name="certification_bankCode" lay-verify="required" placeholder="请输入法人银行卡" autocomplete="off" class="layui-input" value="{$certInfo.certification_bankCode}">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">营业执照</label>
+                  <div class="layui-upload left">
+                    <div class="layui-upload-list" id="certification_buimg">
+                      {if $certInfo.certification_buimg neq ''}
+                      <img class="layui-upload-img" src="{$certInfo.certification_buimg}">
+                      {/if}
+                      <input type="hidden" name="certification_buimg" lay-verify="required" class="certification_buimg" placeholder="请上传营业执照"  value="{$certInfo.certification_buimg}">
+                    </div>
+                    <button type="button" class="layui-btn" id="test1">上传图片</button>
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开户许可证</label>
+                  <div class="layui-upload left">
+                    <div class="layui-upload-list" id="certification_OpeningPermit">
+                      {if $certInfo.certification_buimg neq ''}
+                      <img class="layui-upload-img" src="{$certInfo.certification_OpeningPermit}">
+                      {/if}
+                      <input type="hidden" name="certification_OpeningPermit" class="certification_OpeningPermit" lay-verify="required" placeholder="请上传开户许可证"  value="{$certInfo.certification_OpeningPermit}">
+                    </div>
+                    <button type="button" class="layui-btn" id="test2">上传图片</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- button -->
+            <div style="text-align: center;margin-top: 20px">
+              <a href="#" title=""><button class="layui-btn layui-btn-normal certification">确认提交</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
       {/if}
     </div>
   </div>
@@ -188,14 +209,72 @@
   </script> -->
 
   <script>
+    $(function () {
+      var desc = "";
+
+      // 判断用户是否已经认证
+      var status = $(".status").attr('status-value');
+      if(status == 0 || status == 1) {
+        // 不可编辑
+        $.each($("#certification-form input"), function () {
+          $(this).addClass('layui-disabled');
+          $(this).attr('disabled', '');
+          $('.layui-btn').remove();
+        });
+
+        // 认证类型
+        var checkedObj = $('input[name="certification_apply_type"]:checked');
+        desc = checkedObj.attr("title") + "：" + checkedObj.attr("type-desc");
+        $(".type_desc").html(desc);
+      } else {
+        // 默认选中
+        var userTypeObj = $("input:radio[name='certification_apply_type']");
+        userTypeObj.eq(0).attr("checked",true);
+        desc = userTypeObj.eq(0).attr("title") + "：" + userTypeObj.eq(0).attr("type-desc");
+        $(".type_desc").html(desc);
+      }
+    });
+
       layui.config({
           base: '__STATIC__/index/layuiadmin/' //静态资源所在路径
       }).extend({
           index: '/lib/index' //主入口模块
-      }).use(['index', 'form', 'layer'], function(){
+      }).use(['index', 'form', 'layer', 'upload'], function(){
         var layer = layui.layer
         ,form = layui.form
-        ,$ = layui.$;
+        ,$ = layui.$
+        ,upload = layui.upload;
+
+        upload.render({
+          elem: '#test1'
+          ,url: "{:url('UploadImage')}"
+          ,accept: 'images' //普通文件
+          ,done: function(res){
+            layer.msg(res.msg);
+            if(res.code){
+              $("#certification_buimg img").remove();
+              var html = "";
+              html += '<img class="layui-upload-img" src="' + res.path + '">';
+              $("#certification_buimg").prepend(html);
+              $(".certification_buimg").val(res.path);
+            }
+          }
+        });
+        upload.render({
+          elem: '#test2'
+          ,url: "{:url('UploadImage')}"
+          ,accept: 'images' //普通文件
+          ,done: function(res){
+            layer.msg(res.msg);
+            if(res.code){
+              $("#certification_OpeningPermit img").remove();
+              var html = "";
+              html += '<img class="layui-upload-img" src="' + res.path + '">';
+              $("#certification_OpeningPermit").prepend(html);
+              $(".certification_OpeningPermit").val(res.path);
+            }
+          }
+        });
 
 
         form.on('select', function(data){
@@ -213,6 +292,12 @@
               layer.msg('服务器错误，请稍后重试');
             }
           })
+        });
+
+        // 选择认证类型
+        form.on('radio', function(data){
+          var desc = $(this).attr("title") + "：" + $(this).attr("type-desc");
+          $(".type_desc").html(desc);
         });
 
         function appendHtml(level,citys)
@@ -244,6 +329,26 @@
             }
           });
         });
+
+        // 提交
+        $(".certification").click(function(){
+          var flag = true;
+          if(flag) {
+            $.ajax({
+              url:"{:url('saveCertification')}",
+              type:"POST",
+              data:$("#certification-form").serialize(),
+              success:function(res){
+                layer.msg(res.msg);
+                if(res.code)
+                  setTimeout(function(){window.location.reload()},2000);
+              },error:function(){
+                layer.msg('服务器错误，请稍后重试');
+              }
+            });
+          }
+        });
+
       });
   </script>
 
