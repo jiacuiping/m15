@@ -33,6 +33,10 @@ class User extends LoginBase
 
         $user['dyaccount'] = $selfdy ? $selfdy['account_nikename'] : '暂未绑定';
 
+        // 用户类型
+        $userTypeModel = new UserType();
+        $user['user_type_text'] = $userTypeModel->GetField(['type_id' => $user['user_type']], 'type_name');
+
         $this->User = $user;
         $this->assign('user',$user);
 	}
@@ -212,7 +216,7 @@ class User extends LoginBase
         $type = $data['invoice_type'];
 
         //为空判断
-        if($type == 1) {
+        if($type == 0) {
             if($data['invoice_look_up'] == '') return ['code'=>0,'msg'=>'请输入发票抬头'];
             if($data['invoice_tax_number'] == '') return ['code'=>0,'msg'=>'请输入企业纳税识别号'];
             if($data['invoice_receive_email'] == '') return ['code'=>0,'msg'=>'请输入收件人邮箱'];

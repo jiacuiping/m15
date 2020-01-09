@@ -37,7 +37,8 @@
             <div class="layui-shenhuilu-r left">
               <h4>{$user.user_name}<span class="mianfei-ban">{$user.user_vip.level_name}</span></h4>
               <p>关联抖音号：{$user.dyaccount}</p>
-              <p>账号类型：{if $user.user_type eq 2} 讲师 {elseif $user.user_type eq 3} 广告商 {elseif $user.user_type eq 4} MCN {else/} 普通用户 {/if}</p>
+<!--              <p>账号类型：{if $user.user_type eq 2} 讲师 {elseif $user.user_type eq 3} 广告商 {elseif $user.user_type eq 4} MCN {else/} 普通用户 {/if}</p>-->
+              <p>账号类型：{$user.user_type_text}</p>
             </div>
           </div>
           <div class="layui-card-body">
@@ -141,7 +142,6 @@
       {elseif $type eq 'invoice'}
       <!-- 索取发票 -->
       <div class="layui-col-md12">
-
         <!-- 订单列表 -->
         <div class="layui-card order-list">
           <div class="layui-card-body" style="padding: 10px 15px;">
@@ -240,95 +240,91 @@
               </form>
 
               <!-- 电子普通发票 -->
-              <form class="layui-form invoice_type_0" id="aa" action="">
-                  <input type="hidden" name="invoice_type" value="1">
-                <div class="invoice_type1">
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">开票金额</label>
-                    <div class="layui-input-block">
-                      <p class="invoice-price">￥0</p>
-                      <input type="hidden" name="invoice_price" value="">
-                    </div>
+              <form class="layui-form invoice_type_0">
+                <input type="hidden" name="invoice_type" value="0">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开票金额</label>
+                  <div class="layui-input-block">
+                    <p class="invoice-price">￥0</p>
+                    <input type="hidden" name="invoice_price" value="">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">开票抬头</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_look_up" required   autocomplete="off" placeholder="请输入开票抬头" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开票抬头</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_look_up" required   autocomplete="off" placeholder="请输入开票抬头" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">企业纳税识别号</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_tax_number"  autocomplete="off" placeholder="请输入企业纳税识别号" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">企业纳税识别号</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_tax_number"  autocomplete="off" placeholder="请输入企业纳税识别号" class="layui-input">
                   </div>
                 </div>
               </form>
 
               <!-- 增值税专用发票 -->
-              <form class="layui-form invoice_type_1" action="">
-                  <input type="hidden" name="invoice_type" value="2">
-                <div class="invoice_type2">
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">开票金额</label>
-                    <div class="layui-input-block">
-                      <p class="invoice-price">￥0</p>
-                      <input type="hidden" name="invoice_price">
-                    </div>
+              <form class="layui-form invoice_type_1">
+                <input type="hidden" name="invoice_type" value="1">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开票金额</label>
+                  <div class="layui-input-block">
+                    <p class="invoice-price">￥0</p>
+                    <input type="hidden" name="invoice_price">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">开票抬头</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_look_up"  autocomplete="off" placeholder="请输入开票抬头" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开票抬头</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_look_up"  autocomplete="off" placeholder="请输入开票抬头" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">企业纳税识别号</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_tax_number"  autocomplete="off" placeholder="请输入企业纳税识别号" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">企业纳税识别号</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_tax_number"  autocomplete="off" placeholder="请输入企业纳税识别号" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">开户银行</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_bank_name" lay-verify="title" autocomplete="off" placeholder="请输入开户银行" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开户银行</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_bank_name" lay-verify="title" autocomplete="off" placeholder="请输入开户银行" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">开户账号</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_bank_code"  autocomplete="off" placeholder="请输入开户账号" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">开户账号</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_bank_code"  autocomplete="off" placeholder="请输入开户账号" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">注册地址</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_address"  autocomplete="off" placeholder="请输入注册地址" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">注册地址</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_address"  autocomplete="off" placeholder="请输入注册地址" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">公司注册电话</label>
-                    <div class="layui-input-block">
-                      <input type="text" name="invoice_mobile"  autocomplete="off" placeholder="请输入公司注册电话" class="layui-input">
-                    </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">公司注册电话</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="invoice_mobile"  autocomplete="off" placeholder="请输入公司注册电话" class="layui-input">
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">一般纳税人证明</label>
-                    <div class="layui-upload left">
-                      <div class="layui-upload-list" id="invoice_taxpayer_certificate">
-                        <input type="hidden" name="invoice_taxpayer_certificate"  class="invoice_taxpayer_certificate" placeholder="请上传一般纳税人证明"  value="">
-                      </div>
-                      <button type="button" class="layui-btn" id="test1">上传图片</button>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">一般纳税人证明</label>
+                  <div class="layui-upload left">
+                    <div class="layui-upload-list" id="invoice_taxpayer_certificate">
+                      <input type="hidden" name="invoice_taxpayer_certificate"  class="invoice_taxpayer_certificate" placeholder="请上传一般纳税人证明"  value="">
                     </div>
+                    <button type="button" class="layui-btn" id="test1">上传图片</button>
                   </div>
-                  <div class="layui-form-item">
-                    <label class="layui-form-label">营业执照</label>
-                    <div class="layui-upload left">
-                      <div class="layui-upload-list" id="invoice_buimg">
-                        <input type="hidden" name="invoice_buimg"  class="invoice_buimg" placeholder="请上传营业执照"  value="">
-                      </div>
-                      <button type="button" class="layui-btn" id="test2">上传图片</button>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">营业执照</label>
+                  <div class="layui-upload left">
+                    <div class="layui-upload-list" id="invoice_buimg">
+                      <input type="hidden" name="invoice_buimg"  class="invoice_buimg" placeholder="请上传营业执照"  value="">
                     </div>
+                    <button type="button" class="layui-btn" id="test2">上传图片</button>
                   </div>
                 </div>
               </form>
@@ -336,7 +332,7 @@
             </div>
 
             <!-- 收票人信息 -->
-            <div class="invoice_type1 form-box dianzi">
+            <div class="invoice_type_0 form-box dianzi">
               <div class="layui-card-header"><h3>收票人信息</h3></div>
               <form class="layui-form invoice_type_0" action="">
                 <div class="layui-form-item">
@@ -355,7 +351,7 @@
             </div>
 
             <!-- 邮寄信息 -->
-            <div class="invoice_type2 form-box zengzhishui">
+            <div class="invoice_type_1 form-box zengzhishui">
               <div class="layui-card-header"><h3>邮寄信息</h3></div>
               <form class="layui-form invoice_type_1" action="">
                 <div class="layui-form-item">
@@ -391,6 +387,26 @@
               <button class="layui-btn layui-btn-normal prev">上一步</button>
             </div>
 
+          </div>
+        </div>
+      </div>
+
+      {elseif $type eq 'members'}
+
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+           会员开通记录
+          </div>
+        </div>
+      </div>
+
+      {elseif $type eq 'integral'}
+
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            积分充值记录
           </div>
         </div>
       </div>
@@ -474,7 +490,7 @@
       });
 
       // 下一步
-        var orderIdArr = [];
+      var orderIdArr = [];
       $(".next").click(function () {
 
         // 选中的订单id
@@ -529,12 +545,12 @@
       // 选择发票类型
       form.on('radio(invoice_type)', function (data) {
         var type = data.value;
-        if(type == 1){
-          $('.invoice_type1').show();
-          $('.invoice_type2').hide();
+        if(type == 0){
+          $('.invoice_type_0').show();
+          $('.invoice_type_1').hide();
         } else {
-          $('.invoice_type2').show();
-          $('.invoice_type1').hide();
+          $('.invoice_type_1').show();
+          $('.invoice_type_0').hide();
         }
       });
 
@@ -560,7 +576,7 @@
 
           });
 
-          if(flag && type == 1) {
+          if(flag && type == 0) {
               // 验证电子邮箱
               var email = $('input[name=invoice_receive_email]').val();
               var myreg = /^([\.a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
@@ -595,9 +611,6 @@
                   }
               });
           }
-
-
-
 
       });
     });

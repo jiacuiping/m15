@@ -8,7 +8,7 @@ use think\Validate;
 class UserType extends Model
 {
     //声明主键
-    protected $pk = 'user_type';
+    protected $pk = 'type_id';
     //自动写入时间戳
     protected $autoWriteTimestamp = true;
     //声明添加时间字段
