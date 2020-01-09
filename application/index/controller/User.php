@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use app\admin\controller\Upload;
 use app\admin\model\Certification;
+use app\admin\model\Invoice;
 use app\admin\model\Order;
 use app\admin\model\UserType;
 use app\index\controller\LoginBase;
@@ -89,9 +90,10 @@ class User extends LoginBase
         return view();
     }
 
-    //特权方法
 
     /**
+     * 我的特权
+     *
      * @param string $type info:会员信息  invoice:索取发票  members:会员开通记录  integral:积分充值记录
      * @return \think\response\View
      * @throws \think\db\exception\DataNotFoundException
@@ -113,16 +115,17 @@ class User extends LoginBase
                 $orderList[$key]['order_invoice_text'] = $orderModel->getOrderInvoiceText($value['order_invoice']);
             }
 
-            // 总金额
+            // 可开票总金额
             $sumPrice = array_sum(array_map(function($val){return $val['order_payprice'];}, $orderList));
 
-            // 地址信息
-            $cityinfo['province'] = db('area')->where('pid',0)->select();
-            $cityinfo['citys'] = $cityinfo['areas'] = array();
+            // 已开票总金额
+            $invoiceModel = new Invoice();
+            $alreadyInvoice = $invoiceModel->GetSumPrice(['invoice_status' => 1]);
+
 
             $this->assign('orderList',$orderList);
             $this->assign('sumPrice',$sumPrice);
-            $this->assign('cityinfos',$cityinfo);
+            $this->assign('alreadyInvoice',$alreadyInvoice);
         }
 
         $this->assign('type',$type);
@@ -193,6 +196,57 @@ class User extends LoginBase
             } else {
                 return ['code'=>0,'msg'=>'认证信息保存失败'];
             }
+        } else {
+            return $res;
+        }
+    }
+
+    // 保存发票信息
+    public function saveInvoice()
+    {
+        // 用户id
+        $userId = session::get('user.user_id');
+        $data = input('post.');
+
+        // 发票类型
+        $type = $data['invoice_type'];
+
+        //为空判断
+        if($type == 1) {
+            if($data['invoice_look_up'] == '') return ['code'=>0,'msg'=>'请输入发票抬头'];
+            if($data['invoice_tax_number'] == '') return ['code'=>0,'msg'=>'请输入企业纳税识别号'];
+            if($data['invoice_receive_email'] == '') return ['code'=>0,'msg'=>'请输入收件人邮箱'];
+            if($data['invoice_receive_mobile'] == '') return ['code'=>0,'msg'=>'请输入收件人手机号'];
+            if($data['invoice_order'] == '') return ['code'=>0,'msg'=>'数据错误'];
+        } else {
+            if($data['invoice_look_up'] == '') return ['code'=>0,'msg'=>'请输入发票抬头'];
+            if($data['invoice_tax_number'] == '') return ['code'=>0,'msg'=>'请输入企业纳税识别号'];
+            if($data['invoice_bank_name'] == '') return ['code'=>0,'msg'=>'请输入开户银行'];
+            if($data['invoice_bank_code'] == '') return ['code'=>0,'msg'=>'请输入银行卡号'];
+            if($data['invoice_address'] == '') return ['code'=>0,'msg'=>'请输入注册地址'];
+            if($data['invoice_mobile'] == '') return ['code'=>0,'msg'=>'请输入公司注册电话'];
+            if($data['invoice_buimg'] == '') return ['code'=>0,'msg'=>'请上传营业执照'];
+            if($data['invoice_taxpayer_certificate'] == '') return ['code'=>0,'msg'=>'请上传纳税人证明'];
+            if($data['invoice_receive_address'] == '') return ['code'=>0,'msg'=>'请输入收票人详细地址'];
+            if($data['invoice_receive_name'] == '') return ['code'=>0,'msg'=>'请输入收件人姓名'];
+            if($data['invoice_receive_mobile'] == '') return ['code'=>0,'msg'=>'请输入收件人电话'];
+            if($data['invoice_receive_qq'] == '') return ['code'=>0,'msg'=>'请输入收件人QQ'];
+            if($data['invoice_order'] == '') return ['code'=>0,'msg'=>'数据错误'];
+        }
+
+        // 保存发票信息
+        $invoiceModel = new Invoice();
+        $data['invoice_user'] = $userId;
+        $res = $invoiceModel->CreateData($data);
+        if($res['code']) {
+            // 保存成功，更新order表order_invoice字段
+            $orderIds = explode(',', $data['invoice_order']);
+            $orderModel = new Order();
+            foreach ($orderIds as $value) {
+                $orderData = ['order_id' => $value, 'order_invoice' => 1];
+                $orderModel->UpdateData($orderData);
+            }
+            return ['code'=>1,'msg'=>'添加成功'];
         } else {
             return $res;
         }

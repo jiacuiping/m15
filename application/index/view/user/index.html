@@ -100,11 +100,9 @@
             <!-- 用户认证 -->
             <h3>用户认证<span style="color: #ccc">(可对用户进行身份认证)</span></h3>
             <div class="jichu-xinxi">
-              {if $certInfo.certification_status neq -1}
               <div class="layui-form-item">
                 <p>审核状态： <span class="status" status-value="{$certInfo.certification_status}">{$certInfo.certification_status_text}</span></p>
               </div>
-              {/if}
 
               <form class="layui-form" action="" id="certification-form">
                 <input type="hidden" name="certification_id" value="{$certInfo.certification_id}">
@@ -226,7 +224,14 @@
         var checkedObj = $('input[name="certification_apply_type"]:checked');
         desc = checkedObj.attr("title") + "：" + checkedObj.attr("type-desc");
         $(".type_desc").html(desc);
+      } else if(status == -1){
+
+        // 认证类型
+        var checkedObj = $('input[name="certification_apply_type"]:checked');
+        desc = checkedObj.attr("title") + "：" + checkedObj.attr("type-desc");
+        $(".type_desc").html(desc);
       } else {
+
         // 默认选中
         var userTypeObj = $("input:radio[name='certification_apply_type']");
         userTypeObj.eq(0).attr("checked",true);
@@ -332,7 +337,16 @@
 
         // 提交
         $(".certification").click(function(){
+
           var flag = true;
+          $("#certification-form input").each(function () {
+            if($(this)[0].hasAttribute('placeholder') && $(this).val() === '') {
+              flag = false;
+              layer.msg($(this).attr('placeholder'));
+              return false;
+            }
+          });
+
           if(flag) {
             $.ajax({
               url:"{:url('saveCertification')}",
