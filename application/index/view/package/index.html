@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的特权</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+    .mtd-shipin-tab-left2 ul li{width: 23%; text-align: center}
+    .layui-upload-list img {width: 150px;height: 100px;border: none;}
+
+</style>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!-- 标题 -->
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body layui-shenhuilu clear">
+                    <img src="{$user.user_avatar}" alt="" class="left">
+                    <div class="layui-shenhuilu-r left">
+                        <h4>{$user.user_name}<span class="mianfei-ban">{$user.user_vip.level_name}</span></h4>
+                        <p>关联抖音号：{$user.dyaccount}</p>
+                        <p>账号类型：{$user.user_type_text}</p>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    {if $user.user_mobile eq ''}
+                    <p>绑定手机使用账号登录<span class="mianfei-ban">推荐绑定</span>
+                        <a href="#" style="color: #349adc;margin-left: 20px;">点击绑定</a>
+                    </p>
+                    <p>绑定手机号后可设定登录密码</p>
+                    {/if}
+                </div>
+            </div>
+        </div>
+
+        <!-- 套餐列表 -->
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body clear">
+                    <h3 style="color: #000; float: left;">套餐列表</h3>
+                    <button type="button" class="layui-btn layui-btn-sm right" id="create">添加</button>
+                </div>
+            </div>
+        </div>
+        <!-- 一个列表 -->
+        {volist name="packageList" id="package"}
+        <div class="layui-col-md6 layui-col-sm12">
+            <div class="layui-card">
+                <div class="layui-card-body clear">
+                    <div class="clear" style="position: relative">
+                        <a href="{:url('detail')}"><img src="{$package.package_cover}" alt="" class="left lijiaqi-img"></a>
+                        <div class="left lijiaqi-div">
+                            <a href="{:url('detail')}"><h3>{$package.package_title}</h3></a>
+                            <p class="lijiaqi-p1">￥{$package.package_price}</p>
+                            <p>成交：0次 &nbsp;&nbsp;&nbsp;&nbsp; 好评率：0%</p>
+                        </div>
+                        <div class="right lijiaqi-r">
+                            <button class="layui-btn layui-btn-normal detail" data-value="{$package.package_id}">详情</button>
+                            <button class="layui-btn layui-btn-normal update" data-value="{$package.package_id}">修改</button>
+                            <button class="layui-btn layui-btn-normal delete" data-value="{$package.package_id}">删除</button>
+                            <button class="layui-btn layui-btn-normal cooperation" data-value="{$package.package_id}">立即合作</button>
+                        </div>
+                    </div>
+                </div>
+                {empty name="package.package_evaluate"}
+                <div class="layui-card-body" style="background-color: #fafafa">
+                    <p><span style="color: #000">服务评价</span></p>
+                    <p class="h-yichu">暂无评价</p>
+                </div>
+                {else /}
+                <div class="layui-card-body" style="background-color: #fafafa">
+                    <p><span style="color: #000">服务评价</span><span class="right">查看更多评价></span></p>
+                    <p class="h-yichu">与店家沟通起来很顺利，制作水平很专业，与店家沟通起来很顺利，制作水平很专业，与店家沟通起来很顺利，制作水平很专业，与店家沟通起来很顺利，制作水平很专业，</p>
+                </div>
+                {/empty}
+
+            </div>
+        </div>
+        {/volist}
+
+    </div>
+</div>
+
+<script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.easy-pie-chart.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/echarts.min.js"></script>
+<script>
+
+    layui.config({
+        base: '__STATIC__/admin/' //静态资源所在路径
+    }).extend({
+        index: 'lib/index' //主入口模块
+    }).use(['index', 'table', 'form', 'layer'], function(){
+        var table = layui.table
+            ,admin = layui.admin
+            ,layer = layui.layer
+            ,form = layui.form
+            ,$ = layui.$;
+
+
+        $("#create").click(function(){
+            layer.open({
+                type: 2
+                ,title:"添加套餐"
+                ,content: "{:url('Package/create')}"
+                ,shadeClose: true
+                ,area: ['70%', '71%']
+                ,maxmin: true
+            });
+        });
+
+        $(".detail").click(function(){
+            var packageId = $(this).attr("data-value");
+            var url = "{:url('Package/detail','',false)}/id/" + packageId;
+            layer.open({
+                type: 2
+                ,title:"套餐详情"
+                ,content: url
+                ,shadeClose: true
+                ,area: ['70%', '71%']
+                ,maxmin: true
+            });
+        });
+        $(".update").click(function(){
+            var packageId = $(this).attr("data-value");
+            var url = "{:url('Package/update','',false)}/id/" + packageId;
+            layer.open({
+                type: 2
+                ,title:"修改套餐"
+                ,content: url
+                ,shadeClose: true
+                ,area: ['70%', '71%']
+                ,maxmin: true
+            });
+        });
+
+
+    });
+</script>
+</body>
+</html>

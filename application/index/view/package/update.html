@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>修改套餐</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+
+  <style>
+
+    #previewimage {
+      margin: 10px 0px 10px 110px;
+      height: 200px;
+    }
+
+    .layui-form-label {
+      width: 100px;
+    }
+
+    .layui-input-block {
+      margin-left: 130px !important;
+    }
+
+  </style>
+
+</head>
+<body>
+<div class="layui-fluid">
+  <div class="layui-card">
+    <div class="layui-card-header">修改套餐</div>
+    <div class="layui-card-body" style="padding: 15px;">
+      <form class="layui-form" action="" lay-filter="component-form-group" id="myform">
+        <input type="hidden" name="package_id" value="{$package.package_id}">
+        <input type="hidden" name="package_user" value="{$user.user_id}">
+        <div class="layui-form-item">
+          <label class="layui-form-label">套餐标题</label>
+          <div class="layui-input-block">
+            <input type="text" name="package_title"  autocomplete="off" placeholder="请输入套餐标题" class="layui-input" value="{$package.package_title}">
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">套餐封面</label>
+          <div class="layui-input-block">
+            <button type="button" class="layui-btn" id="test3"><i class="layui-icon"></i>点击上传</button>
+            <input type="hidden" name="package_cover" id="imginput" value="{$package.package_cover}">
+          </div>
+          <img src="{$package.package_cover}" id="previewimage" {if $package.package_cover eq ''} style="display:none" {/if}>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">套餐价格</label>
+          <div class="layui-input-block">
+            <input type="input" name="package_price"  autocomplete="off" placeholder="请输入套餐价格" class="layui-input" value="{$package.package_price}">
+          </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">套餐描述</label>
+          <div class="layui-input-block">
+            <textarea name="package_desc" placeholder="请输入套餐描述" class="layui-textarea"> {$package.package_desc} </textarea>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">是否展示</label>
+          <div class="layui-input-block">
+            <input type="radio" name="package_isshow" value="1" title="展示" {if $package.package_isshow eq 1} checked="" {/if}>
+            <input type="radio" name="package_isshow" value="0" title="不展示" {if $package.package_isshow eq 0} checked="" {/if}>
+          </div>
+        </div>
+
+        <div class="layui-form-item">
+          <label class="layui-form-label">套餐权重</label>
+          <div class="layui-input-block">
+            <input type="number" name="package_rank"  autocomplete="off" placeholder="请输入套餐权重" class="layui-input" value="{$package.package_rank}">
+          </div>
+        </div>
+
+        <div class="layui-form-item layui-layout-admin" style="text-align: center;">
+          <div class="layui-input-block">
+            <div class="layui-btn" lay-submit="" lay-filter="package-form">确认修改</div>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script src="__STATIC__/layui/layui.js"></script>
+  <script>
+    layui.config({
+      base: '__STATIC__/admin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload'], function(){
+      var $ = layui.$
+      ,layer = layui.layer
+      ,upload = layui.upload
+      ,form = layui.form;
+
+      upload.render({
+        elem: '#test3'
+        ,url: "{:url('UploadImage')}"
+        ,accept: 'images' //普通文件
+        ,done: function(res){
+          layer.msg(res.msg);
+          if(res.code){
+            $("#previewimage").attr('src',res.path);
+            $("#imginput").val(res.path);
+            $("#previewimage").show();
+          }
+        }
+      });
+
+      /* 监听提交 */
+      form.on('submit(package-form)', function(data){
+        $.ajax({
+          url:"{:url('update')}",
+          type:"POST",
+          data:$("#myform").serialize(),
+          success:function(res){
+            layer.msg(res.msg);
+            if(res.code)
+              setTimeout(function(){window.parent.location.reload()},2000);
+          },error:function(){
+            layer.msg('服务器错误，请稍后重试');
+          }
+        })
+      });
+    });
+  </script>
+</body>
+</html>

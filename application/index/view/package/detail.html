@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>套餐详情</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+
+<body>
+<div class="layui-fluid">
+  <div class="layui-row layui-col-space15">
+
+    <!-- 套餐列表 -->
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-body clear">
+          <h3 style="color: #000; float: left;">套餐详情</h3>
+        </div>
+      </div>
+    </div>
+    <!-- 一个列表 -->
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-body clear">
+          <div class="clear" style="position: relative">
+            <img src="{$package.package_cover}" alt="" class="left lijiaqi-img">
+            <div class="left lijiaqi-div">
+              <h3>任务名称：{$package.package_title}</h3>
+              <p>接单中：{$package.package_number}次</p>
+              <p>套餐价格：<span style="color: red">￥{$package.package_price}</span></p>
+              <p>好评率：0%</p>
+            </div>
+            <div class="right lijiaqi-r">
+              <button class="layui-btn layui-btn-normal">立即合作</button>
+            </div>
+          </div>
+        </div>
+        <div class="layui-card-body" style="background-color: #fafafa">
+          <p class="h-yichu">套餐介绍：{$package.package_desc}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script src="__STATIC__/layui/layui.js"></script>
+  <script>
+    layui.config({
+      base: '__STATIC__/admin/' //静态资源所在路径
+    }).extend({
+      index: 'lib/index' //主入口模块
+    }).use(['index', 'form', 'upload'], function(){
+      var $ = layui.$
+      ,layer = layui.layer
+      ,upload = layui.upload
+      ,form = layui.form;
+
+    });
+  </script>
+</body>
+</html>
