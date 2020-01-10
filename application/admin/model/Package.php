@@ -3,19 +3,22 @@ namespace app\admin\model;
 use think\Model;
 use think\Validate;
 /*
- * 红人表数据模型
+ * 发票
  **/
-class Order extends Model
+class Package extends Model
 {
     //声明主键
-    protected $pk = 'order_id';
+    protected $pk = 'package_id';
     //自动写入时间戳
     protected $autoWriteTimestamp = true;
     //声明添加时间字段
-    protected $createTime = 'order_time';
+    protected $createTime = 'package_time';
 
     protected $rule = [
-        'order_id'       => 'require',
+        'package_user'       => 'require',
+        'package_title|套餐标题'       => 'require',
+        'package_cover|套餐封面'       => 'require',
+        'package_price|套餐价格'       => 'require',
     ];
 
     /**
@@ -23,14 +26,15 @@ class Order extends Model
      * @param array $where   条件
      * @param int   $page    第几页
      * @param int   $limit   每页的条数
+     * @param string   $order   排序
      **/
-    public function GetListByPage($where=array(), $page=1, $limit=10, $order="order_id desc")
+    public function GetListByPage($where=array(), $page=1, $limit=10, $order="package_id desc")
     {   
         return $this->where($where)->page($page,$limit)->order($order)->select();
     }
 
     //获取数据列表，不分页
-    public function GetDataList($where=array(), $order="order_id desc", $field = "*")
+    public function GetDataList($where=array(), $order="package_id desc", $field = "*")
     {
         return $this->field($field)->where($where)->order($order)->select();
     }
@@ -80,6 +84,15 @@ class Order extends Model
     public function GetCount($where=array())
     {
         return $this->where($where)->count();
+    }
+
+    /**
+     * 获取总金额
+     * @param array $param 主键
+     **/
+    public function GetSumPrice($where=array())
+    {
+        return $this->where($where)->sum('invoice_price');
     }
 
     /**
@@ -151,22 +164,5 @@ class Order extends Model
                 break;
         }
         return $orderInvoiceText;
-    }
-
-    public function getOrderStatusText($orderStatus)
-    {
-        $orderStatusText = "已下单";
-        switch ($orderStatus) {
-            case 10:
-                $orderStatusText = '已支付';
-                break;
-            case -1:
-                $orderStatusText = '支付失败';
-                break;
-            default:
-                $orderStatusText = '已下单';
-                break;
-        }
-        return $orderStatusText;
     }
 }
