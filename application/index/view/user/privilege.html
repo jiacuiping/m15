@@ -67,6 +67,7 @@
         </div>
       </div>
       {if $type eq 'info'}
+
       <!-- 会员信息 -->
       <div class="layui-col-md12">
         <div class="layui-card">
@@ -392,21 +393,133 @@
       </div>
 
       {elseif $type eq 'members'}
-
+      <!-- 会员开通记录 -->
       <div class="layui-col-md12">
         <div class="layui-card">
           <div class="layui-card-body">
-           会员开通记录
+            <!-- 订单列表 -->
+            <div class="layui-card order-list">
+              <div class="layui-card-body" style="padding: 10px 15px;">
+                <div class="layui-form layui-border-box layui-table-view">
+                  <div class="layui-table-box">
+                    <table class="layui-table">
+                      <thead>
+                      <tr style="border-left: 1px solid #e6e6e6;">
+                        <th data-field="order_id" class="" style="width: 25%;">
+                          <div class="layui-table-cell"><span>订单号</span></div>
+                        </th>
+                        <th data-field="order_type" class="" style="width: 25%;">
+                          <div class="layui-table-cell"><span>产品名称</span></div>
+                        </th>
+                        <th data-field="order_payprice" class="" style="width: 15%;">
+                          <div class="layui-table-cell"><span>支付金额</span></div>
+                        </th>
+                        <th data-field="order_paytime" class="" style="width: 20%;">
+                          <div class="layui-table-cell"><span>支付时间</span></div>
+                        </th>
+                        <th data-field="order_status" class="" style="width: 20%;">
+                          <div class="layui-table-cell"><span>支付状态</span></div>
+                        </th>
+                        <th data-field="order_invoice" class="" style="width: 20%;">
+                          <div class="layui-table-cell"><span>发票状态</span></div>
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {volist name="orderList" id="order"}
+                      <tr data-index="0" class="" style="border-left: 1px solid #e6e6e6;">
+                        <td data-field="order_id" data-key="1-0-1" class="order_sn">
+                          <div class="layui-table-cell laytable-cell-1-0-1">{$order.order_sn}</div>
+                        </td>
+                        <td data-field="order_type" data-key="1-0-2" class="order_type">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_type_text}</div>
+                        </td>
+                        <td data-field="order_payprice" data-key="1-0-2" class="order_payprice">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_payprice}</div>
+                        </td>
+                        <td data-field="order_paytime" data-key="1-0-2" class="order_paytime">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_paytime|date="Y-m-d H:i:s",###}</div>
+                        </td>
+                        <td data-field="order_status" data-key="1-0-2" class="order_invoice">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_status_text}</div>
+                        </td>
+                        <td data-field="order_invoice" data-key="1-0-2" class="order_invoice">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_invoice_text}</div>
+                        </td>
+                      </tr>
+                      {/volist}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {elseif $type eq 'integral'}
-
+      <!-- 积分充值记录 -->
       <div class="layui-col-md12">
         <div class="layui-card">
           <div class="layui-card-body">
-            积分充值记录
+            <!-- 订单列表 -->
+            <div class="layui-card order-list">
+              <div class="layui-card-body" style="padding: 10px 15px;">
+                <div class="layui-form layui-border-box layui-table-view">
+                  <div class="layui-table-box">
+                    <table class="layui-table">
+                      <thead>
+                      <tr style="border-left: 1px solid #e6e6e6;">
+                        <th data-field="order_id" class="" style="width: 25%;">
+                          <div class="layui-table-cell"><span>订单号</span></div>
+                        </th>
+                        <th data-field="order_type" class="" style="width: 25%;">
+                          <div class="layui-table-cell"><span>产品名称</span></div>
+                        </th>
+                        <th data-field="order_payprice" class="" style="width: 15%;">
+                          <div class="layui-table-cell"><span>支付金额</span></div>
+                        </th>
+                        <th data-field="order_paytime" class="" style="width: 20%;">
+                          <div class="layui-table-cell"><span>支付时间</span></div>
+                        </th>
+                        <th data-field="order_status" class="" style="width: 20%;">
+                          <div class="layui-table-cell"><span>支付状态</span></div>
+                        </th>
+                        <th data-field="order_invoice" class="" style="width: 20%;">
+                          <div class="layui-table-cell"><span>发票状态</span></div>
+                        </th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      {volist name="orderList" id="order"}
+                      <tr data-index="0" class="" style="border-left: 1px solid #e6e6e6;">
+                        <td data-field="order_id" data-key="1-0-1" class="order_sn">
+                          <div class="layui-table-cell laytable-cell-1-0-1">{$order.order_sn}</div>
+                        </td>
+                        <td data-field="order_type" data-key="1-0-2" class="order_type">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_type_text}</div>
+                        </td>
+                        <td data-field="order_payprice" data-key="1-0-2" class="order_payprice">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_payprice}</div>
+                        </td>
+                        <td data-field="order_paytime" data-key="1-0-2" class="order_paytime">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_paytime|date="Y-m-d H:i:s",###}</div>
+                        </td>
+                        <td data-field="order_status" data-key="1-0-2" class="order_invoice">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_status_text}</div>
+                        </td>
+                        <td data-field="order_invoice" data-key="1-0-2" class="order_invoice">
+                          <div class="layui-table-cell laytable-cell-1-0-2">{$order.order_invoice_text}</div>
+                        </td>
+                      </tr>
+                      {/volist}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
