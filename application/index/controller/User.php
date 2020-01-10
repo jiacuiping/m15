@@ -5,6 +5,7 @@ use app\admin\controller\Upload;
 use app\admin\model\Certification;
 use app\admin\model\Invoice;
 use app\admin\model\Order;
+use app\admin\model\Package;
 use app\admin\model\UserType;
 use app\index\controller\LoginBase;
 use think\Session;
@@ -85,6 +86,21 @@ class User extends LoginBase
     //套餐管理
     public function package()
     {
+        $packageModel = new Package();
+        // 获取套餐列表
+        $packageList = $packageModel->GetDataList();
+
+
+        // 获取套餐评价
+        foreach ($packageList as $key => $value) {
+            $packageList[$key]['package_evaluate'] = [];
+        }
+
+        // 套餐好评率
+
+        // 套餐完成率
+
+        $this->assign('packageList',$packageList);
         return view();
     }
 
@@ -106,13 +122,15 @@ class User extends LoginBase
      */
     public function privilege($type='info')
     {
+        $orderModel = new Order();
+        $userId = session::get('user.user_id');
+
         if($type == 'info') {
             $this->assign('vips',db('vip_level')->where('level_status',1)->select());
         } elseif ($type == 'invoice'){
-            $userId = session::get('user.user_id');
+
 
             // 获取消费记录
-            $orderModel = new Order();
             $orderList = $orderModel->GetDataList(['order_user' => $userId, 'order_status' => 10, 'order_invoice' => 0]);
             foreach ($orderList as $key => $value) {
                 $orderList[$key]['order_type_text'] = $orderModel->getOrderTypeText($value['order_type']);
@@ -130,6 +148,22 @@ class User extends LoginBase
             $this->assign('orderList',$orderList);
             $this->assign('sumPrice',$sumPrice);
             $this->assign('alreadyInvoice',$alreadyInvoice);
+        }elseif ($type == 'members'){
+            $orderList = $orderModel->GetDataList(['order_type' => 0, 'order_user' => $userId]);
+            foreach ($orderList as $key => $value) {
+                $orderList[$key]['order_type_text'] = $orderModel->getOrderTypeText($value['order_type']);
+                $orderList[$key]['order_status_text'] = $orderModel->getOrderStatusText($value['order_status']);
+                $orderList[$key]['order_invoice_text'] = $orderModel->getOrderInvoiceText($value['order_invoice']);
+            }
+            $this->assign('orderList',$orderList);
+        }elseif ($type == 'integral'){
+            $orderList = $orderModel->GetDataList(['order_type' => 1, 'order_user' => $userId]);
+            foreach ($orderList as $key => $value) {
+                $orderList[$key]['order_type_text'] = $orderModel->getOrderTypeText($value['order_type']);
+                $orderList[$key]['order_status_text'] = $orderModel->getOrderStatusText($value['order_status']);
+                $orderList[$key]['order_invoice_text'] = $orderModel->getOrderInvoiceText($value['order_invoice']);
+            }
+            $this->assign('orderList',$orderList);
         }
 
         $this->assign('type',$type);
