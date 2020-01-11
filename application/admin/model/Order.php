@@ -15,7 +15,7 @@ class Order extends Model
     protected $createTime = 'order_time';
 
     protected $rule = [
-        'order_id'       => 'require',
+        'order_user'       => 'require',
     ];
 
     /**
