@@ -34,7 +34,7 @@
             <div class="layui-shenhuilu-r left">
               <h4>{$user.user_name}<span class="mianfei-ban">{$user.user_vip.level_name}</span></h4>
               <p>关联抖音号：{$user.dyaccount}</p>
-              <p>账号类型：{if $user.user_type eq 2} 讲师 {elseif $user.user_type eq 3} 广告商 {elseif $user.user_type eq 4} MCN {else/} 普通用户 {/if}</p>
+              <p>账号类型：{$user.user_type_text}</p>
             </div>
           </div>
           <div class="layui-card-body">
