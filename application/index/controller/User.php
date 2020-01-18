@@ -60,16 +60,16 @@ class User extends LoginBase
             if(array_key_exists($user['user_type'], $userTypeList)) {
                 $certificationModel = new Certification();
                 $certInfo = $certificationModel->GetOneDataById($user['user_certification']);
-
                 $certInfo['certification_status_text'] = $certificationModel->getStatusText($certInfo['certification_status']);
 
                 $this->assign('isNew',0);
             } else {
-
+                // 没有认证，到认证表单
                 $certInfo = ['certification_buimg' => '', 'certification_OpeningPermit' => '', 'certification_LegalPerson' => '',
                     'certification_CreditCode' => '', 'certification_bank_account' => '', 'certification_bankCode' => '',
                     'certification_IdCard' => '', 'certification_organization_name' => '', 'certification_status' => 0, 'certification_id' => 0
                     ];
+
                 $this->assign('isNew',1);
             }
             $this->assign('user',$user);
@@ -90,15 +90,16 @@ class User extends LoginBase
         // 获取套餐列表
         $packageList = $packageModel->GetDataList();
 
+        // 套餐评论数据
+        $evaluate = [];
 
-        // 获取套餐评价
-        foreach ($packageList as $key => $value) {
-            $packageList[$key]['package_evaluate'] = [];
-        }
+        // 好评率（好评/总评 * 100%）
+//        $count = array_count_values(array_column($evaluate,"evaluate_level"));
+//        $rate = (round($count[1] / array_sum($count),4) * 100).'%';
 
         // 套餐好评率
 
-        // 套餐完成率
+        // 套餐完成率（已完成/总数 * 100%）
 
         $this->assign('packageList',$packageList);
         return view();
@@ -107,6 +108,14 @@ class User extends LoginBase
     //任务中心
     public function task()
     {
+        // 身份判断
+        $userType = session::get('user.user_type');
+
+
+        // 筛选条件
+
+        // 获取任务列表
+
         return view();
     }
 
