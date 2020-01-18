@@ -57,7 +57,19 @@ class Package extends LoginBase
     // 详情
     public function detail($id = 0)
     {
-        $this->assign('package',$this->Model->GetOneDataById($id));
+        // 获取套餐详情
+        $package = $this->Model->GetOneDataById($id);
+
+        // 获取套餐评价
+        $evaluate = [];
+
+        // 好评率（好评/总评 * 100%）
+        $count = array_count_values(array_column($evaluate,"evaluate_level"));
+        $rate = (round($count[1] / array_sum($count),4) * 100).'%';
+
+        $this->assign('package',$package);
+        $this->assign('evaluate',$evaluate);
+        $this->assign('rate',$rate);
         return view();
     }
 
