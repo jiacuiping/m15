@@ -35,12 +35,29 @@
               <p>好评率：0%</p>
             </div>
             <div class="right lijiaqi-r">
-              <button class="layui-btn layui-btn-normal">立即合作</button>
             </div>
           </div>
         </div>
-        <div class="layui-card-body" style="background-color: #fafafa">
+        <div class="layui-card-body">
           <p class="h-yichu">套餐介绍：{$package.package_desc}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="layui-col-md12">
+      <div class="layui-card">
+        <div class="layui-card-body clear">
+          {empty name="$package.package_evaluate"}
+          <div class="layui-card-body">
+            <p><span style="color: #000">服务评价</span></p>
+            <p class="h-yichu">暂无评价</p>
+          </div>
+          {else /}
+          <div class="layui-card-body">
+            <p><span style="color: #000">服务评价</span></p>
+            <p class="h-yichu"></p>
+          </div>
+          {/empty}
         </div>
       </div>
     </div>
