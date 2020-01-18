@@ -11,6 +11,7 @@ use app\admin\model\Mcn;
 use app\admin\model\User;
 use app\admin\model\Video;
 use app\admin\model\Music;
+use app\admin\model\Goods;
 use app\admin\model\Topic;
 use app\admin\model\Rotate;
 use app\admin\model\McnKol;
@@ -19,7 +20,9 @@ use app\admin\model\McnAgent;
 use app\admin\model\McnGroup;
 use app\admin\model\KolTrend;
 use app\admin\model\VideoSort;
+use app\admin\model\GoodsSort;
 use app\admin\model\VideoTrend;
+use app\admin\model\GoodsTrend;
 use app\admin\model\TopicTrend;
 use app\admin\model\MusicTrend;
 use app\admin\model\VideoComment;
@@ -61,6 +64,7 @@ class GetData extends Base
 			$data['like'] = $Specification->GetDataList(array('spec_type'=>'like'));
 			$data['fans'] = $Specification->GetDataList(array('spec_type'=>'fans'));
 			$data['kolv'] = $Specification->GetDataList(array('spec_type'=>'kolv'));
+			$data['sales'] = $Specification->GetDataList(array('spec_type'=>'sales'));
 			$data['duration'] = $Specification->GetDataList(array('spec_type'=>'duration'));
 			$data['createtime'] = $Specification->GetDataList(array('spec_type'=>'createtime'));
 		}elseif($type == 'like')
@@ -73,6 +77,8 @@ class GetData extends Base
 			$data['fans'] = $Specification->GetDataList(array('spec_type'=>'fans'));
 		elseif($type == 'kolv')
 			$data['kolv'] = $Specification->GetDataList(array('spec_type'=>'kolv'));
+		elseif($type == 'sales')
+			$data['sales'] = $Specification->GetDataList(array('spec_type'=>'sales'));
 		return $data;
 	}
 
@@ -87,12 +93,21 @@ class GetData extends Base
 	}
 
 	/**
-	 * 获取分类
+	 * 获取视频分类
 	 * @return 数据列表
 	 */
 	public function GetVideoSort()
 	{
 		$Sort = new VideoSort;
+		return $Sort->GetDataList(array('sort_status'=>1));
+	}
+	/**
+	 * 获取商品分类
+	 * @return 数据列表
+	 */
+	public function GetGoodsSort()
+	{
+		$Sort = new GoodsSort;
 		return $Sort->GetDataList(array('sort_status'=>1));
 	}
 
@@ -105,7 +120,8 @@ class GetData extends Base
 	{
 		$Kol = new Kol;
 		$Video = new Video;
-		$sql = "(select a.* from m15_video_trend as a right join (select vt_video_id, max(vt_time) as maxtime from m15_video_trend where vt_video_id is not null group by vt_video_id) as b on a.vt_video_id=b.vt_video_id and a.vt_time=b.maxtime order by a.vt_video_id asc)";
+//		$sql = "(select a.* from m15_video_trend as a right join (select vt_video_id, max(vt_time) as maxtime from m15_video_trend where vt_video_id is not null group by vt_video_id) as b on a.vt_video_id=b.vt_video_id and a.vt_time=b.maxtime order by a.vt_video_id asc)";
+		$sql = "(select a.vt_video_id,a.vt_video_number,a.vt_hot,a.vt_like,a.vt_comment from m15_video_trend as a right join (select vt_video_id, max(vt_time) as maxtime from m15_video_trend where vt_video_id is not null group by vt_video_id) as b on a.vt_video_id=b.vt_video_id and a.vt_time=b.maxtime order by a.vt_video_id asc)";
 
 		$data = $Video
 				 -> alias('v')
@@ -119,12 +135,6 @@ class GetData extends Base
 			$data[$key]['vt_like'] = $this->TreatmentNumber($value['vt_like']);
 			$data[$key]['video_kid'] = $Kol->GetField(array('kol_uid'=>$value['video_apiuid']),'kol_id');
 			$data[$key]['vt_comment'] = $this->TreatmentNumber($value['vt_comment']);
-
-			// $str = substr($value['video_desc'],strpos($value['video_desc'],'#'));
-
-			// dump($str);
-
-			// dump($value['video_desc']);die;
 
 		}
 
@@ -332,10 +342,6 @@ class GetData extends Base
 				$data[$key]['kt_inc_comment'] = $this->TreatmentNumber($value['kt_inc_comment']);
 				$data[$key]['kt_mean_share'] = $this->TreatmentNumber($value['kt_mean_share']);
 			}
-			// $data[$key]['kt_fans'] = $this->TreatmentNumber($value['kt_fans']);
-			// $data[$key]['kt_mean_like'] = $this->TreatmentNumber($value['kt_mean_like']);
-			// $data[$key]['kt_mean_comment'] = $this->TreatmentNumber($value['kt_mean_comment']);
-			// $data[$key]['kt_mean_share'] = $this->TreatmentNumber($value['kt_mean_share']);
 			$data[$key]['kol_age'] = $value['kol_birthdayY'] == '' ? '未设置' : date('Y') - substr($value['kol_birthdayY'], 0,4);
 			$data[$key]['kol_sort'] = $value['kol_sort'] == 0 ? '暂无分类' : $Sort->GetField(array('sort_id'=>$value['kol_sort']),'sort_name');
 		}
@@ -580,15 +586,15 @@ class GetData extends Base
 	//获取MCN信息
 	public function GetMcnData()
 	{
-		
 		$User = new User;
+		
 		$uid = session::get('user.user_id');
 
 		$user = $User->GetOneData(array('user_id'=>$uid));
 
 		if(!$user) return array('code'=>0,'msg'=>'用户不存在');
 
-		if($user['user_type'] != 4) return array('code'=>0,'msg'=>'当前账号暂未认证MCN机构，暂时无法使用MCN功能！');
+		if($user['user_type'] != 4 && $user['user_type'] != 8) return array('code'=>0,'msg'=>'当前账号暂未认证MCN机构，暂时无法使用MCN功能！');
 
 		if($user['user_certification'] == 0) array('code'=>0,'msg'=>'未查询到当前账户的认证信息，请稍后重试！');
 
@@ -600,7 +606,7 @@ class GetData extends Base
 
 		if($status == -1) return array('code'=>0,'msg'=>'您提交的MCN机构认证信息未审核通过，暂时无法使用MCN功能');
 
-		if($user['user_type'] != 4) return array('code'=>0,'msg'=>'当前账号暂未提交认证MCN机构，暂时无法使用MCN功能！');
+		//if($user['user_type'] != 4) return array('code'=>0,'msg'=>'当前账号暂未提交认证MCN机构，暂时无法使用MCN功能！');
 
 		$Mcn = new Mcn;
 
@@ -662,6 +668,74 @@ class GetData extends Base
 
 		return $result;
 	}
+
+
+
+
+	/*********************************************************** Goods ***************************************************************/
+
+	//获取商品列表
+	public function GetGoodsList($where=array(),$page=1,$limit=100,$order='gt_index desc')
+	{
+		$Kol = new Kol;
+		$Goods = new Goods;
+		$sql = "(select a.* from m15_goods_trend as a right join (select gt_goods_id, max(gt_time) as maxtime from m15_goods_trend where gt_goods_id is not null group by gt_goods_id) as b on a.gt_goods_id=b.gt_goods_id and a.gt_time=b.maxtime order by a.gt_goods_id asc)";
+
+		$data = $Goods
+				 -> alias('g')
+				 -> join("$sql gt",'g.goods_number = gt.gt_goods_number')
+				 -> where($where)
+				 -> order($order)
+				 -> page($page,$limit)
+				 -> select();
+
+		foreach ($data as $key => $value) {
+			$data[$key]['gt_sales'] = $this->TreatmentNumber($value['gt_sales']);
+			$data[$key]['gt_inc_sales'] = $this->TreatmentNumber($value['gt_inc_sales']);
+			$data[$key]['gt_browse'] = $this->TreatmentNumber($value['gt_browse']);
+			$data[$key]['gt_inc_browse'] = $this->TreatmentNumber($value['gt_inc_browse']);
+		}
+
+		return $data;
+	}
+
+	//获取商品详情
+	public function GetGoodsInfo($goods)
+	{
+		$Goods = new Goods;
+		$GoodsSort = new GoodsSort;
+
+		$info = $Goods->GetOneData(array('goods_id'=>$goods));
+
+		if(!$info) return array('code'=>0,'msg'=>'商品不存在');
+
+		$info['trend'] = $this->GetGoodsOneTrend($goods);
+
+		$info['goods_sortname'] = $GoodsSort->GetField(array('sort_id'=>$info['goods_type']),'sort_name');
+
+		return array('code'=>1,'data'=>$info);
+	}
+
+	//获取商品最新趋势
+	public function GetGoodsOneTrend($gid,$is_monitoring=0,$isChangeNumber=true)
+	{
+		$Goods = new Goods;
+		$Trend = new GoodsTrend;
+
+		$trend = $Trend->where(array('gt_goods_id'=>$gid,'gt_is_monitoring'=>$is_monitoring))->order('gt_time desc')->find();
+
+		if(empty($trend)) return array();
+
+		if($isChangeNumber){
+			$trend['gt_sales'] = $this->TreatmentNumber($trend['gt_sales']);
+			$trend['gt_inc_sales'] = $this->TreatmentNumber($trend['gt_inc_sales']);
+			$trend['gt_browse'] = $this->TreatmentNumber($trend['gt_browse']);
+			$trend['gt_inc_browse'] = $this->TreatmentNumber($trend['gt_inc_browse']);
+		}
+
+		return $trend;
+	}
+
 
 	/**
 	 * 获取变化趋势
@@ -734,6 +808,7 @@ class GetData extends Base
 			$Kol = new Kol;
 			$Video = new Video;
 			$trendobj = new VideoTrend;
+			$data = array();
 
 			$kolinfo = $Kol->GetOneDataById($id);
 
