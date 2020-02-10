@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>我的账号</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/iconfont.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.kol-duibi-onclick{background: #1988fe;color: #fff}
+.layui-form-item .layui-input-inline{width: 300px}
+.layui-btn{background-color: #1e9fff}
+.layui-btn-disabled,.layui-btn-disabled:hover{background-color:#d9d9d9;color: #fff;margin-top: 20px;}
+.weimang-div button{margin-top: 20px;width: 80px; height: 38px}
+.layui-col-md12{margin-bottom: 15px}
+.teshu-ly-td{text-align: left!important}
+.teshu-ly-td img{width: 50px; height: 50px;border-radius: 50%;margin-right:10px}
+</style>
+<body onLoad="initPieChart();">
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 左边列表 -->
+      <div class="layui-col-xs5 layui-col-sm3 layui-col-md2">
+        <div class="layui-card">
+          <div class="layui-card-header">我的商品</div>
+          <div class="layui-card-body" style="padding:0">
+            <div class="kol-duibi-ul my-shangpin-ul">
+              <ul>
+                <li class="checked kol-duibi-onclick">
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+                <li>
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+                <li>
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+                <li>
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="start-duibi">
+              <a href="duibi.html" title=""><button type="button" class="layui-btn layui-btn-normal">+ 添加商品</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 右边搜索结果 -->
+      <div class="layui-col-xs7 layui-col-sm9 layui-col-md10">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 表格 -->
+            <div class="layui-form">
+              <table class="layui-table" lay-even="" lay-skin="nob">
+                <colgroup>
+                  <col width="300">
+                  <col width="150">
+                  <col width="200">
+                  <col>
+                </colgroup>
+                <thead>
+                  <tr>
+                    <a href="list1.html" title=""><th>播主</th></a>
+                    <th></th>
+                    <th>新增作品数</th>
+                    <th>新增粉丝</th>
+                    <th>新增点赞</th>
+                    <th>新增转发</th>
+                    <th>新增评论</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                  <a href="list1.html" title="">
+                    <tr>
+                      <td class="teshu-ly-td"><img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" style="">中盈文化</td>
+                      <td style="border-right: 1px solid #eee"><p>今日</p><p>昨日</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>-15</p><p>0</p></td>
+                      <td><p>0</p><p>-185w</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>0</p><p>0</p></td>
+                    </tr>
+                  </a>
+                  <a href="list1.html" title="">
+                    <tr>
+                      <td class="teshu-ly-td"><img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" style="">中盈文化</td>
+                      <td style="border-right: 1px solid #eee"><p>今日</p><p>昨日</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>-15</p><p>0</p></td>
+                      <td><p>0</p><p>-185w</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>0</p><p>0</p></td>
+                    </tr>
+                  </a>
+                  <a href="list1.html" title="">
+                    <tr>
+                      <td class="teshu-ly-td"><img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" style="">中盈文化</td>
+                      <td style="border-right: 1px solid #eee"><p>今日</p><p>昨日</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>-15</p><p>0</p></td>
+                      <td><p>0</p><p>-185w</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>0</p><p>0</p></td>
+                    </tr>
+                  </a>
+                  <a href="list1.html" title="">
+                    <tr>
+                      <td class="teshu-ly-td"><img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" style="">中盈文化</td>
+                      <td style="border-right: 1px solid #eee"><p>今日</p><p>昨日</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>-15</p><p>0</p></td>
+                      <td><p>0</p><p>-185w</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>0</p><p>0</p></td>
+                    </tr>
+                  </a>
+                  <a href="list1.html" title="">
+                    <tr>
+                      <td class="teshu-ly-td"><img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" style="">中盈文化</td>
+                      <td style="border-right: 1px solid #eee"><p>今日</p><p>昨日</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>-15</p><p>0</p></td>
+                      <td><p>0</p><p>-185w</p></td>
+                      <td><p>0</p><p>0</p></td>
+                      <td><p>0</p><p>0</p></td>
+                    </tr>
+                  </a>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
+  
+  <script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.左侧 ul li 信息点击时变蓝效果
+$(document).ready(function() {
+  $(".kol-duibi-ul ul li").click(function() {
+    $(".kol-duibi-ul ul li").removeClass('kol-duibi-onclick')//若想点击以后样式不再回去，就把这行removeClass去掉
+    $(this).addClass("kol-duibi-onclick");
+  });}
+);
+
+// 3.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+
+// 8. 年月日期时间范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+
+  </script>
+</body>
+</html>

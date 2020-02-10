@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>发票信息</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left2{width: 100%}
+.mtd-shipin-tab-left2 ul li{width: 23%;text-align: center}
+</style>
+<body>
+  <!-- 点击shipin里的详情按钮跳到此页 -->
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 标题 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body layui-shenhuilu clear">
+            <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+            <div class="layui-shenhuilu-r left">
+              <h4>李佳琪Austin<span class="mianfei-ban">免费版</span></h4>
+              <p>关联微信号：65656565454</p>
+              <p>账号类型：普通账号（mcn机构、广告商、讲师）</p>
+            </div>
+          </div>
+          <div class="layui-card-body">
+            <p>绑定手机使用账号登录<span class="mianfei-ban">推荐绑定</span>
+              <a href="#" style="color: #349adc;margin-left: 20px;">点击绑定</a>
+            </p>
+            <p>绑定手机号后可设定登录密码，在微信失效时可使用账号登录功能</p>
+          </div>
+        </div>
+      </div>  
+      <!-- tab导航条 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
+              <ul class="clear">
+                <li><a href="fp-list1.html" title="" class="checked-bottom">发票信息</a></li>
+                <li><a href="fp-list2.html" title="">地址信息</a></li>
+                <li><a href="fp-list3.html" title="">登录记录</a></li>
+                <li><a href="fp-list4.html" title="" >认证信息</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- table -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 表格 -->
+            <div class="layui-form">
+              <table class="layui-table">
+                <thead>
+                  <tr>
+                    <th>
+                      <form class="layui-form" action="">
+                        <div class="layui-form-item" pane="">
+                          <div class="layui-input-block" style="margin-left: 0">
+                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="全选">
+                          </div>
+                        </div>
+                      </form>
+                    </th>
+                    <th>产品名称</th>
+                    <th>支付金额</th>
+                    <th>支付时间</th>
+                    <th>发票状态</th>
+                    <th>操作</th>
+                  </tr> 
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>XGDSP-2-154564646545465</td>
+                    <td>高级会员1个月</td>
+                    <td style="color: red">￥399.00</td>
+                    <td>2019-06-24</td>
+                    <td>有效</td>
+                    <td><a href="fp-list1.html">索要</a></td>
+                  </tr>
+                  <tr>
+                    <td>XGDSP-2-154564646545465</td>
+                    <td>高级会员1个月</td>
+                    <td style="color: red">￥399.00</td>
+                    <td>2019-06-24</td>
+                    <td>有效</td>
+                    <td><a href="fp-list1.html">索要</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- 总金额 -->
+            <div style="margin-top: 20px;color: #000">
+              <p>已选金额：<span style="color:red">￥0</span></p>
+              <p>(已开票总金额：￥0.00)</p>
+              <p>1：开票金额不得低于99元。</p>
+              <p>2：发票基于订单开具，金额为实际支付金额。（多个订单可合并开票，单个订单不可拆分开票）。</p>
+              <p>3：提交开票申请后，将在7个工作日内为您寄出，默认顺丰快递，邮费到付（开票金额满500元免邮费）。</p>
+              <p>4：可选开具电子普通发票，电子发票与纸质发票具备同等法律效力，可报销入账。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+// 表格里点击 全选
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+});
+</script>
+
+</body>
+</html>

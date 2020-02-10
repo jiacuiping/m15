@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kol榜单</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block{margin-left: 0}
+.layui-input{padding: 0 30px 0 30px;}
+.layui-input-block{position: relative}
+.layui-input-block i{position: absolute; top: 11px; left: 10px}
+.layui-input-block input{border-radius: 10px}
+.layui-input-block span{position: absolute; top: 11px; right: 10px}
+select{width: 100%;margin-top: 5px;height: 30px}
+.layui-form-item{margin-bottom: 0;display: inline-block}
+.layui-form-label{text-align: left;padding:9px 0 }
+.sanbang-right-div input {width: 355px;}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 搜索，高级搜索 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-search clear">
+              <!-- 右侧  使用帮助 -->
+                <a href="#" title="" style="color:#5597e5">
+                  <p style="text-align: right"><img src="../../../layuiadmin/imgs/wen.png" alt=""> 使用帮助</p>
+                </a>
+              <!-- 关键词搜索  高级搜索 -->
+              <div class="guanjianci-search">
+                <a href="index.html"><img src="../../../layuiadmin/imgs/xuanze1.png" alt="" width="20px"> 关键词搜索</a>
+                <a href="index2.html"><img src="../../../layuiadmin/imgs/xuanze2.png" alt="" width="20px" style="margin-left: 15px"> 高级搜索</a>
+              </div>
+              <!-- 搜索 -->
+              <div class="right sanbang-right" style="width: 100%">
+                <div class="layui-form-item" style="width: 100%">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入关键词" autocomplete="off" class="layui-input" style="width: 100%">
+                    <a href="search-jieguo.html" title=""><button type="button" class="layui-btn layui-btn-sm" style="background-color:#5597e5">搜索</button></a>
+                  </div>
+                </div>
+              </div>
+              <!-- 添加收录 -->
+              <p>精确搜索、关联搜索、语义匹配、为您提供强大的抖音号智能搜索功能<span class="right" style="color:#5597e5 ">添加收录</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 添加收录弹框 -->
+        <div class="layui-col-md12">
+          <div class="shoulu-one">
+            <h3>添加收录弹框</h3>
+            <p style="color: #000">收录抖音号</p>
+              <!-- 搜索 -->
+              <div class="right sanbang-right" style="width: 100%">
+                <div class="layui-form-item" style="width: 100%">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入抖音号ID或主页链接" autocomplete="off" class="layui-input" style="width: 100%">
+                    <button type="button" class="layui-btn layui-btn-sm" style="background-color:#5597e5">搜索</button>
+                  </div>
+                </div>
+              </div>
+              <p class="clear">抱歉，未查询到该抖音号，请输入其他关键词重新搜索
+                <span class=" mtd-shipin-tab-right right">
+                  <a href="#" title="" style="color:#5597e5">
+                    <img src="../../../layuiadmin/imgs/wen.png" alt=""> 如何获取抖音号主页链接
+                  </a>
+                </span>
+              </p>
+          </div>
+        </div>
+      <!-- 添加收录弹框搜索到 -->
+      <div class="layui-col-md12">
+          <div class="shoulu-one">
+            <h3>添加收录弹框搜索到</h3>
+            <p style="color: #000">收录抖音号</p>
+              <!-- 搜索 -->
+              <div class="right sanbang-right" style="width: 100%; margin-bottom: 10px">
+                <div class="layui-form-item" style="width: 100%">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入抖音号ID或主页链接" autocomplete="off" class="layui-input" style="width: 100%">
+                    <button type="button" class="layui-btn layui-btn-sm" style="background-color:#5597e5">搜索</button>
+                  </div>
+                </div>
+              </div>
+              <p class="clear">
+                <span class=" mtd-shipin-tab-right right">
+                  <a href="#" title="" style="color:#5597e5">
+                    <img src="../../../layuiadmin/imgs/wen.png" alt=""> 如何获取抖音号主页链接
+                  </a>
+                </span>
+              </p>
+              <!-- 收录人信息 -->
+              <div class="shouluren-xinxi clear">
+                <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+                <div class="left shouluren-xinxi-left">
+                  <p style="color: #000">小茗同学</p>
+                  <p>抖音号：16456556</p>
+                  <p>简介：月有阴晴圆</p>
+                </div>
+              </div>
+              <button type="button" class="layui-btn layui-btn-normal" style="margin:10px auto 0;display: block">确认收录</button>
+          </div>
+      </div>
+      <!-- 添加成功 -->
+      <div class="layui-col-md12">
+          <div class="shoulu-one" style="text-align: center">
+            <img src="../../../layuiadmin/imgs/dui.png" alt="">
+            <h2 style="color: #000">添加成功</h2>
+            <p>系统将自动开始收录该抖音号</p>
+            <p>部分数据须等待24小时后才可展现</p>
+            <button type="button" class="layui-btn layui-btn-normal" style="width: 60%">确定</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+
+</script>
+
+</html>

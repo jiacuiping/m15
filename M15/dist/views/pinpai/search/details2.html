@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>在售播主分析</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block {margin-left: 70px}
+.border-bottom{margin: 15px 0;}
+.layui-form-label{color: #000}
+.layui-form-item .layui-input-inline{width: 300px}
+.mtd-mtd-shipin-table-td2 img{width: 70px; height: 70px}
+.mtd-mtd-shipin-table-td2 p{width: 80%}
+.button5{border-top: 1px solid #eee;padding-top: 10px;}
+.mtd-shipin-tab-left3{width: 100%}
+.mtd-shipin-tab-left3 ul li{width: 23%;text-align: center}
+
+</style>
+<body onLoad="initPieChart();">
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 放心购 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" style="width: 100px;height: 100px">
+            <div class="mtd-shipin-list2-div">
+              <h5>妮维维</h5>
+              <p>认证公司：妮维维（上海）有限公司</p>
+              <p>所属行业：化妆品</p>
+            </div>
+            <!-- 右边四个仪表盘图表 -->
+            <div class="mtd-shipin-div-right" style="vertical-align: middle">
+              <div class="container" style="width: 360px">
+                <div class="chart">
+                  <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                  <div class="labeler">粉丝数</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                  <div class="labeler">平均点赞</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="92"><span>823</span></div>
+                  <div class="labeler">平均评论</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="84"><span>2113</span></div>
+                  <div class="labeler">平均分享</div>
+                </div>
+              </div>
+            </div>
+            <!-- 好多button -->
+            <div class="button5">
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">收藏品牌</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入我的品牌</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" styl-e="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left mtd-shipin-tab-left3">
+              <ul class="clear">
+                <li><a href="details1.html" title="">推广视频分析</a></li>
+                <li><a href="details2.html" title="" class="checked-bottom">在售播主分析</a></li>
+                <li><a href="details3.html" title="">商品分析</a></li>
+                <li><a href="details4.html" title="">品牌舆情分析</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 近30天播主分类人数分布 图表 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">近30天播主分类人数分布</div>
+          <div class="layui-card-body">
+            <div id="tb1" style="height:400px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 近30天视频分类点赞分布 图表 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">近30天视频分类点赞分布</div>
+          <div class="layui-card-body">
+            <div id="tb2" style="height:400px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项卡 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0 15px;">
+            <div class="mtd-shipin-tab clear">  
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <a href="details2.html" title=""><li class="checked-bottom">按粉丝数排序</li></a>
+                <a href="details2.html" title=""><li>按相关视频数排序</li></a>
+              </ul>
+            </div>
+            <!-- 右边时间选项 -->
+            <div class="mtd-shipin-tab-right right">
+              <div class="layui-form">
+                <div class="layui-form-item" style="margin-bottom: 0">
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="test6" placeholder=" - ">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+      <!-- 列表 -->
+      <div class="layui-col-md12">
+        <div class="layui-form">
+          <table class="layui-table" lay-even="" lay-skin="nob">
+            <colgroup>
+              <col width="100">
+              <col width="300">
+              <col width="">
+              <col width="">
+              <col width="">
+              <col width="250">
+              <col>
+            </colgroup>
+            <thead>
+              <tr class="mtd-shipin-tr">
+                <th>排名</th>
+                <th style="text-align: left">播主</th>
+                <th>行业</th>
+                <th>粉丝数</th>
+                <th>相关视频数</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no1.png" alt="" style="width: 25px;"></td>
+                <td class="mtd-mtd-shipin-table-td2 clear">
+                  <img src="../../../layuiadmin/imgs/no1-1.png" alt=""class="left" style="width: 50px; height: 50px;border-radius: 50%">
+                  <div class="left">
+                    <p>李佳琪。。。</p>
+                    <p>ID:1654655655</p>
+                  </div>
+                </td>
+                <td>9689</td>
+                <td class="color8c">9689</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">关联视频</option>
+                          <option value="0">写作</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no2.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2 clear">
+                  <img src="../../../layuiadmin/imgs/no1-1.png" alt=""class="left" style="width: 50px; height: 50px;border-radius: 50%">
+                  <div class="left">
+                    <p>李佳琪。。。</p>
+                    <p>ID:1654655655</p>
+                  </div>
+                </td>
+                <td>9689</td>
+                <td class="color8c">9689</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">关联视频</option>
+                          <option value="0">写作</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no3.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2 clear">
+                  <img src="../../../layuiadmin/imgs/no1-1.png" alt=""class="left" style="width: 50px; height: 50px;border-radius: 50%">
+                  <div class="left">
+                    <p>李佳琪。。。</p>
+                    <p>ID:1654655655</p>
+                  </div>
+                </td>
+                <td>9689</td>
+                <td class="color8c">9689</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">关联视频</option>
+                          <option value="0">写作</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="mtd-mtd-shipin-table-td2 clear">
+                  <img src="../../../layuiadmin/imgs/no1-1.png" alt=""class="left" style="width: 50px; height: 50px;border-radius: 50%">
+                  <div class="left">
+                    <p>李佳琪。。。</p>
+                    <p>ID:1654655655</p>
+                  </div>
+                </td>
+                <td>9689</td>
+                <td class="color8c">9689</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">关联视频</option>
+                          <option value="0">写作</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="mtd-mtd-shipin-table-td2 clear">
+                  <img src="../../../layuiadmin/imgs/no1-1.png" alt=""class="left" style="width: 50px; height: 50px;border-radius: 50%">
+                  <div class="left">
+                    <p>李佳琪。。。</p>
+                    <p>ID:1654655655</p>
+                  </div>
+                </td>
+                <td>9689</td>
+                <td class="color8c">9689</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">关联视频</option>
+                          <option value="0">写作</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+      </div>  
+    </div>
+  </div>
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
+<script>
+// 1.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+// 2.近30天播主分类人数分布
+var myChart = echarts.init(document.getElementById("tb1")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['1', '2', '3', '3G', '3GS', '4', '4S', '4G', '4GS', '5', '5G', '5GS']
+    },
+    color: ['#3398DB'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 200, 150, 80, 70, 110, 130, 150, 80, 70, 110, 130],
+        type: 'bar'
+    }]
+};
+myChart.setOption(option);
+
+
+// 3.近30天视频分类点赞分布
+var myChart = echarts.init(document.getElementById("tb2")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['1', '3G', '3GS', '4', '4GS', '5', '5GS']
+    },
+    color: ['#3398DB'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar'
+    }]
+};
+myChart.setOption(option); 
+
+// 4. 年月日期时间范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+
+// 5.下拉
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+});
+</script>
+
+</html>

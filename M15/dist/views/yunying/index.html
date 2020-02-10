@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-btn{background-color: #1e9fff}
+.layui-form-item .layui-input-inline{width: 220px}
+.layui-badge-span{position: absolute;top: 0;left: 19px;height: 15px;line-height: 16px}
+.baifen-52{padding: 15px}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 分类 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body clear">
+            <!-- 左侧分类 -->
+            <div class="layui-col-md9 yunying-index-left">
+              <ul class="clear">
+                <li><a href="#">软件入门</a></li>
+                <li><a href="#">UI设计</a></li>
+                <li><a href="#">综合教程</a></li>
+                <li><a href="#">摄影艺术</a></li>
+                <li><a href="#">产品精修</a></li>
+                <li><a href="#">人像精修</a></li>
+                <li><a href="#">绘画插画</a></li>
+                <li><a href="#">图像合成</a></li>
+                <li><a href="#">直播课程</a></li>
+                <li><a href="#">海报设计</a></li>
+                <li><a href="#">字体设计</a></li>
+                <li><a href="#">C4D教程</a></li>
+                <li><a href="#">室内设计</a></li>
+                <li><a href="#">影视动画</a></li>
+                <li><a href="#">软件入门</a></li>
+              </ul>
+            </div>
+            <!-- 右侧搜索和信息 -->
+            <div class="layui-col-md3 yunying-index-right clear">
+              <!-- 搜索 -->
+              <div class="sanbang-right left">
+               <div class="layui-form-item">
+                 <div class="layui-input-inline sanbang-right-div">
+                   <input type="" name="" lay-verify="pass" placeholder="请输入话题关键字" autocomplete="off" class="layui-input">
+                   <a href="list1.html"><button type="button" class="layui-btn layui-btn-sm">搜索</button></a>
+                 </div>
+                </div>
+              </div>
+              <!--  -->
+              <p class="layui-nav-item left" style="position: relative">
+                <img src="../../layuiadmin/imgs/youjian.png" alt="">
+                <a href="list4.html"><span class="layui-badge layui-badge-span">99+</span></a>
+              </p>
+              <!-- 头像 -->
+              <img class="right" src="../../layuiadmin/imgs/touxiang.jpg" alt="" style="width: 30px;height: 30px;border-radius: 50%">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 根据你的学习意向推荐 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body study-yixiang">
+            <h3>根据你的学习意向推荐</h3><a href="#" class="study-yixiang-a">设置意向></a>
+          </div>
+          <!-- 摄影艺术 总 -->
+          <div class="layui-card-body">
+            <div class="study-sheying">
+              <!-- 摄影艺术 -->
+              <div class="sheying-top clear">
+                <div class="left sheying-div clear">
+                  <h4 class="left">推荐</h4>
+                  <h3 class="left">摄影艺术</h3>
+                  <p class="left">共<span style="color: red"> 2117 </span>节课</p>
+                </div>
+                <div class="right">
+                  <a href="#" class="study-yixiang-a">换一批</a>
+                  <a href="#" class="study-yixiang-a">更多>></a>
+                </div>
+              </div>
+              <!-- 摄影艺术 列表 -->
+              <div>
+                <ul class="clear">
+                  <!-- 一条数据 -->
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <div class="xuexi-bg">
+                        <h2>摄影艺术</h2>
+                        <h3>共有2117节课</h3>
+                        <p>查看更多数据 ></p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- UI设计 总 -->
+          <div class="layui-card-body">
+            <div class="study-sheying">
+              <!-- UI设计 -->
+              <div class="sheying-top clear">
+                <div class="left sheying-div clear">
+                  <h3 class="left">UI设计</h3>
+                  <p class="left">共<span style="color: red"> 725 </span>节课</p>
+                </div>
+                <div class="right">
+                  <a href="#" class="study-yixiang-a">换一批</a>
+                  <a href="#" class="study-yixiang-a">更多>></a>
+                </div>
+              </div>
+              <!-- UI设计 列表 -->
+              <div>
+                <ul class="clear">
+                  <!-- 第一条数据 -->
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <div class="xuexi-bg2">
+                        <h2>UI设计</h2>
+                        <h3>共有2117节课</h3>
+                        <p>查看更多数据 ></p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-md2 layui-col-sm4 layui-col-xs6 baifen-52">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 推荐视频 -->
+          <div class="layui-card-body">
+            <div class="study-sheying">
+              <!-- 推荐视频 -->
+              <div class="sheying-top clear">
+                <div class="left sheying-div clear">
+                  <h3 class="left">推荐视频</h3>
+                  <p class="left">共<span style="color: red"> 512625 </span>节课</p>
+                </div>
+                <div class="right">
+                  <a href="#" class="study-yixiang-a">查看更多教程>></a>
+                </div>
+              </div>
+              <!-- 推荐视频 列表 -->
+              <div>
+                <ul class="clear">
+                  <!-- 第一条数据 -->
+                  <div class="layui-col-sm4 layui-col-xs6 baifen-5">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-sm4 layui-col-xs6 baifen-5">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-sm4 layui-col-xs6 baifen-5">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-sm4 layui-col-xs6 baifen-5">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                  <div class="layui-col-sm4 layui-col-xs6 baifen-5">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" alt="" style="width: 100%;border-radius: 5px">
+                      <p class="yichu" style="width: 100%;margin: 5px 0">入行摄影行业指南</p>
+                      <p class="clear">
+                        <span class="xue1 xue2">会员免费</span>
+                        <span class="right">价格：<span style="color:#ffb21e">￥200</span></span>
+                      </p>
+                    </a>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 文章 -->
+          <div class="layui-card-body">
+            <div class="study-sheying">
+              <!-- 文章 -->
+              <div class="sheying-top clear">
+                <div class="left sheying-div clear">
+                  <h3 class="left">文章</h3>
+                  <p class="left">共<span style="color: red"> 1919 </span>节课</p>
+                </div>
+                <div class="right">
+                  <a href="#" class="study-yixiang-a">更多文章>></a>
+                </div>
+              </div>
+              <!-- 文章 列表 -->
+              <div>
+                <ul class="clear">
+                  <!-- 一条数据 -->
+                  <div class="layui-col-md4 layui-col-sm12 layui-col-xs12 clear" style="padding:15px">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" class="left bin-img" alt="">
+                      <div class="right bin-div">
+                        <h3 class="yichu">设计工作六年，我的一些思考</h3>
+                        <p class="yichu bin-p1">设计工作六年，我的一些思考</p>
+                        <p class="clear">
+                          <span><img src="../../layuiadmin/imgs/touxiang.jpg" alt="" class="bin-p2">邓海伦</span>
+                          <span class="right" style="color: #999">8046 人已阅读</span>
+                        </p>
+                        <p class="clear"><span class="xue1 xue2 right">会员免费</span></p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="layui-col-md4 layui-col-sm12 layui-col-xs12 clear" style="padding:15px">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" class="left bin-img" alt="">
+                      <div class="right bin-div">
+                        <h3 class="yichu">设计工作六年，我的一些思考</h3>
+                        <p class="yichu bin-p1">设计工作六年，我的一些思考</p>
+                        <p class="clear">
+                          <span><img src="../../layuiadmin/imgs/touxiang.jpg" alt="" class="bin-p2">邓海伦</span>
+                          <span class="right" style="color: #999">8046 人已阅读</span>
+                        </p>
+                        <p class="clear"><span class="xue1 xue2 right">会员免费</span></p>
+                      </div>
+                    </a>
+                  </div>
+                  <div class="layui-col-md4 layui-col-sm12 layui-col-xs12 clear" style="padding:15px">
+                    <a href="xuexi.html">
+                      <img src="../../layuiadmin/imgs/study1.png" class="left bin-img" alt="">
+                      <div class="right bin-div">
+                        <h3 class="yichu">设计工作六年，我的一些思考</h3>
+                        <p class="yichu bin-p1">设计工作六年，我的一些思考</p>
+                        <p class="clear">
+                          <span><img src="../../layuiadmin/imgs/touxiang.jpg" alt="" class="bin-p2">邓海伦</span>
+                          <span class="right" style="color: #999">8046 人已阅读</span>
+                        </p>
+                        <p class="clear"><span class="xue1 xue2 right">会员免费</span></p>
+                      </div>
+                    </a>
+                  </div>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script src="../../layuiadmin/style/js/jquery.min.js"></script>
+<script src="../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script> 
+<script src="../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+
+// 2. 年月日期时间范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+
+</script>
+</html>

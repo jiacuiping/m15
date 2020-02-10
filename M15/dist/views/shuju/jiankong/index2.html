@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>监控历史</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .layui-form-item .layui-input-inline{width: 300px}
+  .layui-btn{background-color: #1e9fff}
+  .shengzhi{width: 80px; height: 108px}
+  .layui-form-radio{margin-right: 0; padding-right: 0}
+</style>
+<body onLoad="initPieChart();">
+
+  <div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="index.html" title="">视频监控</a></li>
+                <li><a href="index2.html" title="" class="checked-bottom">监控历史</a></li>
+              </ul>
+            </div>
+            <div class="mtd-shipin-tab-left right">
+              <img src="../../../layuiadmin/imgs/wen.png" alt=""> 使用帮助
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body clear" style="padding: 10px 15px 0 15px;">
+            <p style="color: #000;display: inline-block">共1个监控历史</p>
+            <!-- 查询 -->
+              <div class="sanbang-right right">
+                <div class="layui-form-item">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入视频标题关键词搜索监控历史" autocomplete="off" class="layui-input" style="height: 30px;width: 300px">
+                    <button type="button" class="layui-btn layui-btn-sm">查询</button>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- 视频介绍 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body" style="height: 160px">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" class="mtd-shipin-list1-img">
+            <div class="mtd-shipin-list1">
+              <h4 class="yichu clear shuju-jiankong-h4">神回路翻转再也不用抢车位了<span>监控中</span><span>未提醒</span></h4>
+              <p>监控类型：即时监控</p>
+              <p>监控时长：24小时&nbsp;&nbsp;&nbsp;&nbsp;点赞数：24w</p>
+              <p>视频时长：19秒&nbsp;&nbsp;&nbsp;&nbsp;点赞数提醒：未开启</p>
+              <p>监控时间：09月04日 13:22&nbsp;&nbsp;&nbsp;&nbsp;发布时间：2019-09-21</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 粉丝点赞评论分享 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body clear" style="height: 160px">
+            <!-- 左边图片 -->
+            <div class="mtd-list1-shenyang-left left">
+              <p>沈阳新闻 <img src="../../../layuiadmin/imgs/3.png" alt="" style="margin-left:10px"></p>
+              <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+              <div class="mtd-list1-shenyang-div">
+                <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+              </div>
+            </div>
+            <!-- 右边数据 -->
+            <div class="mtd-list1-shenyang-right left">
+              <div class="container" style="width: 100%">
+                <div class="chart">
+                  <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                  <div class="labeler">粉丝数</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                  <div class="labeler">平均点赞</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="92"><span>823</span></div>
+                  <div class="labeler">平均评论</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="84"><span>2113</span></div>
+                  <div class="labeler">平均分享</div>
+                </div>
+              </div>
+              <p>抖音号：57585455<span class="span-margin-l">性别：女</span><span class="span-margin-l">地区：沈阳</span><span class="span-margin-l">分类：知识资讯类</span></p>
+              <p>用字温暖你 用心做媒体 新闻综合频道官方微信上线啦</p>
+              <p><img src="../../../layuiadmin/imgs/a-2.png" alt=""> 沈阳新闻频道</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 图表 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">点赞数增量趋势<span class="right mtd-shipin-td-btn"><a href="detail.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">监控详情</button></a></span></div>
+          <div class="layui-card-body">
+            <div id="tubiao1" style="height: 400px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+  <script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.图表
+var myChart = echarts.init(document.getElementById("tubiao1")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#0092ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+
+// 3.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+</script>
+</body>
+</html>

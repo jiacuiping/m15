@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block{margin-left: 0}
+.layui-input{padding: 0 30px 0 30px;}
+.layui-input-block{position: relative}
+.layui-input-block i{position: absolute; top: 11px; left: 10px}
+.layui-input-block input{border-radius: 10px}
+.layui-input-block span{position: absolute; top: 11px; right: 10px}
+select{width: 100%;margin-top: 5px;height: 30px}
+.layui-form-item{margin-bottom: 0;display: inline-block}
+.layui-form-label{text-align: left;padding:9px 0 }
+
+.easyPieChart{margin: 0 20px;}
+.mtd-shipin-tab-left2{width: 100%}
+.mtd-shipin-tab-left2 ul li{width: 15%; text-align: center}
+.mask{width: 100%;height: 100vh; background:rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
+.mask-content{width: 300px;height:200px;background: #fff;margin: 10% auto;padding:15px;position: relative}
+.mask-content h3{color: #000;margin-bottom: 15px}
+.mask2{width: 100%;height: 100vh;position: fixed; top: 0;z-index: 99999; display: none;}
+.mask-content2{width: 300px;background: #fff;margin: 10% auto;padding:15px;position: relative}
+.mask-content2 h3{color: #000;margin-bottom: 15px;padding-bottom: 10px;border-bottom: 1px solid #ddd;}
+.mtd-shipin-td-btn a,.mtd-shipin-td-btn button,.mtd-shipin-tab-right button{display: block !important;float: left !important;width: 73px !important;}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 头部信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card layui-card-padding">
+          <!-- 第一行  分类 -->
+          <div class="mtd-shipin-fenlei border-bottom clear">
+            <span class="left mtd-shipin-fenlei-left">分类:</span>
+            <div class="left mtd-shipin-fenlei-right">
+              <a href="#" title="">全部</a>
+              <a href="#" title="">网红美女</a>
+              <a href="#" title="">网红帅哥</a>
+              <a href="#" title="">搞笑</a>
+              <a href="#" title="">情感</a>
+              <a href="#" title="">剧情</a>
+              <a href="#" title="">美食</a>
+              <a href="#" title="">美妆</a>
+              <a href="#" title="">种草</a>
+              <a href="#" title="">穿搭</a>
+              <a href="#" title="">美妆</a>
+              <a href="#" title="">种草</a>
+              <a href="#" title="">穿搭</a>
+              <a href="#" title="">明星</a>
+              <a href="#" title="">影视娱乐</a>
+              <a href="#" title="">游戏</a>
+              <a href="#" title="">宠物</a>
+              <a href="#" title="">音乐</a>
+              <a href="#" title="">舞蹈</a>
+              <a href="#" title="">萌娃</a>
+              <a href="#" title="">生活</a>
+              <a href="#" title="">健康</a>
+              <a href="#" title="">体育</a>
+              <a href="#" title="">生活</a>
+              <a href="#" title="">健康</a>
+            </div>
+            <div class="right mtd-shipin-fenlei-sousuo">
+              <form class="layui-form" action="">
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <i class="layui-icon layui-icon-search"></i>
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入关键词或视频热词" class="layui-input">
+                    <span class="layui-icon layui-icon-return"></span>
+                  </div>
+                </div>
+              </form>
+              <a href="#" title=""><img src="../../../layuiadmin/imgs/wen.png" alt=""></a>
+            </div>
+          </div>
+          <!-- 第二行 三榜 -->
+          <div class="sanbang clear border-bottom">
+            <div class="left sanbang-left mtd-shipin-td-btn">
+              <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+                <button type="button" class="layui-btn layui-btn-sm mtd-shipin-btn-checked">总榜</button>
+              </a>
+              <button type="button" class="layui-btn layui-btn-sm">月榜</button>
+              <button type="button" class="layui-btn layui-btn-sm">周榜</button>
+            </div>
+            <div class="right">
+              <p>数据更新时间：2019/02-05 5:00&nbsp;&nbsp;<a href="#" style="color:#5597e5"><button type="button" class="layui-btn layui-btn-sm layui-btn-normal">导出</button></p>
+            </div>
+          </div>
+          <!-- 第三行  tab选项卡 -->
+          <div class="mtd-shipin-tab clear">  
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <a href="index.html" title=""><li class="checked-bottom">综合排序</li></a>
+                <a href="index.html" title=""><li>合作任务书最多</li></a>
+                <a href="index.html" title=""><li>粉丝最多</li></a>
+                <a href="index.html" title=""><li>服务评分</li></a>
+                <a href="index.html" title=""><li>报价</li></a>
+              </ul>
+            </div>
+            <!-- 右边时间选项 -->
+            <div class="mtd-shipin-tab-right right">
+              <div class="layui-form">
+                <div class="layui-form-item">
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="test6" placeholder=" - ">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- table 列表 -->
+      <div class="layui-col-md12">
+        <div class="layui-form">
+          <table class="layui-table" lay-even="" lay-skin="nob">
+            <colgroup>
+              <col width="100">
+              <col width="300">
+              <col width="150">
+              <col width="">
+              <col width="">
+              <col width="250">
+              <col>
+            </colgroup>
+            <thead>
+              <tr class="mtd-shipin-tr">
+                <th>排名</th>
+                <th style="text-align: left">播主</th>
+                <th>粉丝数</th>
+                <th>任务完成率</th>
+                <th>合作任务数</th>
+                <th>服务评分</th>
+                <th>报价</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no1.png" alt="" style="width: 25px;"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                <td class="color8c">663.58w</td>
+                <td class="color8c">98%</td>
+                <td class="color8c">36</td>
+                <td class="color8c">9775</td>
+                <td style="color:#fd0000">￥8000-30000</td>
+                <td class="mtd-shipin-td-btn"><button class="layui-btn layui-btn-sm layui-btn-normal hezuo-btn">立即合作</button></td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no2.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                <td class="color8c">663.58w</td>
+                <td class="color8c">98%</td>
+                <td class="color8c">36</td>
+                <td class="color8c">9775</td>
+                <td style="color:#fd0000">￥8000-30000</td>
+                <td class="mtd-shipin-td-btn"><button class="layui-btn layui-btn-sm layui-btn-normal hezuo-btn">立即合作</button></td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no3.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                <td class="color8c">663.58w</td>
+                <td class="color8c">98%</td>
+                <td class="color8c">36</td>
+                <td class="color8c">9775</td>
+                <td style="color:#fd0000">￥8000-30000</td>
+                <td class="mtd-shipin-td-btn"><button class="layui-btn layui-btn-sm layui-btn-normal hezuo-btn">立即合作</button></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                <td class="color8c">663.58w</td>
+                <td class="color8c">98%</td>
+                <td class="color8c">36</td>
+                <td class="color8c">9775</td>
+                <td style="color:#fd0000">￥8000-30000</td>
+                <td class="mtd-shipin-td-btn"><button class="layui-btn layui-btn-sm layui-btn-normal hezuo-btn">立即合作</button></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                <td class="color8c">663.58w</td>
+                <td class="color8c">98%</td>
+                <td class="color8c">36</td>
+                <td class="color8c">9775</td>
+                <td style="color:#fd0000">￥8000-30000</td>
+                <td class="mtd-shipin-td-btn"><button class="layui-btn layui-btn-sm layui-btn-normal hezuo-btn">立即合作</button></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- 确认发布 弹框内容 -->
+<div class="mask">
+  <div class="mask-content">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>发布单人任务<a href="#" class="guan right">X</a></h3>
+      <p>这是一段关于单人任务说明的一个简介这是一段关于单人任务说明的一个简介这是一段关于单人任务说明的一个简介这是一段关于单人任务说明的一个简介</p>
+      <div style="color: #fd6500;text-align: center; margin-top: 20px">
+        <input type="checkbox" name="like1[write]" lay-skin="primary" title="" checked="">阅读并同意
+      </div>
+      <div class="two-btn">
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm guan" style="color: #fd6500;">取消</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger hezuo-btn2">确认发布</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 立即下单 弹框内容 -->
+<div class="mask2">
+  <div class="mask-content2" style="width:500px;height: 485px">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>发布单人任务<span style="color: #b7b7b7;font-size: 14px;">下单后，我们将尽快为您联系</span><a href="#" class="guan right">X</a></h3>
+      <!-- 我需要 -->
+      <div class="content2-content clear">
+        <p class="left">我需要<span style="color: red"> *</span></p>
+        <textarea name="" style="width: 80%; height: 100px" class="left" placeholder="李佳琪的大V定制服务"></textarea>
+      </div>
+      <!-- 预算金额 -->
+      <div class="content2-content clear">
+        <p class="left">预算金额<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="/元" class="layui-input" style="width: 45%">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- 播放指标 -->
+      <div class="content2-content clear">
+        <p class="left">播放指标<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="/次" class="layui-input" style="width: 45%">
+            </div>
+          </div>
+        </form>
+      </div>
+      <p style="color:#ff6600;text-align: right">总计 4500.00元</p>
+      <!-- 手机号码 -->
+      <div class="content2-content clear">
+        <p class="left">手机号码<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="131****9757" class="layui-input">
+            </div>
+          </div>
+        </form>
+      </div>
+      <p style="color:#67ad3b;display: block;text-align: center">信息保护中，仅官方可见</p>
+      <!-- 截止日期 -->
+      <div class="content2-content clear">
+        <p class="left">截止日期<span style="color: red"> *</span></p>
+        <div class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="test1" placeholder="2019-09-26">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 商品链接 -->
+      <div class="content2-content clear">
+        <p class="left">商品链接<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="two-btn">
+        <a href="../../kol/search/xiadan.html" title=""><button type="button" class="layui-btn layui-btn-sm layui-btn-danger hezuo-btn2">立即下单</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script> 
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+
+// 2. 年月日期时间范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+
+// 3.确认发布弹框
+$(".hezuo-btn").click(function(){
+  $(".mask").show();
+});
+  $(".guan").click(function(){
+  $(".mask").hide();
+});
+
+// 4.立即下单弹框
+$(".hezuo-btn2").click(function(){
+  $(".mask2").show();
+});
+  $(".guan").click(function(){
+  $(".mask2").hide();
+});
+
+// 5.时间
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //常规用法
+  laydate.render({
+    elem: '#test1'
+  });
+});
+</script>
+</html>

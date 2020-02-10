@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>热门商品分析</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/iconfont.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.kol-duibi-onclick{background: #1988fe;color: #fff}
+.layui-form-item .layui-input-inline{width: 300px}
+/* .layui-btn{background-color: #1e9fff} */
+.layui-btn-disabled,.layui-btn-disabled:hover{background-color:#d9d9d9;color: #fff;margin-top: 20px;}
+.weimang-div button{margin-top: 20px;width: 80px; height: 38px}
+.layui-col-md12{margin-bottom: 15px}
+.mtd-shipin-tab-left3{width: 100%;text-align: center}
+.mtd-shipin-tab-left3 ul li{width: 31%}
+
+.easyPieChart{margin: 0 20px;}
+.mtd-shipin-tab-left2{width: 100%}
+.mtd-shipin-tab-left2 ul li{width: 15%; text-align: center}
+.border-bottom {padding: 5px 0;}
+.mtd-shipin-td-btn a,.mtd-shipin-td-btn button,.mtd-shipin-tab-right button{display: block !important;float: left !important;width: 73px !important;}
+</style>
+<body onLoad="initPieChart();">
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 左边列表 -->
+      <!-- 左边列表 -->
+      <div class="layui-col-xs5 layui-col-sm3 layui-col-md2">
+        <div class="layui-card">
+          <div class="layui-card-header clear">我的抖音号<div class="site-demo-button right" id="layerDemo" style="margin-bottom: 0;">
+                <button data-method="offset2" data-type="auto"  class="layui-btn" style="background-color: #fff!important;color: #1988fe;">添加分组</button>
+              </div>
+          </div>
+          <div class="layui-card-body" style="padding:0">
+            <div class="kol-duibi-ul my-shangpin-ul">
+              <ul>
+                <li class="checked kol-duibi-onclick">
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+                <li>
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+                <li>
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+                <li>
+                  <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                  <span class="yichu">小名同学</span>
+                  <i class="right iconfont icon-more"></i>
+                </li>
+              </ul>
+            </div>
+            <div class="start-duibi">
+              <div class="site-demo-button" id="layerDemo" style="margin-bottom: 0;">
+                <button data-method="offset" data-type="auto"  class="layui-btn layui-btn-normal">+ 添加商品</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 右边搜索结果 -->
+      <div class="layui-col-xs7 layui-col-sm9 layui-col-md10">
+        <div class="layui-card">
+            <!-- 头部信息 -->
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-body">
+                  <div class="mtd-shipin-index-div">
+                    <!-- 左边头像和热度 -->
+                      <div class="mtd-shipin-div-left">
+                        <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+                        <div class="mtd-list1-shenyang-div">
+                          <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                        </div>
+                      </div>
+                      <!-- 中间信息抖音号，分类和简介 -->
+                      <div class="mtd-shipin-div-center">
+                        <h5>李佳琪Austin <img src="../../../layuiadmin/imgs/3.png" alt="" class="center-img"> <img src="../../../layuiadmin/imgs/a-2.png" alt="" class="span-margin-l"> 抖音人气好物推荐官</h5>
+                        <p>抖音号：166902759<span class="span-margin-l">性别：男</span><span class="span-margin-l">地区：上海</span><span class="span-margin-l">年龄：27</span></p>
+                        <p>分类：美妆<span class="span-margin-l kouhong">口红</span><span class="span-margin-l kouhong">彩妆</span></p>
+                        <p>简介：涂口红世界纪录保持者 战胜马云的口红一哥 关注vx:李佳琪</p>
+                        <p><span class="mz-span-img"><img src="../../../layuiadmin/imgs/huangguan.png" alt="">美妆排行榜周榜第一名</span><span class="span-margin-l mz-span-img" style="background-color:#ff8000"><img src="../../../layuiadmin/imgs/huangguan.png" alt="">今日电商大人销量榜第三名</span></p>
+                      </div>
+                      <div id="hot">
+                        <p style="margin-top: 10px">平台热度</p>
+                        <p>2090.25w</p>
+                      </div>
+                      <!-- 右边四个仪表盘图表 -->
+                      <div class="mtd-shipin-div-right">
+                        <div class="container" style="width: 100%">
+                          <div class="chart">
+                            <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                            <div class="labeler">粉丝数</div>
+                          </div>
+                          <div class="chart">
+                            <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                            <div class="labeler">平均点赞</div>
+                          </div>
+                          <div class="chart">
+                            <div class="percentage" data-percent="92"><span>823</span></div>
+                            <div class="labeler">平均评论</div>
+                          </div>
+                          <div class="chart">
+                            <div class="percentage" data-percent="84"><span>2113</span></div>
+                            <div class="labeler">平均分享</div>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <!-- 好多button -->
+                  <div class="button5">
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入我的抖音号</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">相似号查询</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">视频监控</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">立即合作</button>
+                    <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入收藏</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 总播放量 总下载数 总评论数 总转发数 总点赞数 -->
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-body">
+                  <div class="mtd-shipin-list1-ul">
+                    <ul class="clear">
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/4.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>总播放数</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/5.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>总粉丝数</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/6.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>总评论数</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/7.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>总转发数</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/8.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>总点赞数</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/4.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>近30天增量</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/5.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>近30天增量</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/6.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>近30天增量</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/7.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>近30天增量</p>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="mtd-shipin-list1-div">
+                          <img src="../../../layuiadmin/imgs/8.png" alt="">
+                          <div class="mtd-shipin-list1-div-right right">
+                            <h4>150.0w</h4>
+                            <p>近30天增量</p>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 今日实时数据 -->
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-header clear">今日实时数据<span class="right">数据更新时间：2019/9/25 15:31:41</span></div>
+                <div class="layui-card-body clear">
+                  <!-- 四个 -->
+                  <div class="layui-col-sm4 my-shop-ul">
+                    <ul class="clear">
+                      <li class="layui-col-md6 left">
+                        <p><img src="../../../layuiadmin/imgs/shuju1.png" alt=""> 抖音浏览量增量 <img src="../../../layuiadmin/imgs/wen2.png" alt=""></p>
+                        <h3>1.3w</h3>
+                        <p>昨日全天：2.3w</p>
+                      </li>
+                      <li class="layui-col-md6 left">
+                        <p><img src="../../../layuiadmin/imgs/shuju2.png" alt=""> 全网销量增量 <img src="../../../layuiadmin/imgs/wen2.png" alt=""></p>
+                        <h3>1.3w</h3>
+                        <p>昨日全天：2.3w</p>
+                      </li>
+                      <li class="layui-col-md6 left">
+                        <p><img src="../../../layuiadmin/imgs/shuju3.png" alt=""> 关联视频数 <img src="../../../layuiadmin/imgs/wen2.png" alt=""></p>
+                        <h3>1.3w</h3>
+                        <p>昨日全天：2.3w</p>
+                      </li>
+                      <li class="layui-col-md6 left">
+                        <p><img src="../../../layuiadmin/imgs/shuju4.png" alt=""> 关联视频点赞增量 <img src="../../../layuiadmin/imgs/wen2.png" alt=""></p>
+                        <h3>1.3w</h3>
+                        <p>昨日全天：2.3w</p>
+                      </li>
+                    </ul>
+                  </div>
+                  <!-- 增量图表 -->
+                  <div class="layui-col-sm8">
+                    <div class="layui-card-header"><span class="mtd-shipin-td-btn">
+                      <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+                        <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">浏览量增量</button>
+                      </a>
+                      <button type="button" class="layui-btn layui-btn-sm">销量增量</button></span>
+                    </div>
+                    <div class="layui-card-body">
+                      <div id="tb1" style="height: 300px"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- tab选项 -->
+            <div class="layui-col-md12" style="padding-bottom: 0">
+              <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+                  <div class="mtd-shipin-tab-left mtd-shipin-tab-left3">
+                    <ul class="clear">
+                      <li><a href="list1.html" title="">作品分析</a></li>
+                      <li><a href="list2.html" title="">粉丝舆情数据分析</a></li>
+                      <li><a href="list3.html" title="" class="checked-bottom">热门商品分析</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 上榜趋势图 -->
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-header">上榜趋势图</div>
+                <div class="layui-card-body">
+                  <div id="tb4" style="height:400px"></div>
+                </div>
+              </div>
+            </div>
+            <!-- 品牌分类、商品分类、搜索、商品列表 -->
+            <div class="layui-col-md12">
+              <div class="layui-card">
+                <div class="layui-card-body">
+                  <!-- 品牌分类 -->
+                  <div class="mtd-shipin-fenlei border-bottom clear">
+                    <span class="left mtd-shipin-fenlei-left">品牌分类:</span>
+                    <div class="left mtd-shipin-fenlei-right">
+                      <a href="#" title="">全部(32)</a>
+                      <a href="#" title="">other(7)</a>
+                      <a href="#" title="">她及其他(7)</a>
+                      <a href="#" title="">美康粉黛(1)</a>
+                      <a href="#" title="">其他(10)</a>
+                    </div>
+                  </div>
+                  <!-- 商品分类 -->
+                  <div class="mtd-shipin-fenlei border-bottom clear">
+                    <span class="left mtd-shipin-fenlei-left">商品分类:</span>
+                    <div class="left mtd-shipin-fenlei-right">
+                      <a href="#" title="">全部(32)</a>
+                      <a href="#" title="">T恤_男(10)</a>
+                      <a href="#" title="">卫衣男(8)</a>
+                      <a href="#" title="">other(7)</a>
+                      <a href="#" title="">她及其他(7)</a>
+                      <a href="#" title="">美康粉黛(1)</a>
+                      <a href="#" title="">其他(10)</a>
+                    </div>
+                  </div>
+                  <!-- 搜索 -->
+                  <div class="mtd-shipin-fenlei border-bottom clear">
+                    <div class="layui-form-item left" style="margin-bottom: 0;display: inline-block;">
+                      <div class="layui-input-inline sanbang-right-div" style="width: 250px;margin-top: 2px">
+                        <input type="" name="" lay-verify="pass" placeholder="输入关键词" autocomplete="off" class="layui-input">
+                        <button type="button" class="layui-btn layui-btn-sm" style="background-color: #1e9fff;">搜索</button>
+                      </div>
+                    </div>
+                    <!-- 价格范围 -->
+                    <form class="layui-form" action="" class="right" style="display: inline-block;float: right">
+                      <div class="layui-form-item" style="margin-bottom: 0">
+                        <div class="layui-inline">
+                          <label class="layui-form-label">价格：</label>
+                          <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="price_min" placeholder="￥" autocomplete="off" class="layui-input">
+                          </div>
+                          <div class="layui-form-mid">-</div>
+                          <div class="layui-input-inline" style="width: 100px;">
+                            <input type="text" name="price_max" placeholder="￥" autocomplete="off" class="layui-input">
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <!-- 商品列表 -->
+                  <div class="kol-shangpin-list clear">
+                    <p>商品列表</p>
+                    <div class="right kol-shangpin-list-right clear">
+                      <!-- 右边时间选项 -->
+                      <div class="layui-form left" style="display: inline-block">
+                        <div class="layui-form-item" style="margin-bottom: 0">
+                          <div class="layui-inline">
+                            <label class="layui-form-label">日期：</label>
+                            <div class="layui-input-inline">
+                              <input type="text" class="layui-input" id="test1" placeholder="yyyy-MM-dd">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="mtd-shipin-tab-right left">
+                        <!-- 以下button不能换行，不然会有左右间隔 -->
+                        <button type="button" class="layui-btn layui-btn-sm mtd-shipin-btn-checked">昨天</button>
+                        <button type="button" class="layui-btn layui-btn-sm">最近7天</button>
+                        <button type="button" class="layui-btn layui-btn-sm">全部</button>
+                        <button type="button" class="layui-btn layui-btn-sm">自定义近3天</button>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+            </div>
+            <!-- tab选项 -->
+            <div class="layui-col-md12" style="padding-bottom: 0">
+              <div class="layui-card">
+                <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+                  <div class="mtd-shipin-tab-left">
+                    <ul class="clear">
+                      <li><a href="list1.html" title="" class="checked-bottom">按热度排序</a></li>
+                      <li><a href="list2.html" title="">按关联视频数排序</a></li>
+                      <li><a href="list3.html" title="">按浏览量增量排序</a></li>
+                      <li><a href="list3.html" title="">按全网销量增量排序</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- 列表 -->
+            <!-- 表格 -->
+      <table class="layui-table" lay-even="" lay-skin="nob">
+        <colgroup>
+          <col width="100">
+          <col width="300">
+          <col width="100">
+          <col width="100">
+          <col>
+          <col>
+          <col>
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>商品</th>
+            <th>热度</th>
+            <th>关联视频数</th>
+            <th>抖音浏览量增量</th>
+            <th>全网销售增量</th>
+            <th>售价</th>
+            <th>操作</th>
+          </tr> 
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td class="mtd-mtd-shipin-table-td2 kol-mtd-shipin-table-td2">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <p class="yichu">欧式蕾丝床席梦思欧式蕾丝床席梦思欧式蕾丝床席梦思</p>
+            </td>
+            <td class="color8c">4.3w</td>
+            <td class="color8c">327</td>
+            <td class="color8c">7728</td>
+            <td class="color8c">570</td>
+            <td style="color: red">￥88.0</td>
+            <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo5.png" alt="">商品详情</button></a></td>
+          </tr>
+         <tr>
+            <td>2</td>
+            <td class="mtd-mtd-shipin-table-td2 kol-mtd-shipin-table-td2">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <p class="yichu">欧式蕾丝床席梦思欧式蕾丝床席梦思欧式蕾丝床席梦思</p>
+            </td>
+            <td class="color8c">4.3w</td>
+            <td class="color8c">327</td>
+            <td class="color8c">7728</td>
+            <td class="color8c">570</td>
+            <td style="color: red">￥88.0</td>
+            <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo5.png" alt="">商品详情</button></a></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td class="mtd-mtd-shipin-table-td2 kol-mtd-shipin-table-td2">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <p class="yichu">欧式蕾丝床席梦思欧式蕾丝床席梦思欧式蕾丝床席梦思</p>
+            </td>
+            <td class="color8c">4.3w</td>
+            <td class="color8c">327</td>
+            <td class="color8c">7728</td>
+            <td class="color8c">570</td>
+            <td style="color: red">￥88.0</td>
+            <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo5.png" alt="">商品详情</button></a></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td class="mtd-mtd-shipin-table-td2 kol-mtd-shipin-table-td2">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <p class="yichu">欧式蕾丝床席梦思欧式蕾丝床席梦思欧式蕾丝床席梦思</p>
+            </td>
+            <td class="color8c">4.3w</td>
+            <td class="color8c">327</td>
+            <td class="color8c">7728</td>
+            <td class="color8c">570</td>
+            <td style="color: red">￥88.0</td>
+            <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo5.png" alt="">商品详情</button></a></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td class="mtd-mtd-shipin-table-td2 kol-mtd-shipin-table-td2">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <p class="yichu">欧式蕾丝床席梦思欧式蕾丝床席梦思欧式蕾丝床席梦思</p>
+            </td>
+            <td class="color8c">4.3w</td>
+            <td class="color8c">327</td>
+            <td class="color8c">7728</td>
+            <td class="color8c">570</td>
+            <td style="color: red">￥88.0</td>
+            <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo5.png" alt="">商品详情</button></a></td>
+          </tr>
+        </tbody>
+      </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
+  
+  <script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.左侧 ul li 信息点击时变蓝效果
+$(document).ready(function() {
+  $(".kol-duibi-ul ul li").click(function() {
+    $(".kol-duibi-ul ul li").removeClass('kol-duibi-onclick')//若想点击以后样式不再回去，就把这行removeClass去掉
+    $(this).addClass("kol-duibi-onclick");
+  });}
+);
+
+// 3.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+
+// 4.昨日今日 图表
+var myChart = echarts.init(document.getElementById("tb1")); 
+var option = {
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    legend: {
+        data:['昨日','今日']
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['周一','周二','周三','周四','周五','周六','周日']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'昨日',
+            type:'line',
+            stack: '总量',
+             color:['#bddbfd'],
+            areaStyle: {},
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'今日',
+            type:'line',
+            stack: '总量',
+             color:['#4d8fe6'],
+            areaStyle: {},
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+    ]
+};
+myChart.setOption(option); 
+
+
+// 8. 年月日期时间范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+
+
+
+
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //日期
+  laydate.render({
+    elem: '#date'
+  });
+  laydate.render({
+    elem: '#date1'
+  });
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ]
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+  //监听指定开关
+  form.on('switch(switchTest)', function(data){
+    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+      offset: '6px'
+    });
+    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+ 
+  //表单赋值
+  layui.$('#LAY-component-form-setval').on('click', function(){
+    form.val('example', {
+      "username": "贤心" // "name": "value"
+      ,"password": "123456"
+      ,"interest": 1
+      ,"like[write]": true //复选框选中状态
+      ,"close": true //开关状态
+      ,"sex": "女"
+      ,"desc": "我爱 layui"
+    });
+  });
+  
+  //表单取值
+  layui.$('#LAY-component-form-getval').on('click', function(){
+    var data = form.val('example');
+    alert(JSON.stringify(data));
+  });
+  
+});
+
+// 4.上榜趋势图 图表
+var myChart = echarts.init(document.getElementById("tb4")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#00a2ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+
+
+// 弹框
+layui.use('layer', function(){ //独立版的layer无需执行这一句
+  var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+  //触发事件
+  var active = {
+    setTop: function(){
+      var that = this; 
+      //多窗口模式，层叠置顶
+      layer.open({
+        type: 2 //此处以iframe举例
+        ,title: '当你选择该窗体时，即会在最顶端'
+        ,area: ['390px', '260px']
+        ,shade: 0
+        ,maxmin: true
+        ,offset: [ //为了演示，随机坐标
+          Math.random()*($(window).height()-300)
+          ,Math.random()*($(window).width()-390)
+        ] 
+        ,content: '//layer.layui.com/test/settop.html'
+        ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+        ,yes: function(){
+          $(that).click(); 
+        }
+        ,btn2: function(){
+          layer.closeAll();
+        }
+        
+        ,zIndex: layer.zIndex //重点1
+        ,success: function(layero){
+          layer.setTop(layero); //重点2
+        }
+      });
+    }
+    // 左侧新建分组的弹框
+    ,offset: function(othis){
+      var type = othis.data('type')
+      ,text = othis.text();
+      layer.open({
+        type: 1
+        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+        ,id: 'layerDemo'+type //防止重复弹出
+        ,content: '<form class="layui-form" action=""><div class="layui-form-item"><div class="layui-input-block" style="margin: 25px 40px;"><input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入分组名称" class="layui-input" style="width: 270px!important;"></div></div><form>'
+        ,title:'新建分组'
+        ,btn: '确定'
+        ,btnAlign: 'c' //按钮居中
+        ,shade: 0 //不显示遮罩
+        ,yes: function(){
+          layer.closeAll();
+        }
+      });
+    }
+    // 左侧添加抖音号的弹框
+    ,offset2: function(othis){
+      var type = othis.data('type')
+      ,text = othis.text();
+      layer.open({
+        type: 1
+        ,offset: type //具体配置参考：http://www.layui.com/doc/modules/layer.html#offset
+        ,id: 'layerDemo'+type //防止重复弹出
+        ,content: '<form class="layui-form" action=""><div class="layui-form-item"><div class="layui-input-block" style="margin: 25px 40px;"><input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入昵称、抖音号、主页链接" class="layui-input"style="width: 270px!important;"></div></div><form>'
+        ,title:'添加抖音号'
+        ,btn: '搜索'
+        ,btnAlign: 'c' //按钮居中
+        ,shade: 0 //不显示遮罩
+        ,yes: function(){
+          layer.closeAll();
+        }
+      });
+    }
+  };
+  
+  $('#layerDemo .layui-btn').on('click', function(){
+    var othis = $(this), method = othis.data('method');
+    active[method] ? active[method].call(this, othis) : '';
+  });
+  
+});
+  </script>
+</body>
+</html>

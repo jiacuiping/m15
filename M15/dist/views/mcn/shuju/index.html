@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数据趋势</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-form-item{margin-bottom: 0}
+.layui-input-block{margin-left: 0}
+.guan{padding: 0 10px 10px 10px; text-align: right }
+.mask{width: 100%;height: 100vh; background: rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
+.content{width: 450px;max-height: 450px;overflow: auto;background: #fff;margin: 10% auto;padding: 10px}
+.sanbang-right-div,.sanbang-right{width: 100%!important}
+.mtd-shipin-tab-left{display: block}
+.mtd-shipin-tab-left ul li{width: 30%;text-align: center}
+.mtd-shipin-tab-left ul li a{padding-bottom: 3px;}
+.mtd-shipin-td-btn a,.mtd-shipin-td-btn button,.mtd-shipin-tab-right button{display: block !important;float: left !important;width: 73px !important;}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 头像加右侧数据 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body mcn-kol-top clear">
+            <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+            <div class="left">
+              <h3>美ONE</h3>
+              <P>美腕（上海）网络科技有限公司</P>
+              <p>美ONE成立于2014年，是通过挖掘及培养专业达人，饼打造专业内容、。。。。</p>
+              <p>官网：http////////</p>
+              <p>同MCN抖音号：</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 七条数据 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body clear">
+            <!-- 右侧选项和下拉 -->
+            <div class="right">
+              <!-- 时间选项 -->
+              <div class="mtd-shipin-tab-right">
+                <!-- 以下button不能换行，不然会有左右间隔 -->
+                <button type="button" class="layui-btn layui-btn-sm mtd-shipin-btn-checked">按平台</button>
+                <button type="button" class="layui-btn layui-btn-sm">按分组</button>
+                <button type="button" class="layui-btn layui-btn-sm">按经纪人</button>
+              </div>
+              <!-- 全部平台 -->
+              <form class="layui-form" action="" style="width: 150px;display: inline-block;">
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <select name="interest" lay-filter="aihao">
+                      <option value="0" selected="">全部平台</option>
+                      <option value="1">写作</option>
+                      <option value="2">阅读</option>
+                    </select>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <!-- 七条数据 -->
+            <div class="layui-col-md12 mcn-seven">
+              <ul class="clear">
+                <li><h3>20</h3><p>已认领的红人</p></li>
+                <li><h3>5.2亿</h3><p>总粉丝数</p></li>
+                <li><h3>16.5万</h3><p>昨日新增粉丝</p></li>
+                <li><h3>16.5万</h3><p>本周新增粉丝</p></li>
+                <li><h3>16.5万</h3><p>上周新增粉丝</p></li>
+                <li><h3>16.5万</h3><p>本月新增粉丝</p></li>
+                <li><h3>1,207.9万万</h3><p>上月新增粉丝</p></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab导航条 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="list1.html" title="" class="checked-bottom">数据趋势</a></li>
+                <li><a href="list2.html" title="">详细数据</a></li>
+                <li><a href="list3.html" title="">红人热门视频</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 统计范围 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <p style="display:inline-block;color: #000">统计范围：所有已认领的红人</p>
+            <!-- 右边时间选项 -->
+            <div class="mtd-shipin-tab-right right">
+              <!-- 以下button不能换行，不然会有左右间隔 -->
+              <button type="button" class="layui-btn layui-btn-sm mtd-shipin-btn-checked">近7天</button>
+              <button type="button" class="layui-btn layui-btn-sm">近30天</button>
+              <button type="button" class="layui-btn layui-btn-sm">近90天</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 四个图表数据 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">新增粉丝</div>
+          <div class="layui-card-body">
+            <div id="tb1" style="height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">新增粉丝</div>
+          <div class="layui-card-body">
+            <div id="tb2" style="height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">新增粉丝</div>
+          <div class="layui-card-body">
+            <div id="tb3" style="height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">新增粉丝</div>
+          <div class="layui-card-body">
+            <div id="tb4" style="height: 300px"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.下拉选择
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+});
+
+
+// 3.新增粉丝 图表
+var myChart = echarts.init(document.getElementById("tb1")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28', '08-29', '08-30', '08-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    color:['#049cff'],
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320,820, 932, 901],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option);
+// 4.新增播放 图表
+var myChart = echarts.init(document.getElementById("tb2")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28', '08-29', '08-30', '08-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    color:['#049cff'],
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320,820, 932, 901],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option);
+// 5.新增点赞 图表
+var myChart = echarts.init(document.getElementById("tb3")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28', '08-29', '08-30', '08-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    color:['#049cff'],
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320,820, 932, 901],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option);
+// 6.新增评论 图表
+var myChart = echarts.init(document.getElementById("tb4")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28', '08-29', '08-30', '08-31']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    color:['#049cff'],
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320,820, 932, 901],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option);
+</script>
+</body>
+</html>

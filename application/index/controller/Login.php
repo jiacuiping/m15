@@ -49,50 +49,8 @@ class Login extends Base
             if(!PasswordCheck($password,$login['login_password'],$login['login_str'])) return array('code'=>0,'msg'=>'密码不正确');
             //获取用户主信息
             $user = $this->User->GetOneDataById($login['login_user']);
-            //账号数据判断
-            if(!$user) return array('code'=>0,'msg'=>'账号异常，请联系客服');
-            //账号状态判断
-            if($user['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
 
-            //开始处理登陆信息...
-
-            //更新登陆记录
-            $this->SaveLoginLog($user['user_id'],2);
-            //查询会员信息
-    		$vip = $this->Vip->GetOneData(array('vip_user'=>$user['user_id'],'vip_start'=>array('LT',time()),'vip_expire'=>array('GT',time())));
-            //更新用户会员信息
-            $this->User->UpdateData(['user_id'=>$user['user_id'],'user_vlevel'=>empty($vip) ? 0 : $vip['vip_level']]);
-
-            //补全信息...
-
-            //补全会员信息
-            if(empty($vip)){
-                $user['user_vip'] = array(
-                    'level_name'    => '免费版',
-                    'level_icon'    => '',
-                    'level_desc'    => '普通版用户',
-                );
-            }else
-                $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id'=>$vip['vip_level']));
-
-            //如果用户已提交认证信息
-            if($user['user_type'] != 1){
-                //补全认证信息
-                $user['user_authInfo'] = $this->Certification->GetOneDataById($user['user_certification']);
-                //补全关联信息
-                switch ($user['user_type']) {
-                    case 4:
-                        $expaObj = new Mcn;
-                        break;
-                }
-
-                $user['user_expaInfo'] = $expaObj->GetOneDataById($user['user_expansion']);
-            }
-            //生成session
-    		session::set('user',$user);
-
-            //返回成功
-            return array('code'=>1,'msg'=>'登陆成功，即将跳转');
+            return $this->delUser($user);
 
     	}else{
 
@@ -107,19 +65,62 @@ class Login extends Base
 
         $QrCode = $DyInterfaces->GetLoginQrcode();
 
-        dump($QrCode);die;
     }
 
     //抖音扫码登录
     public function dyqrcode()
     {
-        dump(input('post.'));
-        echo "<hr/>";
-        dump(input('get.'));
-        echo "<hr/>";
-        dump(input('pamar.'));
-        die;
+        // 把code存入session
+        $code = input('get.code');
+        session::set('code',input('get.code'));
+
+        $DyInterfaces = new DyInterfaces;
+
+        // 获取access_token
+        $data = $DyInterfaces->get_access_token();
+        dump($data);die;
+        if(!$data) {
+            return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
+        }
+
+
+        // 用户是否登录过
+        $userInfo = $this->User->GetOneData(['user_open_id' => $data['open_id']]);
+        if($userInfo) {
+            return $this->delUser($userInfo);
+        }
+
+        // 获取抖音用户信息
+        $userDyInfo = $DyInterfaces->getUserInfo($data['access_token'], $data['open_id']);
+
+        if(!$userDyInfo) {
+            return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
+        }
+
+        $userData = [
+            'user_name' => $userDyInfo['nickname'],
+            'user_type' => 1,
+            'user_avatar' => $userDyInfo['avatar'],
+            'user_sex' => $userDyInfo['gender'],
+            'user_open_id' => $userDyInfo['open_id'],
+            'user_union_id' => $userDyInfo['union_id'],
+            'user_account_role' => $userDyInfo['e_account_role'], // EAccountM - 普通企业号 EAccountS - 认证企业号  EAccountK - 品牌企业号
+        ];
+
+        // 存储用户信息
+        $res = $this->User->CreateData($userData);
+        dump($res);die;
+
+        if($res && $res['code'] == 1) {
+            return $this->delUser($res['data']);
+        } else {
+            return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
+        }
+
     }
+
+
+
 
     //退出方法
     public function logout()
@@ -141,5 +142,53 @@ class Login extends Base
         );
 
         $LoginLog->CreateData($lastLogin);
+    }
+
+    public function delUser($user)
+    {
+        //账号数据判断
+        if(!$user) return array('code'=>0,'msg'=>'账号异常，请联系客服');
+        //账号状态判断
+        if($user['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
+
+        //开始处理登陆信息...
+
+        //更新登陆记录
+        $this->SaveLoginLog($user['user_id'],2);
+        //查询会员信息
+        $vip = $this->Vip->GetOneData(array('vip_user'=>$user['user_id'],'vip_start'=>array('LT',time()),'vip_expire'=>array('GT',time())));
+        //更新用户会员信息
+        $this->User->UpdateData(['user_id'=>$user['user_id'],'user_vlevel'=>empty($vip) ? 0 : $vip['vip_level']]);
+
+        //补全信息...
+
+        //补全会员信息
+        if(empty($vip)){
+            $user['user_vip'] = array(
+                'level_name'     => '免费版',
+                'level_icon'    => '',
+                'level_desc'    => '普通版用户',
+            );
+        }else
+            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id'=>$vip['vip_level']));
+
+        //如果用户已提交认证信息
+        if($user['user_type'] != 1){
+            //补全认证信息
+            $user['user_authInfo'] = $this->Certification->GetOneDataById($user['user_certification']);
+            //补全关联信息
+            switch ($user['user_type']) {
+                case 4:
+                    $expaObj = new Mcn;
+                    break;
+            }
+
+            $user['user_expaInfo'] = $expaObj->GetOneDataById($user['user_expansion']);
+        }
+        //生成session
+        session::set('user',$user);
+
+        //返回成功
+        return array('code'=>1,'msg'=>'登陆成功，即将跳转');
     }
 }

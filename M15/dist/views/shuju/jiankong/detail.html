@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>监控历史</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .layui-form-item .layui-input-inline{width: 300px}
+  .layui-btn{background-color: #1e9fff}
+  .shengzhi{width: 80px; height: 108px}
+  .layui-form-radio{margin-right: 0; padding-right: 0}
+  .mtd-shipin-td-btn a,.mtd-shipin-td-btn button,.mtd-shipin-tab-right button{display: block !important;float: left !important;width: 73px !important;}
+</style>
+<body onLoad="initPieChart();">
+  <div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <a href="index2.html" title="" style="color: #1588e3">返回监控页</a>
+          </div>
+        </div>
+      </div>
+      <!-- 视频介绍 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body" style="height: 160px">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" class="mtd-shipin-list1-img">
+            <div class="mtd-shipin-list1">
+              <h4 class="yichu clear shuju-jiankong-h4">神回路翻转再也不用抢车位了<span>监控中</span><span>未提醒</span></h4>
+              <p>监控类型：即时监控</p>
+              <p>监控时长：24小时&nbsp;&nbsp;&nbsp;&nbsp;点赞数：24w</p>
+              <p>视频时长：19秒&nbsp;&nbsp;&nbsp;&nbsp;点赞数提醒：未开启</p>
+              <p>监控时间：09月04日 13:22&nbsp;&nbsp;&nbsp;&nbsp;发布时间：2019-09-21</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 粉丝点赞评论分享 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body clear" style="height: 160px">
+            <!-- 左边图片 -->
+            <div class="mtd-list1-shenyang-left left">
+              <p>沈阳新闻 <img src="../../../layuiadmin/imgs/3.png" alt="" style="margin-left:10px"></p>
+              <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+              <div class="mtd-list1-shenyang-div">
+                <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+              </div>
+            </div>
+            <!-- 右边数据 -->
+            <div class="mtd-list1-shenyang-right left">
+              <div class="container" style="width: 100%">
+                <div class="chart">
+                  <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                  <div class="labeler">粉丝数</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                  <div class="labeler">平均点赞</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="92"><span>823</span></div>
+                  <div class="labeler">平均评论</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="84"><span>2113</span></div>
+                  <div class="labeler">平均分享</div>
+                </div>
+              </div>
+              <p>抖音号：57585455<span class="span-margin-l">性别：女</span><span class="span-margin-l">地区：沈阳</span><span class="span-margin-l">分类：知识资讯类</span></p>
+              <p>用字温暖你 用心做媒体 新闻综合频道官方微信上线啦</p>
+              <p><img src="../../../layuiadmin/imgs/a-2.png" alt=""> 沈阳新闻频道</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 三个图表 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">点赞数趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tubiao1" style="height: 400px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">点赞数趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tubiao2" style="height: 400px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">点赞数趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tubiao3" style="height: 400px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 表格 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header clear">数据详情<button class="layui-btn layui-btn-sm layui-btn-normal right" style="margin-top: 5px">导出</button></div>
+          <div class="layui-card-body layui-form">
+            <table class="layui-table" lay-even="" lay-skin="nob">
+              <colgroup>
+                <col>
+                <col width="150">
+                <col width="200">
+                <col>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>时间</th>
+                  <th>总点赞数</th>
+                  <th>点赞增量</th>
+                  <th>总评论数</th>
+                  <th>评论增量</th>
+                  <th>总转发数</th>
+                  <th>转发增量</th>
+                </tr> 
+              </thead>
+              <tbody>
+                <tr>
+                  <td>2019-07-13 09:22:11</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>2019-07-13 09:22:11</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>2019-07-13 09:22:11</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                </tr>
+                <tr>
+                  <td>2019-07-13 09:22:11</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                </tr>
+
+                <tr>
+                  <td>2019-07-13 09:22:11</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                  <td>100</td>
+                </tr>
+
+              </tbody>
+            </table> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+  <script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+
+// 1.点赞数趋势 图表
+var myChart = echarts.init(document.getElementById("tubiao1")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#0092ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+// 2.评论数趋势 图表
+var myChart = echarts.init(document.getElementById("tubiao2")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#0092ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+// 3.转发数趋势 图表
+var myChart = echarts.init(document.getElementById("tubiao3")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#0092ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+
+// 3.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+</script>
+</body>
+</html>

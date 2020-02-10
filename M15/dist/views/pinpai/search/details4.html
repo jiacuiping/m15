@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>品牌舆情分析</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block {margin-left: 70px}
+.border-bottom{margin: 15px 0;}
+.layui-form-label{color: #000}
+.layui-form-item .layui-input-inline{width: 300px}
+.mtd-mtd-shipin-table-td2 img{width: 70px; height: 70px}
+.mtd-mtd-shipin-table-td2 p{width: 80%}
+.button5{border-top: 1px solid #eee;padding-top: 10px;}
+.mtd-shipin-tab-left3{width: 100%}
+.mtd-shipin-tab-left3 ul li{width: 23%;text-align: center}
+.mtd-shipin-td-btn a,.mtd-shipin-td-btn button,.mtd-shipin-tab-right button{display: block !important;float: left !important;width: 73px !important;}
+</style>
+<body onLoad="initPieChart();">
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 放心购 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" style="width: 100px;height: 100px">
+            <div class="mtd-shipin-list2-div">
+              <h5>妮维维</h5>
+              <p>认证公司：妮维维（上海）有限公司</p>
+              <p>所属行业：化妆品</p>
+            </div>
+            <!-- 右边四个仪表盘图表 -->
+            <div class="mtd-shipin-div-right" style="vertical-align: middle">
+              <div class="container" style="width: 360px">
+                <div class="chart">
+                  <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                  <div class="labeler">粉丝数</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                  <div class="labeler">平均点赞</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="92"><span>823</span></div>
+                  <div class="labeler">平均评论</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="84"><span>2113</span></div>
+                  <div class="labeler">平均分享</div>
+                </div>
+              </div>
+            </div>
+            <!-- 好多button -->
+            <div class="button5">
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">收藏品牌</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入我的品牌</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" styl-e="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left mtd-shipin-tab-left3">
+              <ul class="clear">
+                <li><a href="details1.html" title="">推广视频分析</a></li>
+                <li><a href="details2.html" title="">在售播主分析</a></li>
+                <li><a href="details3.html" title="">商品分析</a></li>
+                <li><a href="details4.html" title="" class="checked-bottom">品牌舆情分析</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 年龄分布 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">年龄分布</div>
+          <div class="layui-card-body">
+            <div id="tb3" style="height: 500px"></div>
+          </div>
+        </div>
+      </div>
+        <!-- 地域分布 -->
+      <div class="layui-col-md6">
+            <div class="layui-card">
+              <div class="layui-card-header">地域分布<span class="right mtd-shipin-td-btn jia-span-top">
+                <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+                  <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">省份</button>
+                </a>
+                <button type="button" class="layui-btn layui-btn-sm">城市</button></span>
+              </div>
+              <div class="layui-card-body" style="height: 500px">
+                <table class="layui-table" lay-even="" lay-skin="nob">
+                  <colgroup>
+                    <col width="150">
+                    <col width="150">
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th>名称</th>
+                      <th>占比</th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>广东</td>
+                      <td>12.44%</td>
+                    </tr>
+                    <tr>
+                      <td>北京</td>
+                      <td>14.07%</td>
+                    </tr>
+                    <tr>
+                      <td>浙江</td>
+                      <td>8.61%</td>
+                    </tr>
+                    <tr>
+                      <td>江苏</td>
+                      <td>7.18%</td>
+                    </tr>
+                    <tr>
+                      <td>山东</td>
+                      <td>6.94%</td>
+                    </tr>
+                    <tr>
+                      <td>河北</td>
+                      <td>5.98%</td>
+                    </tr>
+                    <tr>
+                      <td>四川</td>
+                      <td>5.26%</td>
+                    </tr>
+                    <tr>
+                      <td>辽宁</td>
+                      <td>5.02%</td>
+                    </tr>
+                    <tr>
+                      <td>福建</td>
+                      <td>4.55%</td>
+                    </tr>
+                    <tr>
+                      <td>安徽</td>
+                      <td>4.31%</td>
+                    </tr>
+                    <tr>
+                      <td>湖北</td>
+                      <td>4.07%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+      </div>
+            <!-- 评论热词 -->
+            <div class="left layui-col-md6">
+              <div class="layui-card">
+                <div class="layui-card-header">评论热词TOP10</div>
+                <div class="layui-card-body">
+                  <div id="tb1" style="height:500px"></div>
+                </div>
+              </div>
+            </div>
+            <!-- 全部评论 -->
+            <div class="left layui-col-md6">
+              <div class="layui-card" style="background-color: #f0f1f3">
+                <div class="layui-card-header">全部评论（1254）</div>
+                <div class="layui-card-body clear layui-pinglun-overflow">
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+                <!-- 一条评论 start -->
+                  <div class="yi-pinglun">
+                    <!-- 评论者信息 -->
+                    <div class="pinglun-top">
+                      <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+                      <span style="color: #000">王若冰</span>
+                      <span class="right pinglun-span"><img src="../../../layuiadmin/imgs/xin-hui.png" alt="">1.5w</span>
+                    </div>
+                    <!-- 评论内容 -->
+                    <div class="pinglun-content">
+                      一群脑残还在说别人，从45度角看白车只是越了黄线一点，实际根本不可能超过黄线！总结就是皮卡行驶不规范，男子还有病！
+                    </div>
+                    <!-- 评论时间 -->
+                    <p>2019-09-20 23:46</p>
+                  </div>
+                <!-- 一条评论 end -->
+
+                </div>
+              </div>
+            </div>
+    </div>
+  </div>
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
+<script>
+// 1.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+// 2.评论热词TOP10 图表
+var myChart = echarts.init(document.getElementById("tb1")); 
+var option = {
+    color: ['#3398DB'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    color:['#018fcf'],
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Thu', 'Fri', 'Sat', 'Sun'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            type:'bar',
+            barWidth: '60%',
+            data:[10, 52, 200, 334, 390, 330, 220,334, 390, 330, 220]
+        }
+    ]
+};
+myChart.setOption(option); 
+
+
+// 3. 年龄分布
+var myChart = echarts.init(document.getElementById("tb3")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    },
+    color: ['#3398DB'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [120, 200, 150, 80, 70, 110, 130],
+        type: 'bar'
+    }]
+};
+myChart.setOption(option); 
+
+</script>
+
+</html>

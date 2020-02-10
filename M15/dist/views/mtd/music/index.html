@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>热门音乐</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .layui-form-item .layui-input-inline{width: 300px}
+  .layui-btn{background-color: #1e9fff}
+</style>
+<body>
+  <div class="layui-fluid" id="LAY-demo-carousel">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 三榜 -->
+      <div class="layui-col-md12" style="padding-top: 0">
+        <div class="sanbang clear">
+          <div class="left sanbang-left mtd-shipin-td-btn">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm mtd-shipin-btn-checked">总榜</button></a><button type="button" class="layui-btn layui-btn-sm">月榜</button><button type="button" class="layui-btn layui-btn-sm">周榜</button>
+          </div>
+          <div class="right sanbang-right">
+            <div class="layui-form-item">
+              <div class="layui-input-inline sanbang-right-div">
+                <input type="" name="" lay-verify="pass" placeholder="请输入话题关键字" autocomplete="off" class="layui-input">
+                <button type="button" class="layui-btn layui-btn-sm">搜索</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 一行字 -->
+      <div class="clear yihangzi">
+        <p>共搜索到113.646个结果</p>
+        <p class="right">最近更新时间：2019-10-1</p>
+      </div>
+      <!-- 表格 -->
+      <div class="layui-col-md12" style="padding-top: 0">
+        <div class="layui-form">
+          <table class="layui-table" lay-even="" lay-skin="nob">
+            <colgroup>
+              <col width="100">
+              <col width="500">
+              <col width="">
+              <col width="">
+              <col width="250">
+              <col>
+            </colgroup>
+            <thead>
+              <tr class="mtd-shipin-tr">
+                <th>排名</th>
+                <th style="text-align: left">音乐名称</th>
+                <th>音乐人</th>
+                <th>使用次数</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/jin.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子西北第一喷子西北第一喷子西北第一喷子西北第一喷子...</p></td>
+                <td class="color8c">小名</td>
+                <td class="color8c">25.1w</td>
+                <td class="mtd-shipin-td-btn"><a href="details.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/yin.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td class="color8c">小名</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn"><a href="details.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/tong.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td class="color8c">小明</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn"><a href="details.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td class="color8c">小明</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn"><a href="details.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td class="color8c">小名</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn"><a href="details.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td class="color8c">小红</td>
+                <td class="color8c">9689</td>
+                <td class="mtd-shipin-td-btn"><a href="details.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+      </div>     
+    </div>
+  </div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+
+</script>
+</body>
+</html>

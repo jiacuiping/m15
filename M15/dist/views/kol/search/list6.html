@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>粉丝数据分析</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .easyPieChart{margin: 0 20px;}
+  .mtd-shipin-tab-left2{width: 100%}
+  .mtd-shipin-tab-left2 ul li{width: 15%; text-align: center}
+    .mask{width: 100%;height: 100vh; background:rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
+    .mask-content{width: 300px;height:200px;background: #fff;margin: 10% auto;padding:15px;position: relative}
+    .mask-content h3{color: #000;margin-bottom: 15px}
+
+    .mask2{width: 100%;height: 100vh;position: fixed; top: 0;z-index: 99999; display: none;}
+    .mask-content2{width: 300px;background: #fff;margin: 10% auto;padding:15px;position: relative}
+    .mask-content2 h3{color: #000;margin-bottom: 15px;padding-bottom: 10px;border-bottom: 1px solid #ddd;}
+</style>
+<body onLoad="initPieChart();">
+<div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <!-- 收藏的信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="mtd-shipin-index-div">
+              <!-- 左边头像和热度 -->
+                <div class="mtd-shipin-div-left">
+                  <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+                  <div class="mtd-list1-shenyang-div">
+                    <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                  </div>
+                </div>
+                <!-- 中间信息抖音号，分类和简介 -->
+                <div class="mtd-shipin-div-center">
+                  <h5>李佳琪Austin <img src="../../../layuiadmin/imgs/3.png" alt="" class="center-img"> <img src="../../../layuiadmin/imgs/a-2.png" alt="" class="span-margin-l"> 抖音人气好物推荐官</h5>
+                  <p>抖音号：166902759<span class="span-margin-l">性别：男</span><span class="span-margin-l">地区：上海</span><span class="span-margin-l">年龄：27</span></p>
+                  <p>分类：美妆<span class="span-margin-l kouhong">口红</span><span class="span-margin-l kouhong">彩妆</span></p>
+                  <p>简介：涂口红世界纪录保持者 战胜马云的口红一哥 关注vx:李佳琪</p>
+                  <p><span class="mz-span-img"><img src="../../../layuiadmin/imgs/huangguan.png" alt="">美妆排行榜周榜第一名</span><span class="span-margin-l mz-span-img" style="background-color:#ff8000"><img src="../../../layuiadmin/imgs/huangguan.png" alt="">今日电商大人销量榜第三名</span></p>
+                </div>
+                <div id="hot">
+                  <p style="margin-top: 10px">平台热度</p>
+                  <p>2090.25w</p>
+                </div>
+                <!-- 右边四个仪表盘图表 -->
+                <div class="mtd-shipin-div-right">
+                  <div class="container" style="width: 100%">
+                    <div class="chart">
+                      <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                      <div class="labeler">粉丝数</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                      <div class="labeler">平均点赞</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="92"><span>823</span></div>
+                      <div class="labeler">平均评论</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="84"><span>2113</span></div>
+                      <div class="labeler">平均分享</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- 好多button -->
+            <div class="button5">
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入我的抖音号</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">相似号查询</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">视频监控</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">立即合作</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入收藏</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding:10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
+              <ul class="clear">
+                <li><a href="list1.html" title="">数据概览</a></li>
+                <li><a href="list2.html" title="">播主视频</a></li>
+                <li><a href="list3.html" title="">MCN系统</a></li>
+                <li><a href="list4.html" title="">粉丝数据分析</a></li>
+                <li><a href="list5.html" title="">电商数据分析</a></li>
+                <li><a href="list6.html" title="" class="checked-bottom">任务平台</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <!-- 一个完整的任务平台 -->
+      <div class="layui-col-md6 kol-list6 clear">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-list6-bai">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <div class="kol-list6-content">
+                <p style="color: #000">李佳琪的大V视频定制</p>
+                <p style="color: #ff5a01">￥4500.0</p>
+                <p>成交：0次&nbsp;&nbsp;&nbsp;&nbsp;好评率：0%</p>
+              </div>
+              <button class="layui-btn layui-btn-sm hezuo-btn right">立即合作</button>
+            </div>
+            <div class="kol-list6-hui">
+              <p><span style="color: #000">服务评价</span><a href="#" title="" class="right">查看更多评价> </a></p>
+              <p>与店家沟通起来很顺利，制作水平也很专业，无需多费口舌就可以理解到我想要的功能点，这让我很开心，省了不少事。。距离约定时间提前了半小时交付，同时店家也承诺如果后续有使用问题可以随时沟通。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="layui-col-md6 kol-list6 clear">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-list6-bai">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <div class="kol-list6-content">
+                <p style="color: #000">李佳琪的大V视频定制</p>
+                <p style="color: #ff5a01">￥4500.0</p>
+                <p>成交：0次&nbsp;&nbsp;&nbsp;&nbsp;好评率：0%</p>
+              </div>
+              <button class="layui-btn layui-btn-sm hezuo-btn right">立即合作</button>
+            </div>
+            <div class="kol-list6-hui">
+              <p><span style="color: #000">服务评价</span><a href="#" title="" class="right">查看更多评价> </a></p>
+              <p>与店家沟通起来很顺利，制作水平也很专业，无需多费口舌就可以理解到我想要的功能点，这让我很开心，省了不少事。。距离约定时间提前了半小时交付，同时店家也承诺如果后续有使用问题可以随时沟通。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="layui-col-md6 kol-list6 clear">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-list6-bai">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <div class="kol-list6-content">
+                <p style="color: #000">李佳琪的大V视频定制</p>
+                <p style="color: #ff5a01">￥4500.0</p>
+                <p>成交：0次&nbsp;&nbsp;&nbsp;&nbsp;好评率：0%</p>
+              </div>
+              <button class="layui-btn layui-btn-sm hezuo-btn right">立即合作</button>
+            </div>
+            <div class="kol-list6-hui">
+              <p><span style="color: #000">服务评价</span><a href="#" title="" class="right">查看更多评价> </a></p>
+              <p>与店家沟通起来很顺利，制作水平也很专业，无需多费口舌就可以理解到我想要的功能点，这让我很开心，省了不少事。。距离约定时间提前了半小时交付，同时店家也承诺如果后续有使用问题可以随时沟通。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="layui-col-md6 kol-list6 clear">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-list6-bai">
+              <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="">
+              <div class="kol-list6-content">
+                <p style="color: #000">李佳琪的大V视频定制</p>
+                <p style="color: #ff5a01">￥4500.0</p>
+                <p>成交：0次&nbsp;&nbsp;&nbsp;&nbsp;好评率：0%</p>
+              </div>
+              <button class="layui-btn layui-btn-sm hezuo-btn right">立即合作</button>
+            </div>
+            <div class="kol-list6-hui">
+              <p><span style="color: #000">服务评价</span><a href="#" title="" class="right">查看更多评价> </a></p>
+              <p>与店家沟通起来很顺利，制作水平也很专业，无需多费口舌就可以理解到我想要的功能点，这让我很开心，省了不少事。。距离约定时间提前了半小时交付，同时店家也承诺如果后续有使用问题可以随时沟通。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- 确认发布 弹框内容 -->
+<div class="mask">
+  <div class="mask-content">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>发布单人任务<a href="#" class="guan right">X</a></h3>
+      <p>这是一段关于单人任务说明的一个简介这是一段关于单人任务说明的一个简介这是一段关于单人任务说明的一个简介这是一段关于单人任务说明的一个简介</p>
+      <div style="color: #fd6500;text-align: center; margin-top: 20px">
+        <input type="checkbox" name="like1[write]" lay-skin="primary" title="" checked="">阅读并同意
+      </div>
+      <div class="two-btn">
+        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm guan" style="color: #fd6500;">取消</button>
+        <button type="button" class="layui-btn layui-btn-sm layui-btn-danger hezuo-btn2">确认发布</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 立即下单 弹框内容 -->
+<div class="mask2">
+  <div class="mask-content2" style="width:500px;height: 485px">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>发布单人任务<span style="color: #b7b7b7;font-size: 14px;">下单后，我们将尽快为您联系</span><a href="#" class="guan right">X</a></h3>
+      <!-- 我需要 -->
+      <div class="content2-content clear">
+        <p class="left">我需要<span style="color: red"> *</span></p>
+        <textarea name="" style="width: 80%; height: 100px" class="left" placeholder="李佳琪的大V定制服务"></textarea>
+      </div>
+      <!-- 预算金额 -->
+      <div class="content2-content clear">
+        <p class="left">预算金额<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="/元" class="layui-input" style="width: 45%">
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- 播放指标 -->
+      <div class="content2-content clear">
+        <p class="left">播放指标<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="/次" class="layui-input" style="width: 45%">
+            </div>
+          </div>
+        </form>
+      </div>
+      <p style="color:#ff6600;text-align: right">总计 4500.00元</p>
+      <!-- 手机号码 -->
+      <div class="content2-content clear">
+        <p class="left">手机号码<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="131****9757" class="layui-input">
+            </div>
+          </div>
+        </form>
+      </div>
+      <p style="color:#67ad3b;display: block;text-align: center">信息保护中，仅官方可见</p>
+      <!-- 截止日期 -->
+      <div class="content2-content clear">
+        <p class="left">截止日期<span style="color: red"> *</span></p>
+        <div class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <div class="layui-input-inline">
+                <input type="text" class="layui-input" id="test1" placeholder="2019-09-26">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 商品链接 -->
+      <div class="content2-content clear">
+        <p class="left">商品链接<span style="color: red"> *</span></p>
+        <form class="layui-form" action=""style="width: 80%;display: inline-block;height:35px" class="left">
+          <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left: 0">
+              <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="two-btn">
+        <a href="xiadan.html" title=""><button type="button" class="layui-btn layui-btn-sm layui-btn-danger hezuo-btn2">立即下单</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="../../../layuiadmin/layui/layui.js"></script>
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script> 
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+// 1.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+// 2.确认发布弹框
+$(".hezuo-btn").click(function(){
+  $(".mask").show();
+});
+  $(".guan").click(function(){
+  $(".mask").hide();
+});
+
+// 3.立即下单弹框
+$(".hezuo-btn2").click(function(){
+  $(".mask2").show();
+});
+  $(".guan").click(function(){
+  $(".mask2").hide();
+});
+
+// 4.时间
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //常规用法
+  laydate.render({
+    elem: '#test1'
+  });
+});
+</script>
+</body>
+</html>

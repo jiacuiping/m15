@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>立即学习</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-form-item .layui-input-inline{width: 220px}
+.layui-badge-span{position: absolute;top: 0;left: 19px;height: 15px;line-height: 16px}
+.mtd-shipin-tab-left{width: 100%}
+.mtd-shipin-tab-left ul li{width: 30%; text-align: center}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 分类 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body clear">
+            <!-- 左侧分类 -->
+            <div class="layui-col-md9 yunying-index-left">
+              <ul class="clear">
+                <li><a href="#">软件入门</a></li>
+                <li><a href="#">UI设计</a></li>
+                <li><a href="#">综合教程</a></li>
+                <li><a href="#">摄影艺术</a></li>
+                <li><a href="#">产品精修</a></li>
+                <li><a href="#">人像精修</a></li>
+                <li><a href="#">绘画插画</a></li>
+                <li><a href="#">图像合成</a></li>
+                <li><a href="#">直播课程</a></li>
+                <li><a href="#">海报设计</a></li>
+                <li><a href="#">字体设计</a></li>
+                <li><a href="#">C4D教程</a></li>
+                <li><a href="#">室内设计</a></li>
+                <li><a href="#">影视动画</a></li>
+                <li><a href="#">软件入门</a></li>
+              </ul>
+            </div>
+            <!-- 右侧搜索和信息 -->
+            <div class="layui-col-md3 yunying-index-right clear">
+              <!-- 搜索 -->
+              <div class="sanbang-right left">
+               <div class="layui-form-item">
+                 <div class="layui-input-inline sanbang-right-div">
+                   <input type="" name="" lay-verify="pass" placeholder="请输入话题关键字" autocomplete="off" class="layui-input">
+                   <button type="button" class="layui-btn layui-btn-sm" style="background-color: #1e9fff">搜索</button>
+                 </div>
+                </div>
+              </div>
+              <!--  -->
+              <p class="layui-nav-item left" style="position: relative">
+                <img src="../../layuiadmin/imgs/youjian.png" alt="">
+                <a href="list4.html"><span class="layui-badge layui-badge-span">99+</span></a>
+              </p>
+              <!-- 头像 -->
+              <img class="right" src="../../layuiadmin/imgs/touxiang.jpg" alt="" style="width: 30px;height: 30px;border-radius: 50%">
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 返回 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <a href="list1.html">返回</a>
+          </div>
+        </div>
+      </div>
+      <!-- 课程 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <h3 class="weike-h3 border-bottom">JavaScript微课</h3>
+            <img src="../../layuiadmin/imgs/videoimg.png" alt="" style="width: 100%">
+          </div>
+        </div>
+      </div>
+      <!-- 具体图片 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 灰色综合评分框 -->
+            <div class="hui-zongh clear">
+              <!-- 左边评分 -->
+              <div class="left">
+                <div class="xia-p1"><p>综合</p><p>评分</p></div>
+                <p class="xia-p2">4.7</p>
+                <p class="xia-p3"><div id="test2"></div></p>
+              </div>
+              <!-- 右边难易程度 -->
+              <div class="right">
+                <h3 class="xia-h3"><span style="color: #000">课程难易程度：</span>
+                  <p>太简单（<span>4</span>）</p>
+                  <p>简单（<span>12</span>）</p>
+                  <p>适中（<span>121</span>）</p>
+                  <p>有点难（<span>18</span>）</p>
+                  <p>太难了（<span>4</span>）</p>
+                </h3>
+              </div>
+            </div>
+            <!-- 评论 -->
+            <div class="clear border-bottom" style="margin:10px 0;padding: 10px 0">
+              <div class="left clear">
+                <img src="../../layuiadmin/imgs/touxiang.jpg" alt="" class="left chuangshi-img">
+                <div class="left">
+                  <p style="color: #000;font-size: 16px">学号：1055525</p>
+                  <p>这个学起来很轻松，当然暗示特挺严重，用来帮助恢复和记忆是很不错的选择</p>
+                  <p>2019-10-06</p>
+                </div>
+              </div>
+              <div class="right">
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate"></i>
+                <span>4分</span>
+              </div>
+            </div>
+            <div class="clear border-bottom" style="margin:10px 0;padding: 10px 0">
+              <div class="left clear">
+                <img src="../../layuiadmin/imgs/touxiang.jpg" alt="" class="left chuangshi-img">
+                <div class="left">
+                  <p style="color: #000;font-size: 16px">学号：1055525</p>
+                  <p>这个学起来很轻松，当然暗示特挺严重，用来帮助恢复和记忆是很不错的选择</p>
+                  <p>2019-10-06</p>
+                </div>
+              </div>
+              <div class="right">
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate"></i>
+                <i class="layui-icon layui-icon-rate"></i>
+                <span>3分</span>
+              </div>
+            </div>
+            <div class="clear border-bottom" style="margin:10px 0;padding: 10px 0">
+              <div class="left clear">
+                <img src="../../layuiadmin/imgs/touxiang.jpg" alt="" class="left chuangshi-img">
+                <div class="left">
+                  <p style="color: #000;font-size: 16px">学号：1055525</p>
+                  <p>这个学起来很轻松，当然暗示特挺严重，用来帮助恢复和记忆是很不错的选择</p>
+                  <p>2019-10-06</p>
+                </div>
+              </div>
+              <div class="right">
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <i class="layui-icon layui-icon-rate-solid" style="color:#FFB800"></i>
+                <span>5分</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="../../layuiadmin/layui/layui.js"></script>
+<script src="../../layuiadmin/style/js/jquery.min.js"></script>
+<script src="../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script> 
+<script src="../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+
+//2.评分星星
+layui.use(['rate'], function(){
+  var rate = layui.rate;
+  //基础效果
+  rate.render({
+    elem: '#test2'
+  })
+ 
+  //自定义长度
+  rate.render({
+    elem: '#test7'
+    ,length: 3
+  });
+  rate.render({
+    elem: '#test8'
+    ,length: 10
+    ,value: 8 //初始值
+  });
+ 
+  //只读
+  rate.render({
+    elem: '#test9'
+    ,value: 4
+    ,readonly: true
+  });
+ 
+  //主题色
+  rate.render({
+    elem: '#test10'
+    ,value: 3
+    ,theme: '#FF8000' //自定义主题色
+  });
+  rate.render({
+    elem: '#test11'
+    ,value: 3
+    ,theme: '#009688'
+  });
+ 
+  rate.render({
+    elem: '#test12'
+    ,value: 2.5
+    ,half: true
+    ,theme: '#1E9FFF'
+  })
+  rate.render({
+    elem: '#test13'
+    ,value: 2.5
+    ,half: true
+    ,theme: '#2F4056'
+  });
+  rate.render({
+    elem: '#test14'
+    ,value: 2.5
+    ,half: true
+    ,theme: '#FE0000'
+  })
+});
+
+</script>
+</html>

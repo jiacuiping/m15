@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>新M15</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../layuiadmin/style/iconfont.css" media="all">
+  <link rel="stylesheet" href="../layuiadmin/style/style.css" media="all"> 
+</head>
+<body class="layui-layout-body">
+  <div id="LAY_app">
+    <div class="layui-layout layui-layout-admin">
+      <div class="layui-header">
+        <!-- 头部区域 -->
+        <ul class="layui-nav layui-layout-left">
+          <li class="layui-nav-item layadmin-flexible" lay-unselect>
+            <a href="javascript:;" layadmin-event="flexible" title="侧边伸缩">
+              <i class="layui-icon layui-icon-shrink-right" id="LAY_app_flexible"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="http://www.layui.com/admin/" target="_blank" title="前台">
+              <i class="layui-icon layui-icon-website"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item" lay-unselect>
+            <a href="javascript:;" layadmin-event="refresh" title="刷新">
+              <i class="layui-icon layui-icon-refresh-3"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <input type="text" placeholder="搜索..." autocomplete="off" class="layui-input layui-input-search" layadmin-event="serach" lay-action="template/search.html?keywords="> 
+          </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right" lay-filter="layadmin-layout-right">
+          <li class="layui-nav-item" lay-unselect>
+            <a layadmin-event="message" lay-text="消息中心">
+              <i class="layui-icon layui-icon-headset"></i>
+            </a>
+          </li>
+          <li class="layui-nav-item" lay-unselect>
+            <a href="javascript:;">
+              <cite>贤心</cite>
+            </a>
+            <dl class="layui-nav-child">
+              <dd><a lay-href="set/user/info.html">基本资料</a></dd>
+              <dd><a lay-href="set/user/password.html">修改密码</a></dd>
+              <hr>
+              <dd layadmin-event="logout" style="text-align: center;"><a>退出</a></dd>
+            </dl>
+          </li>
+          
+          <li class="layui-nav-item layui-hide-xs" lay-unselect>
+            <a href="javascript:;" layadmin-event="about"><i class="layui-icon layui-icon-more-vertical"></i></a>
+          </li>
+          <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-unselect>
+            <a href="javascript:;" layadmin-event="more"><i class="layui-icon layui-icon-more-vertical"></i></a>
+          </li>
+        </ul>
+      </div>
+      
+      <!-- 侧边菜单 -->
+      <div class="layui-side layui-side-menu">
+        <div class="layui-side-scroll" style="background: #fff">
+          <div class="layui-logo" lay-href="home/console.html" style="background-color: #fff!important;color: #000">
+            <span><img src="../layuiadmin/imgs/logo.png" alt="" style="width: 45px;margin-right: 10px;">M15</span>
+          </div>
+          
+          <ul class="layui-nav layui-nav-tree" lay-shrink="all" id="LAY-system-side-menu" lay-filter="layadmin-system-side-menu">
+            <!-- 工作台 -->
+            <li data-name="home" class="layui-nav-item">
+              <a href="javascript:;" lay-href="home/console.html" lay-tips="工作台" lay-direction="2">
+                <i class="layui-icon iconfont icon-index1"></i>
+                <cite>工作台</cite>
+              </a>
+            </li>
+            <!-- MTD搜索 -->
+            <li data-name="mtd" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="组件" lay-direction="2">
+                <i class="layui-icon iconfont icon-index2"></i>
+                <cite>MTD搜索</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="shipin">
+                  <a lay-href="mtd/shipin/index.html">热门视频</a>
+                </dd>
+                <dd data-name="music"> 
+                  <a lay-href="mtd/music/index.html">热门音乐</a>  
+                </dd>
+                <dd data-name="huati"> 
+                  <a lay-href="mtd/huati/index.html">热门话题</a>  
+                </dd>
+                <dd data-name="pinglun"> 
+                  <a lay-href="mtd/pinglun/index.html">热门评论</a>  
+                </dd>
+                <dd data-name="shoucang"> 
+                  <a lay-href="mtd/shoucang/index.html">我收藏的素材</a> 
+                </dd>
+              </dl>
+            </li>
+            <!-- KOL查找 -->
+            <li data-name="kol" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="页面" lay-direction="2">
+                <i class="layui-icon iconfont icon-index3"></i>
+                <cite>KOL查找</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd><a lay-href="kol/search/index.html">KOL搜索</a></dd>
+                <dd><a lay-href="kol/bangdan/index.html">KOL榜单</a></dd>
+                <!-- <dd><a lay-href="template/caller.html">KOL筛选</a></dd> -->
+                <dd><a lay-href="kol/duibi/index.html">KOL对比</a></dd>
+                <dd><a lay-href="kol/shoucang/index.html">我收藏的KOL</a></dd>
+              </dl>
+            </li>
+            <!-- MCN系统 -->
+            <li data-name="mcn" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="应用" lay-direction="2">
+                <i class="layui-icon iconfont icon-index4"></i>
+                <cite>MCN系统</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="shuju">
+                  <a lay-href="mcn/shuju/index.html">数据一览表</a>
+                </dd>
+                <dd data-name="kol">
+                  <a lay-href="mcn/kol/index.html">KOL管理</a>
+                </dd>
+                <dd>
+                  <a lay-href="mcn/fenzu/index.html">分组管理</a>
+                </dd>
+                <dd data-name="jingji">
+                  <a lay-href="mcn/jingji/index.html">经纪人工作台</a>
+                </dd>
+              </dl>
+            </li>
+            <!-- 数据监测 -->
+            <li data-name="shuju" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="高级" lay-direction="2">
+                <i class="layui-icon iconfont icon-index5"></i>
+                <cite>数据监测</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd data-name="echarts"><a lay-href="shuju/my-zhanghao/index.html">我的账号</a></dd>
+                <dd><a lay-href="shuju/jiankong/index.html">视频监控</a></dd>
+                <dd><a lay-href="shuju/my-shangpin/index.html">我的商品</a></dd>
+                <dd><a lay-href="shuju/my-pinpai/index.html">我的品牌</a></dd>
+              </dl>
+            </li>
+            <!-- 价值分析 -->
+            <li data-name="jiazhi" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="用户" lay-direction="2">
+                <i class="layui-icon iconfont icon-index6"></i>
+                <cite>价值分析</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="jiazhi/shangpin/index.html">商品搜索</a>
+                </dd>
+                <dd>
+                  <a lay-href="jiazhi/dh-search/index.html">带货视频搜索</a>
+                </dd>
+                <dd>
+                  <a lay-href="jiazhi/dh-paihang/index1.html">带货视频排行</a>
+                </dd>
+                <dd><a lay-href="jiazhi/douyin/index.html">抖音好物榜</a></dd>
+                <dd><a lay-href="jiazhi/kol/index.html">KOL销量榜</a></dd>
+              </dl>
+            </li>
+            <!-- 品牌追踪 -->
+            <li data-name="pinpai" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="设置" lay-direction="2">
+                <i class="layui-icon iconfont icon-index7"></i>
+                <cite>品牌追踪</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="pinpai/search/index.html">品牌搜索</a>
+                </dd>
+                <dd>
+                  <a lay-href="pinpai/paihang/index.html">品牌排行榜</a>
+                </dd>
+                <dd>
+                  <a lay-href="pinpai/duibi/index.html">品牌对比</a>
+                </dd>
+                <dd>
+                  <a href="javascript:;">品牌运营复盘</a><!-- 暂无此图 -->
+                </dd>
+              </dl>
+            </li>
+            <!-- 任务市场 -->
+            <li data-name="get" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="市场" lay-direction="2">
+                <i class="layui-icon iconfont icon-index8"></i>
+                <cite>任务市场</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="renwu/list/index.html">任务列表</a>
+                </dd>
+                <dd>
+                  <a lay-href="renwu/kol/index.html">KOL接单榜</a>
+                </dd>
+              </dl>
+            </li>
+            <!-- 运营课堂 -->
+            <li data-name="yunying" class="layui-nav-item">
+              <a lay-href="yunying/index.html" lay-tips="运营" lay-direction="2">
+                <i class="layui-icon iconfont icon-index9"></i>
+                <cite>运营课堂</cite>
+              </a>
+            </li>
+            <!-- 个人中心 -->
+            <li data-name="get" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="个人" lay-direction="2">
+                <i class="layui-icon iconfont icon-index10"></i>
+                <cite>个人中心</cite>
+              </a>
+              <dl class="layui-nav-child">
+                <dd>
+                  <a lay-href="geren/zhuye/index.html">用户主页</a>
+                </dd>
+                <dd>
+                  <!-- 分为接任务方和下任务方两个情况 -->
+                  <a lay-href="geren/renwu/xia/index.html">我的任务</a>
+                </dd>
+                <dd>
+                  <a lay-href="geren/taocan/index.html">我的套餐</a>
+                </dd>
+                <dd>
+                  <a lay-href="geren/tequan/index.html">我的特权</a>
+                </dd>
+              </dl>
+            </li>
+            <!-- 帮助中心 -->
+            <li data-name="get" class="layui-nav-item">
+              <a href="javascript:;" lay-tips="帮助" lay-direction="2">
+                <i class="layui-icon iconfont icon-index11"></i>
+                <cite>帮助中心</cite>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 页面标签 -->
+      <div class="layadmin-pagetabs" id="LAY_app_tabs">
+        <div class="layui-icon layadmin-tabs-control layui-icon-prev" layadmin-event="leftPage"></div>
+        <div class="layui-icon layadmin-tabs-control layui-icon-next" layadmin-event="rightPage"></div>
+        <div class="layui-icon layadmin-tabs-control layui-icon-down">
+          <ul class="layui-nav layadmin-tabs-select" lay-filter="layadmin-pagetabs-nav">
+            <li class="layui-nav-item" lay-unselect>
+              <a href="javascript:;"></a>
+              <dl class="layui-nav-child layui-anim-fadein">
+                <dd layadmin-event="closeThisTabs"><a href="javascript:;">关闭当前标签页</a></dd>
+                <dd layadmin-event="closeOtherTabs"><a href="javascript:;">关闭其它标签页</a></dd>
+                <dd layadmin-event="closeAllTabs"><a href="javascript:;">关闭全部标签页</a></dd>
+              </dl>
+            </li>
+          </ul>
+        </div>
+        <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
+          <ul class="layui-tab-title" id="LAY_app_tabsheader">
+            <li lay-id="home/console.html" lay-attr="home/console.html" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+          </ul>
+        </div>
+      </div>
+      
+      
+      <!-- 主体内容 -->
+      <div class="layui-body" id="LAY_app_body">
+        <div class="layadmin-tabsbody-item layui-show">
+          <iframe src="home/console.html" frameborder="0" class="layadmin-iframe"></iframe>
+        </div>
+      </div>
+      
+      <!-- 辅助元素，一般用于移动设备下遮罩 -->
+      <div class="layadmin-body-shade" layadmin-event="shade"></div>
+    </div>
+  </div>
+
+  <script src="../layuiadmin/layui/layui.js"></script>
+  <script>
+  layui.config({
+    base: '../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use('index');
+  </script>
+  
+  <!-- 百度统计 -->
+  <script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?d214947968792b839fd669a4decaaffc";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+  </script>
+</body>
+</html>
+
+

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>第一步</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left2{width: 100%}
+.mtd-shipin-tab-left2 ul li{width: 15%;text-align: center}
+.layui-btn-xs2{color: #fff;background-color:#cdccca}
+.layui-timeline-title-p{font-size: 15px;color: #c7c7c7}
+.layui-table td, .layui-table th{padding: 0 15px;}
+.layui-input{height: 30px}
+form{height: 35px}
+.layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{border-color:#1E9FFF }
+.layui-tab-brief>.layui-tab-title .layui-this{color:#1E9FFF}
+
+.easyPieChart{margin: 0 20px;}
+.mtd-shipin-tab-left2{width: 100%}
+.mtd-shipin-tab-left2 ul li{width: 15%; text-align: center}
+.layui-btn-primary img{vertical-align: sub}
+/* 我要加急 */
+.mask,.mask2,.mask3,.mask4{width: 100%;height: 100vh; background:rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
+.mask-content2 h3,.mask-content3 h3,.mask-content4 h3{color: #000;margin-bottom: 15px;padding-bottom: 10px;border-bottom: 1px solid #ddd;}
+.mask-content{width: 500px;background: #fff;margin: 10% auto;padding:15px;position: relative}
+.mask-content h3{color: #000;margin-bottom: 15px}
+.mask-content,.mask-content2,.mask-content3,.mask-content4{background: #fff;margin: 10% auto;padding:15px;position: relative}
+
+/* 文件柜 */
+.mask-content2{width: 440px;}
+/* 补充需求 */
+.mask-content3{width: 440px;}
+/* 修改预算 */
+.mask-content4{width: 300px;}
+.mask-content4 button{margin: 0 auto; display: block}
+</style>
+
+<body>
+  <!-- 点击shipin里的详情按钮跳到此页 -->
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 标题 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body layui-shenhuilu clear">
+            <img src="../../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+            <div class="layui-shenhuilu-r left">
+              <h4>李佳琪Austin<span class="mianfei-ban">免费版</span></h4>
+              <p>关联微信号：65656565454</p>
+              <p>账号类型：普通账号（mcn机构、广告商、讲师）</p>
+            </div>
+          </div>
+          <div class="layui-card-body">
+            <p>绑定手机使用账号登录<span class="mianfei-ban">推荐绑定</span>
+              <a href="#" style="color: #349adc;margin-left: 20px;">点击绑定</a>
+            </p>
+            <p>绑定手机号后可设定登录密码，在微信失效时可使用账号登录功能</p>
+          </div>
+        </div>
+      </div>  
+      <!-- tab导航条 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
+              <ul class="clear">
+                <li><a href="#" title="">套餐详情</a></li>
+                <li><a href="index.html" class="checked-bottom">我的订单</a></li>
+                <li><a href="#" title="">MCN系统</a></li>
+                <li><a href="#" title="">粉丝数据分析</a></li>
+                <li><a href="#" title="">电商数据分析</a></li>
+                <li><a href="#" title="">任务平台</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 进度箭头条 -->
+      <div>
+        <p style="color: #000">交易中心 > 订单列表 > 订单号：16154545
+          <span class="right"><img src="../../../../layuiadmin/imgs/weizhi.png" alt="">上海-上海</span>
+        </p>
+        <div class="clear" style="margin-top: 10px">
+          <div class="layui-col-md3 layui-col-sm6">
+            <div class="list1-jian1">
+              <p>完善需求</p>
+            </div>
+          </div>
+          <div class="layui-col-md3 layui-col-sm6">
+            <div class="list1-jian2">
+              <p>匹配服务商</p>
+            </div>
+          </div>
+          <div class="layui-col-md3 layui-col-sm6">
+            <div class="list1-jian2-2">
+              <p>服务商开始工作</p>
+            </div>
+          </div>
+          <div class="layui-col-md3 layui-col-sm6">
+            <div class="list1-jian3-2">
+              <p>验收工作成果并付款</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 需求信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header"><span class="blue-tiao"></span>需求信息</div>
+          <div class="layui-card-body">
+            <p>需求标题<span class="xia-list1-span">APP开发直播APP开发教育客户端平台聊天室</span>
+              <button class="layui-btn layui-btn-primary layui-btn-xs layui-btn-xs2">我要置顶</button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs layui-btn-xs2 jiaji">我要加急</button>
+            </p>
+            <p>预算金额<span class="xia-list1-span">
+              <span class="red18">1000</span>元
+              <span style="color: #c7c7c7;margin-left: 20px">已托管赏金</span>
+              <span class="red18">1000</span>元
+            </p>
+            <p>需求数量<span class="xia-list1-span"><span class="red18">1</span>件</p>
+            <p>需求类型<span class="xia-list1-span">APP定制开发</p>
+          </div>
+        </div>
+      </div>
+      <!-- 订单状态 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header"><span class="blue-tiao"></span>订单状态</div>
+          <div class="layui-card-body">
+            <ul class="layui-timeline">
+              <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
+                  <p>山东高奇网络科技有限公司。。。。。</p>
+                </div>
+              </li>
+              <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
+                  <p>山东高奇网络科技有限公司。。。。。</p>
+                </div>
+              </li>
+              <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
+                  <p>山东高奇网络科技有限公司。。。。。</p>
+                </div>
+              </li>
+            </ul>
+            </span></p>
+            <p style="text-align:right;color: #000">历史工作进度、合同资料、附件已整理至
+              <a href="#" class="wenjiangui"><span style="color:#1E9FFF">文件柜 <i class="layui-icon layui-icon-tabs"></i></span></a>
+            </p>
+            <div class="renwu-xia-div">
+              <button class="layui-btn layui-btn-primary layui-btn-xs">
+                <img src="../../../../layuiadmin/imgs/hui1.png" alt="">关闭需求
+              </button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs buchong">
+                <img src="../../../../layuiadmin/imgs/hui2.png" alt="">补充需求
+              </button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs xiugai">
+                <img src="../../../../layuiadmin/imgs/hui3.png" alt="">修改预算
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- 注意： 此页面共有四个弹框。-->
+<!-- 1. 我要加急 弹框 -->
+<div class="mask">
+  <div class="mask-content">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>购买服务<a href="#" class="guan right">X</a></h3>
+      <table class="layui-table" lay-even="" lay-skin="row">
+        <colgroup>
+          <col width="130">
+          <col width="150">
+          <col width="">
+          <col>
+        </colgroup>
+        <tbody>
+          <tr>
+            <td colspan="4" style="text-align: left" class="clear">
+              <form class="layui-form list1-form1" action="">
+                <div class="layui-form-item" pane="">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <input type="checkbox" name="like1[write]" lay-skin="primary">
+                  </div>
+                </div>
+              </form>
+              <button class="layui-brn layui-btn-normal layui-btn-xs list1-btn1">需求制定</button>
+              <p style="display: inline-block">固定展示在需求列表顶部，吸引优质更多人参与，解决率提升超过
+                <span style="color:#ff7425">50%</span>
+                <span style="color:#1E9FFF">效果预览</span>
+                <span style="color: red">30%用户已选</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="text-align: left">
+              <form class="layui-form list1-form1" action="">
+                <div class="layui-form-item" pane="">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <input type="checkbox" name="like1[read]" lay-skin="primary" title="需求大厅" style="color: #1E9FFF">
+                  </div>
+                </div>
+              </form>
+            </td>
+            <td>仅剩7个位置</td>
+            <td>
+              <form class="layui-form" action="">
+                <div class="layui-form-item">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="1" class="layui-input" style="margin-right: 0;width: 50px">
+                  </div>
+                </div>
+              </form>
+            </td>
+            <td style="color:#1E9FFF">￥198/天</td>
+          </tr>
+          <tr>
+            <td style="text-align: left">
+              <form class="layui-form list1-form1" action="">
+                <div class="layui-form-item" pane="">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <input type="checkbox" name="like1[read]" lay-skin="primary" title="APP定制开发" style="color: #1E9FFF">
+                  </div>
+                </div>
+              </form>
+            </td>
+            <td>仅剩7个位置</td>
+            <td>
+              <form class="layui-form" action="">
+                <div class="layui-form-item">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="1" class="layui-input" style="margin-right: 0;width: 50px">
+                  </div>
+                </div>
+              </form>
+            </td>
+            <td style="color:#1E9FFF">￥49/天</td>
+          </tr>
+          <tr>
+            <td colspan="4" style="text-align: left">
+              <form class="layui-form list1-form1" action="">
+                <div class="layui-form-item" pane="">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <input type="checkbox" name="like1[write]" lay-skin="primary">
+                  </div>
+                </div>
+              </form>
+              <button class="layui-brn layui-btn-normal layui-btn-xs list1-btn1">轮播广告</button>
+              <p style="display: inline-block">交易大厅需求列表展示加急标识，吸引更多服务商参与
+                <span style="color:#1E9FFF">效果预览</span>
+                <span style="color: red">10%用户已选</span>
+              </p>
+              <p style="text-align: right">
+                <del>原价：49.00</del>
+                <span style="color:#1E9FFF">￥49.00</span>
+              </p>
+            </td>
+          </tr>
+        </tbody>
+      </table> 
+      <form class="layui-form list1-form1" action="">
+        <div class="layui-form-item" pane="">
+          <div class="layui-input-block" style="margin-left: 0">
+            <input type="checkbox" name="like1[write]" lay-skin="primary" title="我已阅读并同意《猪八戒网雇主增值服务产品服务协议》">
+          </div>
+        </div>
+      </form>
+      <div>
+        <p>注意事项：</p>
+        <p>购买最大天数须小于等于剩余投标期天数。</p>
+        <p>置顶/加急生效后不能退款。</p>
+        <p>购买完成后置顶未生效，请及时拨打客服电话400-023-5445,联系客服人员处理。</p>
+      </div>
+      <div style="text-align: center">
+        <p style="margin: 10px 0 5px 0;color: #1E9FFF">合计：￥247</p>
+        <button class="layui-btn layui-btn-sm layui-btn-normal">立即支付</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. 文件柜 弹框 -->
+<div class="mask2">
+  <div class="mask-content2">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>文件柜<a href="#" class="guan right">X</a></h3>
+      <!-- tab选项 -->
+      <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+        <ul class="layui-tab-title">
+          <li class="layui-this">您上传的附件</li>
+          <li>交易合同/协议</li>
+          <li>工作成果</li>
+          <li>历史反馈记录</li>
+        </ul>
+        <div class="layui-tab-content" style="height: 100px;">
+          <div class="layui-tab-item layui-show">内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）</div>
+          <div class="layui-tab-item">内容2</div>
+          <div class="layui-tab-item">内容3</div>
+          <div class="layui-tab-item">内容4</div>
+        </div>
+      </div>     
+    </div>
+  </div>
+</div>
+
+<!-- 3. 补充需求 弹框 -->
+<div class="mask3">
+  <div class="mask-content3">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>补充需求<a href="#" class="guan right">X</a></h3>
+      <textarea name="" style="width: 100%; min-height: 100px;" placeholder="补充您想要补充的需求"></textarea>
+      <div class="left" style="margin: 12px 0">
+        <img src="../../../../layuiadmin/imgs/tianjia.png" alt="">
+        最多可添加五个附件，每个大小补偿50M
+      </div>
+      <div class="clear">
+        <div class="layui-col-md6" style="padding: 0 10px">
+          <button class="layui-btn layui-btn-primary guan" style="width: 100%">取消</button>
+        </div>
+        <div class="layui-col-md6" style="padding: 0 10px">
+          <button class="layui-col-md6 layui-btn layui-btn-normal" style="width: 100%">确定</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. 修改预算 弹框 -->
+<div class="mask4">
+  <div class="mask-content4">
+    <div class="wrapper">
+      <h3><span class="juxian"></span>修改预算<a href="#" class="guan right">X</a></h3>
+      <p>在选择中标服务商前，您有3次修改预算的机会，修改预算金额可能会影响服务商的投标情况，请您谨慎修改。</p>
+      <div class="xiugai-div">
+        <p>当前剩余修改次数<span style="color:#1E9FFF">3</span>次</p>
+        <p>当前预算：<span style="color:#1E9FFF">1000</span>元</p>
+        <p>设置新预算：<input type="text">元</p>
+      </div>
+      <button class="layui-btn layui-btn-normal">确认</button>
+    </div>
+  </div>
+</div>
+
+<script src="../../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+// 1.我要加急 弹框
+$(".jiaji").click(function(){
+  $(".mask").show();
+});
+  $(".guan").click(function(){
+  $(".mask").hide();
+});
+
+// 2.单选
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+});
+
+// 3.文件柜 弹框
+$(".wenjiangui").click(function(){
+  $(".mask2").show();
+});
+  $(".guan").click(function(){
+  $(".mask2").hide();
+});
+
+// 4. 文件弹框 选项卡
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+});
+
+// 5.补充需求 弹框
+$(".buchong").click(function(){
+  $(".mask3").show();
+});
+  $(".guan").click(function(){
+  $(".mask3").hide();
+});
+
+// 6.修改预算 弹框
+$(".xiugai").click(function(){
+  $(".mask4").show();
+});
+  $(".guan").click(function(){
+  $(".mask4").hide();
+});
+</script>
+</body>
+</html>

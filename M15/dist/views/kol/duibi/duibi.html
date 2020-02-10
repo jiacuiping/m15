@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kol榜单</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block{margin-left: 0}
+.layui-input{padding: 0 30px 0 30px;}
+.layui-input-block{position: relative}
+.layui-input-block i{position: absolute; top: 11px; left: 10px}
+.layui-input-block input{border-radius: 10px}
+.layui-input-block span{position: absolute; top: 11px; right: 10px}
+select{width: 100%;margin-top: 5px;height: 30px}
+.layui-form-item{margin-bottom: 0;display: inline-block}
+.layui-form-label{text-align: left;padding:9px 0 }
+.sanbang-right-div input {width: 355px;}
+.layui-table thead tr{background-color: #fff!important}
+.layui-table thead tr th:nth-child(1){background-color: #f8f9fd!important}
+.layui-table tbody tr td:nth-child(1){background-color: #f8f9fd!important}
+</style>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 导出报告-->
+      <div class="layui-col-md12">
+        <div class="layui-card layui-card-padding">
+          <div class="mtd-shipin-tab clear" style="padding: 0 0 10px 0;">
+            <div class="mtd-shipin-tab-right right">
+              <a href="#"><button type="button" class="layui-btn layui-btn-sm" style="color:#039cfa"><img src="../../../layuiadmin/imgs/xiazai.png" alt="">导出报告</button></a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!-- table表格 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <!-- 
+          <div class="duibi-table-div1">
+            <ul class="clear">
+              <li class="duibi-table-li1">红人对比</li>
+              <li class="duibi-table-li2">已选择红人</li>
+              <li class="duibi-table-li3">
+                <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" style="width: 40px; height: 40px;border-radius: 50%">
+                <div>
+                  <p>会说话的...<img src="../../../layuiadmin/imgs/1.png" alt=""></p>
+                  <p>粉丝数 4,05.7万</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="table-div2">
+            
+          </div>
+          <div class="table-div3">
+            
+          </div> -->
+          <div class="layui-form">
+            <table class="layui-table">
+              <colgroup>
+                <col width="150">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col width="200">
+                <col>
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>已选择红人</th>
+                  <th class="duibi-table-li3">
+                    <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left" style="width: 40px; height: 40px;border-radius: 50%;">
+                    <div>
+                      <p>会说话的...<img src="../../../layuiadmin/imgs/1.png" alt=""></p>
+                      <p>粉丝数 4,05.7万</p>
+                    </div>
+                  </th>
+                  <th class="duibi-table-li3">
+                    <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left" style="width: 40px; height: 40px;border-radius: 50%;">
+                    <div>
+                      <p>会说话的...<img src="../../../layuiadmin/imgs/1.png" alt=""></p>
+                      <p>粉丝数 4,05.7万</p>
+                    </div>
+                  </th>
+                  <th class="duibi-table-li3">
+                    <img src="../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left" style="width: 40px; height: 40px;border-radius: 50%;">
+                    <div>
+                      <p>会说话的...<img src="../../../layuiadmin/imgs/1.png" alt=""></p>
+                      <p>粉丝数 4,05.7万</p>
+                    </div>
+                  </th>
+                </tr> 
+              </thead>
+              <tbody>
+                <tr>
+                  <td>卡斯指数</td>
+                  <td style="color: #23a6fe">972</td>
+                  <td style="color: #23a6fe">922</td>
+                  <td style="color: #23a6fe">936</td>
+                </tr>
+                <tr>
+                  <td>平台排名</td>
+                  <td style="color: #fe8357">1</td>
+                  <td style="color: #fe8357">5</td>
+                  <td style="color: #fe8357">4</td>
+                </tr>
+                <tr>
+                  <td>平台认证</td>
+                  <td>萌宠视频达人</td>
+                  <td>动漫自媒体</td>
+                  <td>最佳人气主播</td>
+                </tr>
+                <tr>
+                  <td>性别</td>
+                  <td>女</td>
+                  <td>女</td>
+                  <td>女</td>
+                </tr>
+                <tr>
+                  <td>所在地</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>贵阳市</td>
+                </tr>
+                <tr>
+                  <td>标签</td>
+                  <td>宠物、搞笑</td>
+                  <td>动漫、二次元、情感</td>
+                  <td>反串、搞笑</td>
+                </tr>
+                <tr></tr>
+                <tr>
+                  <td>粉丝总数</td>
+                  <td>4,305.7万</td>
+                  <td>5,4455万</td>
+                  <td>4,454万</td>
+                </tr>
+                <tr>
+                  <td>近30天粉丝增量</td>
+                  <td>1万</td>
+                  <td>1万</td>
+                  <td>1万</td>
+                </tr>
+                <tr>
+                  <td>集均点赞</td>
+                  <td>1万</td>
+                  <td>5万</td>
+                  <td>4万</td>
+                </tr>
+                <tr>
+                  <td>有效集均点赞</td>
+                  <td>1万</td>
+                  <td>5万</td>
+                  <td>4万</td>
+                </tr>
+                <tr>
+                  <td>集均评论</td>
+                  <td>1万</td>
+                  <td>5万</td>
+                  <td>4万</td>
+                </tr>
+                <tr>
+                  <td>有效集均评论</td>
+                  <td>1万</td>
+                  <td>5万</td>
+                  <td>4万</td>
+                </tr>
+                <tr>
+                  <td>集均分享</td>
+                  <td>1万</td>
+                  <td>5万</td>
+                  <td>4万</td>
+                </tr>
+                <tr>
+                  <td>有效集均分享</td>
+                  <td>1万</td>
+                  <td>5万</td>
+                  <td>4万</td>
+                </tr>
+                <tr>
+                  <td>点赞评论比</td>
+                  <td>57.7</td>
+                  <td>57.7</td>
+                  <td>57.7</td>
+                </tr>
+                <tr>
+                  <td>点赞粉丝比</td>
+                  <td>4.5</td>
+                  <td>8.4</td>
+                  <td>4.6</td>
+                </tr>
+                <tr>
+                  <td>评论粉丝比</td>
+                  <td>4.5</td>
+                  <td>8.4</td>
+                  <td>4.6</td>
+                </tr>
+                <tr>
+                  <td>近90天发布视频</td>
+                  <td>54个</td>
+                  <td>54个</td>
+                  <td>54个</td>
+                </tr>
+                <tr>
+                  <td>视频发布频率</td>
+                  <td>0.2个/周</td>
+                  <td>0.2个/周</td>
+                  <td>0.2个/周</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+  </script>
+</body>
+</html>

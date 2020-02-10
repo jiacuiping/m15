@@ -21,8 +21,8 @@ class User extends Model
     //protected $table = 'xin_frame';
     protected $rule = [
         'user_name|用户名'        => 'require|unique:user|max:10',
-        'user_mobile|手机号'      => 'require|number|unique:user|length:11',
-        'user_idcard|身份证'      => 'alphaNum|length:15,18|unique:user',
+//        'user_mobile|手机号'      => 'require|number|unique:user|length:11',
+//        'user_idcard|身份证'      => 'alphaNum|length:15,18|unique:user',
     ];
 
     /**
@@ -103,8 +103,9 @@ class User extends Model
         $res = $this->allowField(true)->save($param);
 
         $id = $this->getLastInsID();
+        $data = $this->GetOneDataById($id);
 
-        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'添加成功','id'=>$id);
+        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'添加成功','id'=>$id, 'data' => $data);
     }
 
     /**

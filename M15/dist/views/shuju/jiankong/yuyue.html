@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>视频监控</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .layui-form-item .layui-input-inline{width: 300px}
+  .layui-btn{background-color: #1e9fff}
+  .shengzhi{width: 80px; height: 108px}
+  .layui-form-radio{margin-right: 0; padding-right: 0}
+</style>
+<body>
+
+  <div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="l-test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="index.html" title="" class="checked-bottom">视频监控</a></li>
+                <li><a href="index2.html" title="">监控历史</a></li>
+              </ul>
+            </div>
+            <div class="mtd-shipin-tab-left right">
+              <img src="../../../layuiadmin/imgs/wen.png" alt=""> 使用帮助
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 表格 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body clear">
+            <div class="shuju-jiankong-div">
+              <h3>
+                <span style="color: #000">视频监控</span> 
+                <span style="font-size: 14px">(可对抖音视频进行监控，提供分钟级的视频点赞数、评论大户、转发数监测，掌握抖音号视频热度走向)</span>
+              </h3>
+              <!-- 单选 -->
+              <form class="layui-form" action="" lay-filter="example">
+                <div class="layui-form-item">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <a href="index.html" title="">
+                      <input type="radio" name="sex" value="0" title="">
+                      <div class="jiankong-form-input" style="margin-right: 20px">
+                        <h4>即时监控</h4>
+                        <p>已发布，输入推文链接地址开始监控</p>
+                      </div>
+                    </a>
+                    <a href="yuyue.html" title="">
+                      <input type="radio" name="sex" value="1" title="" checked="">
+                      <div class="jiankong-form-input">
+                        <h4>预约监控</h4>
+                        <p>发布时间已确定尚未发送，设置时间预约监控</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </form>
+              <!-- 预约监控抖音号 -->
+              <div class="jiankong-lianjie clear">
+                <p class="left">预约监控抖音号</p>
+              </div>
+              <!-- 查询 -->
+              <div class="sanbang-right shuju-jiankong-sou">
+                <div class="layui-form-item">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入视频地址" autocomplete="off" class="layui-input">
+                    <button type="button" class="layui-btn layui-btn-sm">查询</button>
+                  </div>
+                </div>
+              </div>
+              <p><span style="color: #000">预约发布视频时间段</span>（若在预约发布视频时间段内无发文，本次监控也是为完成，但是无监控报告）</p>
+              <!-- 时间段 -->
+              <div style="margin: 15px 0">
+                <div class="layui-form" style="display: inline-block">
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                  </div>
+                  到
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input type="text" class="layui-input" id="test5" placeholder="yyyy-MM-dd HH:mm:ss">
+                    </div>
+                  </div>
+                </div>
+                共计<span style="color: red">3</span>个小时内的1次视频
+              </div>
+              <!-- 点赞数提醒 -->
+              <div>
+                <form class="layui-form" action="" lay-filter="example" style="display: inline-block">
+                  <div class="layui-form-item" pane="" style="margin-bottom: 0">
+                    <div class="layui-input-block" style="margin-left: 0">
+                      <input type="checkbox" name="like1[write]" lay-skin="primary" title="点赞数提醒" checked="">
+                    </div>
+                  </div>
+                </form>
+                <form class="layui-form" action=""style="display: inline-block;">
+                  <div class="layui-form-item" style="width: 200px">
+                    <div class="layui-input-block" style="margin-left: 0">
+                      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input">
+                    </div>
+                  </div>
+                </form>
+                开启后点赞数达到该值时，将通过M15数据公众号给您发送通知
+              </div>
+              <!-- 监控时长 -->
+              <div class="shuju-jiankong-shichang">
+                <p style="color: #000">监控时长</p>
+                <form class="layui-form" action="" lay-filter="example">
+                  <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin-left: 0">
+                      <input type="radio" name="sex" value="0" title="24小时" checked="">
+                      <input type="radio" name="sex" value="1" title="48小时">
+                      <input type="radio" name="sex" value="2" title="72小时">
+                      <input type="radio" name="sex" value="3" title="7天">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- 更多数据监控  -->
+              <div class="shuju-jiankong-shichang">
+                 <p><span style="color: #000">更多数据</span>（选择同步监控粉丝数，关联商品浏览量和销售量，将消耗更多的监控次数）</p>
+                 <form class="layui-form" action="" lay-filter="example">
+                  <div class="layui-form-item" pane="" style="margin-bottom: 0">
+                    <div class="layui-input-block" style="margin-left: 0">
+                      <input type="checkbox" name="like1[write]" lay-skin="primary" title="下载数监控">
+                      <input type="checkbox" name="like1[write]" lay-skin="primary" title="关联商品监控">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- 开始监控 -->
+              <button type="button" class="layui-btn layui-btn-normal">开始监控</button>
+              <p class="jiankong-xiaohao">本次监控共需消耗<span>1</span>次视频监控次数，本月剩余<span>3</span>次视频监控次数</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#l-test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.表单
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  //表单取值
+  layui.$('#LAY-component-form-getval').on('click', function(){
+    var data = form.val('example');
+    alert(JSON.stringify(data));
+  });
+});
+
+// 3.时间选择
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //常规用法
+  laydate.render({
+    elem: '#test1'
+  });
+  
+  //国际版
+  laydate.render({
+    elem: '#test1-1'
+    ,lang: 'en'
+  });
+  
+  //年选择器
+  laydate.render({
+    elem: '#test2'
+    ,type: 'year'
+  });
+  
+  //年月选择器
+  laydate.render({
+    elem: '#test3'
+    ,type: 'month'
+  });
+  
+  //时间选择器
+  laydate.render({
+    elem: '#test4'
+    ,type: 'time'
+  });
+  
+  //日期时间选择器
+  laydate.render({
+    elem: '#test5'
+    ,type: 'datetime'
+  });
+  
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+  
+  //年范围
+  laydate.render({
+    elem: '#test7'
+    ,type: 'year'
+    ,range: true
+  });
+  
+  //年月范围
+  laydate.render({
+    elem: '#test8'
+    ,type: 'month'
+    ,range: true
+  });
+  
+  //时间范围
+  laydate.render({
+    elem: '#test9'
+    ,type: 'time'
+    ,range: true
+  });
+  
+  //日期时间范围
+  laydate.render({
+    elem: '#test10'
+    ,type: 'datetime'
+    ,range: true
+  });
+  
+  //自定义格式
+  laydate.render({
+    elem: '#test11'
+    ,format: 'yyyy年MM月dd日'
+  });
+  laydate.render({
+    elem: '#test12'
+    ,format: 'dd/MM/yyyy'
+  });
+  laydate.render({
+    elem: '#test13'
+    ,format: 'yyyyMMdd'
+  });
+  laydate.render({
+    elem: '#test14'
+    ,type: 'time'
+    ,format: 'H点m分'
+  });
+  laydate.render({
+    elem: '#test15'
+    ,type: 'month'
+    ,range: '~'
+    ,format: 'yyyy-MM'
+  });
+  laydate.render({
+    elem: '#test16'
+    ,type: 'datetime'
+    ,range: '到'
+    ,format: 'yyyy年M月d日H时m分s秒'
+  });
+  
+  //开启公历节日
+  laydate.render({
+    elem: '#test17'
+    ,calendar: true
+  });
+  
+  //自定义重要日
+  laydate.render({
+    elem: '#test18'
+    ,mark: {
+      '0-10-14': '生日'
+      ,'0-12-31': '跨年' //每年的日期
+      ,'0-0-10': '工资' //每月某天
+      ,'0-0-15': '月中'
+      ,'2017-8-15': '' //如果为空字符，则默认显示数字+徽章
+      ,'2099-10-14': '呵呵'
+    }
+    ,done: function(value, date){
+      if(date.year === 2017 && date.month === 8 && date.date === 15){ //点击2017年8月15日，弹出提示语
+        layer.msg('这一天是：中国人民抗日战争胜利72周年');
+      }
+    }
+  });
+  
+  //限定可选日期
+  var ins22 = laydate.render({
+    elem: '#test-limit1'
+    ,min: '2016-10-14'
+    ,max: '2080-10-14'
+    ,ready: function(){
+      ins22.hint('日期可选值设定在 <br> 2016-10-14 到 2080-10-14');
+    }
+  });
+  
+  //前后若干天可选，这里以7天为例
+  laydate.render({
+    elem: '#test-limit2'
+    ,min: -7
+    ,max: 7
+  });
+  
+  //限定可选时间
+  laydate.render({
+    elem: '#test-limit3'
+    ,type: 'time'
+    ,min: '09:30:00'
+    ,max: '17:30:00'
+    ,btns: ['clear', 'confirm']
+  });
+  
+  //同时绑定多个
+  lay('.test-item').each(function(){
+    laydate.render({
+      elem: this
+      ,trigger: 'click'
+    });
+  });
+  
+  //初始赋值
+  laydate.render({
+    elem: '#test19'
+    ,value: '1989-10-14'
+    ,isInitValue: true
+  });
+  
+  //选中后的回调
+  laydate.render({
+    elem: '#test20'
+    ,done: function(value, date){
+      layer.alert('你选择的日期是：' + value + '<br>获得的对象是' + JSON.stringify(date));
+    }
+  });
+  
+  //日期切换的回调
+  laydate.render({
+    elem: '#test21'
+    ,change: function(value, date){
+      layer.msg('你选择的日期是：' + value + '<br><br>获得的对象是' + JSON.stringify(date));
+    }
+  });
+  //不出现底部栏
+  laydate.render({
+    elem: '#test22'
+    ,showBottom: false
+  });
+  
+  //只出现确定按钮
+  laydate.render({
+    elem: '#test23'
+    ,btns: ['confirm']
+  });
+  
+  //自定义事件
+  laydate.render({
+    elem: '#test24'
+    ,trigger: 'mousedown'
+  });
+  
+  //点我触发
+  laydate.render({
+    elem: '#test25'
+    ,eventElem: '#test25-1'
+    ,trigger: 'click'
+  });
+  
+  //双击我触发
+  lay('#test26-1').on('dblclick', function(){
+    laydate.render({
+      elem: '#test26'
+      ,show: true
+      ,closeStop: '#test26-1'
+    });
+  });
+  
+  //日期只读
+  laydate.render({
+    elem: '#test27'
+    ,trigger: 'click'
+  });
+  
+  //非input元素
+  laydate.render({
+    elem: '#test28'
+  });
+  
+  //墨绿主题
+  laydate.render({
+    elem: '#test29'
+    ,theme: 'molv'
+  });
+  
+  //自定义颜色
+  laydate.render({
+    elem: '#test30'
+    ,theme: '#393D49'
+  });
+  
+  //格子主题
+  laydate.render({
+    elem: '#test31'
+    ,theme: 'grid'
+  });
+  
+  
+  //直接嵌套显示
+  laydate.render({
+    elem: '#test-n1'
+    ,position: 'static'
+  });
+  laydate.render({
+    elem: '#test-n2'
+    ,position: 'static'
+    ,lang: 'en'
+  });
+  laydate.render({
+    elem: '#test-n3'
+    ,type: 'month'
+    ,position: 'static'
+  });
+  laydate.render({
+    elem: '#test-n4'
+    ,type: 'time'
+    ,position: 'static'
+  });
+});
+</script>
+</body>
+</html>

@@ -23,9 +23,12 @@
   text-overflow:ellipsis;
   white-space: nowrap;
 }
-.claimKol {display: block;float: right;margin-top: 20px;}
+.claimKol,.layui-btn-disabled {display: block;float: right;margin-top: 20px;}
 .claimAll {margin-top: 5px;}
 .mtd-shipin-td-btn>.layui-btn-sm{height: 38px;}
+  #searchcentent{
+    height: 77%;overflow-y: auto;width: 100%;margin-top: 5px;
+  }
 </style>
 <body>
   <div class="layui-fluid">
@@ -207,8 +210,8 @@
     </div>
   </div>
 
-  <div class="layui-col-md12" id="included" style="display:none">
-    <div class="shoulu-one" style="border:0px;">
+  <div class="layui-col-md12" id="included" style="display:none;height: 100%;overflow-y: hidden;">
+    <div class="shoulu-one" style="border:0px;width: 95%;height: 100%">
       <!-- <h3>添加收录弹框</h3> -->
       <p style="color: #000">认领红人</p>
       <!-- 搜索 -->
@@ -220,7 +223,7 @@
           </div>
         </div>
       </div>
-      <div id="searchcentent"></div>
+      <div id="searchcentent" class="clear"></div>
     </div>
   </div>
 
@@ -330,7 +333,7 @@
     $("#claim").click(function () {
       layer.open({
         type: 1,
-        area:['590px','300px'],
+        area:['650px','460px'],
         shade: false,
         title: false, //不显示标题
         content: $('#included'),

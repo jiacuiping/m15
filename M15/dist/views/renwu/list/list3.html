@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>产品介绍</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left{display: block}
+.mtd-shipin-tab-left ul li{width: 30%;text-align: center}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 头像和信息 -->
+            <div class="border-bottom">
+              <img src="../../../layuiadmin/imgs/no1-1.png" alt="" style="width: 100px;height: 100px">
+              <div class="mtd-shipin-list2-div">
+                <h5>任务名称:吉列小云刀推广</h5>
+                <p>发起人：吉列官方抖音号</p>
+                <p>任务佣金：<span style="color: #fe0000">￥50</span></p>
+                <p>任务需求：达人视频小云刀销量达到500</p>
+                <p>截止时间：2019-09-23</p>
+              </div>
+            </div>
+            <!-- 两个button -->
+            <div class="button5">
+              <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">立即抢单</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm" style="color:#1ca3fc">加入收藏</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="list1.html" title="">推广任务介绍</a></li>
+                <li><a href="list2.html" title="">发布人介绍</a></li>
+                <li><a href="list3.html" title="" class="checked-bottom">产品介绍</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 具体要求 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="juti-yaoqiu">
+              <img src="../../../layuiadmin/imgs/tixu.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2. 年月日期时间范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  //日期范围
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+</script>
+</html>

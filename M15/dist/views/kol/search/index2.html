@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kol榜单</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block {margin-left: 70px}
+.border-bottom{margin: 15px 0;}
+.layui-form-label{color: #000}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 搜索，高级搜索 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-search clear">
+              <!-- 右侧  使用帮助 -->
+                <a href="#" title="" style="color:#5597e5">
+                  <p style="text-align: right"><img src="../../../layuiadmin/imgs/wen.png" alt=""> 使用帮助</p>
+                </a>
+              <!-- 关键词搜索  高级搜索 -->
+              <div class="guanjianci-search">
+                <a href="index.html"><img src="../../../layuiadmin/imgs/xuanze2.png" alt="" width="20px"> 关键词搜索</a>
+                <a href="index2.html"><img src="../../../layuiadmin/imgs/xuanze1.png" alt="" width="20px" style="margin-left: 15px"> 高级搜索</a>
+              </div>
+              <!-- 搜索 -->
+              <div class="right sanbang-right" style="width: 100%">
+                <div class="layui-form-item" style="width: 100%">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入关键词" autocomplete="off" class="layui-input" style="width: 100%">
+                    <a href="search-jieguo.html" title=""><button type="button" class="layui-btn layui-btn-sm" style="background-color:#5597e5">搜索</button></a>
+                  </div>
+                </div>
+              </div>
+              <!-- 所属行业 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <span class="left mtd-shipin-fenlei-left">所属行业:</span>
+                <div class="left mtd-search-fenlei">
+                  <a href="#" title="">全部</a>
+                  <a href="#" title="">网红美女</a>
+                  <a href="#" title="">网红帅哥</a>
+                  <a href="#" title="">搞笑</a>
+                  <a href="#" title="">情感</a>
+                  <a href="#" title="">剧情</a>
+                  <a href="#" title="">美食</a>
+                  <a href="#" title="">美妆</a>
+                  <a href="#" title="">种草</a>
+                  <a href="#" title="">穿搭</a>
+                  <a href="#" title="">美妆</a>
+                  <a href="#" title="">种草</a>
+                  <a href="#" title="">穿搭</a>
+                </div>
+              </div>
+              <!-- 内容标签 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <span class="left mtd-shipin-fenlei-left">内容标签:</span>
+                <div class="left mtd-search-fenlei">
+                  <a href="#" title="">全部</a>
+                  <a href="#" title="">网红美女</a>
+                  <a href="#" title="">网红帅哥</a>
+                  <a href="#" title="">搞笑</a>
+                  <a href="#" title="">情感</a>
+                  <a href="#" title="">剧情</a>
+                  <a href="#" title="">美食</a>
+                  <a href="#" title="">美妆</a>
+                  <a href="#" title="">种草</a>
+                  <a href="#" title="">穿搭</a>
+                  <a href="#" title="">美妆</a>
+                  <a href="#" title="">种草</a>
+                  <a href="#" title="">穿搭</a>
+                </div>
+              </div>
+              <!-- 粉丝数 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <span class="left mtd-shipin-fenlei-left">粉丝数:</span>
+                <div class="left mtd-search-fenlei">
+                  <a href="#" title="">不限</a>
+                  <a href="#" title=""><1万</a>
+                  <a href="#" title="">1万~10万</a>
+                  <a href="#" title="">10万~50万</a>
+                  <a href="#" title="">50万~100万</a>
+                  <a href="#" title="">100万~500万</a>
+                  <a href="#" title="">100万~1千万</a>
+                  <a href="#" title="">>1千万</a>
+                </div>
+              </div>
+              <!-- 点赞数 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <span class="left mtd-shipin-fenlei-left">点赞数:</span>
+                <div class="left mtd-search-fenlei">
+                  <a href="#" title="">不限</a>
+                  <a href="#" title=""><1万</a>
+                  <a href="#" title="">1万~5万</a>
+                  <a href="#" title="">5万~10万</a>
+                  <a href="#" title="">10万~50万</a>
+                  <a href="#" title="">50万~100万</a>
+                  <a href="#" title="">100万~200万</a>
+                  <a href="#" title="">>200万</a>
+                </div>
+              </div>
+              <!-- 飞瓜指数 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <span class="left mtd-shipin-fenlei-left">飞瓜指数:</span>
+                <div class="left mtd-search-fenlei">
+                  <a href="#" title="">不限</a>
+                  <a href="#" title="">200~300</a>
+                  <a href="#" title="">300~500</a>
+                  <a href="#" title="">500~700</a>
+                  <a href="#" title="">700~900</a>
+                  <a href="#" title="">900~1000</a>
+                  <a href="#" title="">>1000</a>
+                </div>
+              </div>
+              <!-- 地域 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <div class="layui-col-md12">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">地域：</label>
+                      <div class="layui-input-inline">
+                        <select name="quiz1">
+                          <option value="" selected="">省份</option>
+                          <option value="浙江">浙江省</option>
+                          <option value="你的工号">江西省</option>
+                          <option value="你最喜欢的老师">福建省</option>
+                        </select>
+                      </div>
+                      <div class="layui-input-inline">
+                        <select name="quiz2">
+                          <option value="" disabled="">地区</option>
+                          <option value="杭州">杭州</option>
+                          <option value="宁波">宁波</option>
+                          <option value="温州">温州</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- 性别 年龄 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <div class="layui-col-md6">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">性别:</label>
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">不限</option>
+                          <option value="0">男</option>
+                          <option value="1">女</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="layui-col-md6">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">年龄:</label>
+                      <div class="layui-input-block">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">不限</option>
+                          <option value="0">10-15</option>
+                          <option value="0">15-20</option>
+                          <option value="0">20-30</option>
+                          <option value="0">30-40</option>
+                          <option value="0">40-50</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- 条件 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <div class="layui-col-md12">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item" pane="">
+                      <label class="layui-form-label">条件:</label>
+                      <div class="layui-input-block">
+                        <input type="checkbox" name="like1[write]" lay-skin="primary" title="个人认证号" checked="">
+                        <input type="checkbox" name="like1[read]" lay-skin="primary" title="机构认证号">
+                        <input type="checkbox" name="like1[game]" lay-skin="primary" title="已开通商品橱窗">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- 认证信息 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <div class="layui-col-md12">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">认证信息:</label>
+                      <div class="layui-input-block">
+                        <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="请输入认证信息关键词进行搜索，示例：抖音人气好物推荐官" class="layui-input" style="width: 95%">
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <!-- 粉丝画像筛选 -->
+              <div class="mtd-shipin-fenlei border-bottom clear">
+                <p style="color: #000； margin-bottom: 15px">粉丝画像筛选:</p>
+                <div class="layui-col-md6">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">男女比例不限:</label>
+                      <div class="layui-input-block" style="margin-left: 118px">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">不限</option>
+                          <option value="0">男</option>
+                          <option value="1">女</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="layui-col-md6">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">主要年龄:</label>
+                      <div class="layui-input-block" style="margin-left: 90px">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="" selected="">不限</option>
+                          <option value="0">10-20</option>
+                          <option value="1">20-40</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <div class="layui-col-md12">
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">主要地域：</label>
+                      <div class="layui-input-inline">
+                        <select name="quiz1">
+                          <option value="" selected="">省份</option>
+                          <option value="浙江">浙江省</option>
+                          <option value="你的工号">江西省</option>
+                          <option value="你最喜欢的老师">福建省</option>
+                        </select>
+                      </div>
+                      <div class="layui-input-inline">
+                        <select name="quiz2">
+                          <option value="" disabled="">地区</option>
+                          <option value="杭州">杭州</option>
+                          <option value="宁波">宁波</option>
+                          <option value="温州">温州</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.下拉
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //日期
+  laydate.render({
+    elem: '#date'
+  });
+  laydate.render({
+    elem: '#date1'
+  });
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ]
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+  //监听指定开关
+  form.on('switch(switchTest)', function(data){
+    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+      offset: '6px'
+    });
+    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+ 
+  //表单赋值
+  layui.$('#LAY-component-form-setval').on('click', function(){
+    form.val('example', {
+      "username": "贤心" // "name": "value"
+      ,"password": "123456"
+      ,"interest": 1
+      ,"like[write]": true //复选框选中状态
+      ,"close": true //开关状态
+      ,"sex": "女"
+      ,"desc": "我爱 layui"
+    });
+  });
+  
+  //表单取值
+  layui.$('#LAY-component-form-getval').on('click', function(){
+    var data = form.val('example');
+    alert(JSON.stringify(data));
+  });
+  
+});
+
+</script>
+
+</html>

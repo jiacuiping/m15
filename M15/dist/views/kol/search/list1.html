@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>数据概览</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .easyPieChart{margin: 0 20px;}
+  .mtd-shipin-tab-left{width: 100%}
+  .mtd-shipin-tab-left ul li{width: 15%; text-align: center}
+  .jia-span-top{margin-top: 4px}
+  .mtd-shipin-td-btn a,.mtd-shipin-td-btn button{display: block !important;float: left !important;width: 73px !important;}
+</style>
+<body onLoad="initPieChart();">
+<div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <!-- 收藏的信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="mtd-shipin-index-div">
+              <!-- 左边头像和热度 -->
+                <div class="mtd-shipin-div-left">
+                  <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+                  <div class="mtd-list1-shenyang-div">
+                    <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                  </div>
+                </div>
+                <!-- 中间信息抖音号，分类和简介 -->
+                <div class="mtd-shipin-div-center">
+                  <h5>李佳琪Austin <img src="../../../layuiadmin/imgs/3.png" alt="" class="center-img"> <img src="../../../layuiadmin/imgs/a-2.png" alt="" class="span-margin-l"> 抖音人气好物推荐官</h5>
+                  <p>抖音号：166902759<span class="span-margin-l">性别：男</span><span class="span-margin-l">地区：上海</span><span class="span-margin-l">年龄：27</span></p>
+                  <p>分类：美妆<span class="span-margin-l kouhong">口红</span><span class="span-margin-l kouhong">彩妆</span></p>
+                  <p>简介：涂口红世界纪录保持者 战胜马云的口红一哥 关注vx:李佳琪</p>
+                  <p><span class="mz-span-img"><img src="../../../layuiadmin/imgs/huangguan.png" alt="">美妆排行榜周榜第一名</span><span class="span-margin-l mz-span-img" style="background-color:#ff8000"><img src="../../../layuiadmin/imgs/huangguan.png" alt="">今日电商大人销量榜第三名</span></p>
+                </div>
+                <div id="hot">
+                  <p style="margin-top: 10px">平台热度</p>
+                  <p>2090.25w</p>
+                </div>
+                <!-- 右边四个仪表盘图表 -->
+                <div class="mtd-shipin-div-right">
+                  <div class="container" style="width: 100%">
+                    <div class="chart">
+                      <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                      <div class="labeler">粉丝数</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                      <div class="labeler">平均点赞</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="92"><span>823</span></div>
+                      <div class="labeler">平均评论</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="84"><span>2113</span></div>
+                      <div class="labeler">平均分享</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <!-- 好多button -->
+            <div class="button5">
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入我的抖音号</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">相似号查询</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">视频监控</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">立即合作</button>
+              <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入收藏</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding:10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="list1.html" title="" class="checked-bottom">数据概览</a></li>
+                <li><a href="list2.html" title="">播主视频</a></li>
+                <li><a href="list3.html" title="">MCN系统</a></li>
+                <li><a href="list4.html" title="">粉丝数据分析</a></li>
+                <li><a href="list5.html" title="">电商数据分析</a></li>
+                <li><a href="list6.html" title="">任务平台</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>  
+      <!-- 总播放量 总下载数 总评论数 总转发数 总点赞数 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="mtd-shipin-list1-ul">
+              <ul class="clear">
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/4.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>总播放数</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/5-2.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>总粉丝量</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/6.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>总评论数</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/7.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>总转发数</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/8.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>总点赞数</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/4.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>近30天增量</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/5-2.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>近30天增量</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/6.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>近30天增量</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/7.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>近30天增量</p>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="mtd-shipin-list1-div">
+                    <img src="../../../layuiadmin/imgs/8.png" alt="">
+                    <div class="mtd-shipin-list1-div-right right">
+                      <h4>150.0w</h4>
+                      <p>近30天增量</p>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- m15价值指数 he  互动价值 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">M15价值指数</div>
+          <div class="layui-card-body">
+            <div class="border-f8f8f8 clear">
+              <!-- 左侧 -->
+              <div class="left" style="width: 50%;margin-top: 70px">
+                <div class="mtd-shipin-div-left">
+                  <div class="mtd-list1-shenyang-div">
+                    <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                  </div>
+                </div>
+                <p style="font-size:16px;margin: 5px 0">CPU usage</p>
+                <p>Sentiments two occasional affromting solidtude travdfughs abf one jhdjshf,</p>
+              </div>
+              <!-- 右侧仪表盘 -->
+              <div id="tb8" class="right" style="width: 50%;height:300px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">互动价值</div>
+          <div class="layui-card-body">
+            <div class="border-f8f8f8 border-f8f8f8-bg clear">
+              <p class="left">3000w</p>
+              <div id="tb9" class="left" style="height: 300px;width: 50%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 查看爆款视频 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <a href="#" style="text-align:right;display:block;color:#1988fc">查看爆款视频 ></a>
+          </div>
+        </div>
+      </div>
+      <!-- 五个爆款 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <ul class="kol-search-list1-ul clear">
+              <li><div class="kol-search-list1-ul-div"><p>发布视频总数</p><p>52个</p></div></li>
+              <li><div class="kol-search-list1-ul-div"><p>视频发布频率</p><p>3.2个/周</p></div></li>
+              <li>
+                <div class="kol-search-list1-ul-div">
+                  <img src="../../../layuiadmin/imgs/huo3.png" alt="" class="left" style="margin-top: 7px">
+                  <div style="display: inline-block">
+                    <p>大爆款视频（占比）</p>
+                    <p>41个/（100%）</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="kol-search-list1-ul-div">
+                  <img src="../../../layuiadmin/imgs/huo2.png" alt="" class="left" style="margin-top: 7px">
+                  <div style="display: inline-block">
+                    <p>中爆款视频（占比）</p>
+                    <p>41个/（100%）</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="kol-search-list1-ul-div">
+                  <img src="../../../layuiadmin/imgs/huo1.png" alt="" class="left" style="margin-top: 7px">
+                  <div style="display: inline-block">
+                    <p>小爆款视频（占比）</p>
+                    <p>41个/（100%）</p>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- 最新视频数据表现 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">最新视频数据表现</div>
+          <div class="layui-card-body">
+            <div id="tb1" style="width: 100%; height: 500px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 播放趋势 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">播放趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tb2" style="width: 100%; height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 粉丝趋势 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">播放趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tb3" style="width: 100%; height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 评论趋势 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">播放趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tb4" style="width: 100%; height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 转发趋势 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">播放趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tb5" style="width: 100%; height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 点赞趋势 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">播放趋势<span class="right mtd-shipin-td-btn jia-span-top">
+            <a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna">
+              <button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button>
+            </a>
+            <button type="button" class="layui-btn layui-btn-sm">增量</button></span>
+          </div>
+          <div class="layui-card-body">
+            <div id="tb6" style="width: 100%; height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 评论热词TOP10 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-header">评论热词TOP10</div>
+          <div class="layui-card-body">
+            <div id="tb7" style="width: 100%; height: 300px"></div>
+          </div>
+        </div>
+      </div>
+      <!-- 搜索关键词 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <!-- 关键词搜索 -->
+          <div class="layui-card-header">
+            <div class="layui-form-item">
+              <div class="layui-input-inline sanbang-right-div" style="width: 210px;margin-top: 2px">
+                <input type="" name="" lay-verify="pass" placeholder="输入关键词" autocomplete="off" class="layui-input">
+                <button type="button" class="layui-btn layui-btn-sm" style="background-color: #1e9fff;">搜索</button>
+              </div>
+            </div>
+          </div>
+          <!-- 关键词搜索出来的结果 -->
+          <div class="layui-card-body" style="height: 300px;overflow: auto;">
+            <div class="kol-search-list1-jieguo">
+              <ul>
+                <li>
+                  <p class="yichu"><span style="color: #1e9fff">毛毛</span>我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇</p>
+                  <p>2019-10-25</p>
+                </li>
+                <li>
+                  <p class="yichu"><span style="color: #1e9fff">毛毛</span>我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇我叫阿娇，我像你，你叫阿娇</p>
+                  <p>2019-10-25</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+// 3.最新视频数据表现  图表
+var myChart = echarts.init(document.getElementById("tb1"));
+var option = {
+    title : {},
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['点赞','评论']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    xAxis : [
+        {
+            type : 'category',
+            data : ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'蒸发量',
+            type:'bar',
+            data:[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大值'},
+                    {type : 'min', name: '最小值'}
+                ]
+            },
+            color:['#0b62a5'],
+            markLine : {
+                data : [
+                    {type : 'average', name: '平均值'}
+                ]
+            }
+        },
+        {
+            name:'降水量',
+            type:'bar',
+            data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
+            markPoint : {
+                data : [
+                    {name : '年最高', value : 182.2, xAxis: 7, yAxis: 183},
+                    {name : '年最低', value : 2.3, xAxis: 11, yAxis: 3}
+                ]
+            },
+            color:['#7791a2'],
+            markLine : {
+                data : [
+                    {type : 'average', name : '平均值'}
+                ]
+            }
+        }
+    ]
+};
+myChart.setOption(option); 
+
+// 4. 播放趋势
+var myChart = echarts.init(document.getElementById("tb2"));
+var option = {
+    title: {},
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['总量','增量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2012-10','2012-11','2012-12','2012-13','2012-14','2012-15','2012-16']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'总量',
+            type:'line',
+            stack: '总量',
+            color:['#7b92a2'],
+            smooth: true,
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'增量',
+            type:'line',
+            stack: '总量',
+            color:['#0b62a5'],
+            smooth: true,
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+    ]
+};
+myChart.setOption(option); 
+
+// 5. 粉丝趋势
+var myChart = echarts.init(document.getElementById("tb3"));
+var option = {
+    title: {},
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['总量','增量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2012-10','2012-11','2012-12','2012-13','2012-14','2012-15','2012-16']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'总量',
+            type:'line',
+            stack: '总量',
+            color:['#7b92a2'],
+            smooth: true,
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'增量',
+            type:'line',
+            stack: '总量',
+            color:['#0b62a5'],
+            smooth: true,
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+    ]
+};
+myChart.setOption(option); 
+
+// 6. 评论趋势
+var myChart = echarts.init(document.getElementById("tb4"));
+var option = {
+    title: {},
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['总量','增量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2012-10','2012-11','2012-12','2012-13','2012-14','2012-15','2012-16']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'总量',
+            type:'line',
+            stack: '总量',
+            color:['#7b92a2'],
+            smooth: true,
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'增量',
+            type:'line',
+            stack: '总量',
+            color:['#0b62a5'],
+            smooth: true,
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+    ]
+};
+myChart.setOption(option); 
+
+// 7. 转发趋势
+var myChart = echarts.init(document.getElementById("tb5"));
+var option = {
+    title: {},
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['总量','增量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2012-10','2012-11','2012-12','2012-13','2012-14','2012-15','2012-16']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'总量',
+            type:'line',
+            stack: '总量',
+            color:['#7b92a2'],
+            smooth: true,
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'增量',
+            type:'line',
+            stack: '总量',
+            color:['#0b62a5'],
+            smooth: true,
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+    ]
+};
+myChart.setOption(option); 
+
+// 8. 点赞趋势
+var myChart = echarts.init(document.getElementById("tb6"));
+var option = {
+    title: {},
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['总量','增量']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2012-10','2012-11','2012-12','2012-13','2012-14','2012-15','2012-16']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'总量',
+            type:'line',
+            stack: '总量',
+            color:['#7b92a2'],
+            smooth: true,
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'增量',
+            type:'line',
+            stack: '总量',
+            color:['#0b62a5'],
+            smooth: true,
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+    ]
+};
+myChart.setOption(option); 
+
+// 9. 评论热词TOP10
+var myChart = echarts.init(document.getElementById("tb7"));
+var option = {
+    color: ['#018fcf'],
+    tooltip : {
+        trigger: 'axis',
+        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+        }
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Oct','Nov','Dec'],
+            axisTick: {
+                alignWithLabel: true
+            }
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value'
+        }
+    ],
+    series : [
+        {
+            name:'直接访问',
+            type:'bar',
+            barWidth: '60%',
+            data:[10, 52, 200, 334, 390, 330, 22,10, 52, 200, 334, 390]
+        }
+    ]
+};
+myChart.setOption(option); 
+
+// 10. 左侧仪表盘
+var myChart = echarts.init(document.getElementById("tb8"));
+var option = {
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    toolbox: {
+        feature: {
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [
+        {
+            name: '业务指标',
+            type: 'gauge',
+            data: [{value: 70, name: ''}]
+        }
+    ]
+};
+setInterval(function () {
+    option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+    myChart.setOption(option, true);
+},2000);
+myChart.setOption(option);
+
+// 11. 左侧仪表盘
+var myChart = echarts.init(document.getElementById("tb9"));
+var option = {
+    tooltip : {
+        formatter: "{a} <br/>{b} : {c}%"
+    },
+    toolbox: {
+        feature: {
+            restore: {},
+            saveAsImage: {}
+        }
+    },
+    series: [
+        {
+            name: '业务指标',
+            type: 'gauge',
+            data: [{value: 70, name: ''}]
+        }
+    ]
+};
+setInterval(function () {
+    option.series[0].data[0].value = (Math.random() * 100).toFixed(2) - 0;
+    myChart.setOption(option, true);
+},2000);
+myChart.setOption(option);
+</script>
+</body>
+</html>

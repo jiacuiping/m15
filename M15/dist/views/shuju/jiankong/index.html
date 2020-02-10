@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>视频监控</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .layui-form-item .layui-input-inline{width: 300px}
+  .layui-btn{background-color: #1e9fff}
+  .shengzhi{width: 80px; height: 108px}
+  .layui-form-radio{margin-right: 0; padding-right: 0}
+</style>
+<body>
+
+  <div class="layui-fluid" id="LAY-flow-demo">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab选项 -->
+      <div class="layui-col-md12" style="padding-bottom: 0">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="index.html" title="" class="checked-bottom">视频监控</a></li>
+                <li><a href="index2.html" title="">监控历史</a></li>
+              </ul>
+            </div>
+            <div class="mtd-shipin-tab-left right">
+              <img src="../../../layuiadmin/imgs/wen.png" alt=""> 使用帮助
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 表格 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body clear">
+            <div class="shuju-jiankong-div">
+              <h3>
+                <span style="color: #000">视频监控</span> 
+                <span style="font-size: 14px">(可对抖音视频进行监控，提供分钟级的视频点赞数、评论大户、转发数监测，掌握抖音号视频热度走向)</span>
+              </h3>
+              <!-- 单选 -->
+              <form class="layui-form" action="" lay-filter="example">
+                <div class="layui-form-item">
+                  <div class="layui-input-block" style="margin-left: 0">
+                    <a href="index.html" title="">
+                      <input type="radio" name="sex" value="0" title="" checked="">
+                      <div class="jiankong-form-input" style="margin-right: 20px">
+                        <h4>即时监控</h4>
+                        <p>已发布，输入推文链接地址开始监控</p>
+                      </div>
+                    </a>
+                    <a href="yuyue.html" title="">
+                      <input type="radio" name="sex" value="1" title="">
+                      <div class="jiankong-form-input">
+                        <h4>预约监控</h4>
+                        <p>发布时间已确定尚未发送，设置时间预约监控</p>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </form>
+              <!-- 视频链接 -->
+              <div class="jiankong-lianjie clear">
+                <p class="left">视频链接</p>
+                <form class="layui-form right" action="" lay-filter="example">
+                  <div class="layui-form-item" pane="" style="margin-bottom: 0">
+                    <div class="layui-input-block">
+                      <input type="checkbox" name="like1[write]" lay-skin="primary" title="点赞数提醒" checked="">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- 查询 -->
+              <div class="sanbang-right shuju-jiankong-sou">
+                <div class="layui-form-item">
+                  <div class="layui-input-inline sanbang-right-div" style="width: 100%">
+                    <input type="" name="" lay-verify="pass" placeholder="请输入视频地址" autocomplete="off" class="layui-input">
+                    <button type="button" class="layui-btn layui-btn-sm">查询</button>
+                  </div>
+                </div>
+              </div>
+              <!-- 监控时长 -->
+              <div class="shuju-jiankong-shichang">
+                <p style="color: #000">监控时长</p>
+                <form class="layui-form" action="" lay-filter="example">
+                  <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin-left: 0">
+                      <input type="radio" name="sex" value="0" title="24小时" checked="">
+                      <input type="radio" name="sex" value="1" title="48小时">
+                      <input type="radio" name="sex" value="2" title="72小时">
+                      <input type="radio" name="sex" value="3" title="7天">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- 更多数据监控  -->
+              <div class="shuju-jiankong-shichang">
+                 <p><span style="color: #000">更多数据</span>（选择同步监控粉丝数，关联商品浏览量和销售量，将消耗更多的监控次数）</p>
+                 <form class="layui-form" action="" lay-filter="example">
+                  <div class="layui-form-item" pane="" style="margin-bottom: 0">
+                    <div class="layui-input-block" style="margin-left: 0">
+                      <input type="checkbox" name="like1[write]" lay-skin="primary" title="下载数监控">
+                      <input type="checkbox" name="like1[write]" lay-skin="primary" title="关联商品监控">
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- 开始监控 -->
+              <button type="button" class="layui-btn layui-btn-normal">开始监控</button>
+              <p class="jiankong-xiaohao">本次监控共需消耗<span>1</span>次视频监控次数，本月剩余<span>3</span>次视频监控次数</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<script src="../../../layuiadmin/layui/layui.js"></script>  
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+// 2.表单
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+  
+  //日期
+  laydate.render({
+    elem: '#date'
+  });
+  laydate.render({
+    elem: '#date1'
+  });
+  
+  //创建一个编辑器
+  var editIndex = layedit.build('LAY_demo_editor');
+ 
+  //自定义验证规则
+  form.verify({
+    title: function(value){
+      if(value.length < 5){
+        return '标题至少得5个字符啊';
+      }
+    }
+    ,pass: [
+      /^[\S]{6,12}$/
+      ,'密码必须6到12位，且不能出现空格'
+    ]
+    ,content: function(value){
+      layedit.sync(editIndex);
+    }
+  });
+  
+  //监听指定开关
+  form.on('switch(switchTest)', function(data){
+    layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+      offset: '6px'
+    });
+    layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+  });
+  
+  //监听提交
+  form.on('submit(demo1)', function(data){
+    layer.alert(JSON.stringify(data.field), {
+      title: '最终的提交信息'
+    })
+    return false;
+  });
+ 
+  //表单取值
+  layui.$('#LAY-component-form-getval').on('click', function(){
+    var data = form.val('example');
+    alert(JSON.stringify(data));
+  });
+  
+});
+
+</script>
+</body>
+</html>

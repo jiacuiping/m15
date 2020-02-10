@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>kol榜单</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.layui-input-block{margin-left: 0}
+.layui-input{padding: 0 30px 0 30px;}
+.layui-input-block{position: relative}
+.layui-input-block i{position: absolute; top: 11px; left: 10px}
+.layui-input-block input{border-radius: 10px}
+.layui-input-block span{position: absolute; top: 11px; right: 10px}
+select{width: 100%;margin-top: 5px;height: 30px}
+.layui-form-item{margin-bottom: 0;display: inline-block}
+.layui-form-label{text-align: left;padding:9px 0 }
+.sanbang-right-div input {width: 355px;}
+</style>
+<body>
+
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="../../../layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 所属省份 分类 -->
+      <div class="layui-col-md12">
+        <div class="layui-card layui-card-padding">
+          <!-- 第四行  tab选项卡 -->
+          <div class="mtd-shipin-tab clear">  
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <a href="index.html" title=""><li class="checked-bottom">KOL对比</li></a>
+                <a href="lishi.html" title=""><li>对比历史</li></a>
+              </ul>
+            </div>
+            <!-- 右边问号 -->
+            <div class="mtd-shipin-tab-right right">
+              <a href="#" style="color:#5597e5"><img src="../../../layuiadmin/imgs/wen.png" alt=""> 使用帮助</a>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <!-- 内容 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <div class="kol-duibi-div">
+              <img src="../../../layuiadmin/imgs/kol1.png" alt="">
+              <h2>抖音号对比</h2>
+              <p>支持多个抖音号同时进行对比，对比结果可通过对比历史进行查询。<span style="color: #4c90e1">查看示例</span></p>
+            </div>
+            <div class="douyinhao-search">
+              <p>抖音号搜索</p>
+              <div class="layui-input-inline sanbang-right-div">
+                <input type="" name="" lay-verify="pass" placeholder="请输入抖音号或者播主名称" autocomplete="off" class="layui-input">
+                <a href="list1.html" title=""><button type="button" class="layui-btn layui-btn-sm">查询</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script>
+
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+  </script>
+</body>
+</html>

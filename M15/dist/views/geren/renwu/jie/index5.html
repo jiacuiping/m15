@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>我的订单（接任务方）</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left2{width: 100%}
+.mtd-shipin-tab-left2 ul li{width: 15%;text-align: center}
+.layui-icon-search{position: absolute;top: 5px;right: 10px}
+.layui-form-label{color: #000;width: 80px}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 标题 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body layui-shenhuilu clear">
+            <img src="../../../../layuiadmin/imgs/touxiang.jpg" alt="" class="left">
+            <div class="layui-shenhuilu-r left">
+              <h4>李佳琪Austin<span class="mianfei-ban">免费版</span></h4>
+              <p>关联微信号：65656565454</p>
+              <p>账号类型：普通账号（mcn机构、广告商、讲师）</p>
+            </div>
+          </div>
+          <div class="layui-card-body">
+            <p>绑定手机使用账号登录<span class="mianfei-ban">推荐绑定</span>
+              <a href="#" style="color: #349adc;margin-left: 20px;">点击绑定</a>
+            </p>
+            <p>绑定手机号后可设定登录密码，在微信失效时可使用账号登录功能</p>
+          </div>
+        </div>
+      </div>  
+      <!-- tab导航条 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left mtd-shipin-tab-left2">
+              <ul class="clear">
+                <li><a href="#" title="">套餐详情</a></li>
+                <li><a href="index.html" class="checked-bottom">我的订单</a></li>
+                <li><a href="#" title="">MCN系统</a></li>
+                <li><a href="#" title="">粉丝数据分析</a></li>
+                <li><a href="#" title="">电商数据分析</a></li>
+                <li><a href="#" title="">任务平台</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 五个index -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 选择 -->
+            <div class="clear">
+              <!-- 左边 按钮 -->
+              <div class="left">
+                <a href="index.html"><button class="layui-btn layui-btn-primary layui-btn-xs">所有订单</button></a>
+                <a href="index2.html"><button class="layui-btn layui-btn-primary layui-btn-xs">待接单(11)</button></a>
+                <a href="index3.html"><button class="layui-btn layui-btn-primary layui-btn-xs">进行中(3)</button></a>
+                <a href="index4.html"><button class="layui-btn layui-btn-primary layui-btn-xs">待评价</button></a>
+                <a href="index5.html"><button class="layui-btn layui-btn-primary layui-btn-xs blue-dingdan">已结束(3)</button></a>
+              </div>
+              <!-- 右边 搜索订单 -->
+              <div class="right" style="height: 38px">
+                <form class="layui-form" action="">
+                  <div class="layui-form-item">
+                    <div class="layui-input-block" style="position:relative;margin-left: 0">
+                      <input type="text" name="title" lay-verify="title" autocomplete="off" placeholder="订单号/订单名称" class="layui-input" style="padding-right:30px">
+                      <i class="layui-icon layui-icon-search"></i>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 列表 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <!-- 一个完整的列表 -->  <!-- 有好几种情况 -->
+            <div class="w-dingdan-list">
+              <!-- 标题 -->
+              <div class="w-dingdan-div">
+                <p>2019-09-24发布</p>
+                <p>订单号：<span>16465565</span></p>
+                <p>雇主：小茗同学</p>
+              </div>
+              <!-- 内容 -->
+              <div class="w-dingdan-content clear">
+                <p class="yichu w-dingdan-content-p1">APP开发直播APP开发教育客户......</p>
+                <div style="display: inline-block;min-width: 210px">
+                  <p style="margin-left: 26px">预算金额：<span style="color:red">￥1000</span></p>
+                  <p><img src="../../../../layuiadmin/imgs/tuo.png" alt="" style="margin-right: 5px">已托管赏金：<span style="color:red">￥1000</span></p>
+                </div>
+                <div style="display:inline-block;margin-left: 20px"><p>交易成功</p><p class="blue-span5">查看交易明细</p></div>
+                <a href="#" class="right" style="color:#1E9FFF">查看详情</a>
+              </div>
+            </div>
+
+            <div class="w-dingdan-list">
+              <!-- 标题 -->
+              <div class="w-dingdan-div">
+                <p>2019-09-24发布</p>
+                <p>订单号：<span>16465565</span></p>
+                <p>雇主：小茗同学</p>
+              </div>
+              <!-- 内容 -->
+              <div class="w-dingdan-content clear">
+                <p class="yichu w-dingdan-content-p1">APP开发直播APP开发教育客户......</p>
+                <div style="display: inline-block;min-width: 210px">
+                  <p style="margin-left: 26px">预算金额：<span style="color:red">￥1000</span></p>
+                </div>
+                <div style="display:inline-block;margin-left: 20px">交易失败</div>
+                <a href="#" class="right" style="color:#1E9FFF">查看详情</a>
+              </div>
+            </div>
+
+            <div class="w-dingdan-list">
+              <!-- 标题 -->
+              <div class="w-dingdan-div">
+                <p>2019-09-24发布</p>
+                <p>订单号：<span>16465565</span></p>
+                <p>雇主：小茗同学</p>
+              </div>
+              <!-- 内容 -->
+              <div class="w-dingdan-content clear">
+                <p class="yichu w-dingdan-content-p1">APP开发直播APP开发教育客户......</p>
+                <div style="display: inline-block;min-width: 210px">
+                  <p style="margin-left: 26px">预算金额：<span style="color:red">待议价</span></p>
+                </div>
+                <div style="display:inline-block;margin-left: 20px">交易失败</div>
+                <a href="#" class="right" style="color:#1E9FFF">查看详情</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<script src="../../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+  var form = layui.form
+  ,layer = layui.layer
+  ,layedit = layui.layedit
+  ,laydate = layui.laydate;
+});
+</script>
+</body>
+</html>

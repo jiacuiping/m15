@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>商品分析</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left{display: block}
+.mtd-shipin-tab-left ul li{width: 30%;text-align: center}
+.mtd-shipin-tab-left ul li a{padding-bottom: 3px;}
+</style>
+<body onLoad="initPieChart();">
+  <!-- 点击shipin里的详情按钮跳到此页 -->
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 视频介绍 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body" style="height: 160px">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" class="mtd-shipin-list1-img">
+            <div class="mtd-shipin-list1">
+              <h4 class="yichu clear">神回路翻转再也不用抢车位了<span class="right mtd-shipin-td-btn"><img src="../../../layuiadmin/imgs/2.png" alt="" class="mtd-shipin-list1-img3"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></span></h4>
+              <h5>分类： <span>美食</span><span>美食</span><span>美食</span></h5>
+              <p>平台： <img src="../../../layuiadmin/imgs/1.png" alt="" class="mtd-shipin-list1-img2"><span>抖音</span></p>
+              <p class="yichu">简介： 用字温暖你 用心做媒体 新闻综合频道官方微信上线啦用字温暖你 用心做媒体 新闻综合频道官方微信上线啦</p> 
+              <p>视频时长： 19秒<span style="margin-left: 20px;color: #000">发布时间： 2019-09-21</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 粉丝点赞评论分享 -->
+      <div class="layui-col-md6">
+        <div class="layui-card">
+          <div class="layui-card-body clear" style="height: 160px">
+            <!-- 左边图片 -->
+            <div class="mtd-list1-shenyang-left left">
+              <p>沈阳新闻 <img src="../../../layuiadmin/imgs/3.png" alt="" style="margin-left:10px"></p>
+              <img src="../../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+              <div class="mtd-list1-shenyang-div">
+                <img src="../../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+              </div>
+            </div>
+            <!-- 右边数据 -->
+            <div class="mtd-list1-shenyang-right left">
+              <div class="container" style="width: 100%">
+                <div class="chart">
+                  <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                  <div class="labeler">粉丝数</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                  <div class="labeler">平均点赞</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="92"><span>823</span></div>
+                  <div class="labeler">平均评论</div>
+                </div>
+                <div class="chart">
+                  <div class="percentage" data-percent="84"><span>2113</span></div>
+                  <div class="labeler">平均分享</div>
+                </div>
+              </div>
+              <p>抖音号：57585455<span class="span-margin-l">性别：女</span><span class="span-margin-l">地区：沈阳</span></p>
+              <p>分类：知识资讯类</p>
+              <p><img src="../../../layuiadmin/imgs/a-2.png" alt=""> 沈阳新闻频道</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- tab导航条 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 10px 15px 0 15px;">
+            <div class="mtd-shipin-tab-left">
+              <ul class="clear">
+                <li><a href="list1.html" title="">视频详情</a></li>
+                <li><a href="list2.html" title="" class="checked-bottom">商品分析</a></li>
+                <li><a href="list3.html" title="">素材分析</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 视频信息 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body">
+            <img src="../../../layuiadmin/imgs/no1-1.png" alt="" style="width: 100px;height: 100px">
+            <div class="mtd-shipin-list2-div">
+              <h5><span>放心购</span>【荣景优品】5册 不吼不叫正面管教好妈妈胜过好老师，教育家教</h5>
+              <h3><span class="span1-1">￥78</span><del class="span1-2">原价：167</del></h3>
+              <p>抖音浏览量：<span>229.3w</span> &nbsp;&nbsp;&nbsp;全网销量：<span>3.2w</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 列表 -->
+      <div class="layui-col-md12">
+        <div class="layui-form">
+          <table class="layui-table" lay-even="" lay-skin="nob">
+            <colgroup>
+              <col width="100">
+              <col width="250">
+              <col width="150">
+              <col width="">
+              <col width="">
+              <col width="">
+              <col width="250">
+              <col>
+            </colgroup>
+            <thead>
+              <tr class="mtd-shipin-tr">
+                <th>排名</th>
+                <th style="text-align: left">视频内容</th>
+                <th>主播名称</th>
+                <th>点赞数</th>
+                <th>评论数</th>
+                <th>传播价值</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no1.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td>武博道馆</td>
+                <td class="color8c">42.9w</td>
+                <td class="color8c">9689</td>
+                <td><img src="../../../layuiadmin/imgs/sheng.png" class="shengzhi">97.5</td>
+                <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no2.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no2-2.png" alt=""><p class="yichu">相信看到最后，有很多人蠢蠢欲动!...</p></td>
+                <td>三洋乡墅</td>
+                <td class="color8c">42.9w</td>
+                <td class="color8c">9689</td>
+                <td><img src="../../../layuiadmin/imgs/sheng.png" class="shengzhi">97.5</td>
+                <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td><img src="../../../layuiadmin/imgs/no3.png" alt="" style="width: 25px"></td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no3-3.png" alt=""><p class="yichu">[春色满堂]2019-09-19发布的视频...</p></td>
+                <td>春色满堂</td>
+                <td class="color8c">42.9w</td>
+                <td class="color8c">9689</td>
+                <td><img src="../../../layuiadmin/imgs/sheng.png" class="shengzhi">97.5</td>
+                <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no1-1.png" alt=""><p class="yichu">#亮剑 他号称晋西北第一喷子...</p></td>
+                <td>武博道馆</td>
+                <td class="color8c">42.9w</td>
+                <td class="color8c">9689</td>
+                <td><img src="../../../layuiadmin/imgs/sheng.png" class="shengzhi">97.5</td>
+                <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="mtd-mtd-shipin-table-td2"><img src="../../../layuiadmin/imgs/no2-2.png" alt=""><p class="yichu">相信看到最后，有很多人蠢蠢欲动!...</p></td>
+                <td>三洋乡墅</td>
+                <td class="color8c">42.9w</td>
+                <td class="color8c">9689</td>
+                <td><img src="../../../layuiadmin/imgs/sheng.png" class="shengzhi">97.5</td>
+                <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+      </div>
+      
+      <!-- 折线统计图 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">商品销量趋势图<span class="right mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button></a><button type="button" class="layui-btn layui-btn-sm">增量</button></span></div>
+          <div class="layui-card-body">
+            <div id="tubiao1" style="height:500px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">商品浏览量趋势图<span class="right mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button></a><button type="button" class="layui-btn layui-btn-sm">增量</button></span></div>
+          <div class="layui-card-body">
+            <div id="tubiao2" style="height:500px"></div>
+          </div>
+        </div>
+      </div>
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">作品点赞趋势图<span class="right mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn mtd-shipin-td-btna"><button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">总量</button></a><button type="button" class="layui-btn layui-btn-sm">增量</button></span></div>
+          <div class="layui-card-body">
+            <div id="tubiao3" style="height:500px"></div>
+          </div>
+        </div>
+      </div>
+
+      <p style="text-align: center">查看该商品浏览量和同期其他推广视频趋势图，可添加到【我的商品】</p>
+      <button class="layui-btn layui-btn-sm layui-btn-normal button-margin" style="display: block;margin: 0 auto">添加我的商品</button>
+    </div>
+  </div>
+
+  
+  <script src="../../../layuiadmin/layui/layui.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.min.js"></script>  
+  <script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+  <script src="../../../layuiadmin/style/js/echarts.min.js"></script>
+<script>
+// 1.轮播 
+layui.use('carousel', function(){
+  var carousel = layui.carousel;
+  //建造实例
+  carousel.render({
+    elem: '#test1'
+    ,width: '100%' //设置容器宽度
+    ,arrow: 'always' //始终显示箭头
+    //,anim: 'updown' //切换动画方式
+  });
+});
+
+
+// 2.商品销量趋势图 图表
+var myChart = echarts.init(document.getElementById("tubiao1")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#00a2ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+
+// 3.商品浏览量趋势图 图表
+var myChart = echarts.init(document.getElementById("tubiao2")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#00a2ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+// 3.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+// 4.作品点赞趋势图 图表
+var myChart = echarts.init(document.getElementById("tubiao3")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#00a2ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+</script>
+</body>
+</html>

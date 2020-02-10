@@ -8,9 +8,11 @@ use app\admin\model\Kol;
 use app\admin\model\User;
 use app\admin\model\Video;
 use app\admin\model\Music;
+use app\admin\model\Goods;
 use app\admin\model\Topic;
 use app\admin\model\KolTrend;
 use app\admin\model\VideoTrend;
+use app\admin\model\GoodsTrend;
 use app\admin\model\MusicTrend;
 use app\admin\model\TopicTrend;
 use app\admin\model\VideoComment;
@@ -40,6 +42,7 @@ class Interfaces extends Base
 		$url = $this->url.'douyin/general/search';
 
 		$result = $this->curl($url,array('keyword'=>$keyword));
+		dump($result);die;
 	}
 
 	/**
@@ -51,8 +54,6 @@ class Interfaces extends Base
 		$url = $this->url.'douyin/hot/search';
 
 		$result = $this->curl($url);
-
-		dump($result);die;
 	}
 
 	/**
@@ -894,38 +895,80 @@ class Interfaces extends Base
 
 			foreach ($data as $key => $value) {
 
-				dump(substr($value['author']['avatar'],strripos($value['author']['avatar'],'/')));die;
-
-
 				$goods = array(
-					'goods_pid'			=> $value['goods']['product_id'],
+					'goods_number'		=> $value['goods']['product_id'],
 					'gooods_name'		=> $value['goods']['title'],
 					'goods_user'		=> $value['author']['id'],
 					'goods_nickname'	=> $value['author']['name'],
-					'goods_cover'		=> $value['author']['avatar'].$value['goods']['cover'],
+					'goods_cover'		=> substr($value['author']['avatar'],0,strripos($value['author']['avatar'],'/')).'/'.$value['goods']['cover'],
 					'goods_images'		=> '',
-					'goods_url'			=> $value['detail_url'],
+					'goods_url'			=> $value['goods']['detail_url'],
 					'goods_price'		=> $value['goods']['price'],
 					'goods_mprice'		=> $value['goods']['market_price'],
-					'goods_cowmmission'	=> $value['goods_type'],
-					'goods_type'		=> $value['item_type'],
+					'goods_cowmmission'	=> $value['goods']['commodity_type'],
+					'goods_type'		=> $cid,
 					'goods_is_recommend'=> $value['is_recommended'],
 					'update_time'		=> time(),
 					'create_time'		=> time(),
+					'statistics'		=> array(
+						'gt_up_or_down'		=> $value['goods']['up_or_down'],
+						'gt_sales'			=> $value['goods']['sales'],
+						'gt_browse'			=> 0,
+						'gt_kol'			=> 0,
+						'gt_video'			=> 0,
+						'gt_index'			=> 0,
+						'gt_batch'			=> date('Y-m-d'),
+						'gt_is_monitoring'	=> 0,
+						'gt_create_time'	=> time(),
+						'gt_time'			=> time(),
+					),
 				);
+
+				$id = $this->CreateData($goods,'goods');
+
+				if($id){
+					//添加话题趋势
+					$statistics = $goods['statistics'];
+					$statistics['gt_goods_id'] = $id;
+					$statistics['gt_goods_number'] = $goods['goods_number'];
+					$this->CreateData($statistics,'goodsTrend');
+				}
 			}
-
-			dumo($goods);die;
-
-
 		}
+	}
 
+	//获取抖音商品详情
+	public function GetGoodsInfo($gid)
+	{
+		$url = $this->url."douyin/promotion/detail";
 
+		$result = $this->curl($url,array('promotionId'=>$gid));
 
+		if($result['code'] == 1){
+
+			$data = $result['data']['data'][0];
+
+			dump($data);die;
+
+			$goods = array(
+				'goods_number'		=> $data['promotion_id'],
+				'gooods_name'		=> $data['title'],
+				'goods_user'		=> 0,
+				'goods_nickname'	=> '',
+				'goods_cover'		=> $data['images'][0]['url_list']['0'],
+				'goods_images'		=> '',
+				'goods_url'			=> $data['detail_url'],
+				'goods_price'		=> $data['price'],
+				'goods_mprice'		=> $data['market_price'],
+				'goods_commission'	=> $data['cos_fee'],
+				'goods_type'		=> 0,
+				'goods_is_recommend'=> 0,
+				'update_time'		=> time(),
+			);
+		}
 
 		dump($result);die;
 	}
-
 
 
 	/**************************************************** 话题 ****************************************************/
@@ -1192,7 +1235,7 @@ class Interfaces extends Base
 			//添加红人趋势信息
 
 			$obj = new KolTrend;
-			$Trend = $obj->GetOneData(array('kt_kol_uid'=>$data['kt_kol_uid'],'kt_batec'=>$data['kt_batec']));
+			$Trend = $obj->GetOneData(array('kt_kol_uid'=>$data['kt_kol_uid'],'kt_batec'=>$data['kt_batec'],'kt_monitoring'=>0));
 
 			if(!$Trend){
 
@@ -1296,8 +1339,45 @@ class Interfaces extends Base
 				return $result['code'] == 1 ? $result['id'] : 0;
 			}else
 				return $Trend['mt_id'];
+		}elseif($type == 'goods'){
+
+			//添加商品
+
+			$obj = new Goods;
+			$topic = $obj->GetOneData(array('goods_number'=>$data['goods_number']));
+			if(!$topic){
+				$result = $obj->CreateData($data);
+				return $result['code'] == 1 ? $result['id'] : 0;
+			}else
+				return $topic['goods_id'];
+
+		}elseif($type == 'goodsTrend'){
+
+			//添加商品趋势
+
+			$index = new Index;
+			$obj = new GoodsTrend;
+			$GetData = new GetData;
+
+			$Trend = $obj->GetOneData(array('gt_goods_id'=>$data['gt_goods_id'],'gt_batch'=>$data['gt_batch'],'gt_is_monitoring'=>0));
+
+			if(!$Trend){
+
+				$trend = $GetData->GetGoodsOneTrend($data['gt_goods_number'],0,false);
+
+				if($trend){
+					$data['gt_inc_sales'] = $data['gt_sales'] - $trend['gt_sales'];
+					$data['gt_inc_browse'] = $data['gt_browse'] - $trend['gt_browse'];
+				}else
+					$data['gt_inc_sales'] = $data['gt_inc_browse'] = 0;
+
+				$data['gt_index'] = $index->GoodsValue($data);
+				$result = $obj->CreateData($data);
+				return $result['code'] == 1 ? $result['id'] : 0;
+			}else
+				return $Trend['mt_id'];
 		}
-	}
+	} 
 
 	/**
 	 * 获取用户趋势总和
@@ -1314,7 +1394,6 @@ class Interfaces extends Base
 	public function curl($url,$data=array())
 	{
 		$data = array_merge(array('apikey'=>$this->key),$data);
-
 		//初始化
 	    $curl = curl_init();
 	    //设置抓取的url
@@ -1331,7 +1410,7 @@ class Interfaces extends Base
 	    $json = curl_exec($curl);
 	    //关闭URL请求
 	    curl_close($curl);
-	    
+
 	    $result = json_decode($json,true);
 
 	    if($result['retcode'] != '0000'){
@@ -1347,25 +1426,6 @@ class Interfaces extends Base
 	    }else
 	    	return array('code'=>1,'data'=>$result);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

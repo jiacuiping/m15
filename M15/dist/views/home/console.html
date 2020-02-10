@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layuiAdmin 控制台主页一</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.mtd-shipin-tab-left ul li{padding-bottom: 0}
+</style>
+<body onLoad="initPieChart();">
+  
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-row layui-col-space15">
+          <!-- 收藏的信息 -->
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-body">
+                <div class="mtd-shipin-index-div">
+                  <!-- 左边头像和热度 -->
+                    <div class="mtd-shipin-div-left">
+                      <img src="../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+                      <div class="mtd-list1-shenyang-div">
+                        <img src="../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                      </div>
+                    </div>
+                    <!-- 中间信息抖音号，分类和简介 -->
+                    <div class="mtd-shipin-div-center">
+                      <h5>李佳琪Austin <img src="../../layuiadmin/imgs/3.png" alt="" class="center-img"> <img src="../../layuiadmin/imgs/a-2.png" alt="" class="span-margin-l"> 抖音人气好物推荐官</h5>
+                      <p>抖音号：166902759<span class="span-margin-l">性别：男</span><span class="span-margin-l">地区：上海</span><span class="span-margin-l">年龄：27</span></p>
+                      <p>分类：美妆<span class="span-margin-l kouhong">口红</span><span class="span-margin-l kouhong">彩妆</span></p>
+                      <p>简介：涂口红世界纪录保持者 战胜马云的口红一哥 关注vx:李佳琪</p>
+                      <p><span class="mz-span-img"><img src="../../layuiadmin/imgs/huangguan.png" alt="">美妆排行榜周榜第一名</span><span class="span-margin-l mz-span-img" style="background-color:#ff8000"><img src="../../layuiadmin/imgs/huangguan.png" alt="">今日电商大人销量榜第三名</span></p>
+                    </div>
+                    <!-- 右边四个仪表盘图表 -->
+                    <div class="mtd-shipin-div-right">
+                      <div class="container" style="width: 100%">
+                        <div class="chart">
+                          <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                          <div class="labeler">粉丝数</div>
+                        </div>
+                        <div class="chart">
+                          <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                          <div class="labeler">平均点赞</div>
+                        </div>
+                        <div class="chart">
+                          <div class="percentage" data-percent="92"><span>823</span></div>
+                          <div class="labeler">平均评论</div>
+                        </div>
+                        <div class="chart">
+                          <div class="percentage" data-percent="84"><span>2113</span></div>
+                          <div class="labeler">平均分享</div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <!-- 好多button -->
+                <div class="button5">
+                  <button type="button" class="layui-btn layui-btn-sm layui-btn-normal">查看详情</button>
+                  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">添加抖音号</button>
+                  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">相似号查询</button>
+                  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">视频监控</button>
+                  <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">加入收藏</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 帮助中心 -->
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-header">帮助中心</div>
+              <div class="layui-card-body">
+                <ul class="layuiadmin-card-status">
+                  <li><a href="#" title=""><span class="layui-badge-dot layui-bg-black console-dot"></span>粉丝质量的含义是什么？</a></li>
+                  <li><a href="#" title=""><span class="layui-badge-dot layui-bg-black console-dot"></span>粉丝质量的含义是什么？</a></li>
+                  <li><a href="#" title=""><span class="layui-badge-dot layui-bg-black console-dot"></span>粉丝质量的含义是什么？</a></li>
+                  <li><a href="#" title=""><span class="layui-badge-dot layui-bg-black console-dot"></span>粉丝质量的含义是什么？</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 更新公告 -->
+          <div class="layui-col-md12">
+            <div class="layui-card layui-card-overflow">
+              <div class="layui-card-header">更新公告</div>
+              <div class="layui-card-body">
+                <!-- 时间线 -->
+                <ul class="layui-timeline">
+                  <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                      <h3 class="layui-timeline-title">8月18日</h3>
+                      <h4>【电商视频排行】功能优化</h4>
+                      <p>为了能第一时间发现爆款的电商视频，m15数据在电商视频排行榜新增了【今日电商视频排行】，实时更细当下最新爆款电商视频，查看实时电商视频点赞、关联商品浏览量等关键数据变化，可以快速发现优质电商视频，热门商品，给电商更多参考数据
+                      </p>
+                    </div>
+                  </li>
+                  <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                      <h3 class="layui-timeline-title">8月16日</h3>
+                      <h4>【电商视频排行】功能优化</h4>
+                      <p>为了能第一时间发现爆款的电商视频，m15数据在电商视频排行榜新增了【今日电商视频排行】，实时更细当下最新爆款电商视频，查看实时电商视频点赞、关联商品浏览量等关键数据变化，可以快速发现优质电商视频，热门商品，给电商更多参考数据
+                      </p>
+                    </div>
+                  </li>
+                  <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                      <h3 class="layui-timeline-title">8月15日</h3>
+                      <h4>【电商视频排行】功能优化</h4>
+                      <p>为了能第一时间发现爆款的电商视频，m15数据在电商视频排行榜新增了【今日电商视频排行】，实时更细当下最新爆款电商视频，查看实时电商视频点赞、关联商品浏览量等关键数据变化，可以快速发现优质电商视频，热门商品，给电商更多参考数据
+                      </p>
+                    </div>
+                  </li>
+                  <li class="layui-timeline-item">
+                    <i class="layui-icon layui-timeline-axis"></i>
+                    <div class="layui-timeline-content layui-text">
+                      <h3 class="layui-timeline-title">8月14日</h3>
+                      <h4>【电商视频排行】功能优化</h4>
+                      <p>为了能第一时间发现爆款的电商视频，m15数据在电商视频排行榜新增了【今日电商视频排行】，实时更细当下最新爆款电商视频，查看实时电商视频点赞、关联商品浏览量等关键数据变化，可以快速发现优质电商视频，热门商品，给电商更多参考数据
+                      </p>
+                    </div>
+                  </li>
+                </ul> 
+              </div>
+            </div>
+          </div>
+          <!-- 视频介绍 -->
+          <div class="layui-col-md6">
+            <div class="layui-card">
+              <div class="layui-card-body" style="height: 160px">
+                <img src="../../layuiadmin/imgs/no1-1.png" alt="" class="mtd-shipin-list1-img">
+                <div class="mtd-shipin-list1">
+                  <h4 class="yichu clear">神回路翻转再也不用抢车位了<span class="right mtd-shipin-td-btn"><img src="../../layuiadmin/imgs/2.png" alt="" class="mtd-shipin-list1-img3"><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo2.png" alt="">播放</button><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo3.png" alt="">收藏</button></span></h4>
+                  <h5>分类： <span>美食</span><span>美食</span><span>美食</span></h5>
+                  <p>平台： <img src="../../layuiadmin/imgs/1.png" alt="" class="mtd-shipin-list1-img2"><span>抖音</span></p>
+                  <p class="yichu">简介： 用字温暖你 用心做媒体 新闻综合频道官方微信上线啦用字温暖你 用心做媒体 新闻综合频道官方微信上线啦</p>
+                  <p>视频时长： 19秒<span style="margin-left: 20px;color: #000">发布时间： 2019-09-21</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 粉丝点赞评论分享 -->
+          <div class="layui-col-md6">
+            <div class="layui-card">
+              <div class="layui-card-body clear" style="height: 160px">
+                <!-- 左边图片 -->
+                <div class="mtd-list1-shenyang-left left">
+                  <p>沈阳新闻 <img src="../../layuiadmin/imgs/3.png" alt="" style="margin-left:10px"></p>
+                  <img src="../../layuiadmin/imgs/9.png" alt="" class="mtd-list1-shenyang-left-img">
+                  <div class="mtd-list1-shenyang-div">
+                    <img src="../../layuiadmin/imgs/10.png" alt="" style="width: 18px">8986.25
+                  </div>
+                </div>
+                <!-- 右边数据 -->
+                <div class="mtd-list1-shenyang-right left">
+                  <div class="container" style="width: 100%">
+                    <div class="chart">
+                      <div class="percentage" data-percent="55"><span>271.1</span>w</div>
+                      <div class="labeler">粉丝数</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="46"><span>2.7</span>w</div>
+                      <div class="labeler">平均点赞</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="92"><span>823</span></div>
+                      <div class="labeler">平均评论</div>
+                    </div>
+                    <div class="chart">
+                      <div class="percentage" data-percent="84"><span>2113</span></div>
+                      <div class="labeler">平均分享</div>
+                    </div>
+                  </div>
+                  <p>抖音号：57585455<span class="span-margin-l">性别：女</span><span class="span-margin-l">地区：沈阳</span></p>
+                  <p>分类：知识资讯类</p>
+                  <p><img src="../../layuiadmin/imgs/a-2.png" alt=""> 沈阳新闻频道</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 图表 -->
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-header">点赞数增量趋势<span class="right mtd-shipin-td-btn"><a href="detail.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm  mtd-shipin-btn-checked">监控详情</button></a></span></div>
+              <div class="layui-card-body">
+                <div id="tubiao1" style="height: 400px"></div>
+              </div>
+            </div>
+          </div>
+          <!-- KOL排行榜 -->
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-header">KOL排行榜<a href="#" class="right">更多</a></div>
+                <div class="layui-card-header">
+                  <div class="mtd-shipin-tab clear" style="padding: 0">  
+                    <div class="mtd-shipin-tab-left">
+                      <ul class="clear">
+                        <a href="#" title=""><li class="checked-bottom">指数排行</li></a>
+                        <a href="#" title=""><li>涨粉排行榜</li></a>
+                        <a href="#" title=""><li>成长排行榜</li></a>
+                        <a href="#" title=""><li>蓝V排行榜</li></a>
+                      </ul>
+                    </div>
+                    <!-- 右边时间选项 -->
+                    <div class="mtd-shipin-tab-right right">
+                      <div class="layui-form">
+                        <div class="layui-form-item">
+                          <div class="layui-inline">
+                            <div class="layui-input-inline">
+                              <input type="text" class="layui-input" id="test6" placeholder=" - ">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <div class="layui-card-body layui-table-main">
+                <!-- 表格 -->
+                <table class="layui-table" lay-even="" lay-skin="nob">
+                  <colgroup>
+                    <col width="100">
+                    <col width="250">
+                    <col width="150">
+                    <col width="">
+                    <col width="index.html">
+                    <col width="">
+                    <col width="250">
+                    <col>
+                  </colgroup>
+                  <thead>
+                    <tr class="mtd-shipin-tr">
+                      <th>排名</th>
+                      <th style="text-align: left">播主</th>
+                      <th>粉丝数</th>
+                      <th>平均点赞</th>
+                      <th>平均评论</th>
+                      <th>平均转发</th>
+                      <th>价值指数</th>
+                      <th>操作</th>
+                    </tr> 
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><img src="../../layuiadmin/imgs/no1.png" alt="" style="width: 25px;"></td>
+                      <td class="mtd-mtd-shipin-table-td2"><img src="../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                      <td>9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td style="color: red"><img src="../../layuiadmin/imgs/10-2.png" class="shengzhi">97.5</td>
+                      <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a></td>
+                    </tr>
+                    <tr>
+                      <td><img src="../../layuiadmin/imgs/no2.png" alt="" style="width: 25px"></td>
+                      <td class="mtd-mtd-shipin-table-td2"><img src="../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                      <td>9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td style="color: red"><img src="../../layuiadmin/imgs/10-2.png" class="shengzhi">97.5</td>
+                      <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a></td>
+                    </tr>
+                    <tr>
+                      <td><img src="../../layuiadmin/imgs/no3.png" alt="" style="width: 25px"></td>
+                      <td class="mtd-mtd-shipin-table-td2"><img src="../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                      <td>9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td style="color: red"><img src="../../layuiadmin/imgs/10-2.png" class="shengzhi">97.5</td>
+                      <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a></td>
+                    </tr>
+                    <tr>
+                      <td>4</td>
+                      <td class="mtd-mtd-shipin-table-td2"><img src="../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                      <td>9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td style="color: red"><img src="../../layuiadmin/imgs/10-2.png" class="shengzhi">97.5</td>
+                      <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a></td>
+                    </tr>
+                    <tr>
+                      <td>5</td>
+                      <td class="mtd-mtd-shipin-table-td2"><img src="../../layuiadmin/imgs/no1-1.png" alt=""style="width: 50px; height: 50px;border-radius: 50%"><p class="yichu">惊人院</p></td>
+                      <td>9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td class="color8c">9689</td>
+                      <td style="color: red"><img src="../../layuiadmin/imgs/10-2.png" class="shengzhi">97.5</td>
+                      <td class="mtd-shipin-td-btn"><a href="list1.html" title="" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-sm"><img src="../../layuiadmin/imgs/caozuo1.png" alt="">详情</button></a></td>
+                    </tr>
+                  </tbody>
+                </table> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script src="../../layuiadmin/layui/layui.js"></script>  
+<script src="../../layuiadmin/style/js/jquery.min.js"></script>  
+<script src="../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
+<script src="../../layuiadmin/style/js/echarts.min.js"></script> 
+  <script>
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'console']);
+
+
+// 1.四个仪表盘 图表
+var initPieChart = function() {
+  $('.percentage').easyPieChart({
+    animate: 1000
+  });
+  $('.percentage-light').easyPieChart({
+    barColor: function(percent) {
+      percent /= 100;
+      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
+    },
+    trackColor: '#666',
+    scaleColor: false,
+    lineCap: 'butt',
+    lineWidth: 15,
+    animate: 1000
+  });
+
+  $('.updateEasyPieChart').on('click', function(e) {
+    e.preventDefault();
+    $('.percentage, .percentage-light').each(function() {
+    var newValue = Math.round(100*Math.random());
+    $(this).data('easyPieChart').update(newValue);
+    $('span', this).text(newValue);
+    });
+  });
+};
+
+// 2.图表
+var myChart = echarts.init(document.getElementById("tubiao1")); 
+var option = {
+    xAxis: {
+        type: 'category',
+        data: ['08-22', '08-23', '08-24', '08-25', '08-26', '08-27', '08-28']
+    },
+    color:['#0092ff'],
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        type: 'line',
+        smooth: true
+    }]
+};
+myChart.setOption(option); 
+
+
+// 3.日期范围
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  laydate.render({
+    elem: '#test6'
+    ,range: true
+  });
+});
+</script>
+
+</body>
+</html>
+
