@@ -58,6 +58,7 @@ class Login extends Base
     	}
     }
 
+
     //获取抖音登录二维码
     public function GetDyQrcode()
     {
@@ -78,7 +79,6 @@ class Login extends Base
 
         // 获取access_token
         $data = $DyInterfaces->get_access_token();
-        dump($data);die;
         if(!$data) {
             return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
         }
@@ -87,7 +87,8 @@ class Login extends Base
         // 用户是否登录过
         $userInfo = $this->User->GetOneData(['user_open_id' => $data['open_id']]);
         if($userInfo) {
-            return $this->delUser($userInfo);
+            $login = $this->delUser($userInfo);
+            $this->redirect('index/index');
         }
 
         // 获取抖音用户信息
@@ -109,17 +110,15 @@ class Login extends Base
 
         // 存储用户信息
         $res = $this->User->CreateData($userData);
-        dump($res);die;
 
         if($res && $res['code'] == 1) {
-            return $this->delUser($res['data']);
+            $login = $this->delUser($res['data']);
+            $this->redirect('index/index');
         } else {
-            return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
+            $this->redirect('index/index');
         }
 
     }
-
-
 
 
     //退出方法

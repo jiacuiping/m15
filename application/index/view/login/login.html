@@ -34,6 +34,10 @@
             cursor: pointer;
         }
 
+        .denglu-bottom {
+            padding: 20px 0 0;
+        }
+
     </style>
 </head>
 <body>
@@ -91,19 +95,20 @@
                         <!-- 扫码登录页面 内容 -->
                         <div class="denglu-content1">
                             <div class="denglu-content-img">
-
-
                                 <img src="__STATIC__/index/layuiadmin/imgs/erweima.png" alt="">
-
-
                             </div>
                             <div class="denglu-bottom">
                                 <h4>欢迎使用{$Think.session.config.website_name}</h4>
                                 <p>使用微信扫一扫登录或注册</p>
                             </div>
+
+                            <a href="/index/login/GetDyQrcode"><p style="margin-top: 5px;margin-left:5px;color: #000;">抖音授权登录</p></a>
+
                         </div>
+
                     </div>
                 </div>
+
                 <!-- 手机登录 -->
                 <div class="shouji-content" id="shouji-denglu" style="display:none">
                     <p class="denglu-guan" style="padding-right: 0">X</p>
@@ -136,6 +141,7 @@
                                     <div class="loginbut">登录</div>
                                 </form>
                             </div>
+                            <a href=""><p style="margin-top: 5px;margin-left:5px;color: #000;">抖音授权登录</p></a>
                         </div>
                     </div>
                 </div>
@@ -386,6 +392,12 @@
         $("#shouji-denglu").attr("style","display:none");
 
      });
+    $("#douyin").unbind("click").click(function ()
+    {
+        $("#saoma-denglu").attr("style","display:block");
+        $("#shouji-denglu").attr("style","display:none");
+
+    });
 
       $("#tel").unbind("click").click(function ()
       {
@@ -393,6 +405,7 @@
         $("#shouji-denglu").attr("style","display:block");
 
     });
+
 
     // 手机登录
     $("#saoma1").unbind("click").click(function ()

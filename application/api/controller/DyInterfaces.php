@@ -64,7 +64,7 @@ class DyInterfaces extends Base
         );
 
         //$url = $url . "?client_key={$this->key}&client_secret={$this->secret}&code={$code}&grant_type=authorization_code";
-        $data = $this->curl($url, $params);
+        $data = $this->curl_post($url, $params);
         if(isset($data['message']) && $data['message'] == 'success') {
             session::set('access_token',$data['data']['access_token']);
             session::set('open_id',$data['data']['open_id']);
@@ -75,60 +75,30 @@ class DyInterfaces extends Base
         }
     }
 
-    /**
-     * 刷新access_token
-     * /oauth/refresh_token/
-     *
-     * client_key       string 应用唯一标识
-     * grant_type       string 填refresh_token Available values : refresh_token
-     * refresh_token    string 填写通过access_token获取到的refresh_token参数
-     */
-    public function get_refresh_token()
-    {
 
-        $url = $this->url . '/platform/oauth/connect/';
+    /**
+     * 获取用户信息
+     * /oauth/userinfo/
+     *
+     * access_token string
+     * open_id
+     */
+    public function getUserInfo($access_token, $openid)
+    {
+        $url = $this->url . '/oauth/userinfo/';
 
         $params = array(
-            'client_key'	    => $this->key,
-            'grant_type' 	    => "refresh_token",
-            'refresh_token'		=> "",
+            'access_token'  => $access_token,
+            'open_id'       => $openid
         );
 
-        $result = $this->curl($url, $params);
+        $result = $this->curl_post($url, $params);
         if(isset($result['message']) && $result['message'] == 'success') {
             return $result['data'];
         } else {
             return false;
         }
     }
-
-
-    /**
-     * 生成client_token
-     * /oauth/client_token/
-     *
-     * client_key       string 应用唯一标识
-     * client_secret    string 应用唯一标识对应的密钥
-     * grant_type       string Available values : client_credential
-     */
-    public function get_client_token()
-    {
-        $url = $this->url . '/platform/oauth/connect/';
-
-        $params = array(
-            'client_key'		=> $this->key,
-            'client_secret' 	=> $this->secret,
-            'grant_type'		=> 'client_credential',
-        );
-
-        $result = $this->curl($url, $params);
-        if(isset($result['message']) && $result['message'] == 'success') {
-            return $result['data'];
-        } else {
-            return false;
-        }
-    }
-
 
     /**
      * 粉丝列表
@@ -141,27 +111,8 @@ class DyInterfaces extends Base
      */
     public function GetFansList()
     {
-
-        $apiInstance = new Douyin\Open\Api\FansListApi(
-        // If you want use custom http client, pass your client which implements `GuzzleHttp\ClientInterface`.
-        // This is optional, `GuzzleHttp\Client` will be used as default.
-            new GuzzleHttp\Client()
-        );
-        $open_id = "ba253642-0590-40bc-9bdf-9a1334b94059"; // string | 通过/oauth/access_token/获取，用户唯一标志
-        $access_token = "act.1d1021d2aee3d41fee2d2add43456badMFZnrhFhfWotu3Ecuiuka27L56lr"; // string | 调用/oauth/access_token/生成的token，此token需要用户授权。
-        $count = 10; // int | 每页数量
-        $cursor = 0; // int | 分页游标, 第一页请求cursor是0, response中会返回下一页请求用到的cursor, 同时response还会返回has_more来表明是否有更多的数据。
-
-        try {
-            $result = $apiInstance->fansListGet($open_id, $access_token, $count, $cursor);
-            print_r($result);
-        } catch (Exception $e) {
-            echo 'Exception when calling FansListApi->fansListGet: ', $e->getMessage(), PHP_EOL;
-        }
         $openId = session::get('open_id');
         $accessToken = session::get('access_token');
-        $openId = "ba253642-0590-40bc-9bdf-9a1334b94059"; // string | 通过/oauth/access_token/获取，用户唯一标志
-        $accessToken = "act.1d1021d2aee3d41fee2d2add43456badMFZnrhFhfWotu3Ecuiuka27L56lr";
         $url = $this->url . '/fans/list/';
 
         $params = array(
@@ -171,9 +122,9 @@ class DyInterfaces extends Base
             'count'		    => 10,
         );
 
-        $result = $this->curl($url, $params);
+        $result = $this->curl_get($url, $params);
         dump($result);die;
-        if(isset($result['message']) && $result['message'] == 'success') {
+        if(isset($result['data']['error_code']) == 0) {
             return $result['data'];
         } else {
             return false;
@@ -198,10 +149,125 @@ class DyInterfaces extends Base
             'open_id'		=> $openId,
             'access_token' 	=> $accessToken,
         );
-        dump($params);
 
-        $result = $this->curl($url, $params);
+        $result = $this->curl_get($url, $params);
         dump($result);die;
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 获取用户的关注列表
+     * /following/list/
+     *
+     * open_id          string   通过/oauth/access_token/获取，用户唯一标志
+     * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
+     * cursor           integer  分页游标, 第一页请求cursor是0, response中会返回下一页请求用到的cursor, 同时response还会返回has_more来表明是否有更多的数据。
+     * count            integer  每页数量
+     */
+    public function followingListGet()
+    {
+
+        $openId = session::get('open_id');
+        $accessToken = session::get('access_token');
+        $url = $this->url . '/following/list/';
+
+        $params = array(
+            'open_id'		=> $openId,
+            'access_token' 	=> $accessToken,
+            'cursor'		=> 0,
+            'count'		    => 10,
+        );
+
+        $result = $this->curl_get($url, $params);
+        dump($result);die;
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 查询授权账号视频数据
+     * /video/list/
+     *
+     * open_id          string   通过/oauth/access_token/获取，用户唯一标志
+     * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
+     * cursor           integer  分页游标, 第一页请求cursor是0, response中会返回下一页请求用到的cursor, 同时response还会返回has_more来表明是否有更多的数据。
+     * count            integer  每页数量
+     */
+    public function videoListGet()
+    {
+        $openId = session::get('open_id');
+        $accessToken = session::get('access_token');
+        $url = $this->url . '/video/list/';
+
+        $params = array(
+            'open_id'		=> $openId,
+            'access_token' 	=> $accessToken,
+            'cursor'		=> 0,
+            'count'		    => 10,
+        );
+
+        $result = $this->curl_get($url, $params);
+        dump($result);die;
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 获取实时热点词
+     * /hotsearch/sentences/
+     *
+     * access_token     string   调用/oauth/client_token/生成的token，此token不需要用户授权。
+     */
+    public function hotsearchSentencesGet()
+    {
+        $data = $this->get_client_token();
+        $url = $this->url . '/hotsearch/sentences/';
+
+        $params = array(
+            'access_token' 	=> $data['access_token'],
+        );
+
+        $result = $this->curl_get($url, $params);
+        dump($result);die;
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+
+
+    /**
+     * 刷新access_token
+     * /oauth/refresh_token/
+     *
+     * client_key       string 应用唯一标识
+     * grant_type       string 填refresh_token Available values : refresh_token
+     * refresh_token    string 填写通过access_token获取到的refresh_token参数
+     */
+    public function get_refresh_token()
+    {
+
+        $url = $this->url . '/platform/oauth/connect/';
+
+        $params = array(
+            'client_key'	    => $this->key,
+            'grant_type' 	    => "refresh_token",
+            'refresh_token'		=> "",
+        );
+
+        $result = $this->curl_post($url, $params);
         if(isset($result['message']) && $result['message'] == 'success') {
             return $result['data'];
         } else {
@@ -211,22 +277,24 @@ class DyInterfaces extends Base
 
 
     /**
-     * 获取用户信息
-     * /oauth/userinfo/
+     * 生成client_token
+     * /oauth/client_token/
      *
-     * access_token string
-     * open_id
+     * client_key       string 应用唯一标识
+     * client_secret    string 应用唯一标识对应的密钥
+     * grant_type       string Available values : client_credential
      */
-    public function getUserInfo($access_token, $openid)
+    public function get_client_token()
     {
-        $url = $this->url . '/oauth/userinfo/';
+        $url = $this->url . '/oauth/client_token/';
 
         $params = array(
-            'access_token'  => $access_token,
-            'open_id'       => $openid
+            'client_key'		=> $this->key,
+            'client_secret' 	=> $this->secret,
+            'grant_type'		=> 'client_credential',
         );
 
-        $result = $this->curl($url, $params);
+        $result = $this->curl_post($url, $params);
         if(isset($result['message']) && $result['message'] == 'success') {
             return $result['data'];
         } else {
@@ -234,8 +302,10 @@ class DyInterfaces extends Base
         }
     }
 
+
+
 	//请求方法
-	public function curl($url,$data=array())
+	public function curl_post($url,$data=array())
 	{
 //		$data = array_merge(array('client_key'=>$this->key),$data);
 
@@ -264,4 +334,24 @@ class DyInterfaces extends Base
 
 	    return $result;
 	}
+
+    public function curl_get($url,$data=array())
+    {
+        //初始化
+        $ch = curl_init();
+        //设置选项，包括URL
+        $query = http_build_query($data);
+        $url = $url.'?'. $query;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        //执行并获取HTML文档内容
+        $output = curl_exec($ch);
+        //释放curl句柄
+        curl_close($ch);
+
+        $result = json_decode($output,true);
+
+        return $result;
+    }
 }
