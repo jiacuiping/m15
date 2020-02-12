@@ -65,7 +65,7 @@ class Package extends LoginBase
 
         // 好评率（好评/总评 * 100%）
         $count = array_count_values(array_column($evaluate,"evaluate_level"));
-        $rate = (round($count[1] / array_sum($count),4) * 100).'%';
+        $rate = 0;//(round($count[1] / array_sum($count),4) * 100).'%';
 
         $this->assign('package',$package);
         $this->assign('evaluate',$evaluate);

@@ -56,18 +56,17 @@ class User extends LoginBase
             $userTypeList = array_column($userTypeList, null, 'type_id');
             // 如果用户已认证，查出认证信息
             $user = session::get('user');
-            $certInfo = [];
-            if(array_key_exists($user['user_type'], $userTypeList)) {
-                $certificationModel = new Certification();
-                $certInfo = $certificationModel->GetOneDataById($user['user_certification']);
+            $certificationModel = new Certification();
+            $certInfo = $certificationModel->GetOneDataById($user['user_certification']);
+            if($certInfo && array_key_exists($certInfo['certification_apply_type'], $userTypeList)) {
                 $certInfo['certification_status_text'] = $certificationModel->getStatusText($certInfo['certification_status']);
-
                 $this->assign('isNew',0);
+
             } else {
                 // 没有认证，到认证表单
                 $certInfo = ['certification_buimg' => '', 'certification_OpeningPermit' => '', 'certification_LegalPerson' => '',
                     'certification_CreditCode' => '', 'certification_bank_account' => '', 'certification_bankCode' => '',
-                    'certification_IdCard' => '', 'certification_organization_name' => '', 'certification_status' => 0, 'certification_id' => 0
+                    'certification_IdCard' => '', 'certification_organization_name' => '', 'certification_status' => 2, 'certification_status_text' => '未认证', 'certification_id' => 0
                     ];
 
                 $this->assign('isNew',1);
@@ -86,9 +85,10 @@ class User extends LoginBase
     //套餐管理
     public function package()
     {
+        $user = session::get('user');
         $packageModel = new Package();
         // 获取套餐列表
-        $packageList = $packageModel->GetDataList();
+        $packageList = $packageModel->GetDataList(['package_user' => $user['user_id']]);
 
         // 套餐评论数据
         $evaluate = [];

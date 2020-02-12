@@ -82,17 +82,17 @@
             <!-- 点击登录按钮弹出内容： -->
             <div class="denglu-mask">
                 <!-- 扫码登录 -->
-                <div class="denglu-content" id="saoma-denglu">
+                <!--<div class="denglu-content" id="saoma-denglu">
                     <p class="denglu-guan" style="width: 4%;margin-left: 83%;">X</p>
                     <div class="denglu-wrapper">
-                        <!-- 两个标题 -->
+                        &lt;!&ndash; 两个标题 &ndash;&gt;
                         <div class="denglu-nav">
                             <ul class="clear">
                                 <li><a href="#" class="login-btn-active" id="saoma">扫码登录</a></li>
                                 <li><a href="#" id="tel">手机登录</a></li>
                             </ul>
                         </div>
-                        <!-- 扫码登录页面 内容 -->
+                        &lt;!&ndash; 扫码登录页面 内容 &ndash;&gt;
                         <div class="denglu-content1">
                             <div class="denglu-content-img">
                                 <img src="__STATIC__/index/layuiadmin/imgs/erweima.png" alt="">
@@ -107,21 +107,22 @@
                         </div>
 
                     </div>
-                </div>
+                </div>-->
 
                 <!-- 手机登录 -->
-                <div class="shouji-content" id="shouji-denglu" style="display:none">
+                <div class="shouji-content" id="shouji-denglu" style="display:block">
                     <p class="denglu-guan" style="padding-right: 0">X</p>
                     <div class="shouji-wrapper">
                         <!-- 两个标题 -->
                         <div class="denglu-nav">
-                            <ul class="clear">
+                            <!--<ul class="clear">
                                 <li><a href="#" id="saoma1">扫码登录</a></li>
                                 <li><a href="#" class="login-btn-active" id="tel1">手机登录</a></li>
-                            </ul>
+                            </ul>-->
+                            <h2 style="color:#000;line-height: 30px;text-align: center;">登录</h2>
                         </div>
                         <!-- 扫码登录页面 内容 -->
-                        <div class="denglu-content2" style="margin-top: 65px;">
+                        <div class="denglu-content2" style="margin-top: 10px;">
                             <div class="denglu-content-mima">
                                 <!-- 表单 ：手机号码  登录密码 -->
                                 <form id="loginForm">
@@ -141,7 +142,12 @@
                                     <div class="loginbut">登录</div>
                                 </form>
                             </div>
-                            <a href=""><p style="margin-top: 5px;margin-left:5px;color: #000;">抖音授权登录</p></a>
+                            <div style="text-align: center;color: #939da8;">
+                                其他登录方式：
+                                <a href="/index/login/GetDyQrcode"><img style="height: 20px;border-radius: 50%;" src="__STATIC__/index/image/douyin.jpg" alt="抖音授权登录" title="抖音授权登录"></a>
+<!--                                <a href="/index/login/GetDyQrcode"><img style="height: 20px;border-radius: 50%;" src="__STATIC__/index/image/weixin.jpg" alt="微信授权登录" title="微信授权登录"></a>-->
+                            </div>
+<!--                            <a href="login/GetDyQrcode"><p style="margin-top: 5px;margin-left:5px;color: #000;">抖音授权登录</p></a>-->
                         </div>
                     </div>
                 </div>
@@ -369,14 +375,14 @@
 // 2. 登录遮罩层
     $(".denglu-btn").click(function(){
 
-        $.ajax({
+        /*$.ajax({
             url:"{:url('login/getdyqrcode')}",
             success:function(res){
 
             },error:function(){
                 layer.msg('二维码获取失败！');
             }
-        });
+        });*/
 
         $(".denglu-mask").show();
     });

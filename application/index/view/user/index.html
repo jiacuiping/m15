@@ -110,7 +110,7 @@
                   <label class="layui-form-label">认证类型</label>
                   <div class="layui-input-block">
                     {volist name="userTypeList" id="userType"}
-                    <input type="radio" name="certification_apply_type" value="{$userType.type_id}" title="{$userType.type_name}" type-desc="{$userType.type_desc}"  {if $user.user_type eq $userType.type_id} checked="" {/if}>
+                    <input type="radio" name="certification_apply_type" value="{$userType.type_id}" title="{$userType.type_name}" type-desc="{$userType.type_desc}"  {if $certInfo.certification_apply_type eq $userType.type_id} checked="" {/if}>
                     {/volist}
                   </div>
                   <p class="type_desc"></p>
