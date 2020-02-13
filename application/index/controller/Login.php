@@ -50,7 +50,14 @@ class Login extends Base
             //获取用户主信息
             $user = $this->User->GetOneDataById($login['login_user']);
 
-            return $this->delUser($user);
+            //账号数据判断
+            if(!$user) return array('code'=>0,'msg'=>'账号异常，请联系客服');
+            //账号状态判断
+            if($user['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
+
+            $this->delUser($user);
+            //返回成功
+            return array('code'=>1,'msg'=>'登陆成功，即将跳转');
 
     	}else{
 
@@ -87,8 +94,15 @@ class Login extends Base
         // 用户是否登录过
         $userInfo = $this->User->GetOneData(['user_open_id' => $data['open_id']]);
         if($userInfo) {
+            //账号数据判断
+            if(!$userInfo) $this->error('账号异常，请联系客服','index/index');
+//            if(!$userInfo) return array('code'=>0,'msg'=>'账号异常，请联系客服');
+            //账号状态判断
+            if($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
+//            if($userInfo['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
             $login = $this->delUser($userInfo);
-            $this->redirect('index/index');
+            $this->success('登录成功', 'index/index');
+//            $this->redirect('index/index');
         }
 
         // 获取抖音用户信息
@@ -112,8 +126,9 @@ class Login extends Base
         $res = $this->User->CreateData($userData);
 
         if($res && $res['code'] == 1) {
-            $login = $this->delUser($res['data']);
-            $this->redirect('index/index');
+            $this->delUser($res['data']);
+            $this->success('登录成功', 'index/index');
+//            $this->redirect('index/index');
         } else {
             $this->redirect('index/index');
         }
@@ -145,10 +160,7 @@ class Login extends Base
 
     public function delUser($user)
     {
-        //账号数据判断
-        if(!$user) return array('code'=>0,'msg'=>'账号异常，请联系客服');
-        //账号状态判断
-        if($user['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
+
 
         //开始处理登陆信息...
 
@@ -188,6 +200,6 @@ class Login extends Base
         session::set('user',$user);
 
         //返回成功
-        return array('code'=>1,'msg'=>'登陆成功，即将跳转');
+//        return array('code'=>1,'msg'=>'登陆成功，即将跳转');
     }
 }

@@ -302,6 +302,41 @@ class DyInterfaces extends Base
         }
     }
 
+    /**
+     * 发送私信消息
+     * /im/message/send/
+     * 注意：调用本接口，需要授权的抖音用户是企业号
+     *
+     * open_id          string   通过/oauth/access_token/获取，用户唯一标志
+     * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
+     * body: toUserId,messageType,content      string Available values : client_credential
+     */
+    public function imMessageSendPost($toUserId = '923f53dc-8941-4b3e-bbd5-4a96e055525a', $content = 'hello')
+    {
+        $url = $this->url . '/im/message/send/';
+        $openId = session::get('open_id');
+        $accessToken = session::get('access_token');
+
+        $params = array(
+            'open_id'		=> $openId,
+            'access_token' 	=> $accessToken,
+            'body'		    => [
+                'toUserId' => $toUserId,
+                'messageType' => 'TEXT',
+                'content' => $content,
+            ]
+        );
+        dump($params);
+
+        $result = $this->curl_post($url, $params);
+        dump($result);die;
+        if(isset($result['message']) && $result['message'] == 'success') {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
 
 
 	//请求方法
@@ -320,7 +355,7 @@ class DyInterfaces extends Base
 	    //设置post方式提交
 	    curl_setopt($curl, CURLOPT_POST, 1);
 	    //设置post数据
-	    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+	    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
 
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //不验证证书下同
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);

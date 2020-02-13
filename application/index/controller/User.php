@@ -66,7 +66,8 @@ class User extends LoginBase
                 // 没有认证，到认证表单
                 $certInfo = ['certification_buimg' => '', 'certification_OpeningPermit' => '', 'certification_LegalPerson' => '',
                     'certification_CreditCode' => '', 'certification_bank_account' => '', 'certification_bankCode' => '',
-                    'certification_IdCard' => '', 'certification_organization_name' => '', 'certification_status' => 2, 'certification_status_text' => '未认证', 'certification_id' => 0
+                    'certification_IdCard' => '', 'certification_organization_name' => '', 'certification_status' => 2,
+                    'certification_status_text' => '未认证', 'certification_id' => 0, 'certification_apply_type' => 0
                     ];
 
                 $this->assign('isNew',1);
