@@ -210,11 +210,10 @@ class DyInterfaces extends Base
             'open_id'		=> $openId,
             'access_token' 	=> $accessToken,
             'cursor'		=> 0,
-            'count'		    => 10,
+            'count'		    => 15,
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
         if(isset($result['data']['error_code']) == 0) {
             return $result['data'];
         } else {

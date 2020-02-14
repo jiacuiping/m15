@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+use app\admin\model\UserAccount;
 use app\index\controller\Base;
 
 use think\Session;
@@ -55,7 +56,7 @@ class Login extends Base
             //账号状态判断
             if($user['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
 
-            $this->delUser($user);
+            $this->delUser($user, 2);
             //返回成功
             return array('code'=>1,'msg'=>'登陆成功，即将跳转');
 
@@ -78,61 +79,199 @@ class Login extends Base
     //抖音扫码登录
     public function dyqrcode()
     {
+        $kolModel = new \app\admin\model\Kol();
+        $accountModel = new UserAccount();
+        $DyInterfaces = new DyInterfaces;
+
         // 把code存入session
         $code = input('get.code');
         session::set('code',input('get.code'));
 
-        $DyInterfaces = new DyInterfaces;
+
 
         // 获取access_token
         $data = $DyInterfaces->get_access_token();
         if(!$data) {
-            return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
-        }
-
-
-        // 用户是否登录过
-        $userInfo = $this->User->GetOneData(['user_open_id' => $data['open_id']]);
-        if($userInfo) {
-            //账号数据判断
-            if(!$userInfo) $this->error('账号异常，请联系客服','index/index');
-//            if(!$userInfo) return array('code'=>0,'msg'=>'账号异常，请联系客服');
-            //账号状态判断
-            if($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
-//            if($userInfo['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
-            $login = $this->delUser($userInfo);
-            $this->success('登录成功', 'index/index');
-//            $this->redirect('index/index');
+            $this->error('登录失败，请稍后再试！','index/index');
         }
 
         // 获取抖音用户信息
         $userDyInfo = $DyInterfaces->getUserInfo($data['access_token'], $data['open_id']);
-
         if(!$userDyInfo) {
-            return ['code'=>0,'msg'=>'登录失败，请稍后再试！'];
+            $this->error('登录失败，请稍后再试！','index/index');
         }
+        // 把信息存入session
+        session::set('dy_user',$userDyInfo);
 
-        $userData = [
-            'user_name' => $userDyInfo['nickname'],
-            'user_type' => 1,
-            'user_avatar' => $userDyInfo['avatar'],
-            'user_sex' => $userDyInfo['gender'],
-            'user_open_id' => $userDyInfo['open_id'],
-            'user_union_id' => $userDyInfo['union_id'],
-            'user_account_role' => $userDyInfo['e_account_role'], // EAccountM - 普通企业号 EAccountS - 认证企业号  EAccountK - 品牌企业号
+        // kol信息
+        $kolData = [
+            'kol_platform' => 1,
+            'kol_nickname' => $userDyInfo['nickname'],
+            'kol_avatar' => $userDyInfo['avatar'],
+            'kol_sex' => $userDyInfo['gender'],
+            'kol_countries' => $userDyInfo['country'],
+            'kol_province' => $userDyInfo['province'],
+            'kol_city' => $userDyInfo['city'],
+            'kol_open_id' => $userDyInfo['open_id'],
+            'kol_union_id' => $userDyInfo['union_id'],
+            'kol_account_role' => $userDyInfo['e_account_role'],
         ];
 
-        // 存储用户信息
-        $res = $this->User->CreateData($userData);
 
-        if($res && $res['code'] == 1) {
-            $this->delUser($res['data']);
-            $this->success('登录成功', 'index/index');
-//            $this->redirect('index/index');
+        // 查看kol用户是否已经存在
+        $kolInfo = $kolModel->GetOneData(['kol_open_id' => $data['open_id']]);
+        if($kolInfo) {
+            // 存在，更新
+            $kolData['kol_id'] = $kolInfo['kol_id'];
+            $kolRes = $kolModel->UpdateData($kolData);
+            // 把信息存入session
+            session::set('kolInfo',$kolRes['data']);
+
+            // 查看user表是否有数据
+            $kolUser = $accountModel->GetOneData(['account_kol' => $kolInfo['kol_id']]);
+            if($kolUser) {
+                $userInfo = $this->User->GetOneData(['user_id' => $kolUser['account_user']]);
+
+                //账号数据判断
+                if(!$userInfo) $this->error('账号异常，请联系客服','index/index');
+
+                //账号状态判断
+                if($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
+
+                $this->delKol($kolInfo, 2);
+                $this->delUser($userInfo, 5);
+                $this->success('登录成功', 'index/index');
+            } else {
+
+                // 跳转到绑定手机号页面
+                $this->redirect('login/bindMobile');
+            }
+
         } else {
-            $this->redirect('index/index');
+            // 存储kol信息
+            $saveRes = $kolModel->CreateData($kolData);
+            if($saveRes['code'] == 1) {
+                // 把信息存入session
+                session::set('kolInfo',$saveRes['data']);
+                // 跳转到绑定手机号页面
+                $this->redirect('login/bindMobile');
+            } else {
+                $this->error('账号异常，请联系客服','index/index');
+            }
         }
+    }
 
+
+
+    // 绑定手机号
+    public function bindMobile()
+    {
+        if(request()->isPost()){
+            $kolInfo = session::get('kolInfo');
+            $accountModel = new UserAccount();
+
+            //接收手机号数据
+            $mobile = input('post.mobile');
+
+            // 查询手机号是否已经存在
+            $userInfo = $this->User->GetOneData(['user_mobile' => $mobile]);
+            if($userInfo) {
+                return ['code' => 0, 'msg' => '该手机号已存在'];
+            }
+
+            // 补充信息
+            // user 信息
+            $userData = [
+                'user_name' => $kolInfo['kol_nickname'],
+                'user_type' => 1,
+                'user_avatar' => $kolInfo['kol_avatar'],
+                'user_sex' => $kolInfo['kol_sex'],
+                'user_open_id' => $kolInfo['kol_open_id'],
+                'user_union_id' => $kolInfo['kol_union_id'],
+                'user_account_role' => $kolInfo['kol_account_role'], // EAccountM - 普通企业号 EAccountS - 认证企业号  EAccountK - 品牌企业号
+                'user_mobile' => $mobile
+            ];
+
+            // 存储用户信息
+            $userRes = $this->User->CreateData($userData);
+            if($userRes['code'] == 1) {
+
+                // 存储user_account信息
+                $userAccount = [
+                    'account_user' => $userRes['id'],
+                    'account_kol' => $kolInfo['kol_id'],
+                    'account_nikename' => $kolInfo['kol_nickname'],
+                    'account_avatar' => $kolInfo['kol_avatar'],
+                    'account_is_self' => 1,
+                ];
+
+                $accountModel->CreateData($userAccount);
+                $this->delKol($kolInfo, 1);
+                $this->delUser($userRes['data'], 5);
+
+                return ['code' => 1, 'msg' => '登录成功！'];
+            } else {
+                return ['code' => 0, 'msg' => '系统繁忙，请稍后再试！'];
+            }
+        } else {
+            return view();
+        }
+    }
+
+    /**
+     * @param $kolInfo
+     * @param int $type 1:新用户，2：已有用户
+     */
+    public function delKol($kolInfo, $type = 1)
+    {
+        $DyInterfaces = new DyInterfaces;
+        $videoModel = new \app\admin\model\Video();
+        if($type == 1) {
+            // 存储视频（15条）
+            $videoList = $DyInterfaces->videoListGet();
+            $data = [];
+            foreach ($videoList['list'] as $value) {
+                $data[] = [
+                    'video_kol' => $kolInfo['kol_id'],
+                    'video_platform' => 1,
+                    'video_number' => $value['item_id'],
+                    'video_username' => $kolInfo['kol_nickname'],
+                    'video_title' => $value['title'],
+                    'video_cover' => $value['cover'],
+                    'create_time' => $value['create_time'],
+                    'video_url' => $value['share_url'],
+                ];
+            }
+            $result =  db('video')->insertAll($data);
+
+            // 存储视频评论（100个）
+
+        } else {
+            // 查询最新一条视频
+            $lastVideoTime = $videoModel->GetField(['video_kol' => $kolInfo['kol_id']],'create_time', 'create_time desc');
+            // 存储视频（数据表中最新的时间之后的视频）
+            $videoList = $DyInterfaces->videoListGet();
+            $data = [];
+            foreach ($videoList['list'] as $value) {
+                if($value['create_time'] < $lastVideoTime) {
+                    continue;
+                }
+
+                $data[] = [
+                    'video_kol' => $kolInfo['kol_id'],
+                    'video_platform' => 1,
+                    'video_number' => $value['item_id'],
+                    'video_username' => $kolInfo['kol_nickname'],
+                    'video_title' => $value['title'],
+                    'video_cover' => $value['cover'],
+                    'create_time' => $value['create_time'],
+                    'video_url' => $value['share_url'],
+                ];
+            }
+
+            $result =  db('video')->insertAll($data);
+            // 存储视频评论（100个）
+        }
     }
 
 
@@ -158,14 +297,13 @@ class Login extends Base
         $LoginLog->CreateData($lastLogin);
     }
 
-    public function delUser($user)
+    public function delUser($user, $type = 2)
     {
-
 
         //开始处理登陆信息...
 
         //更新登陆记录
-        $this->SaveLoginLog($user['user_id'],2);
+        $this->SaveLoginLog($user['user_id'],$type);
         //查询会员信息
         $vip = $this->Vip->GetOneData(array('vip_user'=>$user['user_id'],'vip_start'=>array('LT',time()),'vip_expire'=>array('GT',time())));
         //更新用户会员信息

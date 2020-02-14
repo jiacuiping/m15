@@ -22,7 +22,7 @@ class Kol extends Model
     //声明只读字段 该字段写入后不可被修改
     //protected $readonly = ['name','email'];
     protected $rule = [
-        'kol_uid|用户uid'       => 'require',
+//        'kol_id|用户id'       => 'require',
     ];
 
     /**
@@ -113,8 +113,9 @@ class Kol extends Model
         $res = $this->allowField(true)->save($param);
 
         $id = $this->getLastInsID();
+        $data = $this->GetOneDataById($id);
 
-        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'添加成功','id'=>$id);
+        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'添加成功','id'=>$id, 'data' => $data);
     }
 
     /**
@@ -125,8 +126,9 @@ class Kol extends Model
     {
         
         $res = $this->allowField(true)->save($param, [$this->pk => $param[$this->pk]]);
+        $data = $this->GetOneDataById($param[$this->pk]);
 
-        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'修改成功');
+        return $res === false ? array('code'=>0,'msg'=>$this->getError()) : array('code'=>1,'msg'=>'修改成功', 'data' => $data);
     }
 
     /**

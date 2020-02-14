@@ -73,9 +73,9 @@ class Video extends Model
      * 根据条件获取一个字段
      * @param array $param 主键
      **/
-    public function GetField($where=array(),$field)
+    public function GetField($where=array(),$field,$orderBy = 'video_id desc')
     {
-        return $this->where($where)->value($field);
+        return $this->where($where)->order($orderBy)->value($field);
     }
 
     /**
