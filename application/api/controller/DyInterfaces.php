@@ -222,6 +222,103 @@ class DyInterfaces extends Base
     }
 
     /**
+     * 批量获取视频数据信息
+     * /video/data/
+     *
+     * open_id          string   通过/oauth/access_token/获取，用户唯一标志
+     * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
+     */
+    public function videoDataPost()
+    {
+        $openId = session::get('open_id');
+        $accessToken = session::get('access_token');
+        $url = $this->url . '/video/data/';
+
+        $params = array(
+            'open_id'		=> $openId,
+            'access_token' 	=> $accessToken,
+            'body'          => [
+                'itemIds'		=> '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q=='
+            ]
+
+        );
+
+        $result = $this->curl_post($url, $params);
+        dump($result);die;
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 评论列表
+     * /video/comment/list/
+     *
+     * open_id          string   通过/oauth/access_token/获取，用户唯一标志
+     * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
+     * cursor           integer  分页游标, 第一页请求cursor是0, response中会返回下一页请求用到的cursor, 同时response还会返回has_more来表明是否有更多的数据。
+     * count            integer  每页数量
+     * itemId           string   视频id
+     */
+    public function videoCommentListGet($itemId = '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q==')
+    {
+        $openId = session::get('open_id');
+        $accessToken = session::get('access_token');
+        $url = $this->url . '/video/comment/list/';
+
+        $params = array(
+            'open_id'		=> $openId,
+            'access_token' 	=> $accessToken,
+            'cursor'		=> 0,
+            'count'		    => 15,
+            'itemId'		=> $itemId
+        );
+
+        $result = $this->curl_get($url, $params);
+        dump($result);die;
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * 评论回复列表
+     * /video/comment/reply/list/
+     *
+     * open_id          string   通过/oauth/access_token/获取，用户唯一标志
+     * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
+     * cursor           integer  分页游标, 第一页请求cursor是0, response中会返回下一页请求用到的cursor, 同时response还会返回has_more来表明是否有更多的数据。
+     * count            integer  每页数量
+     * itemId           string   视频id
+     * commentId        string   评论id
+     */
+    public function videoCommentReplyListGet($commentId)
+    {
+        $openId = session::get('open_id');
+        $accessToken = session::get('access_token');
+        $url = $this->url . '/video/comment/reply/list/';
+
+        $params = array(
+            'open_id'		=> $openId,
+            'access_token' 	=> $accessToken,
+            'cursor'		=> 0,
+            'count'		    => 15,
+            'commentId'		    => $commentId
+        );
+
+        $result = $this->curl_get($url, $params);
+        if(isset($result['data']['error_code']) == 0) {
+            return $result['data'];
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * 获取实时热点词
      * /hotsearch/sentences/
      *

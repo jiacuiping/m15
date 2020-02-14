@@ -83,7 +83,7 @@
                         <td>{$item.log_code}{if $item.log_code eq $machinecode} (本机) {/if}</td>
                         <td>{$item.log_ip}</td>
                         <td>{$item.log_time}</td>
-                        <td>{if $item.log_type eq 1} 用户名登陆 {elseif $item.log_type eq 2} 手机号登陆 {elseif $item.log_type eq 3} 验证码登陆 {elseif $item.log_type eq 4} 扫码登陆 {/if}</td>
+                        <td>{if $item.log_type eq 1} 用户名登陆 {elseif $item.log_type eq 2} 手机号登陆 {elseif $item.log_type eq 3} 验证码登陆 {elseif $item.log_type eq 4} 扫码登陆 {elseif $item.log_type eq 5} 抖音登陆 {/if}</td>
                       </tr>
                     {/volist}
                   </tbody>
