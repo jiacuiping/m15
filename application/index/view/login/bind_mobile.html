@@ -38,6 +38,9 @@
             padding: 20px 0 0;
         }
 
+        .send-sms {
+            margin-top: -38px;
+        }
     </style>
 </head>
 <body>
@@ -97,7 +100,26 @@
                                     <div class="layui-form-item">
                                         <div class="layui-input-block login-input">
                                             <img src="__STATIC__/index/layuiadmin/imgs/login-shouji.png" alt="">
-                                            <input type="text" name="mobile" autocomplete="off" placeholder="请输入手机号码" class="layui-input">
+                                            <input type="text" name="mobile" autocomplete="off" placeholder="请输入手机号码" class="layui-input mobile">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block login-input">
+                                            <img src="__STATIC__/index/layuiadmin/imgs/login-suo.png" alt="">
+                                            <input type="password" name="pass" autocomplete="off" placeholder="请输入密码" class="layui-input pass">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block login-input">
+                                            <img src="__STATIC__/index/layuiadmin/imgs/login-suo.png" alt="">
+                                            <input type="password" name="repass" autocomplete="off" placeholder="请再次输入密码" class="layui-input repass">
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block login-input">
+                                            <img src="__STATIC__/index/layuiadmin/imgs/login-shouji.png" alt="">
+                                            <input type="text" name="sms_code" autocomplete="off" placeholder="请输入验证码" class="layui-input sms_code">
+                                            <button id="getCode" class="layui-btn send-sms right">发送验证码</button>
                                         </div>
                                     </div>
                                     <div class="loginbut sub-btn">确定</div>
@@ -336,7 +358,72 @@
       ,layedit = layui.layedit
       ,laydate = layui.laydate;
 
+        var timer="";
+        var nums=60;
+        var validCode = true;//定义该变量是为了处理后面的重复点击事件
+        $("#getCode").on('click',function(){
+            var mobile = $.trim($('.mobile').val());
+            if(mobile === '' || isPhoneNo(mobile) == false) {
+                layer.msg("请输入正确的手机号");
+                return false;
+            }
+            $.ajax({
+                url:"{:url('sendMessage')}",
+                type:"POST",
+                data:{'mobile':mobile},
+                success:function(res){
+                    layer.msg(res.msg);
+                    if(res.code)
+                        setTimeout(function(){window.location.href="{:url('index/index')}";},2000);
+                },error:function(){
+                    layer.msg('服务器错误，请稍后重试！');
+                }
+            });
+            var code=$(this);
+            if(validCode){
+                validCode=false;
+                timer=setInterval(function(){
+                    if(nums>0){
+                        nums--;
+                        code.text(nums+"秒后重新发送");
+                        code.addClass("layui-btn-disabled");
+                    }
+                    else{
+                        clearInterval(timer);
+                        nums=60;//重置回去
+                        validCode=true;
+                        code.removeClass("layui-btn-disabled");
+                        code.text("发送验证码");
+                    }
+                },1000)
+            }
+        });
+
+
       $(".sub-btn").click(function(){
+          var mobile = $.trim($('.mobile').val());
+          var pass = $.trim($('.pass').val());
+          var repass = $.trim($('.repass').val());
+
+          if(mobile === '' || isPhoneNo(mobile) == false) {
+              layer.msg("请输入正确的手机号");
+              return false;
+          }
+
+          if(pass.length === 0) {
+              layer.msg("请输入密码");
+              return false;
+          }
+          if(pass.length < 6) {
+              layer.msg("密码长度不得少于6");
+              return false;
+          }
+
+          if(pass !== repass) {
+              layer.msg("两次输入密码不一致");
+              return false;
+          }
+
         $.ajax({
             url:"{:url('bindMobile')}",
             type:"POST",
@@ -351,6 +438,19 @@
         });
       });
     });
+
+// 验证手机号
+function isPhoneNo(phone) {
+    var pattern = /^1[34578]\d{9}$/;
+    return pattern.test(phone);
+}
+
+$(".denglu-btn").click(function(){
+    $(".denglu-mask").show();
+});
+$(".denglu-guan").click(function(){
+    $(".denglu-mask").hide();
+});
 
 </script>
 </body>

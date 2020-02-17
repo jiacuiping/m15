@@ -2,6 +2,7 @@
 namespace app\index\controller;
 
 use app\admin\model\UserAccount;
+use app\api\controller\Interfaces;
 use app\index\controller\Base;
 
 use think\Session;
@@ -169,9 +170,25 @@ class Login extends Base
         if(request()->isPost()){
             $kolInfo = session::get('kolInfo');
             $accountModel = new UserAccount();
+            $userLoginModel = new UserLogin();
 
-            //接收手机号数据
-            $mobile = input('post.mobile');
+            $sms_code = session::get('sms_code');
+            //接收数据
+            $data = input('post.');
+            $mobile = $data['mobile'];
+
+            // 验证数据
+            if(!CheckMobile($data['mobile'])) {
+                return ['code'=>0,'msg'=>'请输入正确的手机号码'];
+            }
+
+            /*if($sms_code !== $data['check_code']) {
+                return ['code'=>0,'msg'=>'验证码不正确'];
+            }*/
+
+            if($data['pass'] !== $data['repass']) {
+                return ['code'=>0,'msg'=>'两次输入密码不正确'];
+            }
 
             // 查询手机号是否已经存在
             $userInfo = $this->User->GetOneData(['user_mobile' => $mobile]);
@@ -206,6 +223,24 @@ class Login extends Base
                 ];
 
                 $accountModel->CreateData($userAccount);
+
+                // 存储user_login
+                $password = EncryptionPassword($data['pass']);
+                $userLogin = [
+                    'login_user' => $userRes['id'],
+                    'login_name' => $kolInfo['kol_nickname'],
+                    'login_mobile' => $mobile,
+                    'login_password' => $password['password'],
+                    'login_str' => $password['login_encrypt_str'],
+                    'login_dyopenid' => $kolInfo['kol_open_id'],
+                    'login_lastip' => $_SERVER['REMOTE_ADDR'],
+                    'login_lasttime' => time(),
+                    'login_time' => time(),
+                ];
+                $userLoginModel->CreateData($userLogin);
+
+
+
                 $this->delKol($kolInfo, 1);
                 $this->delUser($userRes['data'], 5);
 
@@ -218,6 +253,8 @@ class Login extends Base
         }
     }
 
+
+
     /**
      * @param $kolInfo
      * @param int $type 1:新用户，2：已有用户
@@ -225,13 +262,13 @@ class Login extends Base
     public function delKol($kolInfo, $type = 1)
     {
         $DyInterfaces = new DyInterfaces;
+        $interfaces = new Interfaces();
         $videoModel = new \app\admin\model\Video();
         if($type == 1) {
             // 存储视频（15条）
             $videoList = $DyInterfaces->videoListGet();
-            $data = [];
             foreach ($videoList['list'] as $value) {
-                $data[] = [
+                $temp = [
                     'video_kol' => $kolInfo['kol_id'],
                     'video_platform' => 1,
                     'video_number' => $value['item_id'],
@@ -241,10 +278,12 @@ class Login extends Base
                     'create_time' => $value['create_time'],
                     'video_url' => $value['share_url'],
                 ];
+                $res = $videoModel->CreateData($temp);
+                if($res['code'] == 1) {
+//                    $interfaces->GetVideoComment($value['item_id'],$page=1);
+                }
             }
-            $result =  db('video')->insertAll($data);
 
-            // 存储视频评论（100个）
 
         } else {
             // 查询最新一条视频
@@ -257,20 +296,22 @@ class Login extends Base
                     continue;
                 }
 
-                $data[] = [
+                $temp = [
                     'video_kol' => $kolInfo['kol_id'],
                     'video_platform' => 1,
                     'video_number' => $value['item_id'],
                     'video_username' => $kolInfo['kol_nickname'],
                     'video_title' => $value['title'],
+                    'video_sharetitle' => $value['title'],
                     'video_cover' => $value['cover'],
                     'create_time' => $value['create_time'],
                     'video_url' => $value['share_url'],
                 ];
+                $res = $videoModel->CreateData($temp);
+                if($res['code'] == 1) {
+//                    $interfaces->GetVideoComment($value['item_id'],$page=1);
+                }
             }
-
-            $result =  db('video')->insertAll($data);
-            // 存储视频评论（100个）
         }
     }
 
@@ -279,6 +320,7 @@ class Login extends Base
     public function logout()
     {
         session::set('user',null);
+        $this->redirect('index/login/login');
     }
 
     //更新登陆记录
@@ -340,4 +382,7 @@ class Login extends Base
         //返回成功
 //        return array('code'=>1,'msg'=>'登陆成功，即将跳转');
     }
+
+
+
 }

@@ -4,6 +4,20 @@
     <include_path>
       <path value="$PROJECT_DIR$/vendor/composer" />
       <path value="$PROJECT_DIR$/vendor/topthink/think-installer" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Log" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Config" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Filter" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Result" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Traits" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Clients" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Profile" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Regions" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Request" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Support" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Resolver" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Exception" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Signature" />
+      <path value="$PROJECT_DIR$/vendor/alidayu/Credentials" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="5.4.0" />

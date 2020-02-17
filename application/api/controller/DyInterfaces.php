@@ -124,7 +124,7 @@ class DyInterfaces extends Base
 
         $result = $this->curl_get($url, $params);
         dump($result);die;
-        if(isset($result['data']['error_code']) == 0) {
+        if($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -152,7 +152,7 @@ class DyInterfaces extends Base
 
         $result = $this->curl_get($url, $params);
         dump($result);die;
-        if(isset($result['data']['error_code']) == 0) {
+        if($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -184,7 +184,7 @@ class DyInterfaces extends Base
 
         $result = $this->curl_get($url, $params);
         dump($result);die;
-        if(isset($result['data']['error_code']) == 0) {
+        if($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -214,7 +214,8 @@ class DyInterfaces extends Base
         );
 
         $result = $this->curl_get($url, $params);
-        if(isset($result['data']['error_code']) == 0) {
+        dump($result);die;
+        if($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -237,20 +238,20 @@ class DyInterfaces extends Base
         $params = array(
             'open_id'		=> $openId,
             'access_token' 	=> $accessToken,
-            'body'          => [
+            'body'           => [
                 'itemIds'		=> '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q=='
             ]
 
         );
 
         $result = $this->curl_post($url, $params);
-        dump($result);die;
-        if(isset($result['data']['error_code']) == 0) {
+        if($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
         }
     }
+
 
     /**
      * 评论列表
@@ -264,6 +265,12 @@ class DyInterfaces extends Base
      */
     public function videoCommentListGet($itemId = '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q==')
     {
+
+        $interfaces = new Interfaces();
+        $res = $interfaces->GetVideoComment($itemId,$page=1);
+        dump($res);die;
+
+
         $openId = session::get('open_id');
         $accessToken = session::get('access_token');
         $url = $this->url . '/video/comment/list/';
@@ -273,7 +280,7 @@ class DyInterfaces extends Base
             'access_token' 	=> $accessToken,
             'cursor'		=> 0,
             'count'		    => 15,
-            'itemId'		=> $itemId
+            'item_id'		=> $itemId
         );
 
         $result = $this->curl_get($url, $params);

@@ -122,3 +122,22 @@ function SubstrString($str,$number=50)
     $seodata = mb_substr($content, 0, $number);//截取汉字
     return $seodata;
 }
+
+/**************************************************** Mobile Consollers ****************************************************/
+
+function CheckMobile($mobile)
+{
+    return preg_match("/^1[34578]\d{9}$/", $mobile) ? true : false;
+}
+
+
+/**************************************************** AliDaYu ****************************************************/
+function sendSMS($mobile, $param = [])
+{
+    $templateCode = "SMS_172350876";
+    $SignName = "M15生态服务平台";
+    $TemplateParam = $param;
+    $AccessKeyId = "";
+
+
+}
