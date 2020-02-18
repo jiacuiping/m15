@@ -3,21 +3,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/application" isTestSource="false" packagePrefix="app\" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Clients" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Config" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Credentials" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Exception" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Filter" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Log" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Profile" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Regions" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Request" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Resolver" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Result" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Signature" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Support" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/alidayu/Traits" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ennnnny/tbk" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/pimple/pimple" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/topthink/think-installer" />
     </content>
     <orderEntry type="inheritedJdk" />

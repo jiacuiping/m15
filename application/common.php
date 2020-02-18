@@ -131,13 +131,6 @@ function CheckMobile($mobile)
 }
 
 
-/**************************************************** AliDaYu ****************************************************/
-function sendSMS($mobile, $param = [])
-{
-    $templateCode = "SMS_172350876";
-    $SignName = "M15生态服务平台";
-    $TemplateParam = $param;
-    $AccessKeyId = "";
-
-
+function generate_code($length = 6) {
+    return rand(pow(10,($length-1)), pow(10,$length)-1);
 }

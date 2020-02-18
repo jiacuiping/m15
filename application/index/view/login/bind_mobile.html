@@ -96,7 +96,7 @@
                         <div class="denglu-content2" style="margin-top: 10px;">
                             <div class="denglu-content-mima">
                                 <!-- 表单 ：手机号码  登录密码 -->
-                                <form id="loginForm">
+<!--                                <form id="loginForm">-->
                                     <div class="layui-form-item">
                                         <div class="layui-input-block login-input">
                                             <img src="__STATIC__/index/layuiadmin/imgs/login-shouji.png" alt="">
@@ -123,7 +123,7 @@
                                         </div>
                                     </div>
                                     <div class="loginbut sub-btn">确定</div>
-                                </form>
+<!--                                </form>-->
                             </div>
 
                         </div>
@@ -367,18 +367,8 @@
                 layer.msg("请输入正确的手机号");
                 return false;
             }
-            $.ajax({
-                url:"{:url('sendMessage')}",
-                type:"POST",
-                data:{'mobile':mobile},
-                success:function(res){
-                    layer.msg(res.msg);
-                    if(res.code)
-                        setTimeout(function(){window.location.href="{:url('index/index')}";},2000);
-                },error:function(){
-                    layer.msg('服务器错误，请稍后重试！');
-                }
-            });
+
+            // 定时器
             var code=$(this);
             if(validCode){
                 validCode=false;
@@ -387,8 +377,7 @@
                         nums--;
                         code.text(nums+"秒后重新发送");
                         code.addClass("layui-btn-disabled");
-                    }
-                    else{
+                    } else{
                         clearInterval(timer);
                         nums=60;//重置回去
                         validCode=true;
@@ -397,6 +386,19 @@
                     }
                 },1000)
             }
+
+            $.ajax({
+                url:"{:url('sendCodeSms')}",
+                type:"POST",
+                data:{'mobile':mobile},
+                success:function(res){
+                    layer.msg(res.msg);
+                },error:function(){
+                    layer.msg('服务器错误，请稍后重试！');
+                }
+            });
+
+
         });
 
 
@@ -404,6 +406,7 @@
           var mobile = $.trim($('.mobile').val());
           var pass = $.trim($('.pass').val());
           var repass = $.trim($('.repass').val());
+          var sms_code = $.trim($('.sms_code').val());
 
           if(mobile === '' || isPhoneNo(mobile) == false) {
               layer.msg("请输入正确的手机号");
@@ -424,10 +427,19 @@
               return false;
           }
 
+          if(sms_code.length === 0) {
+              layer.msg("请输入验证码");
+              return false;
+          }
+          if(sms_code.length < 6) {
+              layer.msg("验证码长度不得少于6");
+              return false;
+          }
+
         $.ajax({
             url:"{:url('bindMobile')}",
             type:"POST",
-            data:$("#loginForm").serialize(),
+            data:{'mobile':mobile, 'pass':pass, 'repass':repass, 'sms_code':sms_code},
             success:function(res){
                 layer.msg(res.msg);
                 if(res.code)

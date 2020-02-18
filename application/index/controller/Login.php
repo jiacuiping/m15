@@ -19,6 +19,10 @@ use app\admin\model\Certification;
 //interfaces
 use app\api\controller\DyInterfaces;
 
+// 发送短信
+use extend\aliyun\Sms\SendSms;
+require ROOT_PATH . 'extend' . DS . 'aliyun/dysms/SendSms.php';
+
 class Login extends Base
 {
 	public function __construct()
@@ -30,6 +34,7 @@ class Login extends Base
         $this->Login = new UserLogin;
         $this->VipLevel = new VipLevel;
 		$this->Certification = new Certification;
+
 	}
 
 	//手机号登陆方法
@@ -173,6 +178,7 @@ class Login extends Base
             $userLoginModel = new UserLogin();
 
             $sms_code = session::get('sms_code');
+
             //接收数据
             $data = input('post.');
             $mobile = $data['mobile'];
@@ -182,10 +188,6 @@ class Login extends Base
                 return ['code'=>0,'msg'=>'请输入正确的手机号码'];
             }
 
-            /*if($sms_code !== $data['check_code']) {
-                return ['code'=>0,'msg'=>'验证码不正确'];
-            }*/
-
             if($data['pass'] !== $data['repass']) {
                 return ['code'=>0,'msg'=>'两次输入密码不正确'];
             }
@@ -194,6 +196,10 @@ class Login extends Base
             $userInfo = $this->User->GetOneData(['user_mobile' => $mobile]);
             if($userInfo) {
                 return ['code' => 0, 'msg' => '该手机号已存在'];
+            }
+
+            if($sms_code != $data['sms_code']) {
+                return ['code'=>0,'msg'=>'验证码不正确'];
             }
 
             // 补充信息
@@ -238,8 +244,6 @@ class Login extends Base
                     'login_time' => time(),
                 ];
                 $userLoginModel->CreateData($userLogin);
-
-
 
                 $this->delKol($kolInfo, 1);
                 $this->delUser($userRes['data'], 5);
@@ -383,6 +387,21 @@ class Login extends Base
 //        return array('code'=>1,'msg'=>'登陆成功，即将跳转');
     }
 
+
+    public function sendCodeSms()
+    {
+        $mobile = input('post.mobile');
+        $code = generate_code();
+        session::set('sms_code',$code);
+        $send = new SendSms();
+        $res = $send->sendSms($mobile, $code);
+        if($res) {
+            return ['code'=>1,'msg'=>'验证码发送成功！'];
+        } else {
+            return ['code'=>0,'msg'=>'验证码发送失败！'];
+        }
+
+    }
 
 
 }

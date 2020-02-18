@@ -214,7 +214,6 @@ class DyInterfaces extends Base
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
         if($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
@@ -265,11 +264,10 @@ class DyInterfaces extends Base
      */
     public function videoCommentListGet($itemId = '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q==')
     {
-
+        /*$itemId = "6794358120995900686";
         $interfaces = new Interfaces();
         $res = $interfaces->GetVideoComment($itemId,$page=1);
-        dump($res);die;
-
+        dump($res);die;*/
 
         $openId = session::get('open_id');
         $accessToken = session::get('access_token');
