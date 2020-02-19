@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 
+use app\admin\model\KolOauth;
 use app\admin\model\UserAccount;
 use app\api\controller\Interfaces;
 use app\index\controller\Base;
@@ -82,18 +83,27 @@ class Login extends Base
 
     }
 
+    public function saveFans()
+    {
+//        $openid = 'b6ce3e0a-1749-4fcd-a757-f3572046abe1';
+        $openid = '7e6d30c1-ecf1-4569-abd8-1d36b7c7eb12';
+
+        $DyInterfaces = new DyInterfaces;
+        $res = $DyInterfaces->saveFansData($openid);
+        dump($res);
+    }
+
     //抖音扫码登录
     public function dyqrcode()
     {
         $kolModel = new \app\admin\model\Kol();
         $accountModel = new UserAccount();
         $DyInterfaces = new DyInterfaces;
+        $kolOauth = new KolOauth();
 
         // 把code存入session
         $code = input('get.code');
         session::set('code',input('get.code'));
-
-
 
         // 获取access_token
         $data = $DyInterfaces->get_access_token();
@@ -123,15 +133,32 @@ class Login extends Base
             'kol_account_role' => $userDyInfo['e_account_role'],
         ];
 
+        // kol_oauth信息
+        $oauthInfo = [
+            'oauth_access_token' => $data['access_token'],
+            'oauth_open_id' => $data['open_id'],
+            'oauth_access_token_expires_in' => time()  + $data['expires_in'],
+            'oauth_refresh_token' => $data['refresh_token'],
+            'oauth_refresh_token_expires_in' => time()  + 86400 * 30,
+            'oauth_time' => time()
+        ];
+
 
         // 查看kol用户是否已经存在
         $kolInfo = $kolModel->GetOneData(['kol_open_id' => $data['open_id']]);
         if($kolInfo) {
-            // 存在，更新
+
+            // 存在，更新kol信息
             $kolData['kol_id'] = $kolInfo['kol_id'];
             $kolRes = $kolModel->UpdateData($kolData);
-            // 把信息存入session
             session::set('kolInfo',$kolRes['data']);
+
+            // 授权信息处理
+            $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $data['open_id']]);
+            if(!$oauthData) {
+                $oauthInfo['oauth_kol'] = $kolInfo['kol_id'];
+                $kolOauth->CreateData($oauthInfo);
+            }
 
             // 查看user表是否有数据
             $kolUser = $accountModel->GetOneData(['account_kol' => $kolInfo['kol_id']]);
@@ -144,7 +171,7 @@ class Login extends Base
                 //账号状态判断
                 if($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
 
-                $this->delKol($kolInfo, 2);
+//                $this->delKol($kolInfo, 2);
                 $this->delUser($userInfo, 5);
                 $this->success('登录成功', 'index/index');
             } else {
@@ -157,8 +184,15 @@ class Login extends Base
             // 存储kol信息
             $saveRes = $kolModel->CreateData($kolData);
             if($saveRes['code'] == 1) {
-                // 把信息存入session
                 session::set('kolInfo',$saveRes['data']);
+
+                // 授权信息处理
+                $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $data['open_id']]);
+                if(!$oauthData) {
+                    $oauthInfo['oauth_kol'] = $kolInfo['kol_id'];
+                    $kolOauth->CreateData($oauthInfo);
+                }
+
                 // 跳转到绑定手机号页面
                 $this->redirect('login/bindMobile');
             } else {
@@ -245,12 +279,12 @@ class Login extends Base
                 ];
                 $userLoginModel->CreateData($userLogin);
 
-                $this->delKol($kolInfo, 1);
+//                $this->delKol($kolInfo, 1);
                 $this->delUser($userRes['data'], 5);
 
                 return ['code' => 1, 'msg' => '登录成功！'];
             } else {
-                return ['code' => 0, 'msg' => '系统繁忙，请稍后再试！'];
+                return ['code' => 0, 'msg' => $userRes['msg']];
             }
         } else {
             return view();

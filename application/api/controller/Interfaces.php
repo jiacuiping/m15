@@ -1118,7 +1118,6 @@ class Interfaces extends Base
 	{
 		$url = $this->url.'douyin/comment';
 		$result = $this->curl($url,array('itemId'=>$vid,'page'=>$page));
-		dump($result);die;
 
 		if($result['code'] == 1){
 
@@ -1127,7 +1126,6 @@ class Interfaces extends Base
 			$video = $obj->GetVideoInfo($vid,'video_number');
 
 			$data = $result['data']['data'];
-			dump($data);die;
 
 			foreach ($data as $key => $value) {
 				$comment = array(

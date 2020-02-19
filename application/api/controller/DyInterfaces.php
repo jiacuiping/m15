@@ -1,6 +1,7 @@
 <?php
 namespace app\api\controller;
 
+use app\admin\model\KolOauth;
 use app\api\controller\Base;
 use think\Cookie;
 use think\Session;
@@ -53,6 +54,7 @@ class DyInterfaces extends Base
      */
     public function get_access_token()
     {
+        // 查看是否已有
         $code = session::get('code');
         $url = $this->url . '/oauth/access_token/';
 
@@ -63,13 +65,81 @@ class DyInterfaces extends Base
             'grant_type'		=> 'authorization_code',
         );
 
-        //$url = $url . "?client_key={$this->key}&client_secret={$this->secret}&code={$code}&grant_type=authorization_code";
         $data = $this->curl_post($url, $params);
         if(isset($data['message']) && $data['message'] == 'success') {
+
             session::set('access_token',$data['data']['access_token']);
             session::set('open_id',$data['data']['open_id']);
-            session::set('refresh_token',$data['data']['refresh_token']);
+
+            // 如果已有授权信息，更新
+            $kolOauth = new KolOauth();
+            $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $data['data']['open_id']]);
+            if($oauthData) {
+                if($oauthData['oauth_access_token_expires_in'] < time()) {
+                    // access_token已过期，重新获取
+//                    $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
+
+                    // access_token已过期，更新
+                    $oauthInfo = [
+                        'oauth_access_token' => $data['data']['access_token'],
+                        'oauth_access_token_expires_in' => time()  + $data['data']['expires_in'],
+                        'oauth_refresh_token' => $data['data']['refresh_token'],
+                        'oauth_refresh_token_expires_in' => time()  + 86400 * 30,
+                        'oauth_time' => time()
+                    ];
+                    $kolOauth->CreateData($oauthInfo);
+                } else {
+                    // access_token未过期，续期
+                    $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
+                }
+            }
             return $data['data'];
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
+     * 刷新access_token
+     * /oauth/refresh_token/
+     *
+     * client_key       string 应用唯一标识
+     * grant_type       string 填refresh_token Available values : refresh_token
+     * refresh_token    string 填写通过access_token获取到的refresh_token参数
+     */
+    public function refresh_token($refresh_token, $oauthData)
+    {
+        // 查看refresh_token是否过期
+        if($oauthData['oauth_refresh_token_expires_in'] < time()) {
+            return ['code' => '0', 'msg' => "refresh_token过期，需要用户重新授权"];
+        }
+
+        $url = $this->url . '/oauth/refresh_token/';
+
+        $params = array(
+            'client_key'	    => $this->key,
+            'grant_type' 	    => "refresh_token",
+            'refresh_token'		=> $refresh_token,
+        );
+
+        $result = $this->curl_get($url, $params);
+        if(isset($result['message']) && $result['message'] == 'success') {
+            // 更新数据表信息
+            $kolOauth = new KolOauth();
+            $oauthInfo = [
+                'oauth_id' => $oauthData['oauth_id'],
+                'oauth_access_token' => $result['data']['access_token'],
+                'oauth_access_token_expires_in' => $result['data']['expires_in'],
+                'oauth_refresh_token' => $result['data']['refresh_token'],
+                'oauth_refresh_token_expires_in' => time()  + 86400 * 30
+            ];
+            $res = $kolOauth->UpdateData($oauthInfo);
+            if($res['code'] == 1) {
+                return $res['data'];
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -139,10 +209,8 @@ class DyInterfaces extends Base
      * open_id string 通过/oauth/access_token/获取，用户唯一标志
      * access_token string 调用/oauth/access_token/生成的token，此token需要用户授权。
      */
-    public function GetKolFansInfo()
+    public function fansDataGet($openId, $accessToken)
     {
-        $openId = session::get('open_id');
-        $accessToken = session::get('access_token');
         $url = $this->url . '/fans/data/';
 
         $params = array(
@@ -151,12 +219,87 @@ class DyInterfaces extends Base
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
         if($result['data']['error_code'] == 0) {
-            return $result['data'];
+            $fansData = $result['data']['fans_data'];
+            $allFunsNum = $fansData['all_fans_num'];
+
+            $data = [];
+
+            // 性别舆情
+            $sexData = $fansData['gender_distributions'];
+            $sexInfo = [];
+            foreach ($sexData as $value) {
+                if($value['item'] == 2) {
+                    $sexInfo['女'] = round($value['value']/$allFunsNum,2);
+                } elseif ($value['item'] == 1){
+                    $sexInfo['男'] = round($value['value']/$allFunsNum,2);
+                }
+            }
+            $data['sexInfo'] = $sexInfo;
+
+            // 年龄舆情
+            $ageData = $fansData['age_distributions'];
+            $ageInfo = [];
+            foreach ($ageData as $value) {
+                $key = $value["item"];
+                $ageInfo["'$key'"] = round($value['value']/$allFunsNum,2);
+            }
+            $data['ageInfo'] = $ageInfo;
+
+
+            // 地区舆情-省
+            $provinceData = $fansData['geographical_distributions'];
+            $provinceInfo = [];
+            foreach ($provinceData as $value) {
+                $provinceInfo[$value["item"]] = round($value['value']/$allFunsNum,2);
+            }
+            $data['provinceInfo'] = $provinceInfo;
+            dump($data);
+
+            return $data;
         } else {
             return false;
         }
+    }
+
+    public function saveFansData($openId)
+    {
+        $kolOauth = new KolOauth();
+        $accessToken = '';
+
+        // 根据openid获取授权信息
+        $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $openId]);
+        if(!$oauthData) {
+            return ['code' => '0', 'msg' => "没有授权信息"];
+        }
+
+        if($oauthData['oauth_access_token_expires_in'] < time()) { // 如果access_token过期
+            $refreshRes = $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
+            if(!$refreshRes) {
+                return ['code' => '0', 'msg' => "调用refresh_token失败"];
+            } else {
+                $accessToken = $refreshRes['oauth_access_token'];
+            }
+
+        } else {
+            $accessToken = $oauthData['oauth_access_token'];
+        }
+
+        if(!$accessToken) {
+            return ['code' => '0', 'msg' => "没有获取到access_token"];
+        }
+
+        $data = $this->fansDataGet($openId, $accessToken);
+        $insert = array(
+            'public_type'		=> 'kol',
+            'public_key'		=> $oauthData['oauth_kol'],
+            'public_age'		=> json_encode($data['ageInfo']),
+            'public_sex'		=> json_encode($data['sexInfo']),
+            'public_pro'		=> json_encode($data['sexInfo']),
+            'create_time'		=> time()
+        );
+        db('publicopinion')->insert($insert);
+        return ['code' => '1', 'msg' => "完成！"];
     }
 
     /**
@@ -347,34 +490,6 @@ class DyInterfaces extends Base
         }
     }
 
-
-
-    /**
-     * 刷新access_token
-     * /oauth/refresh_token/
-     *
-     * client_key       string 应用唯一标识
-     * grant_type       string 填refresh_token Available values : refresh_token
-     * refresh_token    string 填写通过access_token获取到的refresh_token参数
-     */
-    public function get_refresh_token()
-    {
-
-        $url = $this->url . '/platform/oauth/connect/';
-
-        $params = array(
-            'client_key'	    => $this->key,
-            'grant_type' 	    => "refresh_token",
-            'refresh_token'		=> "",
-        );
-
-        $result = $this->curl_post($url, $params);
-        if(isset($result['message']) && $result['message'] == 'success') {
-            return $result['data'];
-        } else {
-            return false;
-        }
-    }
 
 
     /**
