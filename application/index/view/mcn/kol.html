@@ -408,6 +408,7 @@
             obj.text('认领失败');
         },complete:function(XMLHttpRequest,textStatus){
           obj.removeClass('layui-btn-normal');
+          obj.removeClass('claimKol');
           obj.addClass('layui-btn-disabled');
           obj.text('已发送认领');
         },error:function(){
