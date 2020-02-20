@@ -83,16 +83,6 @@ class Login extends Base
 
     }
 
-    public function saveFans()
-    {
-//        $openid = 'b6ce3e0a-1749-4fcd-a757-f3572046abe1';
-        $openid = '7e6d30c1-ecf1-4569-abd8-1d36b7c7eb12';
-
-        $DyInterfaces = new DyInterfaces;
-        $res = $DyInterfaces->saveFansData($openid);
-        dump($res);
-    }
-
     //抖音扫码登录
     public function dyqrcode()
     {
@@ -358,7 +348,9 @@ class Login extends Base
     public function logout()
     {
         session::set('user',null);
-        $this->redirect('index/login/login');
+        echo '<script language="javascript">';
+        echo 'parent.location.reload();';
+        echo '</script>';
     }
 
     //更新登陆记录

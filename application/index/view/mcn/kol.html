@@ -27,8 +27,9 @@
 .claimAll {margin-top: 5px;}
 .mtd-shipin-td-btn>.layui-btn-sm{height: 38px;}
   #searchcentent{
-    height: 77%;overflow-y: auto;width: 100%;margin-top: 5px;
+    height: 86%;width: 100%;margin-top: 5px;
   }
+  .kolList{height: 86%;width: 100%;margin-top: 5px;overflow-y: auto;}
 </style>
 <body>
   <div class="layui-fluid">
@@ -333,7 +334,7 @@
     $("#claim").click(function () {
       layer.open({
         type: 1,
-        area:['650px','460px'],
+        area:['800px','750px'],
         shade: false,
         title: false, //不显示标题
         content: $('#included'),
@@ -356,6 +357,7 @@
             if(res.code == 1){
               var html = '';
               html += "<button type='button' class='layui-btn layui-btn-normal claimAll'>认领全部</button>";
+              html += "<div class='kolList'>";
               $.each(res.data,function(key,value){
 
                 html +=  "<div class='shouluren-xinxi clear'>"+
@@ -372,6 +374,8 @@
                 }
                 html += "</div>";
               });
+
+              html += "</div>";
 
             }else
               var html = "<p class='clear' style='text-align:center;margin-top80px'>"+ res.msg +"</p>";

@@ -201,6 +201,16 @@ class DyInterfaces extends Base
         }
     }
 
+    public function saveKolFans($openid)
+    {
+//        $openid = 'b6ce3e0a-1749-4fcd-a757-f3572046abe1';
+//        $openid = '7e6d30c1-ecf1-4569-abd8-1d36b7c7eb12';
+
+        $DyInterfaces = new DyInterfaces;
+        $res = $DyInterfaces->saveFansData($openid);
+    }
+
+
 
     /**
      * 获取粉丝统计数据

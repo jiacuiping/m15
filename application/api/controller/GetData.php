@@ -443,6 +443,9 @@ class GetData extends Base
 		if(!$oldData)
 			$oldData = $KolTrend->where(array('kt_kol_id'=>$kid,))->order('kt_time')->find();
 
+		if(!$newData && !$oldData) {
+		    return [];
+        }
 		$result = array(
 			'fans'			=> $newData['kt_fans'] - $oldData['kt_fans'],
 			'like'			=> $newData['kt_like'] - $oldData['kt_like'],
