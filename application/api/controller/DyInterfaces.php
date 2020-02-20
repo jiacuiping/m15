@@ -221,7 +221,8 @@ class DyInterfaces extends Base
         $result = $this->curl_get($url, $params);
         if($result['data']['error_code'] == 0) {
             $fansData = $result['data']['fans_data'];
-            $allFunsNum = $fansData['all_fans_num'];
+
+            $allFansNum = $fansData['all_fans_num'];
 
             $data = [];
 
@@ -230,9 +231,9 @@ class DyInterfaces extends Base
             $sexInfo = [];
             foreach ($sexData as $value) {
                 if($value['item'] == 2) {
-                    $sexInfo['女'] = round($value['value']/$allFunsNum,2);
+                    $sexInfo['女'] = round($value['value']/$allFansNum,2);
                 } elseif ($value['item'] == 1){
-                    $sexInfo['男'] = round($value['value']/$allFunsNum,2);
+                    $sexInfo['男'] = round($value['value']/$allFansNum,2);
                 }
             }
             $data['sexInfo'] = $sexInfo;
@@ -242,7 +243,7 @@ class DyInterfaces extends Base
             $ageInfo = [];
             foreach ($ageData as $value) {
                 $key = $value["item"];
-                $ageInfo["'$key'"] = round($value['value']/$allFunsNum,2);
+                $ageInfo["'$key'"] = round($value['value']/$allFansNum,2);
             }
             $data['ageInfo'] = $ageInfo;
 
@@ -251,10 +252,9 @@ class DyInterfaces extends Base
             $provinceData = $fansData['geographical_distributions'];
             $provinceInfo = [];
             foreach ($provinceData as $value) {
-                $provinceInfo[$value["item"]] = round($value['value']/$allFunsNum,2);
+                $provinceInfo[$value["item"]] = round($value['value']/$allFansNum,2);
             }
             $data['provinceInfo'] = $provinceInfo;
-            dump($data);
 
             return $data;
         } else {
