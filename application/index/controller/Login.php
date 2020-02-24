@@ -165,6 +165,7 @@ class Login extends Base
 
 
 //                $this->delKol($kolInfo, 2);
+                $this->delFansData($kolInfo);
                 $this->delUser($userInfo, 5);
                 $this->success('登录成功', 'index/index');
             } else {
@@ -273,6 +274,7 @@ class Login extends Base
                 $userLoginModel->CreateData($userLogin);
 
 //                $this->delKol($kolInfo, 1);
+                $this->delFansData($kolInfo);
                 $this->delUser($userRes['data'], 5);
 
                 return ['code' => 1, 'msg' => '登录成功！'];
@@ -291,35 +293,35 @@ class Login extends Base
      */
     public function delFansData($kolInfo)
     {
-        $publicopinionModel = new Publicopinion();
+        $publicOpinionModel = new Publicopinion();
         $TimeModel = new UserPublicopinionTime();
-        $kolId = $kolInfo['id'];
+        $kolId = $kolInfo['kol_id'];
 
         // 粉丝舆情
-        $publicopinion = $publicopinionModel->GetOneData(['public_key' => $kolId]);
+        $publicOpinion = $publicOpinionModel->GetOneData(['public_key' => $kolId]);
 
         // 脚本数据
         $timeData = $TimeModel->GetOneData(['time_kol' => $kolId]);
 
         $fansData = [
             'time_kol' => $kolId,
+            'time_open_id' => $kolInfo['kol_open_id'],
             'refresh_time' => '',
             'time_status' => 0,
             'create_time' => time(),
         ];
 
         // 第一次扫码登录
-        if(!$publicopinion) {
+        if(!$publicOpinion && !$timeData) {
             $fansData['refresh_time'] = time() + 86400*3;
+            $TimeModel->CreateData($fansData);
         } else {
-            $fansData['time_publicopinion'] = $publicopinion['public_id'];
-
+            $fansData['time_publicopinion'] = $publicOpinion['public_id'];
             if($timeData['time_status'] == 1) {
                 $fansData['refresh_time'] = time() + 180;
+                $TimeModel->CreateData($fansData);
             }
         }
-
-        $TimeModel->CreateData($fansData);
     }
 
 
@@ -403,8 +405,7 @@ class Login extends Base
             'log_type'  => $type,
             'log_code'  => gethostname(),
             'log_ip'    => $_SERVER['REMOTE_ADDR'],
-            'log_time'
-            => time(),
+            'log_time'  => time(),
         );
 
         $LoginLog->CreateData($lastLogin);

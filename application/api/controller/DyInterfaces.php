@@ -209,18 +209,8 @@ class DyInterfaces extends Base
 
         $kolId = 145;
         $openid = 'b6ce3e0a-1749-4fcd-a757-f3572046abe1';
-//        $openid = '7e6d30c1-ecf1-4569-abd8-1d36b7c7eb12';
 
         $res = $DyInterfaces->saveFansData($openid);
-        if($res['code'] == 1) {
-            $fansData = [
-                'time_kol' => $kolId,
-                'refresh_time' => time() + 86400*7,
-                'time_status' => 0,
-                'create_time' => time(),
-            ];
-            $TimeModel->CreateData($fansData);
-        }
     }
 
 
@@ -269,7 +259,6 @@ class DyInterfaces extends Base
                 $ageInfo["'$key'"] = round($value['value']/$allFansNum,2);
             }
             $data['ageInfo'] = $ageInfo;
-
 
             // 地区舆情-省
             $provinceData = $fansData['geographical_distributions'];
