@@ -2,7 +2,9 @@
 namespace app\index\controller;
 
 use app\admin\model\KolOauth;
+use app\admin\model\Publicopinion;
 use app\admin\model\UserAccount;
+use app\admin\model\UserPublicopinionTime;
 use app\api\controller\Interfaces;
 use app\index\controller\Base;
 
@@ -161,6 +163,7 @@ class Login extends Base
                 //账号状态判断
                 if($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
 
+
 //                $this->delKol($kolInfo, 2);
                 $this->delUser($userInfo, 5);
                 $this->success('登录成功', 'index/index');
@@ -282,6 +285,43 @@ class Login extends Base
     }
 
 
+    /**
+     * 粉丝舆情定时任务记录
+     * @param $kolInfo
+     */
+    public function delFansData($kolInfo)
+    {
+        $publicopinionModel = new Publicopinion();
+        $TimeModel = new UserPublicopinionTime();
+        $kolId = $kolInfo['id'];
+
+        // 粉丝舆情
+        $publicopinion = $publicopinionModel->GetOneData(['public_key' => $kolId]);
+
+        // 脚本数据
+        $timeData = $TimeModel->GetOneData(['time_kol' => $kolId]);
+
+        $fansData = [
+            'time_kol' => $kolId,
+            'refresh_time' => '',
+            'time_status' => 0,
+            'create_time' => time(),
+        ];
+
+        // 第一次扫码登录
+        if(!$publicopinion) {
+            $fansData['refresh_time'] = time() + 86400*3;
+        } else {
+            $fansData['time_publicopinion'] = $publicopinion['public_id'];
+
+            if($timeData['time_status'] == 1) {
+                $fansData['refresh_time'] = time() + 180;
+            }
+        }
+
+        $TimeModel->CreateData($fansData);
+    }
+
 
     /**
      * @param $kolInfo
@@ -363,7 +403,8 @@ class Login extends Base
             'log_type'  => $type,
             'log_code'  => gethostname(),
             'log_ip'    => $_SERVER['REMOTE_ADDR'],
-            'log_time'  => time(),
+            'log_time'
+            => time(),
         );
 
         $LoginLog->CreateData($lastLogin);
