@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+  .layui-input-block{margin-left: 0}
+  .layui-input{padding: 0 30px 0 30px;}
+  .layui-input-block{position: relative}
+  .layui-input-block i{position: absolute; top: 11px; left: 10px}
+  .layui-input-block input{border-radius: 10px}
+  .layui-input-block span{position: absolute; top: 11px; right: 10px}
+  select{width: 100%;margin-top: 5px;height: 30px}
+  .layui-form-item{margin-bottom: 0;display: inline-block}
+  .layui-form-label{text-align: left;padding:9px 0 }
+  .sdg{width: 60px!important;height: 60px!important;border-radius: 3px!important;margin-right: 10px!important;}
+  .mtd-shipin-td-btn>button{background-color: #ff7a02;color: #ffffff;border: 0;}
+  .mtd-shipin-fenlei-right .checked{background-color: #1E9FFF;color:#fff;}
+  .layui-input {padding: 0 30px 0 10px}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 分类、点赞数和使用 -->
+      <form id="conditionform" class="layui-form" action="{:url('orderplan')}">
+        <div class="layui-col-md12">
+          <div class="layui-card layui-card-padding">
+            <!-- 第一行  商品类型 -->
+            <div class="mtd-shipin-fenlei border-bottom clear">
+              <span class="left mtd-shipin-fenlei-left">商品类型:</span>
+              <div class="left mtd-shipin-fenlei-right" style="width: 75%">
+                <input type="hidden" name="sort" id="sortinput" value="{$condition.sort}">
+                <a href="javascript:;" data-value="0" class="sorts {if $condition.sort eq 0} checked {/if}">全部</a>
+                {volist name="sort" id="sorts"}
+                  <a href="javascript:;" class="sorts {if $condition.sort eq $sorts.sort_name} checked {/if}" data-value="{$sorts.sort_name}">{$sorts.sort_name}</a>
+                {/volist}
+              </div>
+              <div class="right mtd-shipin-fenlei-sousuo">
+                <div class="layui-form-item" style="width: 90%">
+                  <div class="layui-input-block">
+                    <i class="layui-icon layui-icon-search"></i>
+                    <input type="text" name="keyword" autocomplete="off" placeholder="请输入计划关键词筛选" class="layui-input" value="{$condition.keyword}" style="padding-left: 30px">
+                    <span class="layui-icon layui-icon-return" id="keyword"></span>
+                  </div>
+                </div>
+                <a href="#" title=""><img src="__STATIC__/index/layuiadmin/imgs/wen.png" alt=""></a>
+              </div>
+            </div>
+            <!-- 计划筛选 -->
+            <div class="mtd-shipin-fenlei border-bottom clear" style="padding:10px 0 ">
+              <span class="left mtd-shipin-fenlei-left">计划筛选:</span>
+              <div class="left mtd-shipin-fenlei-right">
+                <!-- 三个选择 -->
+                <div class="layui-form-item">
+                  <label class="layui-form-label" style="margin-left: 25px;">发布时间：</label>
+                  <div class="layui-input-inline">
+                    <select name="createtime" lay-verify="required" class="selectinput">
+                      <option value="0" {if $condition.createtime === 0} selected="" {/if}>全部</option>
+                      {volist name="specification.createtime" id="times"}
+                        <option value="{$times.spec_value}" {if $condition.createtime === $times.spec_value} selected="" {/if}>{$times.spec_title}</option>
+                      {/volist}
+                    </select>
+                  </div>
+                  <label class="layui-form-label">佣金比例：</label>
+                  <div class="layui-input-inline">
+                    <select name="commission" class="selectinput">
+                      <option value="0" {if $condition.commission === 0} selected="" {/if}>全部</option>
+                      <option value="0,5" {if $condition.commission === '0,5'} selected="" {/if}> < 5%</option>
+                      <option value="6,10" {if $condition.commission eq '6,10'} selected="" {/if}> 6% - 10% </option>
+                      <option value="11,20" {if $condition.commission eq '11,20'} selected="" {/if}> 11% - 20% </option>
+                      <option value="21,30" {if $condition.commission eq '21,30'} selected="" {/if}> 21% - 30% </option>
+                      <option value="31,40" {if $condition.commission eq '31,40'} selected="" {/if}> 31% - 40% </option>
+                      <option value="41,50" {if $condition.commission eq '41,50'} selected="" {/if}> 41% - 50% </option>
+                      <option value="51,100" {if $condition.commission eq '51,100'} selected="" {/if}> > 51% </option>
+                    </select>
+                  </div>
+                  <label class="layui-form-label">折扣价格：</label>
+                  <div class="layui-input-inline">
+                    <select name="price" class="selectinput">
+                      <option value="0" {if $condition.price === 0} selected="" {/if}>全部</option>
+                      <option value="0,50" {if $condition.price === '0,50'} selected="" {/if}> < 50元 </option>
+                      <option value="51,100" {if $condition.price === '51,100'} selected="" {/if}> 51元 - 100元 </option>
+                      <option value="101,500" {if $condition.price === '101,500'} selected="" {/if}> 101元 - 500元 </option>
+                      <option value="501,1000" {if $condition.price === '501,1000'} selected="" {/if}> 501元 - 1000元 </option>
+                      <option value="1001,3000" {if $condition.price === '1001,3000'} selected="" {/if}> 1001元 - 3000元 </option>
+                      <option value="3001,5000" {if $condition.price === '3001,5000'} selected="" {/if}> 3001元 - 5000元 </option>
+                      <option value="5001,10000" {if $condition.price === '5001,10000'} selected="" {/if}> 5001元 - 10000元 </option>
+                      <option value="10001,999999999" {if $condition.price === '10001,999999999'} selected="" {/if}> > 10001元 </option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="right">
+                <p>数据更新时间：{$date}</p>
+              </div>
+            </div>
+            <div class="mtd-shipin-tab clear" style="padding-bottom:5px">
+              <input name="order" type="hidden" id="orderinput" value="{$condition.order}">
+              <div class="mtd-shipin-tab-left">
+                <ul class="clear">
+                  <a href="javascript:;"><li class="ordera {if $condition.order eq 'plan_id desc'} checked-bottom {/if}" data-value="plan_id desc">综合排序</li></a>
+                  <a href="javascript:;"><li class="ordera {if $condition.order eq 'plan_commission desc'} checked-bottom {/if}" data-value="plan_commission desc">佣金比例</li></a>
+                  <a href="javascript:;"><li class="ordera {if $condition.order eq 'plan_discount_price desc'} checked-bottom {/if}" data-value="plan_discount_price desc">折扣价格</li></a>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- 列表 -->
+      <div class="layui-col-md12">
+        <div class="layui-form">
+          <table class="layui-table" lay-even="" lay-skin="nob">
+            <colgroup>
+              <col width="100">
+              <col width="250">
+              <col width="150">
+              <col width="">
+              <col width="">
+              <col width="">
+              <col width="250">
+              <col>
+            </colgroup>
+            <thead>
+              <tr class="mtd-shipin-tr">
+                <th>序号</th>
+                <th style="text-align: left">商品</th>
+                <th>折扣价格</th>
+                <th>佣金比例</th>
+                <th>计划开始时间</th>
+                <th>审核状态</th>
+                <th>操作</th>
+              </tr> 
+            </thead>
+            <tbody>
+              {volist name="plan" id="item"}
+                <tr>
+                  <td>{$item.plan_id}</td>
+                  <td class="mtd-mtd-shipin-table-td2">
+                    <img src="{$item.plan_goods_avatar}" alt="" class="sdg"><p class="yichu">{$item.plan_title}</p>
+                  </td>
+                  <td style="color: red">￥{$item.plan_discount_price}</td>
+                  <td class="color8c">{$item.plan_commission}%</td>
+                  <td  class="color8c">{:date('Y-m-d',$item.plan_start_time)}</td>
+                  {if $item.apply.apply_status eq 0}
+                    <td style="color:#1E9FFF">待审核</td>
+                  {elseif $item.apply.apply_status eq 1}
+                    <td style="color:#4dd954">已通过</td>
+                  {elseif $item.apply.apply_status eq -1}
+                    <td style="color:red">已拒绝</td>
+                  {/if}
+                  <td class="mtd-shipin-td-btn">
+                    {if $item.apply.apply_status eq 1}
+                      <a href="{:url('info',array('plan_id'=>$item.plan_id,'is_show'=>true))}" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-primary layui-btn-sm">计划详情</button></a>
+                    {else/}
+                      <a href="{:url('info',array('plan_id'=>$item.plan_id))}" class="mtd-shipin-td-btn"><button type="button" class="layui-btn layui-btn-primary layui-btn-sm">计划详情</button></a>
+                    {/if}
+                  </td>
+                </tr>
+              {/volist}
+            </tbody>
+          </table> 
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>  
+  <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+  <script>
+
+    // 1.轮播 
+    layui.use('carousel', function(){
+      var carousel = layui.carousel;
+      //建造实例
+      carousel.render({
+        elem: '#test1'
+        ,width: '100%' //设置容器宽度
+        ,arrow: 'always' //始终显示箭头
+        //,anim: 'updown' //切换动画方式
+      });
+    });
+
+    // 3.联动选择框
+    layui.use(['form', 'layer', 'laydate'], function(){
+      var form = layui.form
+      ,layer = layui.layer
+      ,laydate = layui.laydate;
+
+    });
+
+    //分类筛选
+    $(".sorts").click(function(){
+      $("#sortinput").val($(this).attr('data-value'));
+      GetDataFunction();
+    });
+
+    //关键词筛选
+    $("#keyword").click(function(){
+      GetDataFunction();
+    });
+
+    //监听发布时间
+    $(".createtimebut").click(function(){
+      $("#createinput").val($(this).attr('data-value'));
+    　 GetDataFunction();
+    });
+
+    $(".ordera").click(function(){
+      $("#orderinput").val($(this).attr('data-value'));
+      GetDataFunction();
+    });
+
+    function GetDataFunction(){
+      $("#conditionform").submit();
+    }
+  </script>
+</body>
+</html>

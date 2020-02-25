@@ -54,6 +54,7 @@ class User extends LoginBase
             $userTypeModel = new UserType();
             $userTypeList = $userTypeModel->GetDataList(['type_is_cert' => 1]);
             $userTypeList = array_column($userTypeList, null, 'type_id');
+
             // 如果用户已认证，查出认证信息
             $user = session::get('user');
             $certificationModel = new Certification();

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+.now-hezuo{padding: 20px 50px;}
+.now-hezuo h3{color: #000;text-align: center;margin-bottom: 20px}
+.now-hezuo h4{color: #000;margin: 25px 0 35px}
+.now-hezuo h4,.layui-form-label{color: #000;}
+.layui-form-item .layui-input-inline{width: 80% !important;margin-bottom: 10px}
+.baoming-btn{text-align: center;margin: 50px 0 20px;}
+.layui-form-label{padding: 9px 5px!important}
+.searchbut {position: absolute;top: 3px;right: 10px;height: 32px;line-height: 32px;width: 130px}
+.mainfigure {width: 80px;height: 80px;margin-left: 50px}
+.layui-col-md5 {width: 48% !important;}
+</style>
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <!-- 轮播 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body" style="padding: 0">
+            <div class="layui-carousel" id="test1">
+              <div carousel-item>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+                <div class="mtd-shipin-banner"><img src="__STATIC__/index/layuiadmin/imgs/banner.png" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 立即合作 -->
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-body now-hezuo">
+            <h3>发布推广计划</h3>
+            <form class="layui-form" id="dataform">
+              <!-- 计划标题 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red">*</span>计划标题</label>
+                <div class="layui-input-block">
+                  <input type="text" name="plan_title" autocomplete="off" class="layui-input" lay-verify="required" placeholder="请输入计划标题">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red">*</span>邀请链接</label>
+                <div class="layui-input-block">
+                  <input type="text" name="plan_url" autocomplete="off" class="layui-input" lay-verify="required|url" placeholder="请输入计划邀请链接">
+                </div>
+              </div>
+              <!-- 商品ID -->
+              <div class="layui-form-item" style="position: relative;">
+                <label class="layui-form-label"><span style="color: red">*</span>商品ID</label>
+                <div class="layui-input-block" style="width: 80%;">
+                  <input type="text" name="plan_goods_id" id="plan_goods_id" autocomplete="off" class="layui-input" placeholder="请输入淘宝商品ID">
+                </div>
+                <button type="button" class="layui-btn layui-btn-normal layui-btn-radius layui-btn-sm searchbut">搜索商品</button>
+              </div>
+              <!-- 商品标题 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">商品标题</label>
+                <div class="layui-input-block">
+                  <input type="text" name="plan_goods_title" autocomplete="off" class="layui-input" readonly unselectable="on">
+                </div>
+              </div>
+              <!-- 商品主图  和  商品分类 -->
+              <div class="clear layui-form-item">
+                <div class="layui-col-md5 layui-col-sm12">
+                  <label class="layui-form-label" id="mainfigure">商品主图</label>
+                  <!--__STATIC__/index/layuiadmin/imgs/no1-1.png-->
+                </div>
+                <div class="layui-col-md5 layui-col-sm12 right">
+                  <label class="layui-form-label">店铺名称</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_store_name" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  </div>
+                </div>
+              </div>
+              <!-- 店铺名称  和  商品原价 -->
+              <div class="clear layui-form-item">
+                <div class="layui-col-md5 layui-col-sm12" style="margin-top: 20px;">
+                  <label class="layui-form-label">商品一级分类</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_goods_sort" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  </div>
+                </div>
+                <div class="layui-col-md5 layui-col-sm12 right" style="margin-top: 20px">
+                  <label class="layui-form-label">商品二级分类</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_goods_subclass" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  </div>
+                </div>
+
+              </div>
+              <!-- 商品折扣价  和  优惠券数量 -->
+              <div class="clear layui-form-item">
+                <div class="layui-col-md5 layui-col-sm12 right">
+                  <label class="layui-form-label">商品原价</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_goods_price" autocomplete="off" class="layui-input" readonly unselectable="on">
+                    <span style="position: absolute;right: 15px;top: 7px">元</span>
+                  </div>
+                </div>
+                <div class="layui-col-md5 layui-col-sm12">
+                  <label class="layui-form-label">商品折扣价</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_discount_price" autocomplete="off" class="layui-input" readonly unselectable="on">
+                    <span style="position: absolute;right: 15px;top: 7px">元</span>
+                  </div>
+                </div>
+              </div>
+<!-- 
+              <div class="layui-col-md5 layui-col-sm12 right">
+                <label class="layui-form-label">优惠券数量</label>
+                <div class="layui-input-block">
+                  <input type="text" name="title" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  <span style="position: absolute;right: 15px;top: 7px">元</span>
+                </div>
+              </div>
+              <div class="clear layui-form-item">
+                <div class="layui-col-md5 layui-col-sm12">
+                  <label class="layui-form-label">优惠券金额</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" readonly unselectable="on">
+                    <span style="position: absolute;right: 15px;top: 7px">元</span>
+                  </div>
+                </div>
+                <div class="layui-col-md5 layui-col-sm12 right">
+                  <label class="layui-form-label">优惠时间范围</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  </div>
+                </div>
+              </div>
+              <div class="clear layui-form-item">
+                <div class="layui-col-md5 layui-col-sm12">
+                  <label class="layui-form-label">剩余优惠券数量</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  </div>
+                </div>
+                <div class="layui-col-md5 layui-col-sm12 right">
+                  <label class="layui-form-label">券后价</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="title" autocomplete="off" class="layui-input" readonly unselectable="on">
+                  <span style="position: absolute;right: 15px;top: 7px">元</span>
+                  </div>
+                </div>
+              </div> -->
+
+              <!-- 券后价 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red">*</span>佣金比例</label>
+                <div class="layui-input-block">
+                  <input type="number" name="plan_commission" autocomplete="off" class="layui-input" placeholder="0">
+                  <span style="position: absolute;right: 15px;top: 7px">%</span>
+                </div>
+              </div>
+
+              <!-- 开始时间  和  结束时间 -->
+              <div class="clear layui-form-item">
+                <div class="layui-col-md5 layui-col-sm12">
+                  <label class="layui-form-label"><span style="color: red">*</span>开始时间</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_start_time" autocomplete="off" id="plan_start_time" class="layui-input">
+                  </div>
+                </div>
+                <div class="layui-col-md5 layui-col-sm12 right">
+                  <label class="layui-form-label"><span style="color: red">*</span>结束时间</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="plan_end_time" autocomplete="off" id="plan_end_time" class="layui-input">
+                  </div>
+                </div>
+              </div>
+              <!-- 报名要求 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">报名粉丝要求</label>
+                <div class="layui-input-block">
+                  <input type="number" name="plan_condition" autocomplete="off" class="layui-input" >
+                  <span style="position: absolute;right: 15px;top: 7px">万</span>
+                </div>
+              </div>
+              <!-- 招募人数 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label"><span style="color: red">*</span>招募人数</label>
+                <div class="layui-input-block">
+                  <input type="number" name="plan_number" autocomplete="off" class="layui-input" >
+                  <span style="position: absolute;right: 15px;top: 7px">人</span>
+                </div>
+              </div>
+              <!-- 样品数量 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">样品数量</label>
+                <div class="layui-input-block">
+                  <input type="number" name="plan_sample_sum" autocomplete="off" class="layui-input" >
+                  <span style="position: absolute;right: 15px;top: 7px">件</span>
+                </div>
+              </div>
+              <!-- 样品领取条件 -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">样品领取条件</label>
+                <div class="layui-input-block">
+                  <input type="number" name="plan_sample_condition" autocomplete="off" class="layui-input" placeholder="请输入淘宝商品ID">
+                  <span style="position: absolute;right: 15px;top: 7px">万</span>
+                </div>
+              </div>
+              <!-- 计划描述 -->
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">计划描述</label>
+                <div class="layui-input-block">
+                  <textarea name="plan_desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+                </div>
+              </div>
+            </form>
+            <div class="baoming-btn">
+              <button type="button" class="layui-btn layui-btn-normal layui-btn-radius CreatePlan">立即创建</button>
+              <a href="{:url('index')}"><button type="button" class="layui-btn layui-btn-primary layui-btn-radius">取消</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.easy-pie-chart.js"></script> 
+<script src="__STATIC__/index/layuiadmin/style/js/echarts.min.js"></script>
+<script>
+
+  // 1.轮播 
+  layui.use('carousel', function(){
+    var carousel = layui.carousel;
+    //建造实例
+    carousel.render({
+      elem: '#test1'
+      ,width: '100%' //设置容器宽度
+      ,arrow: 'always' //始终显示箭头
+      //,anim: 'updown' //切换动画方式
+    });
+  });
+
+
+  // 2.联动选择框
+  layui.use(['form', 'layer', 'layedit', 'laydate'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+    ,$ = layui.$
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate;
+
+    laydate.render({
+      elem: '#plan_start_time'
+    });
+
+    laydate.render({
+      elem: '#plan_end_time'
+    });
+
+    $('.searchbut').click(function(){
+      var goods_id = $("input[name='plan_goods_id']").val();
+      if(goods_id != ''){
+        $.ajax({
+          url:"{:url('GetGoods')}",
+          type:"POST",
+          data:{goods_id:goods_id},
+          success:function(res){
+            if(res.code == 1){
+              var data = res.data.n_tbk_item[0];
+              //填充数据
+              $("input[name='plan_goods_title']").val(data.title);
+              $("input[name='plan_goods_sort']").val(data.cat_name);
+              $("input[name='plan_goods_subclass']").val(data.cat_leaf_name);
+              $("input[name='plan_store_name']").val(data.nick);
+              $("input[name='plan_goods_price']").val(data.reserve_price);
+              $("input[name='plan_discount_price']").val(data.zk_final_price);
+              $("#mainfigure").empty();
+              $("#mainfigure").append("商品主图<img src='"+data.pict_url+"' class='mainfigure'><input type='hidden' name='plan_goods_avatar' value='"+data.pict_url+"'>");
+            }else
+              layer.msg(res.msg);
+          },error:function(){
+            layer.msg('服务器错误，请稍后重试！');
+          }
+        })
+      }else
+        layer.msg('请输入商品ID');
+    });
+
+    $(".CreatePlan").click(function(){
+      $.ajax({
+        url:"{:url('release')}",
+        type:"POST",
+        data:$("#dataform").serialize(),
+        success:function(res){
+          layer.msg(res.msg);
+          if(res.code)
+            setTimeout(function(){window.location.reload();},1000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试！');
+        }
+      })
+    });
+  });
+</script>
+</html>

@@ -3,7 +3,8 @@ namespace app\index\controller;
 
 use think\Controller;
 use app\api\controller\GetData;
-use app\api\controller\Interfaces;
+
+use app\admin\model\Video;
 
 class Goods extends LoginBase
 {
@@ -13,16 +14,20 @@ class Goods extends LoginBase
     {
         parent::__construct();
         $this->GetData = new GetData;
+
+        $this->assign('sort',$this->GetData->GetGoodsSort());
+        $this->assign('sales',$this->GetData->GetSpecification('sales')['sales']);
     }
 
-    //红人搜索
+    //商品搜索
     public function search()
     {
-        $obj = new Interfaces;
-        $obj->GetGoods(1);
-
-
-        die;
+        $condition = array(
+            'keyword'   => '',
+            'sort'      => 0,
+            'sales'     => 0,
+            'order'     => 'gt_index desc',
+        );
 
         if(request()->isPost()){
 
@@ -30,63 +35,76 @@ class Goods extends LoginBase
 
             $where = array();
 
-            if($data['type'] == 'senior'){
+            $order = 'gt_index desc';
 
-                if($data['sort'] != 0)
-                    $where['k.kol_sort'] = $data['sort'];
-                
-                if($data['fans'] != 0)
-                    $where['kt.kt_fans'] = array('between',$data['fans']);
-                
-                if($data['like'] != 0)
-                    $where['kt.kt_like'] = array('between',$data['like']);
-                
-                if($data['hot'] != 0)
-                    $where['kt.kt_hot'] = array('between',$data['hot']);
-  
-                if($data['province'] != 0)
-                    $where['k.kol_province'] = $data['province'];
-  
-                if(isset($data['sex']) && $data['sex'] != 0)
-                    $where['k.kol_sex'] = $data['sex'];
-                
-                if(isset($data['vname']) && $data['vname'] != '')
-                    $where['k.kol_achievement'] = array('like',$data['vname']);
-
-                if($data['keyword'] != '')
-                    $where['k.kol_nickname']  = array('like',"%" . $data['keyword'] . "%");
-
-            }else{
-                if($data['keyword'] != '')
-                    $where['k.kol_nickname']  = array('like',"%" . $data['keyword'] . "%");
+            if($data['keyword'] != ''){
+                $keyword = $data['keyword'];
+                $where['g.gooods_name'] = ['like',"%" . $keyword . "%"];
+                $condition['keyword'] = $keyword;
             }
 
-            $result = $this->GetData->GetKolList($where);
+            if(isset($data['sort']) && $data['sort'] != 0){
+                $where['g.goods_type'] = $data['sort'];
+                $condition['sort'] = $data['sort'];
+            }
+
+            if(isset($data['sales']) && $data['sales'] != 0){
+                $where['gt.gt_sales'] = array('between',$data['sales']);
+                $condition['sales'] = $data['sales'];
+            }
+
+            if(isset($data['order']) && $data['order'] != ''){
+                $order = $data['order'];
+                $condition['order'] = $data['order'];
+            }
+
+            $result = $this->GetData->GetGoodsList($where,1,100,$order);
 
             $this->assign('count',count($result));
-            $this->assign('data',$data);
+            $this->assign('condition',$condition);
+            $this->assign('date',date("Y-m-d"));
             $this->assign('result',$result);
             return view('result');
 
         }else{
-
-            $condition = array(
-                'sort'      => 0,
-                'fans'      => 0,
-                'like'      => 0,
-                'hot'       => 0,
-                'sex'       => 0,
-                'age'       => 0,
-                'vname'     => '',
-                'province'  => 0,
-            );
-
             $this->assign('condition',$condition);
             return view();
         }
     }
 
-    //红人列表
+    //商品详情
+    public function info($goods=0,$type="hot")
+    {
+        if($goods == 0) $goods = array('code'=>0,'msg'=>'参数错误');
+
+        $data = $this->GetData->GetGoodsInfo($goods);
+
+        if($type == 'hot'){
+
+        }elseif($type == 'video'){
+            $videos = $this->GetData->GetVideoList(array('video_goods'=>$goods));
+            $this->assign('videos',$videos);
+        }elseif($type == 'kol'){
+
+            $Video = new Video;
+
+            $ids = $Video->GetColumn(array('video_goods'=>$goods),'video_apiuid');
+
+            $kol = $this->GetData->GetKolList(array('kol_uid'=>array('in',$ids)));
+
+            $this->assign('kol',$kol);
+        }
+
+        $this->assign('data',$data['data']);
+        $this->assign('code',$data['code']);
+        $this->assign('type',$type);
+        return view();
+    }
+
+
+
+
+    //抖音好物榜
     public function rank()
     {
         $condition = array(

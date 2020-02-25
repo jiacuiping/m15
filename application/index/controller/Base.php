@@ -28,4 +28,12 @@ class Base extends Controller
 	{
 
 	}
+
+
+    //提示页
+    public function prompt($msg)
+    {
+        $this->assign('msg',$msg);
+        return view();
+    }
 }

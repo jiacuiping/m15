@@ -23,7 +23,11 @@ class LoginBase extends Controller
 			session::set('ismobile',ismobile() ? true : false);
 
 		//检测登陆信息
-		if(!session::has('user'))
-			$this->redirect('Login/login');
+		if(!session::has('user')) {
+            echo '<script language="javascript">';
+            echo 'parent.location.reload();';
+            echo '</script>';
+        }
+
 	}
 }

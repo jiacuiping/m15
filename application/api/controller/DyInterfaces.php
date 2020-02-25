@@ -2,6 +2,7 @@
 namespace app\api\controller;
 
 use app\admin\model\KolOauth;
+use app\admin\model\Publicopinion;
 use app\admin\model\UserPublicopinionTime;
 use app\api\controller\Base;
 use think\Cookie;
@@ -202,19 +203,6 @@ class DyInterfaces extends Base
         }
     }
 
-    public function saveKolFans()
-    {
-        $TimeModel = new UserPublicopinionTime();
-        $DyInterfaces = new DyInterfaces;
-
-        $kolId = 145;
-        $openid = 'b6ce3e0a-1749-4fcd-a757-f3572046abe1';
-
-        $res = $DyInterfaces->saveFansData($openid);
-    }
-
-
-
     /**
      * 获取粉丝统计数据
      * /fans/data/
@@ -294,6 +282,14 @@ class DyInterfaces extends Base
             }
             $data['trafficInfo'] = $trafficInfo;
 
+            // 活跃天数舆情
+            $dateData = $fansData['active_days_distributions'];
+            $dateInfo = [];
+            foreach ($dateData as $value) {
+                $dateInfo[$value["item"]] = round($value['value']/$allFansNum,2);
+            }
+            $data['dateInfo'] = $dateInfo;
+
             return $data;
         } else {
             return false;
@@ -303,6 +299,7 @@ class DyInterfaces extends Base
     public function saveFansData($openId)
     {
         $kolOauth = new KolOauth();
+        $publicOpinionModel = new Publicopinion();
         $accessToken = '';
 
         // 根据openid获取授权信息
@@ -318,7 +315,6 @@ class DyInterfaces extends Base
             } else {
                 $accessToken = $refreshRes['oauth_access_token'];
             }
-
         } else {
             $accessToken = $oauthData['oauth_access_token'];
         }
@@ -333,13 +329,24 @@ class DyInterfaces extends Base
             'public_key'		=> $oauthData['oauth_kol'],
             'public_age'		=> json_encode($data['ageInfo']),
             'public_sex'		=> json_encode($data['sexInfo']),
-            'public_pro'		=> json_encode($data['sexInfo']),
+            'public_pro'		=> json_encode($data['provinceInfo']),
             'public_equipment'	=> json_encode($data['equipmentInfo']),
             'public_interest'	=> json_encode($data['interestInfo']),
             'public_traffic'	=> json_encode($data['trafficInfo']),
-            'create_time'		=> time()
+            'public_date'	    => json_encode($data['dateInfo'])
         );
-        db('publicopinion')->insert($insert);
+
+        // 查看是否已有数据
+        $fansInfo = $publicOpinionModel->GetOneData(['public_key' => $oauthData['oauth_kol']]);
+        if($fansInfo) {
+            $insert['public_id'] = $fansInfo['public_id'];
+            $insert['update_time'] = time();
+            $publicOpinionModel->UpdateData($insert);
+        } else {
+            $insert['create_time'] = time();
+            $insert['update_time'] = time();
+            $publicOpinionModel->CreateData($insert);
+        }
         return ['code' => '1', 'msg' => "完成！"];
     }
 

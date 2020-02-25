@@ -59,4 +59,29 @@ class Index extends Base
 
 		return $worksScore + $fansScore + $shareScore + $likeScore + $commScore + $videohotScore + $frequency;
 	}
+
+	//商品价值
+	public function GoodsValue($data)
+	{
+		//浏览量得分
+		$browseScore = round($data['gt_browse'] / 500,2);
+		$browseScore = $browseScore > 20000 ? 20000 : $browseScore;
+		//销量得分
+		$salesScore = round($data['gt_sales'] / 50,2);
+		$salesScore = $salesScore > 20000 ? 20000 : $salesScore;
+		//新增销量得分
+		$IncBrowseScore = round($data['gt_inc_browse'] / 200,2);
+		$IncBrowseScore = $IncBrowseScore > 10000 ? 10000 : $IncBrowseScore;
+		//新增销量得分
+		$IncSalesScore = round($data['gt_inc_sales'] / 20,2);
+		$IncSalesScore = $IncSalesScore > 10000 ? 10000 : $IncSalesScore;
+		//主播数得分
+		$KolScore = round($data['gt_kol'] / 0.0025,2);
+		$KolScore = $KolScore > 20000 ? 20000 : $KolScore;
+		//视频数得分
+		$VidelScore = round($data['gt_video'] / 0.015,2);
+		$VidelScore = $VidelScore > 20000 ? 20000 : $VidelScore;
+
+		return $browseScore + $salesScore + $IncBrowseScore + $IncSalesScore + $KolScore + $VidelScore;
+	}
 }
