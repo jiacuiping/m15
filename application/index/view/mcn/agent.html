@@ -73,7 +73,7 @@
           <div class="layui-card-body">
 
             <!-- 分组循环-->
-            {volist name="macAgents" id="item"}
+            {volist name="mcnAgents" id="item"}
             <div class="fenzu-div1">
               <!-- 标题 -->
               <div class="fenzu-div1-top">
@@ -121,91 +121,91 @@
 <script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>  
 <script>
 
-// 1.轮播 
-layui.use('carousel', function(){
-  var carousel = layui.carousel;
-  carousel.render({
-    elem: '#test1'
-    ,width: '100%' //设置容器宽度
-    ,arrow: 'always' //始终显示箭头
-    //,anim: 'updown' //切换动画方式
-  });
-});
-
-// 2.下拉选择
-layui.use(['form', 'layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-  
-});
-
-
-// 3.点击添加经纪人时 遮罩层
-/*  $(".dianji").click(function(){
-  $(".mask").show();
-});
-  $(".guan").click(function(){
-  $(".mask").hide();
-});*/
-$(".dianji").click(function(){
-  var agent_id = $(this).attr('agent-id');
-  var url = "{:url('McnAgent/viewKol','',false)}/agentId/" + agent_id;
-  layer.open({
-    type: 2
-    ,title:'添加红人'
-    ,content: url
-    ,shadeClose: true
-    ,area: ['70%', '60%']
-    ,maxmin: true
-  });
-});
-
-// 添加经纪人
-$("#addAgent").click(function(){
-  layer.open({
-    type: 2
-    ,title:'添加分组'
-    ,content: "{:url('McnAgent/create')}"
-    ,shadeClose: true
-    ,area: ['70%', '60%']
-    ,maxmin: true
-  });
-});
-
-// 修改经纪人
-$(".updateAgent").click(function(){
-  var agent_id = $(this).attr('agent-id');
-  var url = "{:url('McnAgent/update','',false)}/id/" + agent_id;
-  layer.open({
-    type: 2
-    ,title:'修改经纪人'
-    ,content: url
-    ,shadeClose: true
-    ,area: ['70%', '60%']
-    ,maxmin: true
-  });
-});
-
-// 删除经纪人
-$(".delAgent").click(function(){
-  var agent_id = $(this).attr('agent-id');
-  var url = "{:url('McnAgent/delete','',false)}/id/" + agent_id;
-  layer.confirm('您确定要删除该经纪人吗？', function(index){
-    $.ajax({
-      url:url,
-      success:function(res){
-        layer.msg(res.msg);
-        if(res.code)
-          setTimeout(function(){window.location.reload()},2000);
-      },error:function(){
-        layer.msg('服务器错误，请稍后重试！');
-      }
+  // 1.轮播
+  layui.use('carousel', function(){
+    var carousel = layui.carousel;
+    carousel.render({
+      elem: '#test1'
+      ,width: '100%' //设置容器宽度
+      ,arrow: 'always' //始终显示箭头
+      //,anim: 'updown' //切换动画方式
     });
-    layer.close(index);
   });
-});
+
+  // 2.下拉选择
+  layui.use(['form', 'layedit', 'laydate'], function(){
+    var form = layui.form
+    ,layer = layui.layer
+    ,layedit = layui.layedit
+    ,laydate = layui.laydate;
+
+  });
+
+
+  // 3.点击添加经纪人时 遮罩层
+  /*  $(".dianji").click(function(){
+    $(".mask").show();
+  });
+    $(".guan").click(function(){
+    $(".mask").hide();
+  });*/
+  $(".dianji").click(function(){
+    var agent_id = $(this).attr('agent-id');
+    var url = "{:url('McnAgent/viewKol','',false)}/agentId/" + agent_id;
+    layer.open({
+      type: 2
+      ,title:'添加红人'
+      ,content: url
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
+  // 添加经纪人
+  $("#addAgent").click(function(){
+    layer.open({
+      type: 2
+      ,title:'添加分组'
+      ,content: "{:url('McnAgent/create')}"
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
+  // 修改经纪人
+  $(".updateAgent").click(function(){
+    var agent_id = $(this).attr('agent-id');
+    var url = "{:url('McnAgent/update','',false)}/id/" + agent_id;
+    layer.open({
+      type: 2
+      ,title:'修改经纪人'
+      ,content: url
+      ,shadeClose: true
+      ,area: ['70%', '60%']
+      ,maxmin: true
+    });
+  });
+
+  // 删除经纪人
+  $(".delAgent").click(function(){
+    var agent_id = $(this).attr('agent-id');
+    var url = "{:url('McnAgent/delete','',false)}/id/" + agent_id;
+    layer.confirm('您确定要删除该经纪人吗？', function(index){
+      $.ajax({
+        url:url,
+        success:function(res){
+          layer.msg(res.msg);
+          if(res.code)
+            setTimeout(function(){window.location.reload()},2000);
+        },error:function(){
+          layer.msg('服务器错误，请稍后重试！');
+        }
+      });
+      layer.close(index);
+    });
+  });
 
 </script>
 </body>

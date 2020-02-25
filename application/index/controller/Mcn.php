@@ -149,8 +149,6 @@ class Mcn extends LoginBase
                 $orderBy = "kt.kt_" . $filter['orderBy'] . " desc";
             }
 
-
-
             //if($basisOf != 'app' && $key != 0){
             //   $basisOf == 'group' ? $where['mk_group'] = $key : $where['mk_agent'] = $key;
             //}
@@ -213,12 +211,14 @@ class Mcn extends LoginBase
     //分组管理
     public function Group()
     {
+        $McnKol = new McnKolModel();
+
         // mcn信息
         $mcnInfo = $this->data['data'];
 
         // 获取该mcn的分组信息
         $groupWhere = ['group_mcn' => $mcnInfo['mcn_id'], 'group_status' => 1];
-        $macGroups =$this->mcnGroup->GetDataList($groupWhere);
+        $mcnGroups =$this->mcnGroup->GetDataList($groupWhere);
 
 
         // 查询该mcn的红人
@@ -227,20 +227,19 @@ class Mcn extends LoginBase
         $kols = array_column($kols, null, 'kol_id');
 
         // 获取分组内的红人id
-        $sql = "select mk_group,GROUP_CONCAT(mk_kol) as kolids from m15_mcn_kol where m15_mcn_kol.mk_mcn = {$mcnInfo['mcn_id']} group by mk_group";
+        $sql = "select mk_group,GROUP_CONCAT(mk_kol) as kolids from m15_mcn_kol where m15_mcn_kol.mk_group != 0 and m15_mcn_kol.mk_mcn = {$mcnInfo['mcn_id']} group by mk_group";
         $groupKols = Db::query($sql);
         $groupKols = array_column($groupKols, 'kolids', 'mk_group');
 
 
         // 获取分组内的红人
-        $groupData = [];
-        foreach ($macGroups as $key => $value) {
-            $macGroups[$key]['kol_num'] = 0;
-            $macGroups[$key]['kols'] = [];
+        foreach ($mcnGroups as $key => $value) {
+            $mcnGroups[$key]['kol_num'] = 0;
+            $mcnGroups[$key]['kols'] = [];
 
             if(key_exists($value['group_id'], $groupKols)) {
                 $kolIds = explode(',', $groupKols[$value['group_id']]);
-                $macGroups[$key]['kol_num'] = count($kolIds);
+                $mcnGroups[$key]['kol_num'] = count($kolIds);
 
                 $temp = [];
                 foreach ($kolIds as $kolId) {
@@ -248,7 +247,7 @@ class Mcn extends LoginBase
                         array_push($temp, $kols[$kolId]);
                     }
                 }
-                $macGroups[$key]['kols'] = $temp;
+                $mcnGroups[$key]['kols'] = $temp;
 
             }
         }
@@ -257,7 +256,7 @@ class Mcn extends LoginBase
         $this->assign('kols',$kols);
 
         // 分组信息
-        $this->assign('macGroups',$macGroups);
+        $this->assign('mcnGroups',$mcnGroups);
 
         // mcn个人信息
         $this->assign('data',$mcnInfo);
@@ -273,8 +272,7 @@ class Mcn extends LoginBase
 
         // 获取该mcn的经纪人信息
         $agentWhere = ['agent_mcn' => $mcnInfo['mcn_id'], 'agent_status' => 1];
-        $macAgents =$this->mcnAgent->GetDataList($agentWhere);
-
+        $mcnAgents =$this->mcnAgent->GetDataList($agentWhere);
 
         // 查询该mcn的红人
         $field = "kol_id, kol_nickname, kol_avatar";
@@ -282,20 +280,19 @@ class Mcn extends LoginBase
         $kols = array_column($kols, null, 'kol_id');
 
         // 获取经纪人的红人id
-        $sql = "select mk_agent,GROUP_CONCAT(mk_kol) as kolids from m15_mcn_kol where m15_mcn_kol.mk_mcn = {$mcnInfo['mcn_id']} group by mk_agent";
+        $sql = "select mk_agent,GROUP_CONCAT(mk_kol) as kolids from m15_mcn_kol where m15_mcn_kol.mk_agent != 0 and m15_mcn_kol.mk_mcn = {$mcnInfo['mcn_id']} group by mk_agent";
         $agentKols = Db::query($sql);
         $agentKols = array_column($agentKols, 'kolids', 'mk_agent');
 
 
-        // 获取分组内的红人
-        $groupData = [];
-        foreach ($macAgents as $key => $value) {
-            $macAgents[$key]['kol_num'] = 0;
-            $macAgents[$key]['kols'] = [];
+        // 获取经纪人的红人
+        foreach ($mcnAgents as $key => $value) {
+            $mcnAgents[$key]['kol_num'] = 0;
+            $mcnAgents[$key]['kols'] = [];
 
             if(key_exists($value['agent_id'], $agentKols)) {
                 $kolIds = explode(',', $agentKols[$value['agent_id']]);
-                $macAgents[$key]['kol_num'] = count($kolIds);
+                $mcnAgents[$key]['kol_num'] = count($kolIds);
 
                 $temp = [];
                 foreach ($kolIds as $kolId) {
@@ -303,7 +300,7 @@ class Mcn extends LoginBase
                         array_push($temp, $kols[$kolId]);
                     }
                 }
-                $macAgents[$key]['kols'] = $temp;
+                $mcnAgents[$key]['kols'] = $temp;
 
             }
         }
@@ -311,8 +308,8 @@ class Mcn extends LoginBase
         // 红人信息
         $this->assign('kols',$kols);
 
-        // 分组信息
-        $this->assign('macAgents',$macAgents);
+        // 经纪人信息
+        $this->assign('mcnAgents',$mcnAgents);
 
         // mcn个人信息
         $this->assign('data',$mcnInfo);
