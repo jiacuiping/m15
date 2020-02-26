@@ -134,9 +134,7 @@ class DyInterfaces extends Base
             $oauthInfo = [
                 'oauth_id' => $oauthData['oauth_id'],
                 'oauth_access_token' => $result['data']['access_token'],
-                'oauth_access_token_expires_in' => $result['data']['expires_in'],
-                'oauth_refresh_token' => $result['data']['refresh_token'],
-                'oauth_refresh_token_expires_in' => time() + 86400 * 30
+                'oauth_access_token_expires_in' => time() + $result['data']['expires_in']
             ];
             $res = $kolOauth->UpdateData($oauthInfo);
             if ($res['code'] == 1) {
