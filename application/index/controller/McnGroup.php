@@ -1,4 +1,5 @@
 <?php
+
 namespace app\index\controller;
 
 use app\index\controller\LoginBase;
@@ -12,29 +13,29 @@ use think\Db;
 
 class McnGroup extends LoginBase
 {
-	private $GetData;
-	private $mcnGroup;
-	private $kol;
+    private $GetData;
+    private $mcnGroup;
+    private $kol;
     private $data;
     private $McnKol;
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		$this->mcnGroup = new McnGroupModel();
-		$this->kol = new KolModel();
-		$this->McnKol = new McnKolModel();
+        $this->mcnGroup = new McnGroupModel();
+        $this->kol = new KolModel();
+        $this->McnKol = new McnKolModel();
 
-		$this->GetData = new GetData;
-  //       $this->assign('specification',$this->GetData->GetSpecification('all'));
-		// $this->assign('sort',$this->GetData->GetVideoSort());
+        $this->GetData = new GetData;
+        //       $this->assign('specification',$this->GetData->GetSpecification('all'));
+        // $this->assign('sort',$this->GetData->GetVideoSort());
 
         $this->data = $this->GetData->GetMcnData();
 
-        if($this->data['code'] != 1 && strpos($_SERVER['REQUEST_URI'],'mcn/prompt/msg/') === false)
-            $this->redirect('prompt',['msg'=>$this->data['msg']]);
-	}
+        if ($this->data['code'] != 1 && strpos($_SERVER['REQUEST_URI'], 'mcn/prompt/msg/') === false)
+            $this->redirect('prompt', ['msg' => $this->data['msg']]);
+    }
 
     //分组管理
     public function index()
@@ -44,7 +45,7 @@ class McnGroup extends LoginBase
 
         // 获取该mcn的分组信息
         $groupWhere = ['group_mcn' => $mcnInfo['mcn_id'], 'group_status' => 1];
-        $macGroups =$this->mcnGroup->GetDataList($groupWhere);
+        $macGroups = $this->mcnGroup->GetDataList($groupWhere);
 
 
         // 查询该mcn的红人
@@ -61,14 +62,12 @@ class McnGroup extends LoginBase
         }
 
 
-
-
         // mcn个人信息
-        $this->assign('data',$mcnInfo);
+        $this->assign('data', $mcnInfo);
         return view();
     }
 
-	public function create()
+    public function create()
     {
         return request()->isPost() ? $this->mcnGroup->CreateData(input('post.')) : view('mcn_group/create', [
             'data' => $this->data['data']
@@ -78,7 +77,7 @@ class McnGroup extends LoginBase
     //修改数据
     public function update($id = 0)
     {
-        $this->assign('data',$this->mcnGroup->GetOneDataById($id));
+        $this->assign('data', $this->mcnGroup->GetOneDataById($id));
         return request()->isPost() ? $this->mcnGroup->UpdateData(input('post.')) : view();
     }
 
@@ -102,8 +101,8 @@ class McnGroup extends LoginBase
             ->where(['a.kol_mcn' => $mcnInfo['mcn_id']]);
 
         // 判断是否筛选
-        if($searchText) {
-            $kols = $kols->where('a.kol_nickname|a.kol_number', 'like','%' . $searchText . '%');
+        if ($searchText) {
+            $kols = $kols->where('a.kol_nickname|a.kol_number', 'like', '%' . $searchText . '%');
         }
 
         $kols = $kols->select();
@@ -111,18 +110,18 @@ class McnGroup extends LoginBase
 
         // 未分组的红人
         $kolIds = $this->McnKol->GetDataList(['mk_mcn' => $mcnInfo['mcn_id'], 'mk_group' => 0, 'mk_isagree' => 1]);
-        $kolIds = array_column($kolIds, null,'mk_kol');
+        $kolIds = array_column($kolIds, null, 'mk_kol');
 
         $result = array_intersect_key($kols, $kolIds);
 
         // 红人信息
-        $this->assign('kol',$result);
+        $this->assign('kol', $result);
         // mcn个人信息
-        $this->assign('data',$mcnInfo);
+        $this->assign('data', $mcnInfo);
         // 分组信息
-        $this->assign('groupId',$groupId);
+        $this->assign('groupId', $groupId);
         // 筛选信息
-        $this->assign('searchText',$searchText);
+        $this->assign('searchText', $searchText);
 
         return view();
     }
@@ -153,10 +152,10 @@ class McnGroup extends LoginBase
         // 查看关联表 m15_mcn_kol 中是否有该红人的记录
         $relInfo = $this->McnKol->saveData($data);
 
-        if($relInfo['code']) {
-            return ['code'=>1,'msg'=>'添加红人成功'];
+        if ($relInfo['code']) {
+            return ['code' => 1, 'msg' => '添加红人成功'];
         } else {
-            return ['code'=>0,'msg'=>'添加红人失败'];
+            return ['code' => 0, 'msg' => '添加红人失败'];
         }
     }
 
@@ -164,7 +163,7 @@ class McnGroup extends LoginBase
     //提示页
     public function prompt($msg)
     {
-        $this->assign('msg',$msg);
+        $this->assign('msg', $msg);
         return view();
     }
 }

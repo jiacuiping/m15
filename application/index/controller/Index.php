@@ -18,4 +18,10 @@ class Index extends LoginBase
 		$this->assign('indexmenu',$indexmenu);
         return view();
     }
+
+
+    public function workbench()
+    {
+    	return view();
+    }
 }

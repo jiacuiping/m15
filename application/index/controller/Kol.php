@@ -1,10 +1,16 @@
 <?php
 namespace app\index\controller;
 
+use think\Session;
 use think\Controller;
 use app\admin\model\Kol as KolModel;
 use app\api\controller\GetData;
 use app\api\controller\Interfaces;
+
+use app\admin\model\Mcn;
+use app\admin\model\McnKol;
+use app\admin\model\Package;
+use app\admin\model\UserAccount;
 
 class Kol extends LoginBase
 {
@@ -22,13 +28,6 @@ class Kol extends LoginBase
     //红人搜索
     public function search()
     {
-        // $Interfaces = new Interfaces;
-
-        // $Interfaces->CreateQrcode('https://www.iesdouyin.com/share/video/6741695209534524676/?region=CN&mid=6664106036007275277&u_code=0&titleType=title','80632952083');
-
-        // die;
-
-
         if(request()->isPost()){
 
             $data = input('post.');
@@ -155,7 +154,6 @@ class Kol extends LoginBase
 		return view();
     }
 
-
     //KOL详情
     public function info($kid=0,$type='data',$order='create_time',$goods=0,$keyword='')
     {
@@ -195,16 +193,40 @@ class Kol extends LoginBase
             $videos = $this->GetData->GetVideoList($where,1,50,$condition['order']);
             
             $this->assign('videos',$videos);
-
         }elseif($type == 'fans'){
-
-            $public = $this->GetData->GeetPublicOpinionInfo($kol['kol_uid'],'kol');
+            $public = $this->GetData->GeetPublicOpinionInfo($kol['kol_id'],'kol');
             if($public['code'] == 1)
                 $this->assign('public',$public['data']);
             else
                 $this->assign('public',array());
-        }
+        }elseif($type == 'mcn'){
 
+            $Mcn = new Mcn;
+            $McnKol = new McnKol;
+
+            $mcnid = $McnKol->GetField(array('mk_kol'=>$kid),'mk_mcn');
+
+            if($mcnid){
+
+                $Kol = new KolModel;
+
+                $mcninfo = $Mcn->GetOneDataById($mcnid);
+
+                $kolsid = $McnKol->GetColumn(array('mk_mcn'=>$mcnid),'mk_kol');
+
+                $kols = $Kol->GetListByPage(array('kol_id'=>array('in',$kolsid)),1,16);
+                
+                $this->assign('kols',$kols);
+                $this->assign('mcninfo',$mcninfo);
+            }
+            $this->assign('mcnid',$mcnid);
+        }elseif($type == 'task'){
+            $Package = new Package;
+            $UserAccount = new UserAccount;
+            $userId = $UserAccount->GetField(array('account_kol'=>$kid,'account_is_self'=>1),'account_user');
+            $task = $userId ? $Package->GetDataList(['package_user' => $userId]) : array();
+            $this->assign('task',$task);
+        }
         $this->assign('trend',$trend);
         $this->assign('kol',$kol);
         $this->assign('type',$type);
@@ -227,10 +249,6 @@ class Kol extends LoginBase
 
         $KolInfo = $this->GetData->GetKolInfo($uid,'kol_uid');
 
-
-        if($isall && !db('allvideo')->where(array('kol_uid'=>$uid))->find())
-            db('allvideo')->insert(array('kol_uid'=>$uid));
-
         if($KolInfo) return array('code'=>1,'msg'=>'KOL已收录');
 
         $result = $Interfaces->GetUserInfo($uid);
@@ -238,9 +256,37 @@ class Kol extends LoginBase
         return $result ? array('code'=>1,'msg'=>'收录成功') : array('code'=>0,'msg'=>'收录失败');
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //红人对比搜索页
     public function contrast($type='search')
     {
+        if(request()->isPost()){
+
+            $Kol = new KolModel;
+
+            $kols = $Kol->GetDataList(array('kol_number|kol_nickname'=>array('like',"%" . input('post.keyword') . "%")));
+
+            $type = 'contrast';
+            $this->assign('kols',$kols);
+        }
+
         $this->assign('type',$type);
         return view();
     }
@@ -257,4 +303,23 @@ class Kol extends LoginBase
         $this->assign('result',$result);
         return view();
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

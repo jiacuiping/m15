@@ -1,4 +1,5 @@
 <?php
+
 namespace app\index\controller;
 
 use app\admin\model\Platform;
@@ -14,112 +15,112 @@ use think\Db;
 
 class Mcn extends LoginBase
 {
-	private $GetData;
+    private $GetData;
     private $data;
     private $mcnGroup;
     private $mcnAgent;
     private $mcnKol;
     private $kol;
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
         $this->mcnGroup = new McnGroupModel();
         $this->mcnAgent = new McnAgentModel();
         $this->mcnKol = new McnKolModel();
         $this->kol = new KolModel();
 
-		$this->GetData = new GetData;
-  //       $this->assign('specification',$this->GetData->GetSpecification('all'));
-		// $this->assign('sort',$this->GetData->GetVideoSort());
+        $this->GetData = new GetData;
+        //       $this->assign('specification',$this->GetData->GetSpecification('all'));
+        // $this->assign('sort',$this->GetData->GetVideoSort());
 
         $this->data = $this->GetData->GetMcnData();
 
-        if($this->data['code'] != 1 && strpos($_SERVER['REQUEST_URI'],'mcn/prompt/msg/') === false)
-            $this->redirect('prompt',['msg'=>$this->data['msg']]);
-	}
+        if ($this->data['code'] != 1 && strpos($_SERVER['REQUEST_URI'], 'mcn/prompt/msg/') === false)
+            $this->redirect('prompt', ['msg' => $this->data['msg']]);
+    }
 
     //数据一览表
-    public function data($basisOf='app',$key=0,$type='trend',$day=7,$order="default")
+    public function data($basisOf = 'app', $key = 0, $type = 'trend', $day = 7, $order = "default")
     {
-    	$condition = array(
-    		'basisOf'	=> 'app',
-    		'key'		=> 0,
-    		'type'		=> 'trend',
-    		'day'		=> 7,
-    		'order'		=> 'default',
-    	);
+        $condition = array(
+            'basisOf' => 'app',
+            'key' => 0,
+            'type' => 'trend',
+            'day' => 7,
+            'order' => 'default',
+        );
 
-        if($type != 'trend') $condition['type'] = $type;
-    	
-    	if($day != 7) $condition['day'] = $day;
+        if ($type != 'trend') $condition['type'] = $type;
 
-    	if($order != 'default') $condition['order'] = $order;
+        if ($day != 7) $condition['day'] = $day;
 
-    	if($basisOf != 'app') $condition['basisOf'] = $basisOf;
+        if ($order != 'default') $condition['order'] = $order;
 
-    	if($key != 0) $condition['key'] = $key;
+        if ($basisOf != 'app') $condition['basisOf'] = $basisOf;
 
-    	$this->assign('code',$this->data['code']);
+        if ($key != 0) $condition['key'] = $key;
 
-    	if($this->data['code'] == 1){
+        $this->assign('code', $this->data['code']);
 
-    		$statistical = $this->GetData->GetMcnStatistical($this->data['data']['mcn_id'],$basisOf,$key);
+        if ($this->data['code'] == 1) {
 
-    		$this->assign('statistical',$statistical);
-    		$this->assign('data',$this->data['data']);
+            $statistical = $this->GetData->GetMcnStatistical($this->data['data']['mcn_id'], $basisOf, $key);
 
-			$where['mk_mcn'] = $this->data['data']['mcn_id'];
+            $this->assign('statistical', $statistical);
+            $this->assign('data', $this->data['data']);
 
-			if($basisOf != 'app' && $key != 0){
-				$basisOf == 'group' ? $where['mk_group'] = $key : $where['mk_agent'] = $key;
-			}
+            $where['mk_mcn'] = $this->data['data']['mcn_id'];
 
-			$McnKol = new McnKolModel();
+            if ($basisOf != 'app' && $key != 0) {
+                $basisOf == 'group' ? $where['mk_group'] = $key : $where['mk_agent'] = $key;
+            }
 
-			$kols = $McnKol->GetColumn($where,'mk_kol');
+            $McnKol = new McnKolModel();
 
-    		if($type == 'trend'){
+            $kols = $McnKol->GetColumn($where, 'mk_kol');
 
-    			if(!empty($kols))
-					$trend = $this->GetData->GetChangeTrend($kols,'mcn',$day);
-				else
-					$trend = array();
+            if ($type == 'trend') {
 
-				$this->assign('trend',$trend);
-    		}elseif($type == 'kol'){
+                if (!empty($kols))
+                    $trend = $this->GetData->GetChangeTrend($kols, 'mcn', $day);
+                else
+                    $trend = array();
 
-    			$orderBy = $order == 'default' ? 'kt.kt_fans desc' : $order;
+                $this->assign('trend', $trend);
+            } elseif ($type == 'kol') {
 
-    			$kollist = $this->GetData->GetKolList(array('kol_id'=>array('in',$kols)),1,100,$orderBy);
+                $orderBy = $order == 'default' ? 'kt.kt_fans desc' : $order;
 
-    			$this->assign('kollist',$kollist);
+                $kollist = $this->GetData->GetKolList(array('kol_id' => array('in', $kols)), 1, 100, $orderBy);
 
-    		}elseif($type == 'video'){
+                $this->assign('kollist', $kollist);
 
-    			$Kol = new Kol;
+            } elseif ($type == 'video') {
 
-    			$uids = $Kol->GetColumn(array('kol_id'=>array('in',$kols)),'kol_uid');
+                $Kol = new Kol;
 
-    			$orderBy = $order == 'default' ? 'vt.vt_hot desc' : $order;
+                $uids = $Kol->GetColumn(array('kol_id' => array('in', $kols)), 'kol_uid');
 
-    			$video = $this->GetData->GetVideoList(array('video_apiuid'=>array('in',$uids)),1,100,$orderBy);
+                $orderBy = $order == 'default' ? 'vt.vt_hot desc' : $order;
 
-    			$this->assign('video',$video);
-    		}
+                $video = $this->GetData->GetVideoList(array('video_apiuid' => array('in', $uids)), 1, 100, $orderBy);
 
-    	}else
-    		$this->assign('msg',$this->data['msg']);
+                $this->assign('video', $video);
+            }
 
-    	$this->assign('condition',$condition);
+        } else
+            $this->assign('msg', $this->data['msg']);
+
+        $this->assign('condition', $condition);
         return view();
     }
 
 
     //KOL管理
-    public function Kol($mcn=0)
+    public function Kol($mcn = 0)
     {
-        if($this->data['code'] == 1){
+        if ($this->data['code'] == 1) {
             // mcn_kol表筛选条件  该mcn已认领
             $mcnKolWhere = [];
             $mcnKolWhere['mk_mcn'] = $this->data['data']['mcn_id'];
@@ -127,24 +128,24 @@ class Mcn extends LoginBase
 
             $kolWhere = [];
             $filter = input('param.'); // platform  group agent  keyWord
-            if(isset($filter['platform']) && $filter['platform']) {
+            if (isset($filter['platform']) && $filter['platform']) {
                 $kolWhere['kol_platform'] = $filter['platform'];
             }
 
-            if(isset($filter['group']) && $filter['group']) {
+            if (isset($filter['group']) && $filter['group']) {
                 $mcnKolWhere['mk_group'] = $filter['group'];
             }
 
-            if(isset($filter['agent']) && $filter['agent']) {
+            if (isset($filter['agent']) && $filter['agent']) {
                 $mcnKolWhere['mk_agent'] = $filter['agent'];
             }
 
-            if(isset($filter['keyWord']) && $filter['keyWord']) {
+            if (isset($filter['keyWord']) && $filter['keyWord']) {
                 $kolWhere['kol_nickname'] = ['like', '%' . $filter['keyWord'] . '%'];
             }
 
             $orderBy = "kt.kt_hot desc";
-            if(isset($filter['orderBy']) && $filter['orderBy']) {
+            if (isset($filter['orderBy']) && $filter['orderBy']) {
 
                 $orderBy = "kt.kt_" . $filter['orderBy'] . " desc";
             }
@@ -162,24 +163,24 @@ class Mcn extends LoginBase
 
             //$orderBy = $order == 'default' ? 'kt.kt_fans desc' : $order;
 
-            $kolWhere['kol_id'] = ['in',array_column($kols,'mk_kol')];
-            $kol = $this->GetData->GetKolList($kolWhere,1,100, $orderBy);
+            $kolWhere['kol_id'] = ['in', array_column($kols, 'mk_kol')];
+            $kol = $this->GetData->GetKolList($kolWhere, 1, 100, $orderBy);
             $kol = array_column($kol, null, 'kol_id');
 
             foreach ($kol as $key => $value) {
                 $info = $kols[$key];
 
-                $kol[$key]['agent'] = $info['mk_agent'] == 0 ? '暂无' : $McnAgent->GetField(array('agent_id'=>$info['mk_agent']),'agent_name');
+                $kol[$key]['agent'] = $info['mk_agent'] == 0 ? '暂无' : $McnAgent->GetField(array('agent_id' => $info['mk_agent']), 'agent_name');
                 $kol[$key]['mk_agent'] = $kols[$key]['mk_agent'];
                 $kol[$key]['mk_group'] = $kols[$key]['mk_group'];
                 $kol[$key]['mk_isshow'] = $kols[$key]['mk_isshow'];
-                $weekinfo = $this->GetData->GetKolIncData($value['kol_id'],7,false);
-                $lweekinfo = $this->GetData->GetKolIncData($value['kol_id'],14,false);
-                $monthinfo = $this->GetData->GetKolIncData($value['kol_id'],30,false);
-                $lmonthinfo = $this->GetData->GetKolIncData($value['kol_id'],60,false);
+                $weekinfo = $this->GetData->GetKolIncData($value['kol_id'], 7, false);
+                $lweekinfo = $this->GetData->GetKolIncData($value['kol_id'], 14, false);
+                $monthinfo = $this->GetData->GetKolIncData($value['kol_id'], 30, false);
+                $lmonthinfo = $this->GetData->GetKolIncData($value['kol_id'], 60, false);
 
                 $kol[$key]['statistical'] = array(
-                    'weekfans'  => $weekinfo['fans'],
+                    'weekfans' => $weekinfo['fans'],
                     'monthfans' => $monthinfo['fans'],
                     'lweekfans' => $lweekinfo['fans'] - $weekinfo['fans'],
                     'lmonthfans' => $lmonthinfo['fans'] - $monthinfo['fans'],
@@ -194,17 +195,17 @@ class Mcn extends LoginBase
             // 经济人列表
             $agentList = $this->mcnAgent->GetDataList(['agent_status' => 1]);
 
-            $this->assign('kol',$kol);
-            $this->assign('platformList',$platformList);
-            $this->assign('groupList',$groupList);
-            $this->assign('agentList',$agentList);
+            $this->assign('kol', $kol);
+            $this->assign('platformList', $platformList);
+            $this->assign('groupList', $groupList);
+            $this->assign('agentList', $agentList);
 
-            $this->assign('filter',$filter);
+            $this->assign('filter', $filter);
 
-            $this->assign('data',$this->data['data']);
+            $this->assign('data', $this->data['data']);
         }
 
-    	return view();
+        return view();
     }
 
 
@@ -218,7 +219,7 @@ class Mcn extends LoginBase
 
         // 获取该mcn的分组信息
         $groupWhere = ['group_mcn' => $mcnInfo['mcn_id'], 'group_status' => 1];
-        $mcnGroups =$this->mcnGroup->GetDataList($groupWhere);
+        $mcnGroups = $this->mcnGroup->GetDataList($groupWhere);
 
 
         // 查询该mcn的红人
@@ -237,13 +238,13 @@ class Mcn extends LoginBase
             $mcnGroups[$key]['kol_num'] = 0;
             $mcnGroups[$key]['kols'] = [];
 
-            if(key_exists($value['group_id'], $groupKols)) {
+            if (key_exists($value['group_id'], $groupKols)) {
                 $kolIds = explode(',', $groupKols[$value['group_id']]);
                 $mcnGroups[$key]['kol_num'] = count($kolIds);
 
                 $temp = [];
                 foreach ($kolIds as $kolId) {
-                    if(key_exists($kolId, $kols)) {
+                    if (key_exists($kolId, $kols)) {
                         array_push($temp, $kols[$kolId]);
                     }
                 }
@@ -253,13 +254,13 @@ class Mcn extends LoginBase
         }
 
         // 红人信息
-        $this->assign('kols',$kols);
+        $this->assign('kols', $kols);
 
         // 分组信息
-        $this->assign('mcnGroups',$mcnGroups);
+        $this->assign('mcnGroups', $mcnGroups);
 
         // mcn个人信息
-        $this->assign('data',$mcnInfo);
+        $this->assign('data', $mcnInfo);
         return view();
     }
 
@@ -272,7 +273,7 @@ class Mcn extends LoginBase
 
         // 获取该mcn的经纪人信息
         $agentWhere = ['agent_mcn' => $mcnInfo['mcn_id'], 'agent_status' => 1];
-        $mcnAgents =$this->mcnAgent->GetDataList($agentWhere);
+        $mcnAgents = $this->mcnAgent->GetDataList($agentWhere);
 
         // 查询该mcn的红人
         $field = "kol_id, kol_nickname, kol_avatar";
@@ -290,13 +291,13 @@ class Mcn extends LoginBase
             $mcnAgents[$key]['kol_num'] = 0;
             $mcnAgents[$key]['kols'] = [];
 
-            if(key_exists($value['agent_id'], $agentKols)) {
+            if (key_exists($value['agent_id'], $agentKols)) {
                 $kolIds = explode(',', $agentKols[$value['agent_id']]);
                 $mcnAgents[$key]['kol_num'] = count($kolIds);
 
                 $temp = [];
                 foreach ($kolIds as $kolId) {
-                    if(key_exists($kolId, $kols)) {
+                    if (key_exists($kolId, $kols)) {
                         array_push($temp, $kols[$kolId]);
                     }
                 }
@@ -306,23 +307,23 @@ class Mcn extends LoginBase
         }
 
         // 红人信息
-        $this->assign('kols',$kols);
+        $this->assign('kols', $kols);
 
         // 经纪人信息
-        $this->assign('mcnAgents',$mcnAgents);
+        $this->assign('mcnAgents', $mcnAgents);
 
         // mcn个人信息
-        $this->assign('data',$mcnInfo);
+        $this->assign('data', $mcnInfo);
         return view();
     }
 
 
     //更改展示状态
-    public function KolShow($id,$type)
+    public function KolShow($id, $type)
     {
         $McnKol = new McnKolModel();
 
-        return $McnKol->where('mk_kol',$id)->update(['mk_isshow'=>$type]) ? array('code'=>1,'msg'=>'修改成功') : array('code'=>0,'msg'=>'修改失败');
+        return $McnKol->where('mk_kol', $id)->update(['mk_isshow' => $type]) ? array('code' => 1, 'msg' => '修改成功') : array('code' => 0, 'msg' => '修改失败');
     }
 
     // 可认领红人列表
@@ -330,7 +331,7 @@ class Mcn extends LoginBase
     {
         $where = [];
         $where['kol_mcn'] = 0;
-        if($keyword) {
+        if ($keyword) {
             $where['kol_nickname|kol_number'] = ['like', '%' . $keyword . '%'];
         }
 
@@ -346,10 +347,10 @@ class Mcn extends LoginBase
             $list[$key]['isClaim'] = array_key_exists($value['kol_id'], $rel) ? 1 : 0;
         }
 
-        if($list) {
-            return ['code'=>1,'msg'=>'获取成功','data'=>$list];
+        if ($list) {
+            return ['code' => 1, 'msg' => '获取成功', 'data' => $list];
         } else {
-            return ['code'=>0,'msg'=>'获取失败'];
+            return ['code' => 0, 'msg' => '获取失败'];
         }
     }
 
@@ -360,7 +361,7 @@ class Mcn extends LoginBase
         $mcnInfo = $this->data['data'];
 
         // 判断是单个认领还是批量认领
-        if($isall == 0) { // 单个
+        if ($isall == 0) { // 单个
             // m15_mcn_kol表插入数据
             $data = [
                 'mk_mcn' => $mcnInfo['mcn_id'],
@@ -375,10 +376,10 @@ class Mcn extends LoginBase
             // 红人同意认领后m15_kol表修改kol_mcn字段
 //            $kolRes = $this->kol->UpdateData(['kol_id' => $kolId, 'kol_mcn' => $mcnInfo['mcn_id']]);
 
-            if($relRes['code']) {
-                return ['code'=>1,'msg'=>'发送认领成功'];
+            if ($relRes['code']) {
+                return ['code' => 1, 'msg' => '发送认领成功'];
             } else {
-                return ['code'=>0,'msg'=>'发送认领失败'];
+                return ['code' => 0, 'msg' => '发送认领失败'];
             }
 
         } else { // 批量
@@ -400,10 +401,10 @@ class Mcn extends LoginBase
 //            $kolRes = $this->kol->UpdateData(['kol_id' => $kolIds, 'kol_mcn' => $mcnInfo['mcn_id']]);
 
             $result = $this->mcnKol->insertAll($data);
-            if($result) {
-                return ['code'=>1,'msg'=>'发送认领成功'];
+            if ($result) {
+                return ['code' => 1, 'msg' => '发送认领成功'];
             } else {
-                return ['code'=>0,'msg'=>'发送认领失败'];
+                return ['code' => 0, 'msg' => '发送认领失败'];
             }
         }
 
@@ -418,19 +419,19 @@ class Mcn extends LoginBase
         $res1 = $this->kol->UpdateData(['kol_id' => $id, 'kol_mcn' => 0]);
 
         // 删除m15_mcn_kol表数据
-        $res2 = $McnKol->where('mk_kol',$id)->delete();
+        $res2 = $McnKol->where('mk_kol', $id)->delete();
 
-        if($res1['code'] && $res2) {
-            return ['code'=>1,'msg'=>'解除认领成功'];
+        if ($res1['code'] && $res2) {
+            return ['code' => 1, 'msg' => '解除认领成功'];
         } else {
-            return ['code'=>0,'msg'=>'解除认领失败'];
+            return ['code' => 0, 'msg' => '解除认领失败'];
         }
     }
 
     //提示页
     public function prompt($msg)
     {
-        $this->assign('msg',$msg);
+        $this->assign('msg', $msg);
         return view();
     }
 
@@ -438,7 +439,7 @@ class Mcn extends LoginBase
     public function getFilterList($type)
     {
         $filterList = [];
-        if($type == 1) {
+        if ($type == 1) {
             $platformModel = new Platform();
             $filterList = $platformModel->GetDataList(['platform_status' => 1]);
         } else if ($type == 2) {
@@ -447,7 +448,7 @@ class Mcn extends LoginBase
             $filterList = $this->mcnAgent->GetDataList(['agent_status' => 1]);
         }
 
-        if($filterList) {
+        if ($filterList) {
             return ['code' => 1, 'msg' => '获取成功', 'data' => $filterList];
         } else {
             return ['code' => 0, 'msg' => '获取失败'];

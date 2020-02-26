@@ -1,4 +1,5 @@
 <?php
+
 namespace app\index\controller;
 
 use app\admin\model\KolOauth;
@@ -24,55 +25,56 @@ use app\api\controller\DyInterfaces;
 
 // 发送短信
 use extend\aliyun\Sms\SendSms;
+
 require ROOT_PATH . 'extend' . DS . 'aliyun/dysms/SendSms.php';
 
 class Login extends Base
 {
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
         $this->User = new User;
         $this->Vip = new UserVip;
         $this->Login = new UserLogin;
         $this->VipLevel = new VipLevel;
-		$this->Certification = new Certification;
+        $this->Certification = new Certification;
 
-	}
+    }
 
-	//手机号登陆方法
+    //手机号登陆方法
     public function login()
     {
-    	//先根据当前时间戳判断该用户是否有会员信息符合条件，如没有，则先修改user表中的当前vip等级，然后再存入session信息
-    	if(request()->isPost()){
+        //先根据当前时间戳判断该用户是否有会员信息符合条件，如没有，则先修改user表中的当前vip等级，然后再存入session信息
+        if (request()->isPost()) {
             //接收手机号数据
             $mobile = input('post.mobile');
-            if($mobile == '') return array('code'=>0,'msg'=>'用户名不能为空');
+            if ($mobile == '') return array('code' => 0, 'msg' => '用户名不能为空');
             //接收密码数据
             $password = input('post.password');
-            if($password == '') return array('code'=>0,'msg'=>'密码不能为空');
+            if ($password == '') return array('code' => 0, 'msg' => '密码不能为空');
             //获取登陆信息
-            $login = $this->Login->GetOneData(array('login_mobile'=>$mobile));
+            $login = $this->Login->GetOneData(array('login_mobile' => $mobile));
             //登陆信息数据判断
-            if(!$login) return array('code'=>0,'msg'=>'该用户不存在');
+            if (!$login) return array('code' => 0, 'msg' => '该用户不存在');
             //密码验证
-            if(!PasswordCheck($password,$login['login_password'],$login['login_str'])) return array('code'=>0,'msg'=>'密码不正确');
+            if (!PasswordCheck($password, $login['login_password'], $login['login_str'])) return array('code' => 0, 'msg' => '密码不正确');
             //获取用户主信息
             $user = $this->User->GetOneDataById($login['login_user']);
 
             //账号数据判断
-            if(!$user) return array('code'=>0,'msg'=>'账号异常，请联系客服');
+            if (!$user) return array('code' => 0, 'msg' => '账号异常，请联系客服');
             //账号状态判断
-            if($user['user_status'] != 1) return array('code'=>0,'msg'=>'该用户已被停用，请联系客服');
+            if ($user['user_status'] != 1) return array('code' => 0, 'msg' => '该用户已被停用，请联系客服');
 
             $this->delUser($user, 2);
             //返回成功
-            return array('code'=>1,'msg'=>'登陆成功，即将跳转');
+            return array('code' => 1, 'msg' => '登陆成功，即将跳转');
 
-    	}else{
+        } else {
 
-    		return view();
-    	}
+            return view();
+        }
     }
 
 
@@ -95,21 +97,21 @@ class Login extends Base
 
         // 把code存入session
         $code = input('get.code');
-        session::set('code',input('get.code'));
+        session::set('code', input('get.code'));
 
         // 获取access_token
         $data = $DyInterfaces->get_access_token();
-        if(!$data) {
-            $this->error('登录失败，请稍后再试！','index/index');
+        if (!$data) {
+            $this->error('登录失败，请稍后再试！', 'index/index');
         }
 
         // 获取抖音用户信息
         $userDyInfo = $DyInterfaces->getUserInfo($data['access_token'], $data['open_id']);
-        if(!$userDyInfo) {
-            $this->error('登录失败，请稍后再试！','index/index');
+        if (!$userDyInfo) {
+            $this->error('登录失败，请稍后再试！', 'index/index');
         }
         // 把信息存入session
-        session::set('dy_user',$userDyInfo);
+        session::set('dy_user', $userDyInfo);
 
         // kol信息
         $kolData = [
@@ -129,39 +131,39 @@ class Login extends Base
         $oauthInfo = [
             'oauth_access_token' => $data['access_token'],
             'oauth_open_id' => $data['open_id'],
-            'oauth_access_token_expires_in' => time()  + $data['expires_in'],
+            'oauth_access_token_expires_in' => time() + $data['expires_in'],
             'oauth_refresh_token' => $data['refresh_token'],
-            'oauth_refresh_token_expires_in' => time()  + 86400 * 30,
+            'oauth_refresh_token_expires_in' => time() + 86400 * 30,
             'oauth_time' => time()
         ];
 
 
         // 查看kol用户是否已经存在
         $kolInfo = $kolModel->GetOneData(['kol_open_id' => $data['open_id']]);
-        if($kolInfo) {
+        if ($kolInfo) {
 
             // 存在，更新kol信息
             $kolData['kol_id'] = $kolInfo['kol_id'];
             $kolRes = $kolModel->UpdateData($kolData);
-            session::set('kolInfo',$kolRes['data']);
+            session::set('kolInfo', $kolRes['data']);
 
             // 授权信息处理
             $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $data['open_id']]);
-            if(!$oauthData) {
+            if (!$oauthData) {
                 $oauthInfo['oauth_kol'] = $kolInfo['kol_id'];
                 $kolOauth->CreateData($oauthInfo);
             }
 
             // 查看user表是否有数据
             $kolUser = $accountModel->GetOneData(['account_kol' => $kolInfo['kol_id']]);
-            if($kolUser) {
+            if ($kolUser) {
                 $userInfo = $this->User->GetOneData(['user_id' => $kolUser['account_user']]);
 
                 //账号数据判断
-                if(!$userInfo) $this->error('账号异常，请联系客服','index/index');
+                if (!$userInfo) $this->error('账号异常，请联系客服', 'index/index');
 
                 //账号状态判断
-                if($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
+                if ($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
 
 
 //                $this->delKol($kolInfo, 2);
@@ -177,12 +179,12 @@ class Login extends Base
         } else {
             // 存储kol信息
             $saveRes = $kolModel->CreateData($kolData);
-            if($saveRes['code'] == 1) {
-                session::set('kolInfo',$saveRes['data']);
+            if ($saveRes['code'] == 1) {
+                session::set('kolInfo', $saveRes['data']);
 
                 // 授权信息处理
                 $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $data['open_id']]);
-                if(!$oauthData) {
+                if (!$oauthData) {
                     $oauthInfo['oauth_kol'] = $kolInfo['kol_id'];
                     $kolOauth->CreateData($oauthInfo);
                 }
@@ -190,17 +192,16 @@ class Login extends Base
                 // 跳转到绑定手机号页面
                 $this->redirect('login/bindMobile');
             } else {
-                $this->error('账号异常，请联系客服','index/index');
+                $this->error('账号异常，请联系客服', 'index/index');
             }
         }
     }
 
 
-
     // 绑定手机号
     public function bindMobile()
     {
-        if(request()->isPost()){
+        if (request()->isPost()) {
             $kolInfo = session::get('kolInfo');
             $accountModel = new UserAccount();
             $userLoginModel = new UserLogin();
@@ -212,22 +213,22 @@ class Login extends Base
             $mobile = $data['mobile'];
 
             // 验证数据
-            if(!CheckMobile($data['mobile'])) {
-                return ['code'=>0,'msg'=>'请输入正确的手机号码'];
+            if (!CheckMobile($data['mobile'])) {
+                return ['code' => 0, 'msg' => '请输入正确的手机号码'];
             }
 
-            if($data['pass'] !== $data['repass']) {
-                return ['code'=>0,'msg'=>'两次输入密码不正确'];
+            if ($data['pass'] !== $data['repass']) {
+                return ['code' => 0, 'msg' => '两次输入密码不正确'];
             }
 
             // 查询手机号是否已经存在
             $userInfo = $this->User->GetOneData(['user_mobile' => $mobile]);
-            if($userInfo) {
+            if ($userInfo) {
                 return ['code' => 0, 'msg' => '该手机号已存在'];
             }
 
-            if($sms_code != $data['sms_code']) {
-                return ['code'=>0,'msg'=>'验证码不正确'];
+            if ($sms_code != $data['sms_code']) {
+                return ['code' => 0, 'msg' => '验证码不正确'];
             }
 
             // 补充信息
@@ -245,7 +246,7 @@ class Login extends Base
 
             // 存储用户信息
             $userRes = $this->User->CreateData($userData);
-            if($userRes['code'] == 1) {
+            if ($userRes['code'] == 1) {
 
                 // 存储user_account信息
                 $userAccount = [
@@ -312,12 +313,12 @@ class Login extends Base
         ];
 
         // 第一次扫码登录
-        if(!$publicOpinion && !$timeData) {
-            $fansData['refresh_time'] = time() + 86400*3;
+        if (!$publicOpinion && !$timeData) {
+            $fansData['refresh_time'] = time() + 86400 * 3;
             $TimeModel->CreateData($fansData);
         } else {
             $fansData['time_publicopinion'] = $publicOpinion['public_id'];
-            if($timeData['time_status'] == 1) {
+            if ($timeData['time_status'] == 1) {
                 $fansData['refresh_time'] = time() + 180;
                 $TimeModel->CreateData($fansData);
             }
@@ -334,7 +335,7 @@ class Login extends Base
         $DyInterfaces = new DyInterfaces;
         $interfaces = new Interfaces();
         $videoModel = new \app\admin\model\Video();
-        if($type == 1) {
+        if ($type == 1) {
             // 存储视频（15条）
             $videoList = $DyInterfaces->videoListGet();
             foreach ($videoList['list'] as $value) {
@@ -349,7 +350,7 @@ class Login extends Base
                     'video_url' => $value['share_url'],
                 ];
                 $res = $videoModel->CreateData($temp);
-                if($res['code'] == 1) {
+                if ($res['code'] == 1) {
 //                    $interfaces->GetVideoComment($value['item_id'],$page=1);
                 }
             }
@@ -357,12 +358,12 @@ class Login extends Base
 
         } else {
             // 查询最新一条视频
-            $lastVideoTime = $videoModel->GetField(['video_kol' => $kolInfo['kol_id']],'create_time', 'create_time desc');
+            $lastVideoTime = $videoModel->GetField(['video_kol' => $kolInfo['kol_id']], 'create_time', 'create_time desc');
             // 存储视频（数据表中最新的时间之后的视频）
             $videoList = $DyInterfaces->videoListGet();
             $data = [];
             foreach ($videoList['list'] as $value) {
-                if($value['create_time'] < $lastVideoTime) {
+                if ($value['create_time'] < $lastVideoTime) {
                     continue;
                 }
 
@@ -378,7 +379,7 @@ class Login extends Base
                     'video_url' => $value['share_url'],
                 ];
                 $res = $videoModel->CreateData($temp);
-                if($res['code'] == 1) {
+                if ($res['code'] == 1) {
 //                    $interfaces->GetVideoComment($value['item_id'],$page=1);
                 }
             }
@@ -389,23 +390,23 @@ class Login extends Base
     //退出方法
     public function logout()
     {
-        session::set('user',null);
+        session::set('user', null);
         echo '<script language="javascript">';
         echo 'parent.location.reload();';
         echo '</script>';
     }
 
     //更新登陆记录
-    public function SaveLoginLog($user,$type=2)
+    public function SaveLoginLog($user, $type = 2)
     {
         $LoginLog = new LoginLog;
 
         $lastLogin = array(
-            'log_user'  => $user,
-            'log_type'  => $type,
-            'log_code'  => gethostname(),
-            'log_ip'    => $_SERVER['REMOTE_ADDR'],
-            'log_time'  => time(),
+            'log_user' => $user,
+            'log_type' => $type,
+            'log_code' => gethostname(),
+            'log_ip' => $_SERVER['REMOTE_ADDR'],
+            'log_time' => time(),
         );
 
         $LoginLog->CreateData($lastLogin);
@@ -417,26 +418,26 @@ class Login extends Base
         //开始处理登陆信息...
 
         //更新登陆记录
-        $this->SaveLoginLog($user['user_id'],$type);
+        $this->SaveLoginLog($user['user_id'], $type);
         //查询会员信息
-        $vip = $this->Vip->GetOneData(array('vip_user'=>$user['user_id'],'vip_start'=>array('LT',time()),'vip_expire'=>array('GT',time())));
+        $vip = $this->Vip->GetOneData(array('vip_user' => $user['user_id'], 'vip_start' => array('LT', time()), 'vip_expire' => array('GT', time())));
         //更新用户会员信息
-        $this->User->UpdateData(['user_id'=>$user['user_id'],'user_vlevel'=>empty($vip) ? 0 : $vip['vip_level']]);
+        $this->User->UpdateData(['user_id' => $user['user_id'], 'user_vlevel' => empty($vip) ? 0 : $vip['vip_level']]);
 
         //补全信息...
 
         //补全会员信息
-        if(empty($vip)){
+        if (empty($vip)) {
             $user['user_vip'] = array(
-                'level_name'     => '免费版',
-                'level_icon'    => '',
-                'level_desc'    => '普通版用户',
+                'level_name' => '免费版',
+                'level_icon' => '',
+                'level_desc' => '普通版用户',
             );
-        }else
-            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id'=>$vip['vip_level']));
+        } else
+            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id' => $vip['vip_level']));
 
         //如果用户已提交认证信息
-        if($user['user_type'] != 1){
+        if ($user['user_type'] != 1) {
             //补全认证信息
             $user['user_authInfo'] = $this->Certification->GetOneDataById($user['user_certification']);
             //补全关联信息
@@ -449,7 +450,7 @@ class Login extends Base
             $user['user_expaInfo'] = $expaObj->GetOneDataById($user['user_expansion']);
         }
         //生成session
-        session::set('user',$user);
+        session::set('user', $user);
 
         //返回成功
 //        return array('code'=>1,'msg'=>'登陆成功，即将跳转');
@@ -460,13 +461,13 @@ class Login extends Base
     {
         $mobile = input('post.mobile');
         $code = generate_code();
-        session::set('sms_code',$code);
+        session::set('sms_code', $code);
         $send = new SendSms();
         $res = $send->sendSms($mobile, $code);
-        if($res) {
-            return ['code'=>1,'msg'=>'验证码发送成功！'];
+        if ($res) {
+            return ['code' => 1, 'msg' => '验证码发送成功！'];
         } else {
-            return ['code'=>0,'msg'=>'验证码发送失败！'];
+            return ['code' => 0, 'msg' => '验证码发送失败！'];
         }
 
     }

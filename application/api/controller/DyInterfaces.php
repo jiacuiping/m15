@@ -1,4 +1,5 @@
 <?php
+
 namespace app\api\controller;
 
 use app\admin\model\KolOauth;
@@ -19,11 +20,12 @@ class DyInterfaces extends Base
      */
 
     private $url = 'https://open.douyin.com';
-	private $key = 'awnxxvwav6czf00h';
-	private $secret = '19afaed4ee427baba3c4b48d6ed20c1b';
+    private $key = 'awnxxvwav6czf00h';
+    private $secret = '19afaed4ee427baba3c4b48d6ed20c1b';
 
 
     //获取登陆二维码
+
     /**
      * 获取授权码(code)
      * /platform/oauth/connect/
@@ -61,32 +63,32 @@ class DyInterfaces extends Base
         $url = $this->url . '/oauth/access_token/';
 
         $params = array(
-            'client_key'		=> $this->key,
-            'client_secret' 	=> $this->secret,
-            'code'		        => $code,
-            'grant_type'		=> 'authorization_code',
+            'client_key' => $this->key,
+            'client_secret' => $this->secret,
+            'code' => $code,
+            'grant_type' => 'authorization_code',
         );
 
         $data = $this->curl_post($url, $params);
-        if(isset($data['message']) && $data['message'] == 'success') {
+        if (isset($data['message']) && $data['message'] == 'success') {
 
-            session::set('access_token',$data['data']['access_token']);
-            session::set('open_id',$data['data']['open_id']);
+            session::set('access_token', $data['data']['access_token']);
+            session::set('open_id', $data['data']['open_id']);
 
             // 如果已有授权信息，更新
             $kolOauth = new KolOauth();
             $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $data['data']['open_id']]);
-            if($oauthData) {
-                if($oauthData['oauth_access_token_expires_in'] < time()) {
+            if ($oauthData) {
+                if ($oauthData['oauth_access_token_expires_in'] < time()) {
                     // access_token已过期，重新获取
 //                    $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
 
                     // access_token已过期，更新
                     $oauthInfo = [
                         'oauth_access_token' => $data['data']['access_token'],
-                        'oauth_access_token_expires_in' => time()  + $data['data']['expires_in'],
+                        'oauth_access_token_expires_in' => time() + $data['data']['expires_in'],
                         'oauth_refresh_token' => $data['data']['refresh_token'],
-                        'oauth_refresh_token_expires_in' => time()  + 86400 * 30,
+                        'oauth_refresh_token_expires_in' => time() + 86400 * 30,
                         'oauth_time' => time()
                     ];
                     $kolOauth->CreateData($oauthInfo);
@@ -113,20 +115,20 @@ class DyInterfaces extends Base
     public function refresh_token($refresh_token, $oauthData)
     {
         // 查看refresh_token是否过期
-        if($oauthData['oauth_refresh_token_expires_in'] < time()) {
+        if ($oauthData['oauth_refresh_token_expires_in'] < time()) {
             return ['code' => '0', 'msg' => "refresh_token过期，需要用户重新授权"];
         }
 
         $url = $this->url . '/oauth/refresh_token/';
 
         $params = array(
-            'client_key'	    => $this->key,
-            'grant_type' 	    => "refresh_token",
-            'refresh_token'		=> $refresh_token,
+            'client_key' => $this->key,
+            'grant_type' => "refresh_token",
+            'refresh_token' => $refresh_token,
         );
 
         $result = $this->curl_get($url, $params);
-        if(isset($result['message']) && $result['message'] == 'success') {
+        if (isset($result['message']) && $result['message'] == 'success') {
             // 更新数据表信息
             $kolOauth = new KolOauth();
             $oauthInfo = [
@@ -134,10 +136,10 @@ class DyInterfaces extends Base
                 'oauth_access_token' => $result['data']['access_token'],
                 'oauth_access_token_expires_in' => $result['data']['expires_in'],
                 'oauth_refresh_token' => $result['data']['refresh_token'],
-                'oauth_refresh_token_expires_in' => time()  + 86400 * 30
+                'oauth_refresh_token_expires_in' => time() + 86400 * 30
             ];
             $res = $kolOauth->UpdateData($oauthInfo);
-            if($res['code'] == 1) {
+            if ($res['code'] == 1) {
                 return $res['data'];
             } else {
                 return false;
@@ -160,12 +162,12 @@ class DyInterfaces extends Base
         $url = $this->url . '/oauth/userinfo/';
 
         $params = array(
-            'access_token'  => $access_token,
-            'open_id'       => $openid
+            'access_token' => $access_token,
+            'open_id' => $openid
         );
 
         $result = $this->curl_post($url, $params);
-        if(isset($result['message']) && $result['message'] == 'success') {
+        if (isset($result['message']) && $result['message'] == 'success') {
             return $result['data'];
         } else {
             return false;
@@ -188,15 +190,16 @@ class DyInterfaces extends Base
         $url = $this->url . '/fans/list/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'cursor'		=> 0,
-            'count'		    => 10,
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'cursor' => 0,
+            'count' => 10,
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
-        if($result['data']['error_code'] == 0) {
+        dump($result);
+        die;
+        if ($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -215,12 +218,12 @@ class DyInterfaces extends Base
         $url = $this->url . '/fans/data/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
+            'open_id' => $openId,
+            'access_token' => $accessToken,
         );
 
         $result = $this->curl_get($url, $params);
-        if($result['data']['error_code'] == 0 && $result['data']['fans_data']) {
+        if ($result['data']['error_code'] == 0 && $result['data']['fans_data']) {
             $fansData = $result['data']['fans_data'];
 
             $allFansNum = $fansData['all_fans_num'];
@@ -231,10 +234,10 @@ class DyInterfaces extends Base
             $sexData = $fansData['gender_distributions'];
             $sexInfo = [];
             foreach ($sexData as $value) {
-                if($value['item'] == 2) {
-                    $sexInfo['女'] = round($value['value']/$allFansNum,2);
-                } elseif ($value['item'] == 1){
-                    $sexInfo['男'] = round($value['value']/$allFansNum,2);
+                if ($value['item'] == 2) {
+                    $sexInfo['女'] = round($value['value'] / $allFansNum, 2);
+                } elseif ($value['item'] == 1) {
+                    $sexInfo['男'] = round($value['value'] / $allFansNum, 2);
                 }
             }
             $data['sexInfo'] = $sexInfo;
@@ -244,7 +247,7 @@ class DyInterfaces extends Base
             $ageInfo = [];
             foreach ($ageData as $value) {
                 $key = $value["item"];
-                $ageInfo["'$key'"] = round($value['value']/$allFansNum,2);
+                $ageInfo["'$key'"] = round($value['value'] / $allFansNum, 2);
             }
             $data['ageInfo'] = $ageInfo;
 
@@ -252,7 +255,7 @@ class DyInterfaces extends Base
             $provinceData = $fansData['geographical_distributions'];
             $provinceInfo = [];
             foreach ($provinceData as $value) {
-                $provinceInfo[$value["item"]] = round($value['value']/$allFansNum,2);
+                $provinceInfo[$value["item"]] = round($value['value'] / $allFansNum, 2);
             }
             $data['provinceInfo'] = $provinceInfo;
 
@@ -260,7 +263,7 @@ class DyInterfaces extends Base
             $equipmentData = $fansData['device_distributions'];
             $equipmentInfo = [];
             foreach ($equipmentData as $value) {
-                $equipmentInfo[$value["item"]] = round($value['value']/$allFansNum,2);
+                $equipmentInfo[$value["item"]] = round($value['value'] / $allFansNum, 2);
             }
             $data['equipmentInfo'] = $equipmentInfo;
 
@@ -268,7 +271,7 @@ class DyInterfaces extends Base
             $interestData = $fansData['interest_distributions'];
             $interestInfo = [];
             foreach ($interestData as $value) {
-                $interestInfo[$value["item"]] = round($value['value']/$allFansNum,2);
+                $interestInfo[$value["item"]] = round($value['value'] / $allFansNum, 2);
             }
             $data['interestInfo'] = $interestInfo;
 
@@ -276,8 +279,8 @@ class DyInterfaces extends Base
             $trafficData = $fansData['flow_contributions'];
             $trafficInfo = [];
             foreach ($trafficData as $value) {
-                if($value['all_sum'] != 0) {
-                    $trafficInfo[$value["flow"]] = round($value['fans_sum']/$value['all_sum'],2);
+                if ($value['all_sum'] != 0) {
+                    $trafficInfo[$value["flow"]] = round($value['fans_sum'] / $value['all_sum'], 2);
                 }
             }
             $data['trafficInfo'] = $trafficInfo;
@@ -286,7 +289,7 @@ class DyInterfaces extends Base
             $dateData = $fansData['active_days_distributions'];
             $dateInfo = [];
             foreach ($dateData as $value) {
-                $dateInfo[$value["item"]] = round($value['value']/$allFansNum,2);
+                $dateInfo[$value["item"]] = round($value['value'] / $allFansNum, 2);
             }
             $data['dateInfo'] = $dateInfo;
 
@@ -304,13 +307,13 @@ class DyInterfaces extends Base
 
         // 根据openid获取授权信息
         $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $openId]);
-        if(!$oauthData) {
+        if (!$oauthData) {
             return ['code' => '0', 'msg' => "没有授权信息"];
         }
 
-        if($oauthData['oauth_access_token_expires_in'] < time()) { // 如果access_token过期
+        if ($oauthData['oauth_access_token_expires_in'] < time()) { // 如果access_token过期
             $refreshRes = $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
-            if(!$refreshRes) {
+            if (!$refreshRes) {
                 return ['code' => '0', 'msg' => "调用refresh_token失败"];
             } else {
                 $accessToken = $refreshRes['oauth_access_token'];
@@ -319,26 +322,26 @@ class DyInterfaces extends Base
             $accessToken = $oauthData['oauth_access_token'];
         }
 
-        if(!$accessToken) {
+        if (!$accessToken) {
             return ['code' => '0', 'msg' => "没有获取到access_token"];
         }
 
         $data = $this->fansDataGet($openId, $accessToken);
         $insert = array(
-            'public_type'		=> 'kol',
-            'public_key'		=> $oauthData['oauth_kol'],
-            'public_age'		=> json_encode($data['ageInfo']),
-            'public_sex'		=> json_encode($data['sexInfo']),
-            'public_pro'		=> json_encode($data['provinceInfo']),
-            'public_equipment'	=> json_encode($data['equipmentInfo']),
-            'public_interest'	=> json_encode($data['interestInfo']),
-            'public_traffic'	=> json_encode($data['trafficInfo']),
-            'public_date'	    => json_encode($data['dateInfo'])
+            'public_type' => 'kol',
+            'public_key' => $oauthData['oauth_kol'],
+            'public_age' => json_encode($data['ageInfo']),
+            'public_sex' => json_encode($data['sexInfo']),
+            'public_pro' => json_encode($data['provinceInfo']),
+            'public_equipment' => json_encode($data['equipmentInfo']),
+            'public_interest' => json_encode($data['interestInfo']),
+            'public_traffic' => json_encode($data['trafficInfo']),
+            'public_date' => json_encode($data['dateInfo'])
         );
 
         // 查看是否已有数据
         $fansInfo = $publicOpinionModel->GetOneData(['public_key' => $oauthData['oauth_kol']]);
-        if($fansInfo) {
+        if ($fansInfo) {
             $insert['public_id'] = $fansInfo['public_id'];
             $insert['update_time'] = time();
             $publicOpinionModel->UpdateData($insert);
@@ -367,15 +370,16 @@ class DyInterfaces extends Base
         $url = $this->url . '/following/list/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'cursor'		=> 0,
-            'count'		    => 10,
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'cursor' => 0,
+            'count' => 10,
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
-        if($result['data']['error_code'] == 0) {
+        dump($result);
+        die;
+        if ($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -398,14 +402,14 @@ class DyInterfaces extends Base
         $url = $this->url . '/video/list/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'cursor'		=> 0,
-            'count'		    => 15,
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'cursor' => 0,
+            'count' => 15,
         );
 
         $result = $this->curl_get($url, $params);
-        if($result['data']['error_code'] == 0) {
+        if ($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -426,16 +430,16 @@ class DyInterfaces extends Base
         $url = $this->url . '/video/data/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'body'           => [
-                'itemIds'		=> '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q=='
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'body' => [
+                'itemIds' => '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q=='
             ]
 
         );
 
         $result = $this->curl_post($url, $params);
-        if($result['data']['error_code'] == 0) {
+        if ($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
             return false;
@@ -465,16 +469,17 @@ class DyInterfaces extends Base
         $url = $this->url . '/video/comment/list/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'cursor'		=> 0,
-            'count'		    => 15,
-            'item_id'		=> $itemId
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'cursor' => 0,
+            'count' => 15,
+            'item_id' => $itemId
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
-        if(isset($result['data']['error_code']) == 0) {
+        dump($result);
+        die;
+        if (isset($result['data']['error_code']) == 0) {
             return $result['data'];
         } else {
             return false;
@@ -499,15 +504,15 @@ class DyInterfaces extends Base
         $url = $this->url . '/video/comment/reply/list/';
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'cursor'		=> 0,
-            'count'		    => 15,
-            'commentId'		    => $commentId
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'cursor' => 0,
+            'count' => 15,
+            'commentId' => $commentId
         );
 
         $result = $this->curl_get($url, $params);
-        if(isset($result['data']['error_code']) == 0) {
+        if (isset($result['data']['error_code']) == 0) {
             return $result['data'];
         } else {
             return false;
@@ -526,18 +531,18 @@ class DyInterfaces extends Base
         $url = $this->url . '/hotsearch/sentences/';
 
         $params = array(
-            'access_token' 	=> $data['access_token'],
+            'access_token' => $data['access_token'],
         );
 
         $result = $this->curl_get($url, $params);
-        dump($result);die;
-        if(isset($result['data']['error_code']) == 0) {
+        dump($result);
+        die;
+        if (isset($result['data']['error_code']) == 0) {
             return $result['data'];
         } else {
             return false;
         }
     }
-
 
 
     /**
@@ -553,13 +558,13 @@ class DyInterfaces extends Base
         $url = $this->url . '/oauth/client_token/';
 
         $params = array(
-            'client_key'		=> $this->key,
-            'client_secret' 	=> $this->secret,
-            'grant_type'		=> 'client_credential',
+            'client_key' => $this->key,
+            'client_secret' => $this->secret,
+            'grant_type' => 'client_credential',
         );
 
         $result = $this->curl_post($url, $params);
-        if(isset($result['message']) && $result['message'] == 'success') {
+        if (isset($result['message']) && $result['message'] == 'success') {
             return $result['data'];
         } else {
             return false;
@@ -582,9 +587,9 @@ class DyInterfaces extends Base
         $accessToken = session::get('access_token');
 
         $params = array(
-            'open_id'		=> $openId,
-            'access_token' 	=> $accessToken,
-            'body'		    => [
+            'open_id' => $openId,
+            'access_token' => $accessToken,
+            'body' => [
                 'toUserId' => $toUserId,
                 'messageType' => 'TEXT',
                 'content' => $content,
@@ -593,8 +598,9 @@ class DyInterfaces extends Base
         dump($params);
 
         $result = $this->curl_post($url, $params);
-        dump($result);die;
-        if(isset($result['message']) && $result['message'] == 'success') {
+        dump($result);
+        die;
+        if (isset($result['message']) && $result['message'] == 'success') {
             return $result['data'];
         } else {
             return false;
@@ -602,45 +608,44 @@ class DyInterfaces extends Base
     }
 
 
-
-	//请求方法
-	public function curl_post($url,$data=array())
-	{
+    //请求方法
+    public function curl_post($url, $data = array())
+    {
 //		$data = array_merge(array('client_key'=>$this->key),$data);
 
-		//初始化
-	    $curl = curl_init();
-	    //设置抓取的url
-	    curl_setopt($curl, CURLOPT_URL,$url);
-	    //设置头文件的信息作为数据流输出
-	    curl_setopt($curl, CURLOPT_HEADER, 0);
-	    //设置获取的信息以文件流的形式返回，而不是直接输出。
-	    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-	    //设置post方式提交
-	    curl_setopt($curl, CURLOPT_POST, 1);
-	    //设置post数据
-	    curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        //初始化
+        $curl = curl_init();
+        //设置抓取的url
+        curl_setopt($curl, CURLOPT_URL, $url);
+        //设置头文件的信息作为数据流输出
+        curl_setopt($curl, CURLOPT_HEADER, 0);
+        //设置获取的信息以文件流的形式返回，而不是直接输出。
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        //设置post方式提交
+        curl_setopt($curl, CURLOPT_POST, 1);
+        //设置post数据
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
 
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //不验证证书下同
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         //执行命令
-	    $json = curl_exec($curl);
+        $json = curl_exec($curl);
 
         //关闭URL请求
-	    curl_close($curl);
+        curl_close($curl);
 
-	    $result = json_decode($json,true);
+        $result = json_decode($json, true);
 
-	    return $result;
-	}
+        return $result;
+    }
 
-    public function curl_get($url,$data=array())
+    public function curl_get($url, $data = array())
     {
         //初始化
         $ch = curl_init();
         //设置选项，包括URL
         $query = http_build_query($data);
-        $url = $url.'?'. $query;
+        $url = $url . '?' . $query;
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_HEADER, 0);
@@ -649,7 +654,7 @@ class DyInterfaces extends Base
         //释放curl句柄
         curl_close($ch);
 
-        $result = json_decode($output,true);
+        $result = json_decode($output, true);
 
         return $result;
     }

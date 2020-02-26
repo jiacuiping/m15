@@ -1,4 +1,5 @@
 <?php
+
 namespace app\index\controller;
 
 use app\index\controller\LoginBase;
@@ -11,30 +12,30 @@ use think\Db;
 
 class McnAgent extends LoginBase
 {
-	private $GetData;
-	private $McnAgent;
-	private $kol;
+    private $GetData;
+    private $McnAgent;
+    private $kol;
     private $data;
     private $McnKol;
 
-	public function __construct()
-	{
-		parent::__construct();
+    public function __construct()
+    {
+        parent::__construct();
 
-		$this->kol = new KolModel();
-		$this->McnKol = new McnKolModel();
-		$this->McnAgent = new McnAgentModel();
+        $this->kol = new KolModel();
+        $this->McnKol = new McnKolModel();
+        $this->McnAgent = new McnAgentModel();
 
-		$this->GetData = new GetData;
+        $this->GetData = new GetData;
 
         $this->data = $this->GetData->GetMcnData();
 
-        if($this->data['code'] != 1 && strpos($_SERVER['REQUEST_URI'],'mcn/prompt/msg/') === false)
-            $this->redirect('prompt',['msg'=>$this->data['msg']]);
-	}
+        if ($this->data['code'] != 1 && strpos($_SERVER['REQUEST_URI'], 'mcn/prompt/msg/') === false)
+            $this->redirect('prompt', ['msg' => $this->data['msg']]);
+    }
 
 
-	public function create()
+    public function create()
     {
         return request()->isPost() ? $this->McnAgent->CreateData(input('post.')) : view('mcn_agent/create', [
             'data' => $this->data['data']
@@ -44,7 +45,7 @@ class McnAgent extends LoginBase
     //修改经纪人
     public function update($id = 0)
     {
-        $this->assign('data',$this->McnAgent->GetOneDataById($id));
+        $this->assign('data', $this->McnAgent->GetOneDataById($id));
         return request()->isPost() ? $this->McnAgent->UpdateData(input('post.')) : view();
     }
 
@@ -69,26 +70,26 @@ class McnAgent extends LoginBase
             ->where(['a.kol_mcn' => $mcnInfo['mcn_id']]);
 
         // 判断是否筛选
-        if($searchText) {
-            $kols = $kols->where('a.kol_nickname|a.kol_number', 'like','%' . $searchText . '%');
+        if ($searchText) {
+            $kols = $kols->where('a.kol_nickname|a.kol_number', 'like', '%' . $searchText . '%');
         }
         $kols = $kols->select();
         $kols = array_column($kols, null, 'kol_id');
 
         // 未分组的红人
         $kolIds = $this->McnKol->GetDataList(['mk_mcn' => $mcnInfo['mcn_id'], 'mk_agent' => 0, 'mk_isagree' => 1]);
-        $kolIds = array_column($kolIds, null,'mk_kol');
+        $kolIds = array_column($kolIds, null, 'mk_kol');
 
         $result = array_intersect_key($kols, $kolIds);
 
         // 红人信息
-        $this->assign('kol',$result);
+        $this->assign('kol', $result);
         // mcn个人信息
-        $this->assign('data',$mcnInfo);
+        $this->assign('data', $mcnInfo);
         // 分组信息
-        $this->assign('agentId',$agentId);
+        $this->assign('agentId', $agentId);
         // 筛选信息
-        $this->assign('searchText',$searchText);
+        $this->assign('searchText', $searchText);
 
         return view();
     }
@@ -119,10 +120,10 @@ class McnAgent extends LoginBase
         // 查看关联表 m15_mcn_kol 中是否有该红人的记录
         $relInfo = $this->McnKol->saveData($data);
 
-        if($relInfo['code']) {
-            return ['code'=>1,'msg'=>'添加红人成功'];
+        if ($relInfo['code']) {
+            return ['code' => 1, 'msg' => '添加红人成功'];
         } else {
-            return ['code'=>0,'msg'=>'添加红人失败'];
+            return ['code' => 0, 'msg' => '添加红人失败'];
         }
     }
 
@@ -131,14 +132,14 @@ class McnAgent extends LoginBase
     {
         $where = [];
         $where['agent_mcn'] = $this->data['data']['mcn_id'];
-        if($searchText) {
+        if ($searchText) {
             $where['agent_name'] = ['like', '%' . $searchText . '%'];
         }
         $list = $this->McnAgent->GetDataList($where);
 
-        $this->assign('agent',$list);
-        $this->assign('kol_id',$kol_id);
-        $this->assign('searchText',$searchText);
+        $this->assign('agent', $list);
+        $this->assign('kol_id', $kol_id);
+        $this->assign('searchText', $searchText);
         return view();
     }
 
@@ -146,7 +147,7 @@ class McnAgent extends LoginBase
     //提示页
     public function prompt($msg)
     {
-        $this->assign('msg',$msg);
+        $this->assign('msg', $msg);
         return view();
     }
 }
