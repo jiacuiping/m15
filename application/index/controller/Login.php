@@ -412,6 +412,11 @@ class Login extends Base
         $LoginLog->CreateData($lastLogin);
     }
 
+    /**
+     * 处理用户信息
+     * @param $user
+     * @param int $type
+     */
     public function delUser($user, $type = 2)
     {
 

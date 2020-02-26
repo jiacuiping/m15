@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>新M15</title>
+  <title>{$Think.session.config.website_name}</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -84,8 +84,8 @@
       <!-- 侧边菜单 -->
       <div class="layui-side layui-side-menu">
         <div class="layui-side-scroll" style="background: #fff">
-          <div class="layui-logo" lay-href="/index/workbench/console" style="background-color: #fff!important;color: #000">
-            <span><img src="../layuiadmin/imgs/logo.png" alt="" style="width: 45px;margin-right: 10px;">M15</span>
+          <div class="layui-logo" lay-href="/index/index/workbench" style="background-color: #fff!important;color: #000">
+            <span><img src="/logo.png" alt="" style="width: 45px;margin-right: 10px;">{$Think.session.config.website_name}</span>
           </div>
           {$indexmenu}
         </div>
@@ -109,7 +109,7 @@
         </div>
         <div class="layui-tab" lay-unauto lay-allowClose="true" lay-filter="layadmin-layout-tabs">
           <ul class="layui-tab-title" id="LAY_app_tabsheader">
-            <li lay-id="/index/workbench/console" lay-attr="/index/workbench/console" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
+            <li lay-id="/index/index/workbench" lay-attr="/index/index/workbench" class="layui-this"><i class="layui-icon layui-icon-home"></i></li>
           </ul>
         </div>
       </div>
@@ -117,7 +117,7 @@
       <!-- 主体内容 -->
       <div class="layui-body" id="LAY_app_body">
         <div class="layadmin-tabsbody-item layui-show">
-          <iframe src="/index/workbench/console" frameborder="0" class="layadmin-iframe"></iframe>
+          <iframe src="/index/index/workbench" frameborder="0" class="layadmin-iframe"></iframe>
         </div>
       </div>
       
@@ -138,5 +138,3 @@
   </script>
 </body>
 </html>
-
-
