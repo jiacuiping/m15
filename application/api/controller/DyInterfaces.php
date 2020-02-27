@@ -140,10 +140,10 @@ class DyInterfaces extends Base
             if ($res['code'] == 1) {
                 return $res['data'];
             } else {
-                return false;
+                return ['code' => '0', 'msg' => "refresh_token刷新失败"];
             }
         } else {
-            return false;
+            return ['code' => '0', 'msg' => "refresh_token刷新失败"];
         }
     }
 
@@ -311,8 +311,8 @@ class DyInterfaces extends Base
 
         if ($oauthData['oauth_access_token_expires_in'] < time()) { // 如果access_token过期
             $refreshRes = $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
-            if (!$refreshRes) {
-                return ['code' => '0', 'msg' => "调用refresh_token失败"];
+            if ($refreshRes['code'] == 0) {
+                return ['code' => '0', 'msg' => $refreshRes['msg']];
             } else {
                 $accessToken = $refreshRes['oauth_access_token'];
             }

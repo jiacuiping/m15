@@ -397,9 +397,6 @@ class Mcn extends LoginBase
                 ];
             }
 
-            // 红人同意认领后m15_kol表修改kol_mcn字段
-//            $kolRes = $this->kol->UpdateData(['kol_id' => $kolIds, 'kol_mcn' => $mcnInfo['mcn_id']]);
-
             $result = $this->mcnKol->insertAll($data);
             if ($result) {
                 return ['code' => 1, 'msg' => '发送认领成功'];
@@ -427,6 +424,15 @@ class Mcn extends LoginBase
             return ['code' => 0, 'msg' => '解除认领失败'];
         }
     }
+
+    // 同意认领
+    public function agreeClaim($kolId, $mcnId)
+    {
+
+        // 红人同意认领后m15_kol表修改kol_mcn字段
+      $kolRes = $this->kol->UpdateData(['kol_id' => $kolId, 'kol_mcn' => $mcnId]);
+    }
+
 
     //提示页
     public function prompt($msg)

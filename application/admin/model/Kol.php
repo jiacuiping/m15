@@ -56,9 +56,9 @@ class Kol extends Model
      * 根据条件获取一条数据
      * @param array $param 主键
      **/
-    public function GetOneData($where=array())
+    public function GetOneData($where=array(), $whereOr = [])
     {
-        return $this->where($where)->find();
+        return $this->where($where)->whereOr($whereOr)->find();
     }
 
     /**

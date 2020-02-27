@@ -139,7 +139,10 @@ class Login extends Base
 
 
         // 查看kol用户是否已经存在
-        $kolInfo = $kolModel->GetOneData(['kol_open_id' => $data['open_id']]);
+        $kolWhere = [];
+        $kolWhere['kol_open_id'] = 1;
+        $kolWhereOr['kol_avatar'] = $userDyInfo['avatar'];
+        $kolInfo = $kolModel->GetOneData($kolWhere, $kolWhereOr);
         if ($kolInfo) {
 
             // 存在，更新kol信息
@@ -164,7 +167,6 @@ class Login extends Base
 
                 //账号状态判断
                 if ($userInfo['user_status'] != 1) $this->error('该用户已被停用，请联系客服');
-
 
 //                $this->delKol($kolInfo, 2);
                 $this->delFansData($kolInfo);
