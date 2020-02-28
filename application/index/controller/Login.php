@@ -138,7 +138,7 @@ class Login extends Base
         ];
 
 
-        // 查看kol用户是否已经存在
+        // 查看kol用户是否已经存在 
         $kolWhere = [];
         $kolWhere['kol_open_id'] = 1;
         $kolWhereOr['kol_avatar'] = $userDyInfo['avatar'];

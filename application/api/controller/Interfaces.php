@@ -108,19 +108,19 @@ class Interfaces extends Base
 					'kol_uid'			=> $data['uid'],
 					'kol_number'		=> $data['unique_id'] == '' ? $data['short_id'] : $data['unique_id'],
 					'kol_nickname'		=> $data['nickname'],
-					'kol_avatar'		=> $data['avatar_168x168']['url_list'][0],
+					'kol_avatar'		=> $data['avatar_thumb']['url_list'][0],
 					'kol_qrcode'		=> $data['share_info']['share_qrcode_url']['url_list'][0],
 					'kol_school'		=> isset($data['school_name']) ? $data['school_name'] : '',
 					'kol_sex'			=> $data['gender'],
-					'kol_is_luban'		=> $data['with_luban_entry'] ? 1 : 0,
+					//'kol_is_luban'		=> $data['with_luban_entry'] ? 1 : 0,
 					'kol_is_goods'		=> $data['with_fusion_shop_entry'],
 					'kol_is_star'		=> $data['is_star'] ? 1 : 0,
 					'kol_is_gov'		=> $data['is_gov_media_vip'],
-					'kol_weibo'			=> $data['weibo_url'],
+					//'kol_weibo'			=> $data['weibo_url'],
 					'kol_signature'		=> $data['signature'],
 					'kol_verifyname'	=> $data['enterprise_verify_reason'],
 					'kol_achievement'	=> $data['custom_verify'],
-					'kol_constellation'	=> $data['constellation'],
+					//'kol_constellation'	=> $data['constellation'],
 					'kol_birthdayY'		=> $data['birthday'],
 					'kol_age'			=> date('Y') - $data['birthday'],
 					'kol_countries'		=> $data['country'],
@@ -269,6 +269,14 @@ class Interfaces extends Base
 						),
 					);
 
+		            if(isset($info['simple_promotions'])){
+		                $goods = json_decode($info['simple_promotions'],true);
+		                foreach ($goods as $key => $value) {
+		                    $goodsinfo[] = $value['promotion_id'];
+		                }
+		                $video['video_goods'] = implode(',',$goodsinfo);
+		            }
+
 					$id = $this->CreateData($video,'video');
 					if($id){
 						$statistics = $video['statistics'];
@@ -340,6 +348,14 @@ class Interfaces extends Base
 						),
 					);
 
+		            if(isset($info['simple_promotions'])){
+		                $goods = json_decode($info['simple_promotions'],true);
+		                foreach ($goods as $key => $value) {
+		                    $goodsinfo[] = $value['promotion_id'];
+		                }
+		                $video['video_goods'] = implode(',',$goodsinfo);
+		            }
+
 					$id = $this->CreateData($video,'video');
 
 					if($id){
@@ -369,7 +385,7 @@ class Interfaces extends Base
 	/**
 	 * 获取用户粉丝信息
 	 * @param uid 	false 	int 	用户主键
-	 * @return 话题列表
+	 * @return 获取粉丝数据	暂时停止更新
 	 */
 	public function GetKolFansInfo($uid,$page=0)
 	{
@@ -499,7 +515,6 @@ class Interfaces extends Base
 					'video_cover'		=> $info['video']['origin_cover']['url_list'][0],
 					'video_sharetitle'	=> $info['share_info']['share_title'],
 					'video_url'			=> $info['share_info']['share_url'],
-					'video_goods'		=> $info['status']['with_goods'] ? 1 : 0,
 					'video_duration'	=> $info['duration'],
 					'video_music'		=> $info['music']['mid'],
 					'video_desc'		=> $info['desc'],
@@ -518,6 +533,15 @@ class Interfaces extends Base
 						'vt_time'			=> time(),
 					),
 				);
+
+	            if(isset($info['simple_promotions'])){
+	                $goods = json_decode($info['simple_promotions'],true);
+	                foreach ($goods as $key => $value) {
+	                    $goodsinfo[] = $value['promotion_id'];
+	                }
+	                $video['video_goods'] = implode(',',$goodsinfo);
+	            }
+
 				if($type == 'insert'){
 					$id = $this->CreateData($video,'video');
 					if($id){
@@ -601,7 +625,6 @@ class Interfaces extends Base
 					'video_cover'		=> $info['video']['origin_cover']['url_list'][0],
 					'video_sharetitle'	=> $info['share_info']['share_title'],
 					'video_url'			=> $info['share_info']['share_url'],
-					'video_goods'		=> $info['status']['with_goods'] ? 1 : 0,
 					'video_duration'	=> $info['duration'],
 					'video_music'		=> $info['music']['mid'],
 					'video_desc'		=> $info['desc'],
@@ -623,13 +646,10 @@ class Interfaces extends Base
 				);
 				//判断是否含有商品
 				if(isset($info['simple_promotions'])){
-
 					$goods = json_decode($info['simple_promotions'],true);
-
 					foreach ($goods as $key => $value) {
 						$goodsinfo[] = $value['promotion_id'];
 					}
-
 					$video['video_goods'] = implode(',',$goodsinfo);
 				}
 				//前往添加视频
@@ -675,7 +695,6 @@ class Interfaces extends Base
 				'video_cover'		=> $info['video']['origin_cover']['url_list'][0],
 				'video_sharetitle'	=> $info['share_info']['share_title'],
 				'video_url'			=> $info['share_info']['share_url'],
-				'video_goods'		=> $info['status']['with_goods'] ? 1 : 0,
 				'video_duration'	=> $info['duration'],
 				'video_music'		=> $info['music']['mid'],
 				'video_desc'		=> $info['desc'],
@@ -697,13 +716,10 @@ class Interfaces extends Base
 			);
 
 			if(isset($info['simple_promotions'])){
-
 				$goods = json_decode($info['simple_promotions'],true);
-
 				foreach ($goods as $key => $value) {
 					$goodsinfo[] = $value['promotion_id'];
 				}
-
 				$video['video_goods'] = implode(',',$goodsinfo);
 			}
 
@@ -886,25 +902,20 @@ class Interfaces extends Base
 	public function GetGoods($cid)
 	{
 		$url = $this->url.'douyin/goods';
-
 		$result = $this->curl($url,array('cid'=>$cid));
-
 		if($result['code'] == 1){
-
 			$data = $result['data']['data']['rank_list'];
-
 			foreach ($data as $key => $value) {
-
 				$goods = array(
-					'goods_number'		=> $value['goods']['product_id'],
+					'goods_number'		=> $value['goods']['id'],
 					'gooods_name'		=> $value['goods']['title'],
 					'goods_user'		=> $value['author']['id'],
 					'goods_nickname'	=> $value['author']['name'],
 					'goods_cover'		=> substr($value['author']['avatar'],0,strripos($value['author']['avatar'],'/')).'/'.$value['goods']['cover'],
 					'goods_images'		=> '',
 					'goods_url'			=> $value['goods']['detail_url'],
-					'goods_price'		=> $value['goods']['price'],
-					'goods_mprice'		=> $value['goods']['market_price'],
+					'goods_price'		=> $value['goods']['price']/100,
+					'goods_mprice'		=> $value['goods']['market_price']/100,
 					'goods_cowmmission'	=> $value['goods']['commodity_type'],
 					'goods_type'		=> $cid,
 					'goods_is_recommend'=> $value['is_recommended'],
@@ -923,9 +934,7 @@ class Interfaces extends Base
 						'gt_time'			=> time(),
 					),
 				);
-
 				$id = $this->CreateData($goods,'goods');
-
 				if($id){
 					//添加话题趋势
 					$statistics = $goods['statistics'];
@@ -941,15 +950,9 @@ class Interfaces extends Base
 	public function GetGoodsInfo($gid)
 	{
 		$url = $this->url."douyin/promotion/detail";
-
 		$result = $this->curl($url,array('promotionId'=>$gid));
-
 		if($result['code'] == 1){
-
 			$data = $result['data']['data'][0];
-
-			dump($data);die;
-
 			$goods = array(
 				'goods_number'		=> $data['promotion_id'],
 				'gooods_name'		=> $data['title'],
@@ -958,16 +961,34 @@ class Interfaces extends Base
 				'goods_cover'		=> $data['images'][0]['url_list']['0'],
 				'goods_images'		=> '',
 				'goods_url'			=> $data['detail_url'],
-				'goods_price'		=> $data['price'],
-				'goods_mprice'		=> $data['market_price'],
-				'goods_commission'	=> $data['cos_fee'],
+				'goods_price'		=> $data['price']/100,
+				'goods_mprice'		=> $data['market_price']/100,
+				'goods_commission'	=> $data['cos_fee']/100,
 				'goods_type'		=> 0,
 				'goods_is_recommend'=> 0,
 				'update_time'		=> time(),
+				'statistics'		=> array(
+					'gt_up_or_down'		=> 0,
+					'gt_sales'			=> $data['sales'],
+					'gt_browse'			=> 0,
+					'gt_kol'			=> 0,
+					'gt_video'			=> 0,
+					'gt_index'			=> 0,
+					'gt_batch'			=> date('Y-m-d'),
+					'gt_is_monitoring'	=> 0,
+					'gt_create_time'	=> time(),
+					'gt_time'			=> time(),
+				),
 			);
+			$id = $this->CreateData($goods,'goods');
+			if($id){
+				//添加话题趋势
+				$statistics = $goods['statistics'];
+				$statistics['gt_goods_id'] = $id;
+				$statistics['gt_goods_number'] = $goods['goods_number'];
+				$this->CreateData($statistics,'goodsTrend');
+			}
 		}
-
-		dump($result);die;
 	}
 
 
@@ -1344,12 +1365,12 @@ class Interfaces extends Base
 			//添加商品
 
 			$obj = new Goods;
-			$topic = $obj->GetOneData(array('goods_number'=>$data['goods_number']));
-			if(!$topic){
+			$goods = $obj->GetOneData(array('goods_number'=>$data['goods_number']));
+			if(!$goods){
 				$result = $obj->CreateData($data);
 				return $result['code'] == 1 ? $result['id'] : 0;
 			}else
-				return $topic['goods_id'];
+				return $goods['goods_id'];
 
 		}elseif($type == 'goodsTrend'){
 
@@ -1548,8 +1569,47 @@ class Interfaces extends Base
 	}
 
 
+    //更新商品趋势
+    public function SaveGoodsTrend($gid,$goodsNumber,$isMonitoring=0)
+    {
+        $obj = new GoodsTrend;
+        $Trend = $obj->GetOneData(array('gt_goods_id'=>$gid,'gt_batch'=>date('Y-m-d'),'gt_is_monitoring'=>$isMonitoring));
+        if(!$Trend){
+            $url = $this->url.'douyin/promotion/detail';
+            $result = $this->curl($url,array('promotionId'=>$goodsNumber));
+            if($result['code'] == 1){
+                $Index = new Index;
+                $Video = new Video;
+                $value = $result['data']['data'][0];
+                $statistics     = array(
+                    'gt_goods_id'       => $gid,
+                    'gt_goods_number'   => $goodsNumber,
+                    'gt_up_or_down'     => 0,
+                    'gt_sales'          => $value['sales'],
+                    'gt_browse'         => 0,
+                    'gt_kol'            => 0,
+                    'gt_video'          => $Video->GetCount(array('video_goods'=>$goodsNumber)),
+                    'gt_index'          => 0,
+                    'gt_batch'          => date('Y-m-d'),
+                    'gt_is_monitoring'  => $isMonitoring,
+                    'gt_create_time'    => time(),
+                    'gt_time'           => time(),
+                );
+                $gTrend = $obj->where(array('gt_goods_id'=>$gid,'gt_is_monitoring'=>$isMonitoring))->order('gt_time desc')->find();
+                if($gTrend){
+                    $statistics['gt_inc_sales'] = $statistics['gt_sales'] - $gTrend['gt_sales'];
+                    $statistics['gt_inc_browse'] = $statistics['gt_browse'] - $gTrend['gt_browse'];
+                }else
+                    $statistics['gt_inc_sales'] = $statistics['gt_inc_browse'] = 0;
+                $statistics['gt_index'] = $Index->GoodsValue($statistics);
+                $obj->CreateData($statistics);
+            }
+        }
+    }
+
+
 	//更新红人趋势
-	public function SaveKolTrend($kid,$kolNumber,$isMonitoring=0)
+	public function SaveKolTrend($kid,$kolNumber)
 	{
 		$obj = new KolTrend;
 

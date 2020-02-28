@@ -137,8 +137,7 @@
                                     <select name="platform" class="">
                                         <option value="">请选择平台</option>
                                         {volist name="platformList" id="platform"}
-                                        <option value="{$platform.platform_id}" {if isset($filter.platform) && $filter.platform== $platform.platform_id} selected="" {
-                                        /if}>{$platform.platform_name}</option>
+                                        <option value="{$platform.platform_id}" {if isset($filter.platform) && $filter.platform== $platform.platform_id} selected="" {/if}>{$platform.platform_name}</option>
                                         {/volist}
                                     </select>
                                 </div>
@@ -148,8 +147,7 @@
                                     <select name="group">
                                         <option value="">请选择分组</option>
                                         {volist name="groupList" id="group"}
-                                        <option value="{$group.group_id}" {if isset($filter.group) && $filter.group== $group.group_id} selected="" {
-                                        /if}>{$group.group_name}</option>
+                                        <option value="{$group.group_id}" {if isset($filter.group) && $filter.group== $group.group_id} selected="" {/if}>{$group.group_name}</option>
                                         {/volist}
                                     </select>
                                 </div>
@@ -159,8 +157,7 @@
                                     <select name="agent">
                                         <option value="">请选择经纪人</option>
                                         {volist name="agentList" id="agent"}
-                                        <option value="{$agent.agent_id}" {if isset($filter.agent) && $filter.agent== $agent.agent_id} selected="" {
-                                        /if}>{$agent.agent_name}</option>
+                                        <option value="{$agent.agent_id}" {if isset($filter.agent) && $filter.agent== $agent.agent_id} selected="" {/if}>{$agent.agent_name}</option>
                                         {/volist}
                                     </select>
                                 </div>

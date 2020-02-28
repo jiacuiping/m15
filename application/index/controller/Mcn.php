@@ -354,7 +354,7 @@ class Mcn extends LoginBase
         }
     }
 
-    // 确认认领
+    // 确认发送认领
     public function confirmClaim($kolId, $isall = 0)
     {
         // mcn信息

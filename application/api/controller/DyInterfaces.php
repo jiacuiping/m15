@@ -155,6 +155,7 @@ class DyInterfaces extends Base
      * access_token string
      * open_id
      */
+
     public function getUserInfo($access_token, $openid)
     {
         $url = $this->url . '/oauth/userinfo/';
@@ -171,7 +172,6 @@ class DyInterfaces extends Base
             return false;
         }
     }
-
     /**
      * 粉丝列表
      * /fans/list/
@@ -656,4 +656,5 @@ class DyInterfaces extends Base
 
         return $result;
     }
+
 }
