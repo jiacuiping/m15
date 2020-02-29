@@ -310,7 +310,6 @@ class User extends LoginBase
     }
 
     public function pay(){
-        echo ROOT_PATH;die;
         header("Content-type:text/html;charset=utf-8");
 
         require ROOT_PATH . 'extend' . DS . 'wxpay/WxPay.Api.php'; //引入微信支付
