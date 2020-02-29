@@ -14,3 +14,10 @@ IP：47.98.164.34
 服务器：
 ftp-name:newm15
 密码：3xM5XNQff4ytNKAQ
+
+
+微信商户平台
+操作密码：gaoqichuanmei_1215
+api秘钥：LfNuKo4VMI64iA8MJFrkGXYhfRggXBop
+$mchid = '1516924601';          //微信支付商户号 PartnerID 通过微信支付商户资料审核后邮件发送
+$appid = 'wx75502ffcfac1522e';  //公众号APPID 通过微信支付商户资料审核后邮件发送

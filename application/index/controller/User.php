@@ -137,6 +137,8 @@ class User extends LoginBase
         $userId = session::get('user.user_id');
 
         if($type == 'info') {
+
+
             $this->assign('vips',db('vip_level')->where('level_status',1)->select());
         } elseif ($type == 'invoice'){
 
@@ -299,6 +301,12 @@ class User extends LoginBase
         } else {
             return $res;
         }
+    }
+
+
+    public function zhifu()
+    {
+        return view();
     }
 
 

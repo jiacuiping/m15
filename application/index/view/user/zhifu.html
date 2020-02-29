@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>我的特权</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+    .mtd-shipin-tab-left2 {
+        width: 100%
+    }
+
+    .mtd-shipin-tab-left2 ul li {
+        width: 30%;
+        text-align: center
+    }
+
+    .layui-btn-disabled {
+        background-color: #afbcc5;
+        color: #fff;
+        border: 0;
+    }
+
+    tbody tr td:nth-child(2), thead tr th:nth-child(2) {
+        background-color: #fff3dd !important
+    }
+
+    #gai-huiyuan {
+        width: 800px;
+        margin: 0 auto;
+    }
+
+    .huiyuan-li, .huiyuan-li2 {
+        list-style: none;
+        margin-right: 20px;
+        float: left;
+        cursor: pointer;
+        background: #ffffff;
+        border: 1px solid #eeeeee;
+        border-radius: 4px;
+        width: 198px;
+        position: relative;
+        line-height: 35px;
+        text-align: center;
+        padding: 5px
+    }
+
+    .huiyuan-li2 {
+        line-height: 70px
+    }
+
+    .border {
+        border: 2px solid #00a2ff;
+    }
+
+    .border:after {
+        background: url('../picture/icon_set.png') no-repeat;
+        width: 24px;
+        height: 24px;
+        display: block;
+        content: "";
+        position: absolute;
+        right: -1px;
+        bottom: 0;
+    }
+
+</style>
+<body>
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <!-- 标题 -->
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body layui-shenhuilu clear">
+                    <img src="{$user.user_avatar}" alt="" class="left">
+                    <div class="layui-shenhuilu-r left">
+                        <h4>{$user.user_name}<span class="mianfei-ban">{$user.user_vip.level_name}</span></h4>
+                        <p>关联抖音号：{$user.dyaccount}</p>
+                        <!--              <p>账号类型：{if $user.user_type eq 2} 讲师 {elseif $user.user_type eq 3} 广告商 {elseif $user.user_type eq 4} MCN {else/} 普通用户 {/if}</p>-->
+                        <p>账号类型：{$user.user_type_text}</p>
+                    </div>
+                </div>
+                <div class="layui-card-body">
+                    {if $user.user_mobile eq ''}
+                    <p>绑定手机使用账号登录<span class="mianfei-ban">推荐绑定</span>
+                        <a href="#" style="color: #349adc;margin-left: 20px;">点击绑定</a>
+                    </p>
+                    <p>绑定手机号后可设定登录密码</p>
+                    {/if}
+                </div>
+            </div>
+        </div>
+        <!-- 返回 -->
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <a href="privilege.html">返回</a>
+                </div>
+            </div>
+        </div>
+        <!-- 购买版本 -->
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div id="gai-huiyuan">
+                        <div class="geren-huiyuan">购买版本:
+                            <img src="_STATIC__/index/image/vip2.png" alt="">高级版
+                            <a href="chanpin-taocan3.html" title="">选择其他版本</a>
+                        </div>
+                        <div class="clear geren-goumai">购买时长:
+                            <ul class="huiyuan-ul">
+                                <li class="huiyuan-li">
+                                    <p>
+                                        <span style="font-size: 20px;">12个月</span>
+                                        <button class="layui-btn layui-btn-normal layui-btn-xs">6折</button>
+                                    </p>
+                                    <p style="color: #999;">低至239/月,省1920元</p>
+                                </li>
+                                <li class="huiyuan-li">
+                                    <p>
+                                        <span style="font-size: 20px;">12个月</span>
+                                        <button class="layui-btn layui-btn-normal layui-btn-xs">8折</button>
+                                    </p>
+                                    <p style="color: #999;">低至239/月,省1920元</p>
+                                </li>
+                                <li class="huiyuan-li">
+                                    <p>
+                                        <span style="font-size: 20px;">12个月</span>
+                                    </p>
+                                    <p style="color: #999;">低至239/月</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="clear geren-zhifu">支付方式:
+                            <ul class="huiyuan-ul">
+                                <li class="huiyuan-li2"><img src="__STATIC__/index/image/zhifu1.png"></li>
+                                <li class="huiyuan-li2"><img src="__STATIC__/index/image/zhifu2.png"></li>
+                            </ul>
+                            <span class="right" style="color: #3489db;">企业对公转账如何支付?</span>
+                        </div>
+                        <div>
+                            <p style="margin: 10px 0">应付金额:<span class="geren-span">1919元</span>(原价
+                                <del>2394</del>
+                                元,一次性购买6个月8折，节省480元)
+                            </p>
+                            <p style="margin: 10px 0">有效期至：2019年10月24日</p>
+                            <ul class="geren-ul">
+                                <li>点击"立即付款"表示您已阅读并接受<span>《授权许可协议》</span></li>
+                                <li>在线支付成功后重新登录即可自动生效</li>
+                            </ul>
+                            <button class="layui-btn layui-btn-normal geren-button">立即购买</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.easy-pie-chart.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/echarts.min.js"></script>
+
+<script>
+    //点击切换
+    $(document).ready(function () {
+            $(".huiyuan-li").click(function () {
+                $(".huiyuan-li").removeClass('border')
+                $(this).addClass("border");
+            });
+        }
+    );
+
+    //点击切换
+    $(document).ready(function () {
+            $(".huiyuan-li2").click(function () {
+                $(".huiyuan-li2").removeClass('border')
+                $(this).addClass("border");
+            });
+        }
+    );
+
+
+</script>
+</body>
+</html>

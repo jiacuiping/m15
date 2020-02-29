@@ -2,7 +2,6 @@
 
 use app\admin\model\Imenu;
 
-
     //获取菜单
     function GetMenu()
     {
@@ -42,7 +41,7 @@ use app\admin\model\Imenu;
                 
             }else{
                 $html .= "<li data-name='get' class='layui-nav-item'>".
-                            "<a href='".$value['imenu_url']."' lay-href=' lay-tips='".$value['imenu_name']."' lay-direction='2'>".
+                            "<a lay-href='".$value['imenu_url']."' lay-href=".$value['imenu_name']." lay-direction='2'>".
                             $value['imenu_icon'].
                                 "<cite>".$value['imenu_name']."</cite>".
                             "</a>".
@@ -90,6 +89,20 @@ use app\admin\model\Imenu;
         }
         return $obj;
     }
+
+
+    //生成订单编号
+    //uid  int 用户ID
+    //type int 订单类型（0-开通会员，1-购买积分，2-购买课程）
+    function GetOrderSn($uid,$type=0)
+    {
+      $time = time();
+
+      return 'CZSJ'.$type.substr($time,0,5).str_pad($uid,5,0,STR_PAD_LEFT).substr($time,5,5);
+
+      //return 'CZSJ'.$type.date('ymd').str_pad($uid,5,0,STR_PAD_LEFT).date('is');
+    }
+
 
   //判断设备类型
   function ismobile() {

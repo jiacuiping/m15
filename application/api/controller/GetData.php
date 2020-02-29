@@ -120,6 +120,7 @@ class GetData extends Base
 	{
 		$Kol = new Kol;
 		$Video = new Video;
+		$Goods = new Goods;
 //		$sql = "(select a.* from m15_video_trend as a right join (select vt_video_id, max(vt_time) as maxtime from m15_video_trend where vt_video_id is not null group by vt_video_id) as b on a.vt_video_id=b.vt_video_id and a.vt_time=b.maxtime order by a.vt_video_id asc)";
 		$sql = "(select a.vt_video_id,a.vt_video_number,a.vt_hot,a.vt_like,a.vt_comment from m15_video_trend as a right join (select vt_video_id, max(vt_time) as maxtime from m15_video_trend where vt_video_id is not null group by vt_video_id) as b on a.vt_video_id=b.vt_video_id and a.vt_time=b.maxtime order by a.vt_video_id asc)";
 
@@ -136,6 +137,8 @@ class GetData extends Base
 			$data[$key]['video_kid'] = $Kol->GetField(array('kol_uid'=>$value['video_apiuid']),'kol_id');
 			$data[$key]['vt_comment'] = $this->TreatmentNumber($value['vt_comment']);
 
+			if($value['video_goods'] != 0)
+				$data[$key]['goods'] = $Goods->GetOneData(array('goods_number'=>$value['video_goods']));
 		}
 
 		return $data;
@@ -869,7 +872,7 @@ class GetData extends Base
 		$data = $Public->GetOneData(array('public_key'=>$key,'public_type'=>$type));
 
 		if($data){
-
+			//解析年龄舆情
 			if($data['public_age'] != ''){
 				$age = json_decode($data['public_age'],true);
 				$data['age'] = array(
@@ -877,12 +880,51 @@ class GetData extends Base
 					'val'	=> '['.implode(',',array_values($age)).']',
 				);
 			}
-
+			//解析性别舆情
 			if($data['public_sex'] != ''){
 				$sex = json_decode($data['public_sex'],true);
 				$data['sex'] = array(
 					'key'	=> '['.implode(',',array_keys($sex)).']',
 					'val'	=> '['.implode(',',array_values($sex)).']',
+				);
+			}
+			//解析地区舆情
+			if($data['public_pro'] != ''){
+				$pro = json_decode($data['public_pro'],true);
+				arsort($pro);
+				$data['pro'] = $pro;
+			}
+			//解析设备舆情
+			if($data['public_equipment'] != ''){
+				$equ = json_decode($data['public_equipment'],true);
+				arsort($equ);
+				$data['equ'] = $equ;
+			}
+			//解析兴趣舆情
+			if($data['public_interest'] != ''){
+				$int = json_decode($data['public_interest'],true);
+				arsort($int);
+				$data['int'] = $int;
+			}
+			//解析流量舆情
+			if($data['public_traffic'] != ''){
+				$tra = json_decode($data['public_traffic'],true);
+				$data['tra'] = array(
+					'key'	=> '['.implode(',',array_keys($tra)).']',
+					'val'	=> '['.implode(',',array_values($tra)).']',
+				);
+			}
+			//解析日期舆情
+			if($data['public_date'] != ''){
+				$date = json_decode($data['public_date'],true);
+
+				foreach ($date as $key => $value) {
+					$arr["'".$key."'"] = $value;
+				}
+				
+				$data['date'] = array(
+					'key'	=> '['.implode(',',array_keys($arr)).']',
+					'val'	=> '['.implode(',',array_values($arr)).']',
 				);
 			}
 
