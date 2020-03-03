@@ -11,19 +11,9 @@
     <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
 </head>
 <style>
-    .mtd-shipin-tab-left2 {
-        width: 100%
-    }
-
     .mtd-shipin-tab-left2 ul li {
         width: 30%;
         text-align: center
-    }
-
-    .layui-btn-disabled {
-        background-color: #afbcc5;
-        color: #fff;
-        border: 0;
     }
 
     tbody tr td:nth-child(2), thead tr th:nth-child(2) {
@@ -59,7 +49,7 @@
     }
 
     .border:after {
-        background: url('../picture/icon_set.png') no-repeat;
+        /*background: url('../picture/icon_set.png') no-repeat;*/
         width: 24px;
         height: 24px;
         display: block;
@@ -99,7 +89,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body">
-                    <a href="privilege.html">返回</a>
+                    <a href="{:url('privilege')}">返回</a>
                 </div>
             </div>
         </div>
@@ -109,51 +99,53 @@
                 <div class="layui-card-body">
                     <div id="gai-huiyuan">
                         <div class="geren-huiyuan">购买版本:
-                            <img src="_STATIC__/index/image/vip2.png" alt="">高级版
+                            <img src="__STATIC__/index/image/vip2.png" alt="">高级版
                             <a href="chanpin-taocan3.html" title="">选择其他版本</a>
                         </div>
                         <div class="clear geren-goumai">购买时长:
-                            <ul class="huiyuan-ul">
-                                <li class="huiyuan-li">
+                            <ul class="huiyuan-ul month-list">
+                                {volist name="lists" id="list"}
+                                <li class="huiyuan-li" duration-id="{$list.duration_id}">
+                                    <input type="hidden" class="payMoney_{$list.duration_id}" value="{$list.payMoney}">
+                                    <input type="hidden" class="sumMoney_{$list.duration_id}" value="{$list.sumMoney}">
+                                    <input type="hidden" class="saveMoney_{$list.duration_id}" value="{$list.saveMoney}">
+                                    <input type="hidden" class="expiryDate_{$list.duration_id}" value="{$list.expiryDate}">
+                                    <input type="hidden" class="desc_{$list.duration_id}" value="{$list.duration_offerdesc}">
                                     <p>
-                                        <span style="font-size: 20px;">12个月</span>
-                                        <button class="layui-btn layui-btn-normal layui-btn-xs">6折</button>
+                                        <span style="font-size: 20px;">{$list.duration_number}个{$list.duration_unit}</span>
+                                        {if $list.duration_discount neq 1}
+                                        <button class="layui-btn layui-btn-normal layui-btn-xs">{$list.duration_discount * 10}折</button>
+                                        {/if}
                                     </p>
-                                    <p style="color: #999;">低至239/月,省1920元</p>
+                                    {if $list.duration_discount eq 1}
+                                    <p style="color: #999;">低至{$list.monthMoney}/月</p>
+                                    {else}
+                                    <p style="color: #999;">低至{$list.monthMoney}/月，省{$list.saveMoney}元</p>
+                                    {/if}
+
                                 </li>
-                                <li class="huiyuan-li">
-                                    <p>
-                                        <span style="font-size: 20px;">12个月</span>
-                                        <button class="layui-btn layui-btn-normal layui-btn-xs">8折</button>
-                                    </p>
-                                    <p style="color: #999;">低至239/月,省1920元</p>
-                                </li>
-                                <li class="huiyuan-li">
-                                    <p>
-                                        <span style="font-size: 20px;">12个月</span>
-                                    </p>
-                                    <p style="color: #999;">低至239/月</p>
-                                </li>
+                                {/volist}
                             </ul>
                         </div>
                         <div class="clear geren-zhifu">支付方式:
-                            <ul class="huiyuan-ul">
-                                <li class="huiyuan-li2"><img src="__STATIC__/index/image/zhifu1.png"></li>
-                                <li class="huiyuan-li2"><img src="__STATIC__/index/image/zhifu2.png"></li>
+                            <ul class="huiyuan-ul pay-list">
+                                <li class="huiyuan-li2" pay-type="1"><img src="__STATIC__/index/image/zhifu1.png"></li>
+                                <li class="huiyuan-li2" pay-type="2"><img src="__STATIC__/index/image/zhifu2.png"></li>
                             </ul>
                             <span class="right" style="color: #3489db;">企业对公转账如何支付?</span>
                         </div>
                         <div>
-                            <p style="margin: 10px 0">应付金额:<span class="geren-span">1919元</span>(原价
-                                <del>2394</del>
-                                元,一次性购买6个月8折，节省480元)
+                            <p style="margin: 10px 0">应付金额:
+                                <span class="geren-span"><span class="payMoney"></span>元</span>
+
+                                <span class="payDesc"></span>
                             </p>
-                            <p style="margin: 10px 0">有效期至：2019年10月24日</p>
+                            <p style="margin: 10px 0">有效期至：<span class="expiryDate"></span></p>
                             <ul class="geren-ul">
                                 <li>点击"立即付款"表示您已阅读并接受<span>《授权许可协议》</span></li>
                                 <li>在线支付成功后重新登录即可自动生效</li>
                             </ul>
-                            <button class="layui-btn layui-btn-normal geren-button">立即购买</button>
+                            <button class="layui-btn layui-btn-normal geren-button buyNow">立即购买</button>
                         </div>
                     </div>
                 </div>
@@ -168,24 +160,91 @@
 <script src="__STATIC__/index/layuiadmin/style/js/echarts.min.js"></script>
 
 <script>
-    //点击切换
-    $(document).ready(function () {
-            $(".huiyuan-li").click(function () {
-                $(".huiyuan-li").removeClass('border')
-                $(this).addClass("border");
-            });
-        }
-    );
 
-    //点击切换
-    $(document).ready(function () {
-            $(".huiyuan-li2").click(function () {
-                $(".huiyuan-li2").removeClass('border')
-                $(this).addClass("border");
-            });
-        }
-    );
+    layui.config({
+        base: '__STATIC__/index/layuiadmin/' //静态资源所在路径
+    }).extend({
+        index: '/lib/index' //主入口模块
+    }).use(['index', 'form', 'layer', 'upload', 'table'], function () {
+        var layer = layui.layer
+            , form = layui.form
+            , $ = layui.$
+            , upload = layui.upload;
 
+        // 默认选择
+        $(".month-list").children().eq(0).addClass("border");
+        $(".pay-list").children().eq(0).addClass("border");
+
+        setData();
+
+
+        //点击切换
+        $(document).ready(function () {
+                $(".huiyuan-li").click(function () {
+                    $(".huiyuan-li").removeClass('border')
+                    $(this).addClass("border");
+
+                    setData();
+                });
+            }
+        );
+
+        //点击切换
+        $(document).ready(function () {
+                $(".huiyuan-li2").click(function () {
+                    $(".huiyuan-li2").removeClass('border')
+                    $(this).addClass("border");
+                });
+            }
+        );
+
+        function setData() {
+            var durationId = $(".month-list .border").attr("duration-id");
+
+            var payMoney = $(".month-list .border .payMoney_" + durationId).val();
+            var sumMoney = $(".month-list .border .sumMoney_" + durationId).val();
+            var saveMoney = $(".month-list .border .saveMoney_" + durationId).val();
+            var expiryDate = $(".month-list .border .expiryDate_" + durationId).val();
+            var desc = $(".month-list .border .desc_" + durationId).val();
+
+            var payDesc = "";
+            if(saveMoney != 0) {
+                payDesc = "(原价<del class='sumMoney'>" + sumMoney + "</del>";
+                payDesc += "元，" + desc + "，节省" + saveMoney + "元)";
+            }
+
+            $(".payMoney").html(payMoney);
+            $(".sumMoney").html(sumMoney);
+            $(".saveMoney").html(saveMoney);
+            $(".expiryDate").html(expiryDate);
+            $(".payDesc").html(payDesc);
+        }
+
+        // 立即购买
+        $(".buyNow").click(function () {
+            var durationId = $(".month-list .border").attr("duration-id");
+            var payMoney = $(".payMoney").text();
+            var payType = $(".pay-list .border").attr('pay-type');
+
+            // 支付宝支付
+            if(payType == 1) {
+
+            } else { // 微信
+                var url = "{:url('Order/payNow','',false)}/payMoney/" + payMoney + "/durationId/" + durationId;
+                // var url = "{:(url'Order/payNow','',false)}/payMoney/" + payMoney + "/durationId/" + durationId;
+            }
+
+            layer.open({
+                type: 2
+                , title: '支付'
+                , content: url
+                , shadeClose: true
+                , area: ['30%', '50%']
+                , maxmin: true
+            });
+        });
+
+    });
 
 </script>
 </body>

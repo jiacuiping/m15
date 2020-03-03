@@ -7,6 +7,9 @@ use app\admin\model\Invoice;
 use app\admin\model\Order;
 use app\admin\model\Package;
 use app\admin\model\UserType;
+use app\admin\model\VipDuration;
+use app\admin\model\VipLevel;
+use app\api\controller\WechatPay;
 use app\index\controller\LoginBase;
 use think\Session;
 
@@ -133,11 +136,11 @@ class User extends LoginBase
      */
     public function privilege($type='info')
     {
+
         $orderModel = new Order();
         $userId = session::get('user.user_id');
 
         if($type == 'info') {
-
 
             $this->assign('vips',db('vip_level')->where('level_status',1)->select());
         } elseif ($type == 'invoice'){
@@ -303,43 +306,40 @@ class User extends LoginBase
         }
     }
 
-
-    public function zhifu()
+    // 支付页面
+    public function zhifu($level)
     {
-        return view();
-    }
+        $durationModel = new VipDuration();
+        $levelModel =  new VipLevel();
 
-    public function pay(){
-        header("Content-type:text/html;charset=utf-8");
+        $lists = $durationModel->GetDataList(['duration_level' => $level, 'duration_status' => 1]);
+        $levelMoney = $levelModel->GetField(['level_id' => $level], 'level_monthlyfee');
 
-        require ROOT_PATH . 'extend' . DS . 'wxpay/WxPay.Api.php'; //引入微信支付
-        $input = new \WxPayUnifiedOrder();//统一下单
-        $config = new \WxPayConfig();//配置参数
+        // 查看用户是否开通过
 
-        //$paymoney = input('post.paymoney'); //支付金额
-        $paymoney = 1; //测试写死
-        $out_trade_no = 'WXPAY'.date("YmdHis"); //商户订单号(自定义)
-        $goods_name = '扫码支付'.$paymoney.'元'; //商品名称(自定义)
-        $input->SetBody($goods_name);
-        $input->SetAttach($goods_name);
-        $input->SetOut_trade_no($out_trade_no);
-        $input->SetTotal_fee($paymoney*100);//金额乘以100
-        $input->SetTime_start(date("YmdHis"));
-        $input->SetTime_expire(date("YmdHis", time() + 600));
-        $input->SetGoods_tag("test");
-        $input->SetNotify_url("http://www.xxx.com/wxpaynotify"); //回调地址
-        $input->SetTrade_type("NATIVE");
-        $input->SetProduct_id("123456789");//商品id
-        $result = \WxPayApi::unifiedOrder($config, $input);
+        foreach ($lists as $key => $value) {
+            // 原价（总）
+            $_sumMoney = $value['duration_number'] * $levelMoney;
+            $lists[$key]['sumMoney'] = $_sumMoney;
 
-        if($result['result_code']=='SUCCESS' && $result['return_code']=='SUCCESS') {
-            $url = $result["code_url"];
-            $this->assign('url',$url);
-        }else{
-            $this->error('参数错误');
+            // 现价（总）
+            $_payMoney = intval($value['duration_number'] * $levelMoney * $value['duration_discount']);
+            $lists[$key]['payMoney'] = $_payMoney;
+
+            // 现价（月）
+            $lists[$key]['monthMoney'] = intval($_payMoney / $value['duration_number']);
+
+            // 节省
+            $lists[$key]['saveMoney'] = $_sumMoney - $_payMoney;
+
+            // 有效期
+            $lists[$key]['expiryDate'] = date('Y年m月d日', strtotime("+{$value['duration_number']} month"));
         }
+
+        $this->assign('lists', $lists);
         return view();
     }
+
 
 
 

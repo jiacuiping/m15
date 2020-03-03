@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/admin.css" media="all">
+    <link rel="stylesheet" href="__STATIC__/index/layuiadmin/style/style.css" media="all">
+</head>
+<style>
+
+    .mtd-shipin-tab-left2 ul li {
+        width: 45%;
+        text-align: center
+    }
+
+    .layui-upload-list img {
+        width: 150px;
+        height: 100px;
+        border: none;
+    }
+
+    h3 {
+        color: #0C0C0C
+    }
+</style>
+<body>
+
+<div class="layui-fluid">
+    <!-- 支付二维码 -->
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <input type="hidden" id="code" value="{$data.code}">
+            <input type="hidden" id="orderSn" value="{$orderSn}">
+            {if $data.code eq 1}
+            <div class="layui-card-body">
+                <div class="content" style="border:1px solid #ccc;width: 170px;height: 160px; margin: 0 auto;padding: 10px;">
+                    <input type="hidden" id="url" value="{$data.url}">
+                    <div id="qrcode" style="width: 150px;height: 150px;margin: 0 auto;"></div>
+                </div>
+
+                <p style="text-align: center">使用微信扫一扫付款</p>
+            </div>
+            {else}
+            <div class="layui-card-body">
+                <div class="content" style="text-align: center;">
+                    <p>{$data.msg}</p>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+
+<script src="__STATIC__/index/layuiadmin/layui/layui.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/jquery.min.js"></script>
+<script src="__STATIC__/index/layuiadmin/style/js/qrcode.min.js"></script>
+
+<script>
+
+    $(function () {
+        layui.config({
+            base: '__STATIC__/index/layuiadmin/' //静态资源所在路径
+        }).extend({
+            index: '/lib/index' //主入口模块
+        }).use(['index', 'form', 'layer', 'upload'], function () {
+            var layer = layui.layer;
+        });
+
+        var code = $("#code").val();
+        if(code == 1) {
+            // 微信支付二维码
+            var url = $("#url").val();
+            var qrcode = new QRCode(document.getElementById("qrcode"), {    // 显示二维码的元素或该元素的 ID
+                text: url,   // 内容可以是文字，链接，邮箱
+                width: 150,          //设置宽度
+                height: 150,        // 设置高度
+                colorDark: "#000000",        // 设置前景色
+                colorLight: "#ffffff",        // 设置背景色
+                correctLevel: QRCode.CorrectLevel.L       // 设置容错级别，上面有介绍
+            });
+        }
+
+        $(function(){
+            setInterval(function(){check()}, 3000);  //3秒查询一次支付是否成功
+        });
+        function check(){
+            var url = "{:url('Order/queryWxOrder','',false)}";
+            var orderSn = $("#orderSn").val();
+            var param = {'orderSn':orderSn};
+            $.post(url, param, function(data){
+                if(data['code'] == 0){
+                    // alert(JSON.stringify(data));
+                    layer.msg("订单支付成功,即将跳转...");
+                    setTimeout(function(){window.parent.location.href = "{:url('Order/paySuccess','',false)}/orderSn/" + orderSn;},2000);
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

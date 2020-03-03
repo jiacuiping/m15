@@ -126,10 +126,11 @@
                             <thead>
                             <tr>
                                 <th>特权对比</th>
-                                <th>免费版</th>
                                 {volist name="vips" id="vipitem"}
-                                <th><p>{$vipitem.level_name}</p>
-                                    <p>￥{$vipitem.level_monthlyfee}元/月</p></th>
+                                <th>
+                                    <p>{$vipitem.level_name}</p>
+                                    <p>￥{$vipitem.level_monthlyfee}元/月</p>
+                                </th>
                                 {/volist}
                             </tr>
                             </thead>
@@ -137,15 +138,15 @@
                             <tr>
                                 <td>加入条件</td>
                                 <td>注册即可</td>
-                                <td><a href="zhifu.html">
-                                    <button class="layui-btn layui-btn-sm layui-btn-normal">立即升级</button></td>
-                                </a>
-                                <td><a href="zhifu.html">
-                                    <button class="layui-btn layui-btn-sm layui-btn-normal">立即升级</button></td>
-                                </a>
-                                <td><a href="zhifu.html">
-                                    <button class="layui-btn layui-btn-sm layui-btn-normal">立即升级</button></td>
-                                </a>
+                                {volist name="vips" id="vipitem"}
+                                {if $vipitem.level_id neq 1}
+                                <td>
+                                    <a href="{:url('User/zhifu','',false)}/level/{$vipitem.level_id}">
+                                        <button class="layui-btn layui-btn-sm layui-btn-normal">立即升级</button>
+                                    </a>
+                                </td>
+                                {/if}
+                                {/volist}
                             </tr>
                             <tr>
                                 <td>全站视频课程</td>
