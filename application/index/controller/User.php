@@ -1,15 +1,12 @@
 <?php
 namespace app\index\controller;
 
-use app\admin\controller\Upload;
 use app\admin\model\Certification;
 use app\admin\model\Invoice;
-use app\admin\model\Order;
 use app\admin\model\Package;
 use app\admin\model\UserType;
 use app\admin\model\VipDuration;
 use app\admin\model\VipLevel;
-use app\api\controller\WechatPay;
 use app\index\controller\LoginBase;
 use think\Session;
 
@@ -18,6 +15,7 @@ use app\admin\model\LoginLog;
 use app\admin\model\UserAccount;
 use app\admin\model\UserAddress;
 use app\admin\model\User as UserModel;
+use app\admin\model\Order;
 
 class User extends LoginBase
 {
@@ -313,9 +311,8 @@ class User extends LoginBase
         $levelModel =  new VipLevel();
 
         $lists = $durationModel->GetDataList(['duration_level' => $level, 'duration_status' => 1]);
-        $levelMoney = $levelModel->GetField(['level_id' => $level], 'level_monthlyfee');
-
-        // 查看用户是否开通过
+        $levelInfo = $levelModel->GetOneData(['level_id' => $level]);
+        $levelMoney = $levelInfo['level_monthlyfee'];
 
         foreach ($lists as $key => $value) {
             // 原价（总）
@@ -337,10 +334,9 @@ class User extends LoginBase
         }
 
         $this->assign('lists', $lists);
+        $this->assign('levelInfo', $levelInfo);
         return view();
     }
-
-
 
 
     //获取下级城市列表

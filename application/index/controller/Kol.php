@@ -10,6 +10,7 @@ use app\api\controller\Interfaces;
 use app\admin\model\Mcn;
 use app\admin\model\McnKol;
 use app\admin\model\Package;
+use app\admin\model\Contrast;
 use app\admin\model\UserAccount;
 
 class Kol extends LoginBase
@@ -256,70 +257,40 @@ class Kol extends LoginBase
         return $result ? array('code'=>1,'msg'=>'收录成功') : array('code'=>0,'msg'=>'收录失败');
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //红人对比搜索页
     public function contrast($type='search')
     {
+        $keyword = '';
+        $kols = array();
+        $Kol = new KolModel;
         if(request()->isPost()){
-
-            $Kol = new KolModel;
-
-            $kols = $Kol->GetDataList(array('kol_number|kol_nickname'=>array('like',"%" . input('post.keyword') . "%")));
-
+            $keyword = input('post.keyword');
+            $kols = $Kol->GetDataList(array('kol_number|kol_nickname'=>array('like',"%" . $keyword . "%")));
             $type = 'contrast';
-            $this->assign('kols',$kols);
         }
 
+        if($type == 'history'){
+            $Contrast = new Contrast;
+            $history = $Contrast->GetDataList(array('contrast_user'=>session::get('user.user_id')));
+            foreach ($history as $key => $value) {
+                $history[$key]['avatars'] = $Kol->GetColumn(array('kol_id'=>array('in',$value['contrast_kols'])),'kol_avatar');
+            }
+            $this->assign('history',$history);
+        }
+
+        $this->assign('kols',$kols);
         $this->assign('type',$type);
+        $this->assign('keyword',$keyword);
         return view();
     }
 
     //红人对比
     public function contrastresult()
     {
-        $keyword = input('post.keyword');
-
-        $Kol = New KolModel;
-
-        $result = $Kol->where('kol_nickname|kol_number','like',"%".$keyword."%")->select();
-
-        $this->assign('result',$result);
+        $Kol = new KolModel;
+        $ids = input('param.')['ids'];
+        $kols = $this->GetData->GetKolList(array('kol_id'=>array('in',$ids)));
+        $this->assign('kols',$kols);
         return view();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

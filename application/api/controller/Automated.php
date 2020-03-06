@@ -4,12 +4,13 @@ namespace app\api\controller;
 use app\api\controller\Base;
 use app\api\controller\RemoveData;
 use app\api\controller\Interfaces;
+use app\api\controller\DyInterfaces;
 
 //models
 use app\admin\model\Kol;
 use app\admin\model\Video;
 use app\admin\model\Music;
-use app\admin\model\VideoTrend;
+use app\admin\model\UserPublicopinionTime;
 
 //自动执行
 
@@ -19,11 +20,8 @@ class Automated extends Base
 	public function __construct()
 	{
 		parent::__construct();
-
-		// $this->ProcessingVideo();
-		// $this->ProcessingKol();
-		// $this->GetHotVideo();
 	}
+
 
 	//处理90天视频
 	public function ProcessingVideo()
@@ -49,6 +47,7 @@ class Automated extends Base
 		}
 	}
 
+
 	//更新红人趋势
 	public function ProcessingKol()
 	{
@@ -66,11 +65,14 @@ class Automated extends Base
 		}
 	}
 
+
 	//更新音乐趋势
 	public function ProcessingMusic()
 	{
 		$Music = new Music;
 		$Interfaces = new Interfaces;
+
+		$page = date('H');
 
 		$number = ceil($Music->count()/24);
 
@@ -82,37 +84,51 @@ class Automated extends Base
 	}
 
 
-	//生成KOL舆情信息
-	public function GetKolPublicInfo()
+	//更新商品趋势
+	public function ProcessingGoods()
 	{
-        $data = db('kol')
-            -> alias('k')
-            -> field('k.*,p.public_id')
-            -> join('publicopinion p','k.kol_uid = p.public_key','left')
-            -> select();
+		$Goods = new Goods;
+		$Interfaces = new Interfaces;
 
-         $obj = new Interfaces;
+		$page = date('H');
 
-        foreach ($data as $key => $value) {
-            if($value['public_id'] == null){
-                $obj->GetKolFansInfo($value['kol_uid']);
-            }
-        }
+		$number = ceil($Goods->count()/24);
+
+		$GoodsData = $Goods->field('goods_id,goods_number')->page($page,$number)->select();
+
+		foreach ($GoodsData as $key => $value) {
+			$Interfaces->SaveGoodsTrend($value['goods_id'],$value['goods_number']);
+		}
 	}
 
 
-	// //获取最热视频
-	// public function GetHotVideo()
-	// {
-	// 	$Interfaces = new Interfaces;
-	// 	$Interfaces->GetHotVideo('insert');
-	// }
+	//获取KOL舆情信息
+	public function GetKolPublicInfo()
+	{
+		$DyInterfaces = new DyInterfaces;
 
-	// //获取热门音乐
-	// public function GetHotMusic()
-	// {
-	// 	$Interfaces = new Interfaces;
-	// 	$Interfaces->GetHotMusic('insert');
-	// }
-		// }
+		$UserPublicopinionTime = new UserPublicopinionTime;
+
+		$data = $UserPublicopinionTime->GetDataList(array('time_status'=>0,'refresh_time'=>array('LT',time())));
+
+		foreach ($data as $key => $value) {
+			
+			$result = $DyInterfaces->saveFansData($value['time_open_id']);
+
+			if($result['code'] == 1){
+				//如果执行成功，则续查
+				$Time = array(
+					'time_kol'		=> $value['time_kol'],
+					'time_open_id'	=> $value['time_open_id'],
+					'refresh_time'	=> GetTimestamp(7),
+					'create_time'	=> time(),
+					'time_status'	=> 0,
+				);
+
+				$UserPublicopinionTime->insert($Time);
+			}
+			//执行完毕，修改状态
+			$UserPublicopinionTime->UpdateData(['time_id'=>$value['time_id'],'time_status'=>1]);
+		}
+	}
 }

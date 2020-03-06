@@ -47,47 +47,6 @@ class WechatPay extends Controller
         }
     }
 
-    public function wxpayNotify() {
-        // 获取微信回调的数据
-        $notifiedData = file_get_contents('php://input');
-
-        //XML格式转换
-        $xmlObj = simplexml_load_string($notifiedData, 'SimpleXMLElement', LIBXML_NOCDATA);
-        $xmlObj = json_decode(json_encode($xmlObj), true);
-
-        //支付成功
-        if ($xmlObj['return_code'] == "SUCCESS" && $xmlObj['result_code'] == "SUCCESS") {
-            foreach ($xmlObj as $k => $v) {
-                if ($k == 'sign') {
-                    $xmlSign = $xmlObj[$k];
-                    unset($xmlObj[$k]);
-                };
-            }
-            $sign = $this->WxSign($xmlObj);
-            if ($sign === $xmlSign) {
-                $trade_no = $xmlObj['out_trade_no']; //商户自定义订单号
-                $transaction_id = $xmlObj['transaction_id']; //微信交易单号
-
-                //省略订单处理逻辑...
-
-            }
-
-        }
-    }
-
-    //微信签名算法
-    private function WxSign($param)
-    {
-        $signkey = 'xxx';//秘钥
-        $sign = '';
-        foreach ($param as $key => $val) {
-            $sign .= $key . '=' . $val . '&';
-        }
-        $sign .= 'key=' . $signkey;
-        $sign = strtoupper(MD5($sign));
-        return $sign;
-    }
-
 
     // 查询订单
     public function orderquery($outTradeNo)

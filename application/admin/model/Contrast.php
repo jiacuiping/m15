@@ -3,24 +3,26 @@ namespace app\admin\model;
 use think\Model;
 use think\Validate;
 /*
- * 模版 表数据模型
+ * 对比 表数据模型
  **/
-class UserVip extends Model
+class Contrast extends Model
 {
     //声明主键
-    protected $pk = 'vip_id';
+    protected $pk = 'contrast_id';
     //自动写入时间戳
     protected $autoWriteTimestamp = true;
     //声明添加时间字段
-    protected $createTime = 'vip_time';
+    protected $createTime = 'contrast_time';
     //声明修改时间字段
-    //protected $updateTime = 'frame_time';
-    //关闭自动写入
     protected $updateTime = false;
+    //关闭自动写入
+    //protected $updateTime = false;
     //声明表名
-    protected $table = 'm15_user_vip';
+    //protected $table = 'rotate';
+    //声明只读字段 该字段写入后不可被修改
+    //protected $readonly = ['name','email'];
     protected $rule = [
-        'vip_user|关联用户'        => 'require|number'
+        'contrast_user|关联用户'       => 'require',
     ];
 
     /**
@@ -29,13 +31,13 @@ class UserVip extends Model
      * @param int   $page    第几页
      * @param int   $limit   每页的条数
      **/
-    public function GetListByPage($where=array(), $page=1, $limit=10, $order="vip_id desc")
+    public function GetListByPage($where=array(), $page=1, $limit=10, $order="contrast_id desc")
     {   
         return $this->where($where)->page($page,$limit)->order($order)->select();
     }
 
     //获取数据列表，不分页
-    public function GetDataList($where=array(), $order="vip_id desc")
+    public function GetDataList($where=array(), $order="contrast_id desc")
     {
         return $this->where($where)->order($order)->select();
     }
@@ -150,37 +152,5 @@ class UserVip extends Model
     public function DeleteData($id)
     {
         return $this->where($this->pk,$id)->delete() ? array('code'=>1,'msg'=>'删除成功') : array('code'=>0,'msg'=>'删除失败');
-    }
-
-    // 查询用户会员信息
-    public function getUserVip($userId)
-    {
-        $userVipModel = new UserVip();
-
-        $vipLevel = [
-            '2' => 'vip_one_info',
-            '3' => 'vip_two_info',
-            '4' => 'vip_three_info',
-            'vip_one_info' => '2',
-            'vip_two_info' => '3',
-            'vip_three_info' => '4',
-        ];
-
-        $userInfo = $userVipModel->GetOneData(['vip_user' => $userId]);
-        $vip = [];
-        // 查看用户在当前时间是否是会员
-        $vipInfo['vip_one_info'] = empty($userInfo['vip_one_info']) ? [] : json_decode($userInfo['vip_one_info'], true);
-        $vipInfo['vip_two_info'] = empty($userInfo['vip_two_info']) ? [] : json_decode($userInfo['vip_one_info'], true);
-        $vipInfo['vip_three_info'] = empty($userInfo['vip_three_info']) ? [] : json_decode($userInfo['vip_one_info'], true);
-
-        $vipLevelModel = new VipLevel();
-        foreach ($vipInfo as $key => $value) {
-            if($value && (time() > $value['vip_start']) && (time() < $value['vip_expire'])) {
-                $vip = $vipLevelModel->GetOneData(['level_id' => $vipLevel[$key]]);
-                break;
-            }
-        }
-
-        return $vip;
     }
 }

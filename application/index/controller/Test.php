@@ -14,8 +14,10 @@ use app\admin\model\Topic;
 use app\admin\model\KolTrend;
 use app\admin\model\VideoTrend;
 use app\admin\model\MusicTrend;
+use app\admin\model\GoodsTrend;
 use app\admin\model\TopicTrend;
 use app\admin\model\VideoComment;
+use app\admin\model\UserPublicopinionTime;
 
 
 //commons
@@ -24,9 +26,10 @@ use app\api\controller\GetData;
 use app\api\controller\Automated;
 use app\api\controller\Interfaces;
 use app\api\controller\RemoveData;
+use app\api\controller\TbInterfaces;
 
 
-class Test extends LoginBase
+class Test extends Base
 {
 	private $GetData;
     private $key = '08F0EDE0D84F0683E4E1E5ECB1F0EAE8';
@@ -40,12 +43,210 @@ class Test extends LoginBase
 
     //测试方法
     public function test()
-    {
-        $this->SaveKolTrend(107,76579979873,1);
-        $this->SaveKolTrend(108,1525748808822476,1);
+    {   
+        
+        $TbInterfaces = new TbInterfaces;
+
+        $result = $TbInterfaces->HighCommission(43249505908);
+
+        dump($result);
+
         die;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //更新商品趋势
+    public function SaveGoodsTrend($gid,$goodsNumber,$isMonitoring=0)
+    {
+        $obj = new GoodsTrend;
+        $Trend = $obj->GetOneData(array('gt_goods_id'=>$gid,'gt_batch'=>date('Y-m-d'),'gt_is_monitoring'=>$isMonitoring));
+        if(!$Trend){
+            $url = $this->url.'douyin/promotion/detail';
+            $result = $this->curl($url,array('promotionId'=>$goodsNumber));
+            if($result['code'] == 1){
+                $Index = new Index;
+                $Video = new Video;
+                $value = $result['data']['data'][0];
+                $statistics     = array(
+                    'gt_goods_id'       => $gid,
+                    'gt_goods_number'   => $goodsNumber,
+                    'gt_up_or_down'     => 0,
+                    'gt_sales'          => $value['sales'],
+                    'gt_browse'         => 0,
+                    'gt_kol'            => 0,
+                    'gt_video'          => $Video->GetCount(array('video_goods'=>$goodsNumber)),
+                    'gt_index'          => 0,
+                    'gt_batch'          => date('Y-m-d'),
+                    'gt_is_monitoring'  => $isMonitoring,
+                    'gt_create_time'    => time(),
+                    'gt_time'           => time(),
+                );
+                $gTrend = $obj->where(array('gt_goods_id'=>$gid,'gt_is_monitoring'=>$isMonitoring))->order('gt_time desc')->find();
+                if($gTrend){
+                    $statistics['gt_inc_sales'] = $statistics['gt_sales'] - $gTrend['gt_sales'];
+                    $statistics['gt_inc_browse'] = $statistics['gt_browse'] - $gTrend['gt_browse'];
+                }else
+                    $statistics['gt_inc_sales'] = $statistics['gt_inc_browse'] = 0;
+                $statistics['gt_index'] = $Index->GoodsValue($statistics);
+                $obj->CreateData($statistics);
+            }
+        }
+    }
+
+
+    //获取抖音商品详情
+    public function GetGoodsInfo($gid)
+    {
+        $url = $this->url."douyin/promotion/detail";
+        $result = $this->curl($url,array('promotionId'=>$gid));
+        if($result['code'] == 1){
+            $data = $result['data']['data'][0];
+
+            $goods = array(
+                'goods_number'      => $data['promotion_id'],
+                'gooods_name'       => $data['title'],
+                'goods_user'        => 0,
+                'goods_nickname'    => '',
+                'goods_cover'       => $data['images'][0]['url_list']['0'],
+                'goods_images'      => '',
+                'goods_url'         => $data['detail_url'],
+                'goods_price'       => $data['price']/100,
+                'goods_mprice'      => $data['market_price']/100,
+                'goods_commission'  => $data['cos_fee']/100,
+                'goods_type'        => 0,
+                'goods_is_recommend'=> 0,
+                'update_time'       => time(),
+                'statistics'        => array(
+                    'gt_up_or_down'     => 0,
+                    'gt_sales'          => $data['sales'],
+                    'gt_browse'         => 0,
+                    'gt_kol'            => 0,
+                    'gt_video'          => 0,
+                    'gt_index'          => 0,
+                    'gt_batch'          => date('Y-m-d'),
+                    'gt_is_monitoring'  => 0,
+                    'gt_create_time'    => time(),
+                    'gt_time'           => time(),
+                ),
+            );
+        }
+
+        dump($goods);die;
+    }
+
+
+    /**
+     * 获取视频详情
+     * @param aweme_id  true    int     视频ID
+     * @return 单条视频详情
+     */
+    public function GetVideoInfo($aweme_id, $type='insert',$isMonitoring=0)
+    {
+        $url = $this->url.'douyin/video/detail';
+
+        $result = $this->curl($url,array('aweme_id'=>$aweme_id));
+        if($result['code'] == 1){
+            $info = $result['data']['data'][0];
+
+            $video = array(
+                'video_platform'    => 1,
+                'video_apiuid'      => $info['author']['uid'],
+                'video_username'    => $info['author']['nickname'],
+                'video_number'      => $info['status']['aweme_id'],
+                'video_sort'        => 0,
+                'video_title'       => '',
+                'video_cover'       => $info['video']['origin_cover']['url_list'][0],
+                'video_sharetitle'  => $info['share_info']['share_title'],
+                'video_url'         => $info['share_info']['share_url'],
+                'video_goods'       => $info['status']['with_goods'] ? 1 : 0,
+                'video_duration'    => $info['duration'],
+                'video_music'       => $info['music']['mid'],
+                'video_desc'        => $info['desc'],
+                'video_status'      => $info['status']['is_delete'] ? 1 : 0,
+                'create_time'       => $info['create_time'],
+                'update_time'       => time(),
+                'statistics'        => array(
+                    'vt_video_id'       => $info['status']['aweme_id'],
+                    'vt_video_number'   => $info['status']['aweme_id'],
+                    'vt_batec'          => date('Y-m-d'),
+                    'vt_like'           => $info['statistics']['digg_count'],
+                    'vt_reposts'        => $info['statistics']['share_count'],
+                    'vt_comment'        => $info['statistics']['comment_count'],
+                    'vt_download'       => $info['statistics']['download_count'],
+                    'vt_play'           => $info['statistics']['play_count'],
+                    'vt_monitoring'     => $isMonitoring,
+                    'vt_time'           => time(),
+                ),
+            );
+
+            if(isset($info['simple_promotions'])){
+                $goods = json_decode($info['simple_promotions'],true);
+                foreach ($goods as $key => $value) {
+                    $goodsinfo[] = $value['promotion_id'];
+                }
+                $video['video_goods'] = implode(',',$goodsinfo);
+            }
+
+            if($type == 'insert'){
+                $id = $this->CreateData($video,'video');
+                if($id){
+                    $statistics = $video['statistics'];
+                    $statistics['vt_video_id'] = $id;
+                    $idd = $this->CreateData($statistics,'videoTrend');
+                }
+            }
+            
+            return $type == 'insert' ? true : $video;
+        }
+    }
 
     //更新红人趋势
     public function SaveKolTrend($kid,$kolNumber,$isMonitoring=0)
@@ -256,19 +457,18 @@ class Test extends LoginBase
                 'kol_uid'           => $data['uid'],
                 'kol_number'        => $data['unique_id'] == '' ? $data['short_id'] : $data['unique_id'],
                 'kol_nickname'      => $data['nickname'],
-                'kol_avatar'        => $data['avatar_168x168']['url_list'][0],
+                'kol_avatar'        => $data['avatar_thumb']['url_list'][0],
                 'kol_qrcode'        => $data['share_info']['share_qrcode_url']['url_list'][0],
                 'kol_school'        => isset($data['school_name']) ? $data['school_name'] : '',
                 'kol_sex'           => $data['gender'],
-                'kol_is_luban'      => $data['with_luban_entry'] ? 1 : 0,
                 'kol_is_goods'      => $data['with_fusion_shop_entry'],
                 'kol_is_star'       => $data['is_star'] ? 1 : 0,
                 'kol_is_gov'        => $data['is_gov_media_vip'],
-                'kol_weibo'         => $data['weibo_url'],
+                //'kol_weibo'         => $data['weibo_url'],
                 'kol_signature'     => $data['signature'],
                 'kol_verifyname'    => $data['enterprise_verify_reason'],
                 'kol_achievement'   => $data['custom_verify'],
-                'kol_constellation' => $data['constellation'],
+                //'kol_constellation' => $data['constellation'],
                 'kol_birthdayY'     => $data['birthday'],
                 'kol_age'           => date('Y') - $data['birthday'],
                 'kol_countries'     => $data['country'],

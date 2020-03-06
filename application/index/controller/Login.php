@@ -140,7 +140,7 @@ class Login extends Base
 
         // 查看kol用户是否已经存在 
         $kolWhere = [];
-        $kolWhere['kol_open_id'] = 1;
+        $kolWhere['kol_open_id'] = $userDyInfo['open_id'];
         $kolWhereOr['kol_avatar'] = $userDyInfo['avatar'];
         $kolInfo = $kolModel->GetOneData($kolWhere, $kolWhereOr);
         if ($kolInfo) {
@@ -427,9 +427,11 @@ class Login extends Base
         //更新登陆记录
         $this->SaveLoginLog($user['user_id'], $type);
         //查询会员信息
-        $vip = $this->Vip->GetOneData(array('vip_user' => $user['user_id'], 'vip_start' => array('LT', time()), 'vip_expire' => array('GT', time())));
+//        $vip = $this->Vip->GetOneData(array('vip_user' => $user['user_id'], 'vip_start' => array('LT', time()), 'vip_expire' => array('GT', time())));
+        $vip = $this->Vip->getUserVip($user['user_id']);
+
         //更新用户会员信息
-        $this->User->UpdateData(['user_id' => $user['user_id'], 'user_vlevel' => empty($vip) ? 0 : $vip['vip_level']]);
+        $this->User->UpdateData(['user_id' => $user['user_id'], 'user_vlevel' => empty($vip) ? 0 : $vip['level_id']]);
 
         //补全信息...
 
@@ -441,7 +443,8 @@ class Login extends Base
                 'level_desc' => '普通版用户',
             );
         } else
-            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id' => $vip['vip_level']));
+//            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id' => $vip['vip_level']));
+            $user['user_vip'] = $vip;
 
         //如果用户已提交认证信息
         if ($user['user_type'] != 1) {
@@ -450,6 +453,9 @@ class Login extends Base
             //补全关联信息
             switch ($user['user_type']) {
                 case 4:
+                    $expaObj = new Mcn;
+                    break;
+                default:
                     $expaObj = new Mcn;
                     break;
             }

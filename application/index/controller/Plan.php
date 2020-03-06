@@ -6,8 +6,9 @@ use think\Session;
 use app\admin\model\PlanApply;
 use app\admin\model\Kol;
 use app\admin\model\KolTrend;
-use app\admin\model\UserAccount;
+use app\admin\model\PlanGoods;
 use app\api\controller\GetData;
+use app\admin\model\UserAccount;
 use app\admin\model\TbgoodsSort;
 use app\api\controller\TbInterfaces;
 use app\admin\model\Plan as PlanModel;
@@ -38,7 +39,7 @@ class Plan extends LoginBase
             'price'             => 0,
             'order'             => 0,
             'page'              => 1,
-            'order'             => 'plan_id desc',
+            'order'             => 'p.plan_id desc',
         );
 
         $where = array();
@@ -46,43 +47,56 @@ class Plan extends LoginBase
         $sort = input('param.sort');
         if($sort && $sort !== 0){
             $condition['sort'] = $sort;
-            $where['plan_goods_sort'] = $sort;
+            $where['g.goods_sort'] = $sort;
         }
 
         $keyword = input('param.keyword');
         if($keyword && $keyword != ''){
             $condition['keyword'] = $keyword;
-            $where['plan_title'] = ['like',"%" . $keyword . "%"];
+            $where['g.goods_name|p.plan_title'] = ['like',"%" . $keyword . "%"];
         }
 
         $commission = input('param.commission');
         if($commission && $commission !== 0){
             $condition['commission'] = $commission;
-            $where['plan_commission'] = array('between',$commission);
+            $where['p.plan_commission'] = array('between',$commission);
         }
 
         $price = input('param.price');
         if($price && $price !== 0){
             $condition['price'] = $price;
-            $where['plan_discount_price'] = array('between',$price);
+            $where['g.goods_discounts_price'] = array('between',$price);
         }
         
         $page = input('param.page');
         if($page && $page !== 1) $condition['page'] = $page;
 
         $order = input('param.order');
-        if($order && $order !== 'plan_id desc') $condition['order'] = $order;
+        if($order && $order !== 'p.plan_id desc') $condition['order'] = $order;
 
         $createtime = input('param.createtime');
         if($createtime && $createtime !== 0){
             $time = $createtime < 1 ? time() - $createtime*86400 : strtotime("-$createtime day");
             $condition['createtime'] = $createtime;
-            $where['plan_time'] = array('between',[(int)$time,time()]);
+            $where['p.plan_time'] = array('between',[(int)$time,time()]);
         }
 
-        $count      = $this->Model->GetCount($where);
+        $count = $this->Model
+                -> alias('p')
+                -> join("__PLAN_GOODS__ g",'p.plan_goods = g.goods_id')
+                -> where($where)
+                -> count();
+
         $allpage    = intval(ceil($count / 100));
-        $data       = $this->Model->GetListByPage($where,$condition['page'],100,$condition['order']);
+
+        $data = $this->Model
+                -> alias('p')
+                -> join("__PLAN_GOODS__ g",'p.plan_goods = g.goods_id')
+                -> where($where)
+                -> order($order)
+                -> page($condition['page'],100)
+                -> select();
+
         $TbGoodsSort = new TbgoodsSort;
         $GetData = new GetData;
 
@@ -101,13 +115,19 @@ class Plan extends LoginBase
         if($user['user_type'] != 3 && $user['user_type'] != 5) return array('code'=>0,'msg'=>'暂无权限!');
         if(request()->isPost()){
             $data = input('post.');
-            $data['plan_user'] = $user['user_id'];
-            $data['plan_audit'] = $user['user_type'] == 5 ? $user['user_id'] : 0;   //团长发布任务，自动审核通过，广告商发布任务，待团长审核
-            $data['plan_start_time'] = strtotime($data['plan_start_time']);
-            $data['plan_end_time'] = strtotime($data['plan_end_time']);
-            $data['plan_sample_remaining'] = $data['plan_sample_sum'];
-            $this->CreateSort($data['plan_goods_sort'],$data['plan_goods_subclass']);
-            return $this->Model->CreateData($data);
+            $PlanGoods = new PlanGoods;
+            $goodsresult = $PlanGoods->CreateData($data['goods']);
+            if($goodsresult['code'] == 1){
+                $this->CreateSort($data['goods']['goods_sort'],$data['goods']['goods_subclass']);   //添加分类
+                $data['plan_user'] = $user['user_id'];
+                $data['plan_goods'] = $goodsresult['id'];
+                $data['plan_audit'] = $user['user_type'] == 5 ? $user['user_id'] : 0;   //团长发布任务，自动审核通过，广告商发布任务，待团长审核
+                $data['plan_start_time'] = strtotime($data['plan_start_time']);
+                $data['plan_end_time'] = strtotime($data['plan_end_time']);
+                $data['plan_sample_remaining'] = $data['plan_sample_sum'];
+                return $this->Model->CreateData($data);
+            }else
+                return array('code'=>0,'msg'=>'商品信息错误，请重试！');
         }else
             return view();
     }
@@ -116,8 +136,10 @@ class Plan extends LoginBase
     //计划详情
     public function info($plan_id=0,$is_show=false)
     {
+        $PlanGoods = new PlanGoods;
         $data = $this->Model->GetOneDataById($plan_id);
-
+        $data['goods'] = $PlanGoods->GetOneDataById($plan_id);
+        $data['photos'] = explode(',',$data['goods']['goods_photos']);
         $this->assign('is_show',$is_show);
         $this->assign('data',$data);
         return view();
@@ -159,43 +181,55 @@ class Plan extends LoginBase
         $sort = input('param.sort');
         if($sort && $sort !== 0){
             $condition['sort'] = $sort;
-            $where['plan_goods_sort'] = $sort;
+            $where['g.goods_sort'] = $sort;
         }
 
         $keyword = input('param.keyword');
         if($keyword && $keyword != ''){
             $condition['keyword'] = $keyword;
-            $where['plan_title'] = ['like',"%" . $keyword . "%"];
+            $where['g.goods_name|p.plan_title'] = ['like',"%" . $keyword . "%"];
         }
 
         $commission = input('param.commission');
         if($commission && $commission !== 0){
             $condition['commission'] = $commission;
-            $where['plan_commission'] = array('between',$commission);
+            $where['p.plan_commission'] = array('between',$commission);
         }
 
         $price = input('param.price');
         if($price && $price !== 0){
             $condition['price'] = $price;
-            $where['plan_discount_price'] = array('between',$price);
+            $where['g.goods_discounts_price'] = array('between',$price);
         }
-
+        
         $page = input('param.page');
         if($page && $page !== 1) $condition['page'] = $page;
 
         $order = input('param.order');
-        if($order && $order !== 'plan_id desc') $condition['order'] = $order;
+        if($order && $order !== 'p.plan_id desc') $condition['order'] = $order;
 
         $createtime = input('param.createtime');
         if($createtime && $createtime !== 0){
             $time = $createtime < 1 ? time() - $createtime*86400 : strtotime("-$createtime day");
             $condition['createtime'] = $createtime;
-            $where['plan_time'] = array('between',[(int)$time,time()]);
+            $where['p.plan_time'] = array('between',[(int)$time,time()]);
         }
 
-        $count      = $this->Model->GetCount($where);
+        $count = $this->Model
+                -> alias('p')
+                -> join("__PLAN_GOODS__ g",'p.plan_goods = g.goods_id')
+                -> where($where)
+                -> count();
+
         $allpage    = intval(ceil($count / 100));
-        $data       = $this->Model->GetListByPage($where,$condition['page'],100,$condition['order']);
+
+        $data = $this->Model
+                -> alias('p')
+                -> join("__PLAN_GOODS__ g",'p.plan_goods = g.goods_id')
+                -> where($where)
+                -> order($order)
+                -> page($condition['page'],100)
+                -> select();
 
         $GetData = new GetData;
         $TbGoodsSort = new TbgoodsSort;
@@ -227,8 +261,6 @@ class Plan extends LoginBase
             $users[$key]['complete'] = $PlanApply->GetCount(array('apply_user'=>$value['apply_user'],'apply_status'=>1,'apply_schedule'=>30));
         }
 
-
-
         $this->assign('users',$users);
         return view();
     }
@@ -257,43 +289,55 @@ class Plan extends LoginBase
         $sort = input('param.sort');
         if($sort && $sort !== 0){
             $condition['sort'] = $sort;
-            $where['plan_goods_sort'] = $sort;
+            $where['g.goods_sort'] = $sort;
         }
 
         $keyword = input('param.keyword');
         if($keyword && $keyword != ''){
             $condition['keyword'] = $keyword;
-            $where['plan_title'] = ['like',"%" . $keyword . "%"];
+            $where['g.goods_name|p.plan_title'] = ['like',"%" . $keyword . "%"];
         }
 
         $commission = input('param.commission');
         if($commission && $commission !== 0){
             $condition['commission'] = $commission;
-            $where['plan_commission'] = array('between',$commission);
+            $where['p.plan_commission'] = array('between',$commission);
         }
 
         $price = input('param.price');
         if($price && $price !== 0){
             $condition['price'] = $price;
-            $where['plan_discount_price'] = array('between',$price);
+            $where['g.goods_discounts_price'] = array('between',$price);
         }
-
+        
         $page = input('param.page');
         if($page && $page !== 1) $condition['page'] = $page;
 
         $order = input('param.order');
-        if($order && $order !== 'plan_id desc') $condition['order'] = $order;
+        if($order && $order !== 'p.plan_id desc') $condition['order'] = $order;
 
         $createtime = input('param.createtime');
         if($createtime && $createtime !== 0){
             $time = $createtime < 1 ? time() - $createtime*86400 : strtotime("-$createtime day");
             $condition['createtime'] = $createtime;
-            $where['plan_time'] = array('between',[(int)$time,time()]);
+            $where['p.plan_time'] = array('between',[(int)$time,time()]);
         }
 
-        $count      = $this->Model->GetCount($where);
-        $allpage    = intval(ceil($count / 100));
-        $data       = $this->Model->GetListByPage($where,$condition['page'],100,$condition['order']);
+        $count = $this->Model
+                -> alias('p')
+                -> join("__PLAN_GOODS__ g",'p.plan_goods = g.goods_id')
+                -> where($where)
+                -> count();
+
+        $allpage = intval(ceil($count / 100));
+
+        $data = $this->Model
+                -> alias('p')
+                -> join("__PLAN_GOODS__ g",'p.plan_goods = g.goods_id')
+                -> where($where)
+                -> order($order)
+                -> page($condition['page'],100)
+                -> select();
 
         foreach ($data as $key => $value) {
             $data[$key]['apply'] = $PlanApply->GetOneData(array('apply_plan'=>$value['plan_id'],'apply_user'=>session::get('user.user_id')));
@@ -332,7 +376,11 @@ class Plan extends LoginBase
 
         $TbInterfaces = new TbInterfaces;
 
-        return $TbInterfaces->GetGoodsInfo($goods_id);
+        $goods = $TbInterfaces->GetGoodsInfo($goods_id);
+
+        $goods['comm'] = $TbInterfaces->HighCommission($goods_id);
+
+        dump($comm);die;
     }
 
     //获取下级城市列表

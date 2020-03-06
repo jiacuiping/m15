@@ -3,76 +3,71 @@ namespace app\api\controller;
 
 use app\api\controller\Base;
 
-//models
-use app\admin\model\Kol;
-use app\admin\model\User;
-use app\admin\model\Video;
-use app\admin\model\Music;
-use app\admin\model\Topic;
-use app\admin\model\KolTrend;
-use app\admin\model\VideoTrend;
-use app\admin\model\MusicTrend;
-use app\admin\model\TopicTrend;
-use app\admin\model\VideoComment;
-
-//commons
-use app\api\controller\Index;
-use app\api\controller\GetData;
+use ETaobao\Factory;
 
 
 
 class TbInterfaces extends Base
 {
-	private $key = 'awnxxvwav6czf00h';
-	private $url = 'https://open.douyin.com';
-	private $secret = '19afaed4ee427baba3c4b48d6ed20c1b';
+	//推广位ID：mm_24491795_415850079_108341300287
+	//商品ID：611737531041
+	//选品库ID：20160251
 
-	//淘宝客API测试接口
-	public function Index()
+	//4c3dc023-b906-bc4b-6eb6-176c84bfffad
+
+	private $OrderMan = '9thXcsMK08nMrdOm1UQDZFk9Ju5uuIzN';
+
+	private $config = [
+		    'appkey' => '28325600',
+		    'secretKey' => '3a2a808089b0908c170eb7f0bd019365',
+		    'format' => 'json',
+		    'session' => '',//授权接口（sc类的接口）需要带上
+		    'sandbox' => false,
+		];
+
+
+	//获取商品信息
+	public function GetGoodsInfo($gid)
 	{
-		header("Content-type: text/html; charset=utf-8");
-		include "../extend/taobaosdk/TopSdk.php";
+		$param = [
+		   'num_iids'	=> $gid,
+		   'platform'	=> 1,
+		   'ip'			=> $_SERVER["REMOTE_ADDR"],
+		];
 
-		//将下载到的SDK里面的TopClient.php的$gatewayUrl的值改为沙箱地址:http://gw.api.tbsandbox.com/router/rest
-		//正式环境时需要将该地址设置为：http://gw.api.taobao.com/router/rest
+		return $this->RequestApis('getInfo',$param);
+	}
+
+	//高佣转链接接口
+	public function HighCommission($gid)
+	{
+		$url = "http://api.tbk.dingdanxia.com/tbk/id_privilege";
+		// $url = "http://api.tbk.dingdanxia.com/tbk/item_detailinfo";
+
+		$param = array('apikey'	=> $this->OrderMan,'id' => $gid);
+
+		return $this->curl($url,$param);
+	}
 
 
+	//统一请求接口
+	public function RequestApis($api,$param,$issession=false)
+	{
+		if($issession == true){
+			//请求的接口需授权
+		}
 
-		// $c = new TopClient;
-		// $c->appkey = $appkey;
-		// $c->secretKey = $secret;
-		// $req = new TbkItemRecommendGetRequest;
-		// $req->setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url");
-		// $req->setNumIid("123");
-		// $req->setCount("20");
-		// $req->setPlatform("1");
-		// $resp = $c->execute($req);
+		//实例化包
+		$alibabapi = Factory::Tbk($this->config);
 
+		$res = ObjectToArray($alibabapi->item->$api($param));
 
-
-
-
-		$c = new \TopClient;
-		$c->appkey = "28272469"; // 可替换为您的沙箱环境应用的AppKey
-		$c->secretKey = "002748e6276e88d4ceeabffb286360b5"; // 可替换为您的沙箱环境应用的AppSecret
-		//$sessionkey= "test";  // 必须替换为沙箱账号授权得到的真实有效SessionKey
-
-		$req = new \TbkItemRecommendGetRequest;
-		$req->setFields("num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url");
-		$req->setNumIid("123");
-		$req->setCount("20");
-		$req->setPlatform("1");
-		$resp = $c->execute($req);
-
-		echo "api result:";
-		print_r($resp);
+		return isset($res['results']) ? array('code'=>1,'msg'=>'请求成功','data'=>$res['results']) : array('code'=>0,'msg'=>$res['sub_msg'],'data'=>array());
 	}
 
 	//请求方法
 	public function curl($url,$data=array())
 	{
-		$data = array_merge(array('client_key'=>$this->key),$data);
-
 		//初始化
 	    $curl = curl_init();
 	    //设置抓取的url
@@ -90,20 +85,39 @@ class TbInterfaces extends Base
 	    //关闭URL请求
 	    curl_close($curl);
 
-	    $result = json_decode($json,true);
-
-	    // if($result['retcode'] != '0000'){
-	    // 	$error = array(
-	    // 		'error_url'		=> $url,
-	    // 		'error_data'	=> json_encode($data),
-	    // 		'error_date'	=> date('Y-m-d H:i:s',time()),
-	    // 		'error_code'	=> $result['retcode'],
-	    // 		'error_time'	=> time()
-	    // 	);
-	    // 	db('error')->insert($error);
-	    // 	return array('code'=>0);
-	    // }else
-	    // 	return array('code'=>1,'data'=>$result);
+	    return json_decode($json,true);
 	}
 
+
+	// XML转换成数组
+    private function simplexml_obj2array($obj)
+    {
+        if( count($obj) >= 1 )
+        {
+            $result = $keys = array();
+
+            foreach( $obj as $key=>$value)
+            {   
+                isset($keys[$key]) ? ($keys[$key] += 1) : ($keys[$key] = 1);
+
+                if( $keys[$key] == 1 )
+                {
+                    $result[$key] = $this->simplexml_obj2array($value);
+                }
+                elseif( $keys[$key] == 2 )
+                {
+                    $result[$key] = array($result[$key], $this->simplexml_obj2array($value));
+                }
+                else if( $keys[$key] > 2 )
+                {
+                    $result[$key][] = $this->simplexml_obj2array($value);
+                }
+            }
+            return $result;
+        }
+        else if( count($obj) == 0 )
+        {
+            return (string)$obj;
+        }
+    }
 }

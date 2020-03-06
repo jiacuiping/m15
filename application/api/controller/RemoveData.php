@@ -22,7 +22,7 @@ class RemoveData extends Base
 		parent::__construct();
 	}
 
-	//处理90天视频
+	//删除视频数据
 	public function RemoveVideo($vid)
 	{
 		$Video = new Video;
@@ -42,5 +42,11 @@ class RemoveData extends Base
 		$VideoResult = $Video->DeleteData($vid);
 		
 		return true;
+	}
+
+	//删除音乐数据
+	public function RemoveMusic()
+	{
+
 	}
 }
