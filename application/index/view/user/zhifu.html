@@ -223,12 +223,12 @@
         // 立即购买
         $(".buyNow").click(function () {
             var durationId = $(".month-list .border").attr("duration-id");
-            var payMoney = $(".payMoney").text();
+            var payMoney = 0.01;//$(".payMoney").text();
             var payType = $(".pay-list .border").attr('pay-type');
 
             // 支付宝支付
             if(payType == 1) {
-
+                var url = "";
             } else { // 微信
                 var url = "{:url('Order/payNow','',false)}/payMoney/" + payMoney + "/durationId/" + durationId;
                 // var url = "{:(url'Order/payNow','',false)}/payMoney/" + payMoney + "/durationId/" + durationId;

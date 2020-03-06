@@ -143,7 +143,6 @@ class User extends LoginBase
             $this->assign('vips',db('vip_level')->where('level_status',1)->select());
         } elseif ($type == 'invoice'){
 
-
             // 获取消费记录
             $orderList = $orderModel->GetDataList(['order_user' => $userId, 'order_status' => 10, 'order_invoice' => 0]);
             foreach ($orderList as $key => $value) {
@@ -307,8 +306,10 @@ class User extends LoginBase
     // 支付页面
     public function zhifu($level)
     {
+        $userId = session::get('user.user_id');
         $durationModel = new VipDuration();
         $levelModel =  new VipLevel();
+        $userVipModel = new UserVip();
 
         $lists = $durationModel->GetDataList(['duration_level' => $level, 'duration_status' => 1]);
         $levelInfo = $levelModel->GetOneData(['level_id' => $level]);
@@ -330,7 +331,13 @@ class User extends LoginBase
             $lists[$key]['saveMoney'] = $_sumMoney - $_payMoney;
 
             // 有效期
-            $lists[$key]['expiryDate'] = date('Y年m月d日', strtotime("+{$value['duration_number']} month"));
+            // 当前是否是会员
+            $nowVip = $userVipModel->getUserVip($userId);
+            if($nowVip && $nowVip['vip']['level_id'] == $level) {
+                $lists[$key]['expiryDate'] = date('Y年m月d日', strtotime("+{$value['duration_number']} month", $nowVip['time']['vip_expire']));
+            } else {
+                $lists[$key]['expiryDate'] = date('Y年m月d日', strtotime("+{$value['duration_number']} month"));
+            }
         }
 
         $this->assign('lists', $lists);

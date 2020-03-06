@@ -438,13 +438,14 @@ class Login extends Base
         //补全会员信息
         if (empty($vip)) {
             $user['user_vip'] = array(
+                'level_id' => 1,
                 'level_name' => '免费版',
                 'level_icon' => '',
                 'level_desc' => '普通版用户',
             );
         } else
 //            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id' => $vip['vip_level']));
-            $user['user_vip'] = $vip;
+            $user['user_vip'] = $vip['vip'];
 
         //如果用户已提交认证信息
         if ($user['user_type'] != 1) {

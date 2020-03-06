@@ -141,9 +141,17 @@
                                 {volist name="vips" id="vipitem"}
                                 {if $vipitem.level_id neq 1}
                                 <td>
+                                    {if $user.user_vip.level_id gt $vipitem.level_id}
+                                    <button class="layui-btn layui-btn-sm layui-btn-disabled">立即升级</button>
+                                    {elseif $user.user_vip.level_id eq $vipitem.level_id}
+                                    <a href="{:url('User/zhifu','',false)}/level/{$vipitem.level_id}">
+                                        <button class="layui-btn layui-btn-sm layui-btn-normal">立即续费</button>
+                                    </a>
+                                    {else}
                                     <a href="{:url('User/zhifu','',false)}/level/{$vipitem.level_id}">
                                         <button class="layui-btn layui-btn-sm layui-btn-normal">立即升级</button>
                                     </a>
+                                    {/if}
                                 </td>
                                 {/if}
                                 {/volist}

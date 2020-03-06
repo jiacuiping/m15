@@ -156,6 +156,7 @@ class UserVip extends Model
     public function getUserVip($userId)
     {
         $userVipModel = new UserVip();
+        $vipLevelModel = new VipLevel();
 
         $vipLevel = [
             '2' => 'vip_one_info',
@@ -167,20 +168,23 @@ class UserVip extends Model
         ];
 
         $userInfo = $userVipModel->GetOneData(['vip_user' => $userId]);
-        $vip = [];
+
         // 查看用户在当前时间是否是会员
         $vipInfo['vip_one_info'] = empty($userInfo['vip_one_info']) ? [] : json_decode($userInfo['vip_one_info'], true);
-        $vipInfo['vip_two_info'] = empty($userInfo['vip_two_info']) ? [] : json_decode($userInfo['vip_one_info'], true);
-        $vipInfo['vip_three_info'] = empty($userInfo['vip_three_info']) ? [] : json_decode($userInfo['vip_one_info'], true);
+        $vipInfo['vip_two_info'] = empty($userInfo['vip_two_info']) ? [] : json_decode($userInfo['vip_two_info'], true);
+        $vipInfo['vip_three_info'] = empty($userInfo['vip_three_info']) ? [] : json_decode($userInfo['vip_three_info'], true);
 
-        $vipLevelModel = new VipLevel();
+        $res = [];
         foreach ($vipInfo as $key => $value) {
-            if($value && (time() > $value['vip_start']) && (time() < $value['vip_expire'])) {
-                $vip = $vipLevelModel->GetOneData(['level_id' => $vipLevel[$key]]);
+            if(empty($value)) {
+                continue;
+            }
+            if((time() > $value['vip_start']) && (time() < $value['vip_expire'])) {
+                $res['vip'] = $vipLevelModel->GetOneData(['level_id' => $vipLevel[$key]]);
+                $res['time'] = $value;
                 break;
             }
         }
-
-        return $vip;
+        return $res;
     }
 }
