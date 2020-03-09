@@ -428,7 +428,8 @@ class Login extends Base
         $this->SaveLoginLog($user['user_id'], $type);
         //查询会员信息
 //        $vip = $this->Vip->GetOneData(array('vip_user' => $user['user_id'], 'vip_start' => array('LT', time()), 'vip_expire' => array('GT', time())));
-        $vip = $this->Vip->getUserVip($user['user_id']);
+        $vipRes = $this->Vip->getUserVip($user['user_id']);
+        $vip = empty($vipRes) ? [] : $vipRes['vip'];
 
         //更新用户会员信息
         $this->User->UpdateData(['user_id' => $user['user_id'], 'user_vlevel' => empty($vip) ? 0 : $vip['level_id']]);
@@ -445,7 +446,7 @@ class Login extends Base
             );
         } else
 //            $user['user_vip'] = $this->VipLevel->GetOneData(array('level_id' => $vip['vip_level']));
-            $user['user_vip'] = $vip['vip'];
+            $user['user_vip'] = $vip;
 
         //如果用户已提交认证信息
         if ($user['user_type'] != 1) {

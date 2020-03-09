@@ -223,7 +223,7 @@
         // 立即购买
         $(".buyNow").click(function () {
             var durationId = $(".month-list .border").attr("duration-id");
-            var payMoney = 0.01;//$(".payMoney").text();
+            var payMoney = $(".payMoney").text();
             var payType = $(".pay-list .border").attr('pay-type');
 
             // 支付宝支付

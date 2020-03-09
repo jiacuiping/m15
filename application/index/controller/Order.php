@@ -130,9 +130,18 @@ class Order extends LoginBase
                 } elseif ($orderLevel == 3) { // 此次下单为钻石版
                     if ($orderLevel == $nowVip['level_id']) {
                         // 如果当前会员是钻石版，续期
-                        $vipTime['vip_start'] = $vipInfo['vip_start'];
-                        $vipTime['vip_expire'] = strtotime("+{$durationData['duration_number']} month", $vipInfo['vip_expire']);
-                        $userVipData['vip_two_info'] = json_encode($vipTime);
+                        $vipTime1['vip_start'] = $vipInfo['vip_start'];
+                        $vipTime1['vip_expire'] = strtotime("+{$durationData['duration_number']} month", $vipInfo['vip_expire']);
+                        $userVipData['vip_two_info'] = json_encode($vipTime1);
+
+                        if($userInfo['vip_one_info']) {
+                            // 黄金版
+                            // 黄金版剩下的时间
+                            $restTime = $vipInfo['vip_expire'] - $orderData['order_paytime'];
+                            $vipTime2['vip_start'] = $vipTime1['vip_expire'];
+                            $vipTime2['vip_expire'] = $vipTime2['vip_start'] + $restTime;
+                            $userVipData['vip_one_info'] = json_encode($vipTime2);
+                        }
                     } else {
                         // 如果当前会员是黄金版，先享受钻石版服务，黄金版延后
                         // 钻石版
@@ -148,40 +157,66 @@ class Order extends LoginBase
                         $userVipData['vip_two_info'] = json_encode($vipTime1);
                         $userVipData['vip_one_info'] = json_encode($vipTime2);
                     }
-                    
+
                 } elseif ($orderLevel == 4) { // 此次下单为旗舰版
                     if ($orderLevel == $nowVip['level_id']) {
 
                         // 如果当前会员是旗舰版，续期
-                        $vipTime['vip_start'] = $vipInfo['vip_start'];
-                        $vipTime['vip_expire'] = strtotime("+{$durationData['duration_number']} month", $vipInfo['vip_expire']);
-                        $userVipData['vip_three_info'] = json_encode($vipTime);
+                        $vipTime1['vip_start'] = $vipInfo['vip_start'];
+                        $vipTime1['vip_expire'] = strtotime("+{$durationData['duration_number']} month", $vipInfo['vip_expire']);
+                        $userVipData['vip_three_info'] = json_encode($vipTime1);
+
+                        if($userInfo['vip_two_info']) {
+                            $vip_one_info = json_decode($userInfo['vip_one_info'], true);
+                            // 钻石版
+                            // 钻石版剩下的时间
+                            $restTime = $vip_one_info['vip_expire'] - $vip_one_info['vip_start'];
+                            $vipTime2['vip_start'] = $vipTime1['vip_expire'];
+                            $vipTime2['vip_expire'] = $vipTime2['vip_start'] + $restTime;
+                            $userVipData['vip_one_info'] = json_encode($vipTime2);
+                        }
+
+                        if($userInfo['vip_one_info']) {
+                            $vip_two_info = json_decode($userInfo['vip_twp_info'], true);
+                            // 黄金版
+                            // 黄金版剩下的时间
+                            $restTime = $vip_two_info['vip_expire'] - $vip_two_info['vip_start'];
+                            if(isset($vipTime2)) {
+                                $vipTime3['vip_start'] = $vipTime2['vip_expire'];
+                                $vipTime3['vip_expire'] = $vipTime3['vip_start'] + $restTime;
+                            } else {
+                                $vipTime3['vip_start'] = $vipTime1['vip_expire'];
+                                $vipTime3['vip_expire'] = $vipTime3['vip_start'] + $restTime;
+                            }
+
+                            $userVipData['vip_one_info'] = json_encode($vipTime3);
+                        }
 
                     } else if ($nowVip['level_id'] == 3){
                         // 如果当前会员是钻石版，先享受旗舰版服务，钻石版延后
                         // 旗舰版
                         $vipTime1['vip_start'] = $orderInfo['order_paytime'];
                         $vipTime1['vip_expire'] = strtotime("+{$durationData['duration_number']} month", $orderData['order_paytime']);
+                        $userVipData['vip_three_info'] = json_encode($vipTime1);
 
                         // 钻石版
                         // 钻石版剩下的时间
                         $restTime = $vipInfo['vip_expire'] - $orderData['order_paytime'];
                         $vipTime2['vip_start'] = $vipTime1['vip_expire'];
                         $vipTime2['vip_expire'] = $vipTime2['vip_start'] + $restTime;
+                        $userVipData['vip_two_info'] = json_encode($vipTime2);
 
                         // 是否有黄金版
                         if($userInfo['vip_one_info']) {
                             $vip_one_info = json_decode($userInfo['vip_one_info'], true);
 
                             // 黄金版剩下的时间
-                            $restTime = $vip_one_info['vip_expire'] - $orderData['order_paytime'];
+                            $restTime = $vip_one_info['vip_expire'] - $vip_one_info['vip_start'];
                             $vipTime3['vip_start'] = $vipTime2['vip_expire'];
                             $vipTime3['vip_expire'] = $vipTime3['vip_start'] + $restTime;
                             $userVipData['vip_one_info'] = json_encode($vipTime3);
                         }
 
-                        $userVipData['vip_three_info'] = json_encode($vipTime1);
-                        $userVipData['vip_two_info'] = json_encode($vipTime2);
                     } else if ($nowVip['level_id'] == 2){
                         // 如果当前会员是黄金版，先享受旗舰版服务，黄金版延后
 
