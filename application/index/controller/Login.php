@@ -141,7 +141,9 @@ class Login extends Base
         // 查看kol用户是否已经存在 
         $kolWhere = [];
         $kolWhere['kol_open_id'] = $userDyInfo['open_id'];
-        $kolWhereOr['kol_avatar'] = $userDyInfo['avatar'];
+        // 取图片名称
+        $avatar = str_replace('/', '', strrchr($userDyInfo['avatar'], '/'));
+        $kolWhereOr['kol_avatar'] = ['like',"%" . $avatar];
         $kolInfo = $kolModel->GetOneData($kolWhere, $kolWhereOr);
         if ($kolInfo) {
 

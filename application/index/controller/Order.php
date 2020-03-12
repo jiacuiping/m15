@@ -65,17 +65,17 @@ class Order extends LoginBase
     // 支付成功
     public function paySuccess($orderSn, $payType = 1)
     {
-        $vipLevel = [
-            2 => 'vip_one_info',
-            3 => 'vip_two_info',
-            4 => 'vip_three_info',
-            'vip_one_info' => 2,
-            'vip_two_info' => 3,
-            'vip_three_info' => 4,
-        ];
         $orderModel = new OrderModel();
         $userVipModel = new UserVip();
         $userId = session::get('user.user_id');
+        $vipLevel = [
+            'vip_one_info' => '2',
+            'vip_two_info' => '3',
+            'vip_three_info' => '4',
+            '2' => 'vip_one_info',
+            '3' => 'vip_two_info',
+            '4' => 'vip_three_info',
+        ];
 
         // 订单修改
         $orderInfo = $orderModel->GetOneData(['order_sn' => $orderSn]);

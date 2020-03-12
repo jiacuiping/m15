@@ -159,9 +159,6 @@ class UserVip extends Model
         $vipLevelModel = new VipLevel();
 
         $vipLevel = [
-            '2' => 'vip_one_info',
-            '3' => 'vip_two_info',
-            '4' => 'vip_three_info',
             'vip_one_info' => '2',
             'vip_two_info' => '3',
             'vip_three_info' => '4',

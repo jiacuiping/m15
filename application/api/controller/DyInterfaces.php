@@ -221,7 +221,7 @@ class DyInterfaces extends Base
         );
 
         $result = $this->curl_get($url, $params);
-        if ($result['data']['error_code'] == 0 && $result['data']['fans_data']) {
+        if ($result && $result['data']['error_code'] == 0 && isset($result['data']['fans_data']) && !empty($result['data']['fans_data'])) {
             $fansData = $result['data']['fans_data'];
 
             $allFansNum = $fansData['all_fans_num'];
@@ -423,20 +423,39 @@ class DyInterfaces extends Base
      */
     public function videoDataPost()
     {
-        $openId = session::get('open_id');
-        $accessToken = session::get('access_token');
+        $openId = "7e6d30c1-ecf1-4569-abd8-1d36b7c7eb12";
+        // 根据openid获取授权信息
+        $kolOauth = new KolOauth();
+        $oauthData = $kolOauth->GetOneData(['oauth_open_id' => $openId]);
+        if (!$oauthData) {
+            return ['code' => '0', 'msg' => "没有授权信息"];
+        }
+
+        if ($oauthData['oauth_access_token_expires_in'] < time()) { // 如果access_token过期
+            $refreshRes = $this->refresh_token($oauthData['oauth_refresh_token'], $oauthData);
+            if ($refreshRes['code'] == 0) {
+                return ['code' => '0', 'msg' => $refreshRes['msg']];
+            } else {
+                $accessToken = $refreshRes['oauth_access_token'];
+            }
+        } else {
+            $accessToken = $oauthData['oauth_access_token'];
+        }
+
+        if (!$accessToken) {
+            return ['code' => '0', 'msg' => "没有获取到access_token"];
+        }
         $url = $this->url . '/video/data/';
 
         $params = array(
             'open_id' => $openId,
             'access_token' => $accessToken,
-            'body' => [
-                'itemIds' => '@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q=='
-            ]
+            'item_ids' => "{'@9VwKzuuES8gmaXS7ZohtSM780mzrPfCHPJJ4qwKvL1gaa/L/60zdRmYqig357zEBwmOi4mAd96+gp/pfsAZc7Q=='}",
 
         );
 
         $result = $this->curl_post($url, $params);
+        dump($result);die;
         if ($result['data']['error_code'] == 0) {
             return $result['data'];
         } else {
@@ -444,11 +463,10 @@ class DyInterfaces extends Base
         }
     }
 
-
     /**
      * 评论列表
      * /video/comment/list/
-     *
+     *2f65a0006cce4f6d319b6.jpeg
      * open_id          string   通过/oauth/access_token/获取，用户唯一标志
      * access_token     string   调用/oauth/access_token/生成的token，此token需要用户授权。
      * cursor           integer  分页游标, 第一页请求cursor是0, response中会返回下一页请求用到的cursor, 同时response还会返回has_more来表明是否有更多的数据。
@@ -604,7 +622,6 @@ class DyInterfaces extends Base
             return false;
         }
     }
-
 
     //请求方法
     public function curl_post($url, $data = array())

@@ -174,7 +174,6 @@
         // 默认选择
         $(".month-list").children().eq(0).addClass("border");
         $(".pay-list").children().eq(0).addClass("border");
-
         setData();
 
 
@@ -229,9 +228,8 @@
             // 支付宝支付
             if(payType == 1) {
                 var url = "";
-            } else { // 微信
+            } else {  // 微信
                 var url = "{:url('Order/payNow','',false)}/payMoney/" + payMoney + "/durationId/" + durationId;
-                // var url = "{:(url'Order/payNow','',false)}/payMoney/" + payMoney + "/durationId/" + durationId;
             }
 
             layer.open({
