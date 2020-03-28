@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>第一步</title>
+  <title>第三步</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -25,18 +25,25 @@ form{height: 35px}
 .mtd-shipin-tab-left2{width: 100%}
 .mtd-shipin-tab-left2 ul li{width: 15%; text-align: center}
 .layui-btn-primary img{vertical-align: sub}
-/* 我要加急 */
-.mask,.mask2,.mask3{width: 100%;height: 100vh; background:rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
-.mask-content2 h3,.mask-content3 h3{color: #000;margin-bottom: 15px;padding-bottom: 10px;border-bottom: 1px solid #ddd;}
+
+.mask,.mask2,.mask3,.mask4,.mask5,.mask6,.mask8{width: 100%;height: 100vh; background:rgba(0,0,0,0.75);position: fixed; top: 0;z-index: 99999; display: none;}
+.mask-content2 h3,.mask-content3 h3,.mask-content4 h3,.mask-content5 h3,.mask-content6 h3,.mask-content8 h3{color: #000;margin-bottom: 15px;padding-bottom: 10px;}
 .mask-content{width: 300px;background: #fff;margin: 10% auto;padding:15px;position: relative}
 .mask-content h3{color: #000;margin-bottom: 15px}
-.mask-content,.mask-content2,.mask-content3{background: #fff;margin: 10% auto;padding:15px;position: relative}
-
-/* 文件柜 */
-.mask-content2{width: 500px;}
-/* 补充需求 */
-.mask-content3{width:300px;}
-
+.mask-content,.mask-content2,.mask-content3,.mask-content4,.mask-content5,.mask-content6{background: #fff;margin: 10% auto;padding:15px;position: relative}
+.mask-content2,.mask-content4,.mask-content5,.mask-content6,.mask-content8{width: 500px;}
+.mask-content3{width:380px;}
+.chengguo-ul{padding: 10px;border-bottom: 1px solid #efefef}
+.chengguo-ul li{list-style: outside}
+.jiaoyi-jiufen{padding: 15px;border:1px solid #dedede;width: 215px;text-align:center;display: inline-block;box-shadow: 2px 2px 3px;}
+.jiaoyi-jiufen h3{margin-bottom: 0}
+.ystep-container {width:92%;margin-left: 20px;}
+.ystep-container-steps{width:100%;}
+.ystep-step-active,.ystep-step-undone,.ystep-step-done{width:98px !important;padding-right: 35px !important;margin-right: 0px !important;}
+.ystep-container-steps li:last-child {padding-right: 0px !important;width:60px !important;}
+.ystep-progress,.ystep-progress-bar {width:93% !important;}
+.cunzheng2{margin-left: 18%;width: 82%}
+.cunzheng2 h4{margin: 5px 0;}
 </style>
 
 <body>
@@ -96,12 +103,12 @@ form{height: 35px}
             </div>
           </div>
           <div class="layui-col-md3 layui-col-sm6">
-            <div class="list1-jian2-2">
+            <div class="list1-jian2">
               <p>开始工作</p>
             </div>
           </div>
           <div class="layui-col-md3 layui-col-sm6">
-            <div class="list1-jian3-2">
+            <div class="list1-jian3">
               <p>发起验收并收款</p>
             </div>
           </div>
@@ -134,24 +141,7 @@ form{height: 35px}
                 <i class="layui-icon layui-timeline-axis"></i>
                 <div class="layui-timeline-content layui-text">
                   <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
-                  <p>请您与雇主充分沟通后，是否<button class="layui-btn layui-btn-xs layui-btn-normal jieshou" style="margin-left: 10px">接受需求</button></p>
-                  <p>长时间没接受需求雇主将会换其他服务商服务</p>
-                  <p>如果您无法完成此工作，您可以选择<span class="blue-span5 fangqi">放弃需求</span></p>
-                  <p></p>
-                </div>
-              </li>
-              <li class="layui-timeline-item">
-                <i class="layui-icon layui-timeline-axis"></i>
-                <div class="layui-timeline-content layui-text">
-                  <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
-                  <p>雇主已托管赏金1000.00元</p>
-                </div>
-              </li>
-              <li class="layui-timeline-item">
-                <i class="layui-icon layui-timeline-axis"></i>
-                <div class="layui-timeline-content layui-text">
-                  <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
-                  <p>雇主选择了您为TA工作</p>
+                  <p>请认真完成工作。请您按照与雇主协商的工期计划按时向雇主反馈项目进度</p>
                 </div>
               </li>
               <li class="layui-timeline-item">
@@ -161,14 +151,33 @@ form{height: 35px}
                   <p>您已接受了此需求</p>
                 </div>
               </li>
+              <li class="layui-timeline-item">
+                <i class="layui-icon layui-timeline-axis"></i>
+                <div class="layui-timeline-content layui-text">
+                  <h3 class="layui-timeline-title"><p style="font-size: 16px">2019/09/24</p><p class="layui-timeline-title-p">13:29:32</p></h3>
+                  <p>雇主已托管赏金1000.00元</p>
+                </div>
+              </li>
             </ul>
             </span></p>
             <p style="text-align:right;color: #000">历史工作进度、合同资料、附件已整理至
               <a href="#" class="wenjiangui"><span style="color:#1E9FFF">文件柜 <i class="layui-icon layui-icon-tabs"></i></span></a>
             </p>
             <div class="renwu-xia-div">
-              <button class="layui-btn layui-btn-primary layui-btn-xs fangqi">
-                <img src="../../../../layuiadmin/imgs/hui2.png" alt="">放弃需求
+              <button class="layui-btn layui-btn-primary layui-btn-xs faqi">
+                <img src="../../../../layuiadmin/imgs/hui6.png" alt="">发起合同
+              </button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs shangchuan">
+                <img src="../../../../layuiadmin/imgs/hui6.png" alt="">上传源文件
+              </button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs shenqing">
+                <img src="../../../../layuiadmin/imgs/hui6.png" alt="">申请验收
+              </button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs zhengyi">
+                <img src="../../../../layuiadmin/imgs/hui4.png" alt="">争议维权
+              </button>
+              <button class="layui-btn layui-btn-primary layui-btn-xs yusuan">
+                <img src="../../../../layuiadmin/imgs/hui6.png" alt="">申请追加预算
               </button>
             </div>
           </div>
@@ -176,21 +185,6 @@ form{height: 35px}
       </div>
     </div>
   </div>
-
-<!-- 注意： 此页面共有四个弹框。-->
-<!-- 1. 接受需求 弹框 -->
-<div class="mask">
-  <div class="mask-content">
-    <div class="wrapper">
-      <h3><span class="juxian"></span>接受需求<a href="#" class="guan right">X</a></h3>
-      <p>是否确认接受此需求？</p>
-      <div style="text-align: center;margin-top: 15px">
-        <button class="layui-btn layui-btn-sm layui-btn-primary guan">取消</button>
-        <button class="layui-btn layui-btn-sm layui-btn-normal">接受需求</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- 2. 文件柜 弹框 -->
 <div class="mask2">
@@ -216,32 +210,107 @@ form{height: 35px}
   </div>
 </div>
 
-<!-- 3. 放弃需求 弹框 -->
-<div class="mask3">
-  <div class="mask-content3">
+
+<!-- 6. 争议维权 弹框 -->
+<div class="mask6">
+  <div class="mask-content6">
     <div class="wrapper">
-      <h3><span class="juxian"></span>放弃需求<a href="#" class="guan right">X</a></h3>
-      <p>是否确认接受此需求？</p>
-      <div style="text-align: center;margin-top: 15px">
-        <button class="layui-btn layui-btn-sm layui-btn-primary guan">取消</button>
-        <button class="layui-btn layui-btn-sm layui-btn-normal">放弃需求</button>
+      <h3><span class="juxian"></span>争议维权<a href="#" class="guan right">X</a></h3>
+      <div class="stepCont stepCont2">
+        <div class="ystep-container ystep-lg ystep-blue" style="margin:10px 20px !important "></div>
+        <div class="pageCont">
+          <div id="page1" class="stepPage">
+            <h3><span class="juxian"></span>交易纠纷</h3>
+            <div class="jiaoyi-jiufen">
+              <h3>无理要求，无法完成</h3>
+              <p>雇主提出物理要求，无法完成工作</p>
+            </div>
+            <div class="jiaoyi-jiufen">
+              <h3>不讲诚信，拒付赏金</h3>
+              <p>雇主不讲诚信，拒付赏金</p>
+            </div>
+          </div>
+          <div id="page2" class="stepPage clear"> 
+            <h3><span class="juxian"></span>请选择：维权类型</h3>
+            <div class="layui-col-sm9 left" style="border-right: 1px solid #f4f4f4">
+                <!-- 维权类型 -->
+                <div class="content2-content clear">
+                  <p class="left"><span style="color: red"> *</span>维权类型:</p>
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item" style="display: inline-block">
+                      <div class="layui-input-block" style="margin-left: 0">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="0" selected="">无理要求，无法完成</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+                <!-- 说明 -->
+                <div class="content2-content clear">
+                  <p class="left"><span style="color: red"> *</span>说明:</p>
+                  <textarea name="" style="width: 80%; height: 100px" class="left" placeholder="请您描述一下具体情况"></textarea>
+                </div>
+                <!-- 证据 -->
+                <div class="content2-content clear">
+                  <p class="left">证据:</p><span>已存证证据</span>
+                  <div class="cunzheng2">
+                    <button class="layui-btn layui-btn-primary layui-btn-xs">查看已存证证据</button>
+                    <h4>您针对此订单的所有操作已自动存证，并出具由专业电子数据鉴定机构提供的<span style="color: #0661e6">存证函</span>，点击可查看并下载已存证的证据。</h4>
+                    <h4>补充证据：</h4>
+                    <button class="layui-btn layui-btn-primary layui-btn-xs">+ 添加附件</button>
+                    <h4>(如果您有除平台外其他渠道的证据，如双方的微信聊天记录，短信截屏记录，其他合同等材料，可通过补充证据进行添加)</h4>
+                  </div>
+                </div>
+                <!-- 要求 -->
+                <div class="content2-content clear">
+                  <p class="left"><span style="color: red"> *</span>要求:</p>
+                  <form class="layui-form" action="">
+                    <div class="layui-form-item" style="display: inline-block">
+                      <div class="layui-input-block" style="margin-left: 0">
+                        <select name="interest" lay-filter="aihao">
+                          <option value="0" selected="">请选择您的要求</option>
+                          <option value="1">阅读</option>
+                          <option value="2">游戏</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+            </div>
+            <div class="layui-col-sm3 left" style="padding-left: 15px">
+               <p>服务商:</p>
+               <img src="../../../../layuiadmin/imgs/touxiang.jpg" alt="" style="width: 100px; height: 100px;margin: 15px 0">
+               <p>小高小高</p>
+               <button class="layui-btn layui-btn-warm layui-btn-xs">猪八戒</button>
+               <p style="margin-bottom: 5px">近三个月收入: 元</p>
+               <p style="margin-bottom: 5px">好评率: %</p>
+               <p style="margin-bottom: 5px">综合评分:</p>
+            </div>
+          </div>
+          <div id="page3" class="stepPage">
+            <h1>官方介入处理</h1>
+          </div>
+          <div id="page4" class="stepPage">
+            <h1>处理完成</h1>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
-<script src="../../../../layuiadmin/layui/layui.js"></script>  
+
+
+
 <script src="../../../../layuiadmin/style/js/jquery.min.js"></script>  
 <script src="../../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
-<script src="../../../../layuiadmin/style/js/echarts.min.js"></script>
+<script src="../../../../layuiadmin/layui/layui.js"></script>  
+<script src="../../../../layuiadmin/style/js/setStep2.js"></script><!-- 进度步骤 -->
+<script src="../../../../layuiadmin/style/js/setStep.js"></script><!-- 进度步骤 -->
 <script>
-// 1.接受需求 弹框
-$(".jieshou").click(function(){
-  $(".mask").show();
-});
-  $(".guan").click(function(){
-  $(".mask").hide();
-});
 
 // 2.单选
 layui.use(['form', 'layedit', 'laydate'], function(){
@@ -258,19 +327,23 @@ $(".wenjiangui").click(function(){
   $(".guan").click(function(){
   $(".mask2").hide();
 });
-
-// 4. 文件弹框 选项卡
 layui.use('element', function(){
   var $ = layui.jquery 
   ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 });
 
-// 5.放弃需求 弹框
-$(".fangqi").click(function(){
-  $(".mask3").show();
+
+// 7.争议维权 进度条 弹框
+$(".zhengyi").click(function(){
+  $(".mask6").show();
 });
   $(".guan").click(function(){
-  $(".mask3").hide();
+  $(".mask6").hide();
+});
+
+var step2 = new SetStep({
+  content:'.stepCont2',
+  clickAble:false
 });
 
 </script>

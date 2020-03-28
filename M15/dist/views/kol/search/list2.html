@@ -93,6 +93,8 @@
           </div>
         </div>
       </div>  
+
+      
       <!-- 搜索，发布时间 -->
       <div class="layui-col-md12">
         <div class="layui-card">
@@ -255,44 +257,7 @@
 <script src="../../../layuiadmin/style/js/jquery.easy-pie-chart.js"></script>  
 <script src="../../../layuiadmin/style/js/echarts.min.js"></script>  
 <script>
-// 1.轮播 
-layui.use('carousel', function(){
-  var carousel = layui.carousel;
-  //建造实例
-  carousel.render({
-    elem: '#test1'
-    ,width: '100%' //设置容器宽度
-    ,arrow: 'always' //始终显示箭头
-    //,anim: 'updown' //切换动画方式
-  });
-});
 
-// 2.四个仪表盘 图表
-var initPieChart = function() {
-  $('.percentage').easyPieChart({
-    animate: 1000
-  });
-  $('.percentage-light').easyPieChart({
-    barColor: function(percent) {
-      percent /= 100;
-      return "rgb(" + Math.round(255 * (1-percent)) + ", " + Math.round(255 * percent) + ", 0)";
-    },
-    trackColor: '#666',
-    scaleColor: false,
-    lineCap: 'butt',
-    lineWidth: 15,
-    animate: 1000
-  });
-
-  $('.updateEasyPieChart').on('click', function(e) {
-    e.preventDefault();
-    $('.percentage, .percentage-light').each(function() {
-    var newValue = Math.round(100*Math.random());
-    $(this).data('easyPieChart').update(newValue);
-    $('span', this).text(newValue);
-    });
-  });
-};
 
 // 3.最新视频数据表现  图表
 layui.use(['form', 'layedit', 'laydate'], function(){

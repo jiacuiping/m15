@@ -21,3 +21,4 @@ ftp-name:newm15
 api秘钥：LfNuKo4VMI64iA8MJFrkGXYhfRggXBop
 $mchid = '1516924601';          //微信支付商户号 PartnerID 通过微信支付商户资料审核后邮件发送
 $appid = 'wx75502ffcfac1522e';  //公众号APPID 通过微信支付商户资料审核后邮件发送
+
